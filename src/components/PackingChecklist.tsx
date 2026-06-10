@@ -10,49 +10,79 @@ export interface PackingCategory {
   items: string[];
 }
 
+export interface SeasonClothing {
+  id: string;
+  etiqueta: string;
+  items: string[];
+}
+
 /**
  * Checklist de equipaje interactiva: el progreso se guarda en el navegador
  * (localStorage), sin cuentas ni servidor. Imprimible con el botón o Ctrl+P.
+ * Si recibe `temporadas`, muestra un selector que adapta la categoría de ropa
+ * (id "ropa") a la estación elegida.
  */
 export function PackingChecklist({
   categorias,
+  temporadas,
   storageKey = "viajajapon-maleta",
 }: {
   categorias: PackingCategory[];
+  temporadas?: SeasonClothing[];
   storageKey?: string;
 }) {
-  const [store, setStore] = useState<{ loaded: boolean; checked: Record<string, boolean> }>({
-    loaded: false,
-    checked: {},
-  });
-  const { loaded, checked } = store;
+  const [store, setStore] = useState<{
+    loaded: boolean;
+    checked: Record<string, boolean>;
+    temporada?: string;
+  }>({ loaded: false, checked: {} });
+  const { loaded, checked, temporada } = store;
   const setChecked = (updater: (prev: Record<string, boolean>) => Record<string, boolean>) =>
     setStore((s) => ({ ...s, checked: updater(s.checked) }));
 
   useEffect(() => {
     let initial: Record<string, boolean> = {};
+    let temporadaGuardada: string | undefined;
     try {
       const raw = localStorage.getItem(storageKey);
-      if (raw) initial = JSON.parse(raw);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        // Compatibilidad: la primera versión guardaba el mapa de checks a pelo.
+        if (parsed && typeof parsed === "object" && "checked" in parsed) {
+          initial = parsed.checked ?? {};
+          temporadaGuardada = parsed.temporada;
+        } else {
+          initial = parsed ?? {};
+        }
+      }
     } catch {
       /* almacenamiento no disponible: la checklist funciona sin persistir */
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage no existe en SSR: hidratar el estado tras montar es el patrón estándar y el re-render es intencionado
-    setStore({ loaded: true, checked: initial });
+    setStore({ loaded: true, checked: initial, temporada: temporadaGuardada });
   }, [storageKey]);
 
   useEffect(() => {
     if (!loaded) return;
     try {
-      localStorage.setItem(storageKey, JSON.stringify(checked));
+      localStorage.setItem(storageKey, JSON.stringify({ checked, temporada }));
     } catch {
       /* idem */
     }
-  }, [checked, loaded, storageKey]);
+  }, [checked, temporada, loaded, storageKey]);
+
+  // Si hay temporada elegida, la categoría "ropa" usa la lista de esa estación.
+  const categoriasEfectivas = useMemo(() => {
+    const season = temporadas?.find((t) => t.id === temporada);
+    if (!season) return categorias;
+    return categorias.map((c) =>
+      c.id === "ropa" ? { ...c, titulo: `Ropa (${season.etiqueta.toLowerCase()})`, items: season.items } : c
+    );
+  }, [categorias, temporadas, temporada]);
 
   const keys = useMemo(
-    () => categorias.flatMap((c) => c.items.map((item) => `${c.id}::${item}`)),
-    [categorias]
+    () => categoriasEfectivas.flatMap((c) => c.items.map((item) => `${c.id}::${item}`)),
+    [categoriasEfectivas]
   );
   const total = keys.length;
   const done = keys.filter((k) => checked[k]).length;
@@ -95,9 +125,36 @@ export function PackingChecklist({
         </div>
       </div>
 
+      {/* Selector de temporada: adapta la categoría de ropa */}
+      {temporadas && temporadas.length > 0 && (
+        <div className="border-b border-border px-5 py-4">
+          <p className="text-sm font-semibold text-fg">Ajusta la ropa a tu temporada:</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {temporadas.map((t) => {
+              const activa = temporada === t.id;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  aria-pressed={activa}
+                  onClick={() => setStore((s) => ({ ...s, temporada: activa ? undefined : t.id }))}
+                  className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                    activa
+                      ? "border-primary bg-primary text-white"
+                      : "border-border bg-surface text-fg-muted hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {t.etiqueta}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Categorías, siempre visibles (también al imprimir) */}
       <div className="grid gap-x-8 gap-y-6 p-5 md:grid-cols-2">
-        {categorias.map((cat) => {
+        {categoriasEfectivas.map((cat) => {
           const catDone = cat.items.filter((item) => checked[`${cat.id}::${item}`]).length;
           return (
             <section key={cat.id} aria-label={cat.titulo}>

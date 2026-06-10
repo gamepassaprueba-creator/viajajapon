@@ -24,6 +24,7 @@ Hacer la maleta para Japón tiene dos errores típicos: llevarla **demasiado lle
   { href: "#ropa-segun-temporada", label: "Ropa según temporada" },
   { href: "#tu-checklist-interactiva", label: "Tu checklist interactiva" },
   { href: "#que-comprar-alli-y-que-traer-de-casa", label: "Qué comprar allí y qué traer" },
+  { href: "#limites-de-equipaje-en-el-avion", label: "Límites de equipaje en el avión" },
   { href: "#aduana-japonesa-lo-que-no-puede-entrar", label: "Aduana: lo que NO puede entrar" },
   { href: "#moverte-con-la-maleta-takuhaibin-taquillas-y-lavanderias", label: "Moverte con la maleta" },
   { href: "#preguntas-frecuentes", label: "Preguntas frecuentes" },
@@ -49,9 +50,49 @@ Temperaturas orientativas para Tokio/Kioto; en montaña y en Hokkaido hace más 
 
 ## Tu checklist interactiva
 
-Marca lo que ya tengas listo: el progreso **se guarda en tu navegador** y puedes imprimirla para la nevera.
+Marca lo que ya tengas listo: el progreso **se guarda en tu navegador** y puedes imprimirla para la nevera. Elige tu temporada y la lista de ropa se adapta sola.
 
-<PackingChecklist categorias={[
+<PackingChecklist temporadas={[
+  { id: "primavera", etiqueta: "Primavera", items: [
+    "Camisetas de manga corta y larga (capas)",
+    "Pantalón largo cómodo",
+    "Jersey fino o sudadera",
+    "Chaqueta ligera",
+    "Calcetines de sobra y SIN agujeros (te descalzarás en templos y ryokan)",
+    "Calzado cómodo y ya domado",
+    "Pijama",
+    "Paraguas plegable (o cómpralo allí en el konbini)",
+  ]},
+  { id: "verano", etiqueta: "Verano", items: [
+    "Camisetas ligeras y transpirables, de sobra (sudarás)",
+    "Pantalón corto o falda + uno largo",
+    "Capa fina para el aire acondicionado (no perdona)",
+    "Gorra o sombrero",
+    "Calcetines finos SIN agujeros",
+    "Calzado ventilado y cómodo",
+    "Bañador (solo si tu plan incluye piscina o playa)",
+    "Pijama ligero",
+  ]},
+  { id: "otono", etiqueta: "Otoño", items: [
+    "Camisetas de manga larga",
+    "Jersey o cardigan (un par)",
+    "Chaqueta de entretiempo",
+    "Bufanda fina para noviembre",
+    "Pantalón largo",
+    "Calcetines de sobra y SIN agujeros",
+    "Calzado cerrado cómodo",
+    "Pijama",
+  ]},
+  { id: "invierno", etiqueta: "Invierno", items: [
+    "Ropa térmica interior (o cómprala allí en Uniqlo, sale mejor)",
+    "Jerséis de abrigo",
+    "Abrigo de verdad",
+    "Gorro, bufanda y guantes",
+    "Calcetines térmicos SIN agujeros",
+    "Calzado cerrado (impermeable si vas a zona de nieve)",
+    "Pijama calentito",
+  ]},
+]} categorias={[
   {
     id: "documentos",
     titulo: "Documentos y dinero",
@@ -143,6 +184,16 @@ Marca lo que ya tengas listo: el progreso **se guarda en tu navegador** y puedes
 - **Desodorante**: los japoneses son notablemente más suaves; si usas antitranspirante fuerte, trae el tuyo.
 - **Ropa y calzado de tallas grandes**: por encima de una 44-45 de pie o tallas XL europeas, encontrar tu talla puede ser misión.
 - **Protector solar específico** si tienes la piel sensible a un producto concreto.
+
+## Límites de equipaje en el avión
+
+Cada aerolínea pone sus reglas y **mandan las de tu billete**, pero como orientación general para no llevarte sorpresas en el mostrador:
+
+- **Cabina:** en torno a 55 × 40 × 23-25 cm y entre 7 y 10 kg según compañía. Ahí van documentos, electrónica, medicación y un cambio de ropa.
+- **Facturada:** lo habitual en turista es un límite de unos 23 kg por maleta; las compañías japonesas (JAL, ANA) son escrupulosas midiendo y pesando.
+- **El truco del viaje a Japón:** sal de casa con la maleta a medias. Entre las compras y los regalos, el peso de vuelta siempre crece — una báscula de equipaje pequeña te quita el drama del aeropuerto.
+
+Verifica los límites exactos de tu tarifa antes de volar, sobre todo si combinas aerolíneas o llevas algún vuelo interno en Japón (las low-cost japonesas cobran el equipaje facturado aparte).
 
 ## Aduana japonesa: lo que NO puede entrar
 
