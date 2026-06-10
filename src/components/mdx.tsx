@@ -118,6 +118,61 @@ export function Steps({ items }: { items: { titulo: string; texto: string }[] })
   );
 }
 
+/** Ruta del itinerario por etapas: timeline vertical numerado. */
+export function RouteStops({ items }: { items: { ciudad: string; dias: string; nota?: string }[] }) {
+  return (
+    <ol className="my-6 space-y-0">
+      {items.map((s, i) => (
+        <li key={s.ciudad + i} className="relative flex gap-4 pb-6 last:pb-0">
+          {i < items.length - 1 && (
+            <span aria-hidden="true" className="absolute left-4 top-9 h-[calc(100%-1.75rem)] w-px -translate-x-1/2 bg-border" />
+          )}
+          <span aria-hidden="true" className="z-10 flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
+            {i + 1}
+          </span>
+          <div className="min-w-0 pt-1">
+            <p className="font-semibold text-fg">
+              {s.ciudad} <span className="nums ml-1 font-normal text-fg-muted">· {s.dias}</span>
+            </p>
+            {s.nota && <p className="mt-0.5 text-sm leading-relaxed text-fg-muted">{s.nota}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** Día del itinerario en acordeón nativo (details). El contenido va como markdown hijo. */
+export function ItineraryDay({
+  dia,
+  titulo,
+  ciudad,
+  abierto = false,
+  children,
+}: {
+  dia: number;
+  titulo: string;
+  ciudad: string;
+  abierto?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <details open={abierto || undefined} className="group my-3 overflow-hidden rounded-lg border border-border bg-surface">
+      <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-4 [&::-webkit-details-marker]:hidden">
+        <span aria-hidden="true" className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+          {dia}
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-semibold leading-snug text-fg">{titulo}</span>
+          <span className="mt-0.5 block text-xs uppercase tracking-wider text-fg-muted">{ciudad}</span>
+        </span>
+        <ChevronDown size={18} className="shrink-0 text-fg-muted transition-transform group-open:rotate-180" aria-hidden="true" />
+      </summary>
+      <div className="border-t border-border px-5 pb-5 [&>p]:mt-3 [&>ul]:mt-3">{children}</div>
+    </details>
+  );
+}
+
 /** Preguntas frecuentes en acordeón nativo (details/summary: accesible, sin JS). */
 export function FAQ({ items }: { items: { q: string; a: string }[] }) {
   return (
@@ -184,4 +239,6 @@ export const mdxComponents = {
   InfoBox,
   Steps,
   FAQ,
+  RouteStops,
+  ItineraryDay,
 };

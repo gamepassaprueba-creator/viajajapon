@@ -13,6 +13,8 @@ export interface ArticleMeta {
   datePublished: string;
   dateModified: string;
   excerpt: string;
+  /** Imagen de cabecera opcional (ruta bajo /public, p. ej. "/images/kioto.jpg"). */
+  hero?: string;
   draft?: boolean;
   readingMinutes?: number;
 }

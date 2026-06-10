@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -97,6 +98,11 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
           ? `Última actualización: ${formatDate(meta.dateModified)}`
           : `${formatDate(meta.dateModified)} · ${readingMinutes(content)} min de lectura`}
       </p>
+      {meta.hero && (
+        <div className="relative mt-6 h-56 overflow-hidden rounded-xl sm:h-72">
+          <Image src={meta.hero} alt={meta.title} fill priority sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
+        </div>
+      )}
       <div className="mt-6">
         {/* blockJS:false — nuestro MDX es contenido propio del repo (no remoto), y los
             componentes ricos (KeyFacts/Steps/FAQ/Toc) reciben sus datos como expresiones
