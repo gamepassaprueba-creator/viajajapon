@@ -22,7 +22,7 @@
 			//   wrangler kv namespace create NEXT_INC_CACHE_KV
 			// y pega aquí el id que devuelve.
 			"binding": "NEXT_INC_CACHE_KV",
-			"id": "PENDIENTE_ID_KV"
+			"id": "76150a5304084b0ab897de2e6131c1fd"
 		}
 	],
 	"images": {
