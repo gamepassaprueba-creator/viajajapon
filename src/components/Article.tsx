@@ -98,7 +98,10 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
           : `${formatDate(meta.dateModified)} · ${readingMinutes(content)} min de lectura`}
       </p>
       <div className="mt-6">
-        <MDXRemote source={content} components={mdxComponents} />
+        {/* blockJS:false — nuestro MDX es contenido propio del repo (no remoto), y los
+            componentes ricos (KeyFacts/Steps/FAQ/Toc) reciben sus datos como expresiones
+            en atributos, que la v6 elimina por defecto. blockDangerousJS sigue activo. */}
+        <MDXRemote source={content} components={mdxComponents} options={{ blockJS: false }} />
       </div>
 
       {related.length > 0 && (
