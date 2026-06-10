@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 };
 
 const ITIN = [
-  { img: "/images/tokio.jpg", badge: "7 días", title: "Esencia de Japón", ruta: "Tokio, Kioto, Nara" },
-  { img: "/images/kioto.jpg", badge: "10 días", title: "Ruta clásica", ruta: "Tokio, Hakone, Kioto, Osaka" },
-  { img: "/images/osaka.jpg", badge: "15 días", title: "Japón profundo", ruta: "+ Hiroshima, Kanazawa" },
-  { img: "/images/hero-fuji.jpg", badge: "1 mes", title: "Japón completo", ruta: "De Hokkaido a Okinawa" },
+  { img: "/images/tokio.jpg", badge: "7 días", title: "Esencia de Japón", ruta: "Tokio, Kioto, Nara", href: "/itinerarios/itinerario-japon-7-dias" },
+  { img: "/images/kioto.jpg", badge: "10 días", title: "Ruta clásica", ruta: "Tokio, Hakone, Kioto, Osaka", href: "/itinerarios/itinerario-japon-10-dias" },
+  { img: "/images/osaka.jpg", badge: "15 días", title: "Japón profundo", ruta: "+ Hiroshima, Kanazawa", href: "/itinerarios" },
+  { img: "/images/hero-fuji.jpg", badge: "1 mes", title: "Japón completo", ruta: "De Hokkaido a Okinawa", href: "/itinerarios" },
 ];
 
 const DEST = [
@@ -33,10 +33,10 @@ const DEST = [
 ];
 
 const CULTURA = [
-  { img: "/images/festival.jpg", title: "Festivales (Matsuri)", desc: "Celebraciones llenas de color y tradición durante todo el año.", bullets: ["Gion Matsuri (Kioto) — julio", "Tanabata — julio", "Obon — agosto"] },
-  { img: "/images/tea.jpg", title: "Ceremonia del té y etiqueta", desc: "Costumbres básicas para disfrutar Japón con respeto.", bullets: ["Saludos y reverencias", "Descalzarse en interiores", "Etiqueta en la mesa"] },
-  { img: "/images/kimono.jpg", title: "Alquiler de kimono", desc: "Pasea por las calles históricas con un kimono tradicional.", bullets: ["Por horas o día completo", "Incluye peinado y accesorios", "Sesión fotográfica opcional"] },
-  { img: "/images/bamboo.jpg", title: "Ryokan y onsen", desc: "Alójate a la japonesa: tatami, futón y baños termales.", bullets: ["Tatami y futón", "Baños termales (onsen)", "Cena kaiseki"] },
+  { img: "/images/festival.jpg", title: "Festivales (Matsuri)", desc: "Celebraciones llenas de color y tradición durante todo el año.", bullets: ["Gion Matsuri (Kioto) — julio", "Tanabata — julio", "Obon — agosto"], href: "/cultura" },
+  { img: "/images/tea.jpg", title: "Ceremonia del té y etiqueta", desc: "Costumbres básicas para disfrutar Japón con respeto.", bullets: ["Saludos y reverencias", "Descalzarse en interiores", "Etiqueta en la mesa"], href: "/cultura/etiqueta-y-costumbres-japon" },
+  { img: "/images/kimono.jpg", title: "Alquiler de kimono", desc: "Pasea por las calles históricas con un kimono tradicional.", bullets: ["Por horas o día completo", "Incluye peinado y accesorios", "Sesión fotográfica opcional"], href: "/cultura" },
+  { img: "/images/bamboo.jpg", title: "Ryokan y onsen", desc: "Alójate a la japonesa: tatami, futón y baños termales.", bullets: ["Tatami y futón", "Baños termales (onsen)", "Cena kaiseki"], href: "/cultura/onsen-guia-practica" },
 ];
 
 const DISHES = [
@@ -79,7 +79,7 @@ export default async function Home() {
     { Icon: Coins, color: "text-green-600", bg: "bg-green-100", title: "Cambio de divisas", desc: "Euros a yenes y cómo pagar en Japón.", bullets: [`1€ ≈ ¥${rate} (en vivo)`, "Dónde cambiar", "Tarjetas y comisiones"], href: "/cambio-yen-euro", link: "Ver el cambio del yen" },
     { Icon: Plug, color: "text-purple-600", bg: "bg-purple-100", title: "Enchufes y electricidad", desc: "Carga tus dispositivos sin problemas.", bullets: ["Tipo A (dos clavijas planas)", "Voltaje 100V", "Adaptadores recomendados"], href: "/logistica", link: "Más información" },
     { Icon: Luggage, color: "text-amber-600", bg: "bg-amber-100", title: "Qué llevar en la maleta", desc: "Imprescindibles según la temporada.", bullets: ["Ropa por temporada", "Calzado cómodo", "Medicamentos y documentación"], href: "/logistica", link: "Lista completa" },
-    { Icon: CalendarDays, color: "text-teal-600", bg: "bg-teal-100", title: "Mejor época para viajar", desc: "El mejor momento según tu plan.", bullets: ["Primavera: sakura (mar–abr)", "Otoño: momiji (nov)", "Temporadas altas y bajas"], href: "/logistica", link: "Guía por temporadas" },
+    { Icon: CalendarDays, color: "text-teal-600", bg: "bg-teal-100", title: "Mejor época para viajar", desc: "El mejor momento según tu plan.", bullets: ["Primavera: sakura (mar–abr)", "Otoño: momiji (nov)", "Temporadas altas y bajas"], href: "/logistica/mejor-epoca-viajar-japon", link: "Guía por temporadas" },
   ];
 
   return (
@@ -93,7 +93,7 @@ export default async function Home() {
             <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong shadow-sm">
               {season}
             </span>
-            <h1 className="mt-6 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Planifica tu viaje a Japón en 2026</h1>
+            <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Planifica tu viaje a Japón en 2026</h1>
             <p className="mt-6 text-lg text-fg-muted">
               Todo lo que necesitas para planificar tu aventura: JR Pass, presupuesto, itinerarios, cultura y
               gastronomía — con datos reales y de este año.
@@ -106,7 +106,7 @@ export default async function Home() {
             <form action="/buscar" className="mt-4 flex max-w-xl items-center gap-2 rounded-lg bg-surface p-2 shadow-lg focus-within:ring-2 focus-within:ring-primary">
               <Search size={20} className="ml-2 text-gray-400" aria-hidden="true" />
               <label htmlFor="q" className="sr-only">Buscar en la guía</label>
-              <input id="q" name="q" type="search" placeholder="¿Qué quieres descubrir sobre Japón?" className="flex-1 border-none bg-transparent px-2 py-2 text-fg outline-none" />
+              <input id="q" name="q" type="search" autoComplete="off" placeholder="¿Qué quieres descubrir sobre Japón?" className="flex-1 border-none bg-transparent px-2 py-2 text-fg outline-none" />
               <button type="submit" className="rounded-md bg-primary px-6 py-2 font-medium text-white transition-colors hover:bg-primary-strong">Buscar</button>
             </form>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -132,7 +132,7 @@ export default async function Home() {
           <SectionHead title="Planifica tu aventura japonesa" sub="Itinerarios adaptados a la duración de tu viaje para aprovechar cada día." />
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {ITIN.map((it) => (
-              <Link key={it.badge} href="/itinerarios" className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+              <Link key={it.badge} href={it.href} className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative h-48">
                   <Image src={it.img} alt={it.title} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
@@ -252,7 +252,7 @@ export default async function Home() {
                         <li key={b} className="flex items-center gap-2 text-sm text-fg-muted"><Check size={16} className="shrink-0 text-primary" aria-hidden="true" /> {b}</li>
                       ))}
                     </ul>
-                    <Link href="/cultura" className="mt-4 inline-flex items-center gap-1 font-medium text-primary">Saber más <ArrowRight size={16} aria-hidden="true" /></Link>
+                    <Link href={c.href} className="mt-4 inline-flex items-center gap-1 font-medium text-primary">Saber más <ArrowRight size={16} aria-hidden="true" /></Link>
                   </div>
                   <div className="relative h-56 md:h-auto">
                     <Image src={c.img} alt={c.title} fill sizes="(max-width:768px) 100vw, 25vw" className="object-cover" />
@@ -270,7 +270,7 @@ export default async function Home() {
           <SectionHead title="Gastronomía japonesa" sub="Un viaje a Japón es también un viaje culinario." />
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {DISHES.map((p) => (
-              <Link key={p.title} href="/gastronomia" className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+              <Link key={p.title} href="/gastronomia/que-comer-en-japon" className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
                 <div className="relative h-48">
                   <Image src={p.img} alt={p.title} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
@@ -358,8 +358,8 @@ export default async function Home() {
 function SectionHead({ title, sub }: { title: string; sub: string }) {
   return (
     <div className="mb-12 text-center">
-      <h2 className="mb-4 text-3xl font-bold">{title}</h2>
-      <p className="mx-auto max-w-2xl text-fg-muted">{sub}</p>
+      <h2 className="mb-4 text-balance text-3xl font-bold">{title}</h2>
+      <p className="mx-auto max-w-2xl text-pretty text-fg-muted">{sub}</p>
     </div>
   );
 }

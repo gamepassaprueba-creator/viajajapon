@@ -4,21 +4,21 @@ const COLS = [
   {
     title: "Planifica tu viaje",
     links: [
-      { label: "Itinerarios", href: "/itinerarios" },
-      { label: "JR Pass", href: "/herramientas/jr-pass-calculadora" },
-      { label: "Transporte", href: "/logistica" },
-      { label: "Mejor época para viajar", href: "/logistica" },
-      { label: "Presupuesto", href: "/herramientas/jr-pass-calculadora" },
+      { label: "Itinerario de 7 días", href: "/itinerarios/itinerario-japon-7-dias" },
+      { label: "Itinerario de 10 días", href: "/itinerarios/itinerario-japon-10-dias" },
+      { label: "Calculadora del JR Pass", href: "/herramientas/jr-pass-calculadora" },
+      { label: "Cuánto cuesta viajar a Japón", href: "/logistica/cuanto-cuesta-viajar-japon" },
+      { label: "Mejor época para viajar", href: "/logistica/mejor-epoca-viajar-japon" },
     ],
   },
   {
     title: "Destinos",
     links: [
-      { label: "Tokio", href: "/destinos" },
-      { label: "Kioto", href: "/destinos" },
-      { label: "Osaka", href: "/destinos" },
-      { label: "Hiroshima", href: "/destinos" },
-      { label: "Hokkaido", href: "/destinos" },
+      { label: "Dónde dormir en Tokio", href: "/destinos/donde-dormir-en-tokio" },
+      { label: "Dónde dormir en Kioto", href: "/destinos/donde-dormir-en-kioto" },
+      { label: "Japón por libre (empieza aquí)", href: "/logistica/japon-por-libre-primer-viaje" },
+      { label: "Desde México y Latinoamérica", href: "/logistica/japon-desde-mexico-y-latinoamerica" },
+      { label: "Todos los destinos", href: "/destinos" },
     ],
   },
   {
@@ -26,6 +26,7 @@ const COLS = [
     links: [
       { label: "Cultura y costumbres", href: "/cultura" },
       { label: "Gastronomía", href: "/gastronomia" },
+      { label: "Cómo pagar en Japón", href: "/logistica/como-pagar-en-japon" },
       { label: "Cambio del yen", href: "/cambio-yen-euro" },
       { label: "Consejos prácticos", href: "/logistica" },
       { label: "Divulgación de afiliados", href: "/afiliados-divulgacion" },
