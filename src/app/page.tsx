@@ -52,7 +52,7 @@ const EXPERIENCIAS = [
 ];
 
 const ENTRET = [
-  { img: "/images/akihabara.jpg", title: "Japón friki (otaku)", desc: "Manga, anime, videojuegos y cultura pop.", items: [{ Icon: Gamepad2, name: "Akihabara", note: "Barrio electrónico y otaku." }, { Icon: Clapperboard, name: "Museo Ghibli", note: "Las obras del estudio." }] },
+  { img: "/images/akihabara.jpg", title: "Japón friki (otaku)", desc: "Manga, anime, videojuegos y cultura pop.", href: "/cultura/japon-friki-guia-otaku", items: [{ Icon: Gamepad2, name: "Akihabara", note: "Barrio electrónico y otaku." }, { Icon: Clapperboard, name: "Museo Ghibli", note: "Las obras del estudio." }] },
   { img: "/images/tokio.jpg", title: "Parques temáticos", desc: "Algunos de los mejores del mundo.", items: [{ Icon: Sparkles, name: "Tokyo Disney / DisneySea", note: "DisneySea es exclusivo de Japón." }, { Icon: Clapperboard, name: "Universal Studios", note: "Super Nintendo World." }] },
   { img: "/images/bamboo.jpg", title: "Naturaleza y paisajes", desc: "Más allá de las ciudades.", items: [{ Icon: Mountain, name: "Monte Fuji", note: "El icónico volcán." }, { Icon: Trees, name: "Bambú de Arashiyama", note: "Un paseo mágico en Kioto." }] },
 ];
@@ -313,28 +313,44 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-4">
           <SectionHead title="Japón para todos los gustos" sub="Del Japón más tradicional al más moderno y friki." />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {ENTRET.map((e) => (
-              <div key={e.title} className="overflow-hidden rounded-lg bg-surface shadow-md">
-                <div className="relative h-56">
-                  <Image src={e.img} alt={e.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
-                </div>
-                <div className="p-6">
-                  <h3 className="mb-3 text-xl font-bold">{e.title}</h3>
-                  <p className="mb-4 text-fg-muted">{e.desc}</p>
-                  <div className="space-y-3">
-                    {e.items.map((it) => (
-                      <div key={it.name} className="flex items-start gap-2">
-                        <it.Icon size={18} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-                        <div>
-                          <span className="font-medium">{it.name}</span>
-                          <p className="text-sm text-fg-muted">{it.note}</p>
-                        </div>
-                      </div>
-                    ))}
+            {ENTRET.map((e) => {
+              const card = (
+                <>
+                  <div className="relative h-56">
+                    <Image src={e.img} alt={e.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" />
                   </div>
+                  <div className="p-6">
+                    <h3 className="mb-3 text-xl font-bold">{e.title}</h3>
+                    <p className="mb-4 text-fg-muted">{e.desc}</p>
+                    <div className="space-y-3">
+                      {e.items.map((it) => (
+                        <div key={it.name} className="flex items-start gap-2">
+                          <it.Icon size={18} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                          <div>
+                            <span className="font-medium">{it.name}</span>
+                            <p className="text-sm text-fg-muted">{it.note}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {"href" in e && e.href && (
+                      <span className="mt-4 inline-flex items-center gap-1 font-medium text-primary">
+                        Leer la guía <ArrowRight size={16} aria-hidden="true" />
+                      </span>
+                    )}
+                  </div>
+                </>
+              );
+              return "href" in e && e.href ? (
+                <Link key={e.title} href={e.href} className="group block overflow-hidden rounded-lg bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+                  {card}
+                </Link>
+              ) : (
+                <div key={e.title} className="overflow-hidden rounded-lg bg-surface shadow-md">
+                  {card}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
