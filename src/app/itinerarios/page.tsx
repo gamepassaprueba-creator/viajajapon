@@ -64,8 +64,9 @@ const ITINERARIOS: Itinerario[] = [
     alt: "Monte Fuji con una pagoda y cerezos en flor",
     badge: "1 mes",
     title: "Japón completo",
-    ruta: "El país a fondo, sin prisas",
-    desc: "El viaje largo con el que sueñas si tienes tiempo de sobra. Lo estamos preparando.",
+    ruta: "Tokio, Kansai, Hiroshima y los Alpes",
+    desc: "Cuatro semanas con base fija, días colchón y final a tu medida (Alpes, Hokkaido u Okinawa).",
+    href: "/itinerarios/itinerario-japon-1-mes",
   },
 ];
 

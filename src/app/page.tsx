@@ -23,7 +23,7 @@ const ITIN = [
   { img: "/images/tokio.jpg", badge: "7 días", title: "Esencia de Japón", ruta: "Tokio, Kioto, Nara", href: "/itinerarios/itinerario-japon-7-dias" },
   { img: "/images/kioto.jpg", badge: "10 días", title: "Ruta clásica", ruta: "Tokio, Hakone, Kioto, Osaka", href: "/itinerarios/itinerario-japon-10-dias" },
   { img: "/images/osaka.jpg", badge: "15 días", title: "Japón profundo", ruta: "+ Hiroshima, Kanazawa", href: "/itinerarios/itinerario-japon-15-dias" },
-  { img: "/images/hero-fuji.jpg", badge: "1 mes", title: "Japón completo", ruta: "De Hokkaido a Okinawa", href: "/itinerarios" },
+  { img: "/images/hero-fuji.jpg", badge: "1 mes", title: "Japón completo", ruta: "Tokio, Kansai, Hiroshima y los Alpes", href: "/itinerarios/itinerario-japon-1-mes" },
 ];
 
 const DEST = [
