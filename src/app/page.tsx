@@ -78,7 +78,7 @@ export default async function Home() {
     { Icon: Wifi, color: "text-secondary", bg: "bg-blue-100", title: "Internet en Japón", desc: "Conéctate desde que aterrizas.", bullets: ["eSIM (Holafly, Airalo)", "Pocket WiFi", "WiFi gratis en muchos sitios"], href: "/logistica/esim-japon", link: "Comparativa de eSIM" },
     { Icon: Coins, color: "text-green-600", bg: "bg-green-100", title: "Cambio de divisas", desc: "Euros a yenes y cómo pagar en Japón.", bullets: [`1€ ≈ ¥${rate} (en vivo)`, "Dónde cambiar", "Tarjetas y comisiones"], href: "/cambio-yen-euro", link: "Ver el cambio del yen" },
     { Icon: Plug, color: "text-purple-600", bg: "bg-purple-100", title: "Enchufes y electricidad", desc: "Carga tus dispositivos sin problemas.", bullets: ["Tipo A (dos clavijas planas)", "Voltaje 100V", "Adaptadores recomendados"], href: "/logistica", link: "Más información" },
-    { Icon: Luggage, color: "text-amber-600", bg: "bg-amber-100", title: "Qué llevar en la maleta", desc: "Imprescindibles según la temporada.", bullets: ["Ropa por temporada", "Calzado cómodo", "Medicamentos y documentación"], href: "/logistica", link: "Lista completa" },
+    { Icon: Luggage, color: "text-amber-600", bg: "bg-amber-100", title: "Qué llevar en la maleta", desc: "Imprescindibles según la temporada.", bullets: ["Checklist interactiva", "Ropa por temporada", "Qué no deja pasar la aduana"], href: "/logistica/que-llevar-maleta-japon", link: "Lista completa" },
     { Icon: CalendarDays, color: "text-teal-600", bg: "bg-teal-100", title: "Mejor época para viajar", desc: "El mejor momento según tu plan.", bullets: ["Primavera: sakura (mar–abr)", "Otoño: momiji (nov)", "Temporadas altas y bajas"], href: "/logistica/mejor-epoca-viajar-japon", link: "Guía por temporadas" },
   ];
 

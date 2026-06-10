@@ -5,10 +5,34 @@ kicker: "Itinerarios"
 datePublished: "2026-06-10"
 dateModified: "2026-06-10"
 excerpt: "Plantilla adaptable de 10 días por Japón (Tokio, excursión, Kioto, Nara y Osaka) con presupuesto orientativo en euros, transporte entre ciudades y la cuenta honesta del JR Pass."
+hero: "/images/kioto.jpg"
 draft: false
 ---
 
 Diez días en Japón son suficientes para un primer viaje muy completo: te da margen para conocer bien Tokio, vivir el contraste con Kioto y sumar Nara y Osaka sin ir agobiado. No verás todo el país (Japón da para meses), pero sí lo esencial del eje Tokio-Kansai, que es por donde casi todo el mundo empieza. ¿Cuánto cuesta? Como referencia orientativa, en gama media el gasto en destino ronda los 1.070 € por persona para 10 días (alojamiento, comida, entradas, transporte local y el tren bala de esta ruta). A eso hay que sumar los vuelos ida y vuelta desde España, que se mueven en un rango amplio de 600 a 1.100 € según temporada y antelación: verifica siempre con tus fechas concretas, porque es la partida que más varía. En total, un viaje de 10 días en gama media puede salir, de forma aproximada, entre 1.670 y 2.170 € por persona. Si viajas con menos presupuesto baja bastante, y si buscas comodidad sube. A continuación tienes un itinerario día a día pensado como plantilla adaptable, no como una regla: reordénalo según tus gustos, tu ritmo y la temporada.
+
+<KeyFacts items={[
+  { label: "Duración", value: "10 días" },
+  { label: "Ruta", value: "Tokio · excursión · Kioto · Nara · Osaka" },
+  { label: "Gasto en destino (gama media)", value: "≈ 1.070 € por persona" },
+  { label: "Vuelos i/v desde España", value: "600-1.100 € (orientativo)" },
+  { label: "Total aproximado", value: "1.670-2.170 € por persona" },
+  { label: "JR Pass", value: "Casi nunca compensa en esta ruta" },
+]} />
+
+<Toc items={[
+  { href: "#como-usar-este-itinerario-es-una-plantilla-no-una-regla", label: "Cómo usar este itinerario" },
+  { href: "#transporte-entre-ciudades-tren-bala", label: "Transporte entre ciudades (tren bala)" },
+  { href: "#presupuesto-orientativo-del-itinerario", label: "Presupuesto orientativo del itinerario" },
+  { href: "#antes-de-salir-reservas-y-conectividad", label: "Antes de salir: reservas y conectividad" },
+]} />
+
+<RouteStops items={[
+  { ciudad: "Tokio", dias: "días 1-4", nota: "La ciudad y una excursión de un día (Hakone o Nikko)." },
+  { ciudad: "Kioto", dias: "días 5-7", nota: "Templos, barrios y ambiente tradicional." },
+  { ciudad: "Nara", dias: "día 8", nota: "Excursión de ida y vuelta en el día." },
+  { ciudad: "Osaka", dias: "días 9-10", nota: "Cierre del viaje y regreso." },
+]} />
 
 ## Cómo usar este itinerario (es una plantilla, no una regla)
 
@@ -20,9 +44,11 @@ Trátalo como un punto de partida. La estructura es la habitual y la que mejor f
 - **Nara y/o Osaka: 1-2 días** como cierre.
 - **Hiroshima/Miyajima: opcional** si prefieres recortar otra parada.
 
+<InfoBox variant="consejo" title="Temporada alta">
 Si vienes en temporada alta (cerezos a finales de marzo y abril, otoño en noviembre), reserva alojamiento y trenes con margen. Y no intentes encajar todo: en Japón se cansa uno andando mucho más de lo que parece.
+</InfoBox>
 
-### Día 1: Llegada a Tokio
+<ItineraryDay dia={1} titulo="Llegada a Tokio" ciudad="Tokio" abierto={true}>
 
 - Aterrizaje, traslado al alojamiento y compra de la tarjeta de transporte (Suica/Pasmo, también en versión digital).
 - Primer paseo suave por la zona del hotel para adaptarte al horario.
@@ -30,53 +56,69 @@ Si vienes en temporada alta (cerezos a finales de marzo y abril, otoño en novie
 
 No fuerces el primer día. El jet lag con España es notable y conviene acostarse pronto.
 
-### Día 2: Tokio clásico
+</ItineraryDay>
+
+<ItineraryDay dia={2} titulo="Tokio clásico" ciudad="Tokio">
 
 - Templo Senso-ji y la calle Nakamise en Asakusa por la mañana.
 - Barrio de Ueno y su parque, o el ambiente de Akihabara.
 - Atardecer y vistas desde Shibuya o desde un mirador.
 
-### Día 3: Tokio moderno
+</ItineraryDay>
+
+<ItineraryDay dia={3} titulo="Tokio moderno" ciudad="Tokio">
 
 - Cruce de Shibuya, Harajuku y la avenida Omotesando.
 - Santuario Meiji y el parque Yoyogi para desconectar del ritmo urbano.
 - Shinjuku por la noche: callejones, luces y cena en la zona.
 
-### Día 4: Excursión de un día (Hakone o Nikko)
+</ItineraryDay>
+
+<ItineraryDay dia={4} titulo="Excursión de un día (Hakone o Nikko)" ciudad="Hakone o Nikko (desde Tokio)">
 
 - **Opción Hakone:** paisajes de montaña, aguas termales (onsen) y vistas del monte Fuji con suerte y cielo despejado. El tren hasta la zona de Odawara/Hakone es relativamente económico (tienes una referencia orientativa en la sección de transporte; verifica con tus fechas).
 - **Opción Nikko:** santuarios espectaculares rodeados de bosque, algo más tranquilo.
 - Vuelta a Tokio para dormir, o noche en la zona si te apetece un onsen con calma.
 
+</ItineraryDay>
+
 {/* TODO AuthorNote (rellenar con experiencia real y reactivar): Cuenta aquí cuál de las dos excursiones hiciste y por qué, qué tal el tiempo ese día y si recomendarías Hakone o Nikko según la experiencia real. Añade una foto propia del paisaje. */}
 
-### Día 5: De Tokio a Kioto
+<ItineraryDay dia={5} titulo="De Tokio a Kioto" ciudad="Tokio → Kioto">
 
 - Mañana: últimas compras o un barrio que te haya quedado pendiente.
 - Mediodía: tren bala Tokio-Kioto (más detalles en la sección de transporte).
 - Tarde/noche en Kioto: paseo por Gion y primer contacto con el ambiente tradicional.
 
-### Día 6: Kioto, este de la ciudad
+</ItineraryDay>
+
+<ItineraryDay dia={6} titulo="Kioto, este de la ciudad" ciudad="Kioto">
 
 - Templo Kiyomizu-dera y las callejuelas de Higashiyama.
 - Camino de Sannenzaka y Ninenzaka hacia Gion.
 - Pabellón Dorado (Kinkaku-ji) si te da el día, aunque queda algo apartado.
 
-### Día 7: Kioto, naturaleza y barrios
+</ItineraryDay>
+
+<ItineraryDay dia={7} titulo="Kioto, naturaleza y barrios" ciudad="Kioto">
 
 - Bosque de bambú de Arashiyama temprano, para evitar las multitudes.
 - Fushimi Inari y sus miles de toriis rojos (mejor a primera o última hora).
 - Tarde libre por mercados como Nishiki o un barrio tranquilo.
 
+</ItineraryDay>
+
 {/* TODO AuthorNote (rellenar con experiencia real y reactivar): Indica qué día y qué lugar disfrutaste más del viaje y por qué, y qué cambiarías del itinerario si lo repitieras (más días en una ciudad, menos templos, otro ritmo, etc.). Incluye una foto tuya del rincón favorito. */}
 
-### Día 8: Nara (excursión)
+<ItineraryDay dia={8} titulo="Nara (excursión)" ciudad="Nara">
 
 - Templo Todai-ji y su Gran Buda.
 - Parque de Nara y sus famosos ciervos.
 - El trayecto desde Osaka o desde Kioto es corto y barato, y se hace fácil ida y vuelta en el día.
 
-### Día 9: Osaka
+</ItineraryDay>
+
+<ItineraryDay dia={9} titulo="Osaka" ciudad="Osaka">
 
 - Castillo de Osaka y su parque por la mañana.
 - Dotonbori y Namba para comer en la calle y empaparte del ambiente.
@@ -84,10 +126,14 @@ No fuerces el primer día. El jet lag con España es notable y conviene acostars
 
 Si prefieres sustituir esta jornada por **Hiroshima y Miyajima**, es una opción muy recomendable, aunque suma horas de tren (ver tarifas abajo) y conviene salir temprano.
 
-### Día 10: Regreso
+</ItineraryDay>
+
+<ItineraryDay dia={10} titulo="Regreso" ciudad="Osaka">
 
 - Mañana libre según la hora del vuelo.
 - Traslado al aeropuerto con margen de sobra (el transporte hasta los aeropuertos lleva su tiempo).
+
+</ItineraryDay>
 
 ## Transporte entre ciudades (tren bala)
 

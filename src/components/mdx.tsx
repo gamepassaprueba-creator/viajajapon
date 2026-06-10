@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { ChevronDown, Info, Lightbulb, TriangleAlert } from "lucide-react";
 import { AffiliateBox } from "./AffiliateBox";
+import { PackingChecklist } from "./PackingChecklist";
 
 /** Id de ancla a partir del texto del encabezado (sin tildes, kebab-case). */
 function slugify(text: string): string {
@@ -110,7 +111,7 @@ export function Steps({ items }: { items: { titulo: string; texto: string }[] })
           </span>
           <div className="min-w-0">
             <p className="font-semibold text-fg">{s.titulo}</p>
-            <p className="mt-0.5 text-sm leading-relaxed text-fg-muted">{s.texto}</p>
+            {s.texto && <p className="mt-0.5 text-sm leading-relaxed text-fg-muted">{s.texto}</p>}
           </div>
         </li>
       ))}
@@ -241,4 +242,5 @@ export const mdxComponents = {
   FAQ,
   RouteStops,
   ItineraryDay,
+  PackingChecklist,
 };
