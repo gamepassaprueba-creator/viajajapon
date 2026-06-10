@@ -1,0 +1,32 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "viajajapon",
+	"compatibility_date": "2025-03-25",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS"
+	},
+	"services": [
+		{
+			// Auto-referencia (el nombre del servicio debe coincidir con el del worker).
+			// Necesario para el caché de OpenNext. Ver https://opennext.js.org/cloudflare/caching
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "viajajapon"
+		}
+	],
+	"kv_namespaces": [
+		{
+			// Caché incremental de ISR en KV (gratis, sin tarjeta). Crea el namespace una vez:
+			//   wrangler kv namespace create NEXT_INC_CACHE_KV
+			// y pega aquí el id que devuelve.
+			"binding": "NEXT_INC_CACHE_KV",
+			"id": "PENDIENTE_ID_KV"
+		}
+	],
+	"images": {
+		// Optimización de imágenes en Cloudflare (sirve el hero en AVIF/WebP).
+		"binding": "IMAGES"
+	}
+}

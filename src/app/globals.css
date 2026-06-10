@@ -1,26 +1,63 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ViajaJapón — tokens (estilo del mockup: Poppins + Pacifico, rojo #e53e3e) */
+@theme {
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-fg: #111827;
+  --color-fg-muted: #4b5563;
+  /* Rojo de marca, ajustado para cumplir WCAG AA con texto blanco (≈5:1 en botones y enlaces).
+     Antes #e53e3e daba 4,1:1 (fallaba AA en texto pequeño). Para volver al original: #e53e3e / #c53030. */
+  --color-primary: #d32f2f;
+  --color-primary-strong: #b71c1c;
+  --color-secondary: #4299e1;
+  --color-border: #e5e7eb;
+  --color-muted: #f3f4f6;
+  --color-success: #15803d;
+  --color-danger: #d32f2f;
+  --color-ring: #d32f2f;
+
+  --font-sans: var(--font-poppins), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-poppins), system-ui, sans-serif;
+  --font-display: var(--font-pacifico), cursive;
+  --font-mono: var(--font-poppins), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  -webkit-text-size-adjust: 100%;
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+a, button, summary, label, input, select, [role="button"] {
+  touch-action: manipulation;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+.nums { font-variant-numeric: tabular-nums; }
+.font-display { font-family: var(--font-display); }
+.font-jp { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, system-ui, sans-serif; }
+.kicker { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 600; }
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

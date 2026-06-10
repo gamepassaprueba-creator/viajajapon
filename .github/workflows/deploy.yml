@@ -1,0 +1,38 @@
+# Despliegue a Cloudflare Workers (OpenNext) en cada push a master.
+# El build se hace aquí (runner Linux) porque en Windows opennextjs-cloudflare
+# falla al trazar node_modules. Secrets necesarios en el repo:
+#   CLOUDFLARE_API_TOKEN  — token con permisos de Workers + KV
+#   CLOUDFLARE_ACCOUNT_ID — Account ID de la cuenta de Cloudflare
+name: Deploy a Cloudflare Workers
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-produccion
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Build OpenNext (incluye next build)
+        run: npx opennextjs-cloudflare build
+
+      - name: Deploy a Cloudflare
+        run: npx opennextjs-cloudflare deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
