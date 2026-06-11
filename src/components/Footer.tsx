@@ -85,7 +85,7 @@ export function Footer() {
           ))}
         </div>
         <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-          <p>© 2026 ViajaJapón.com · Contiene enlaces de afiliado. Verifica precios y normas en la fuente oficial antes de viajar.</p>
+          <p>© 2026 ViajaJapón.com · Algunas recomendaciones pueden contener enlaces de afiliado. Verifica precios y normas en la fuente oficial antes de viajar.</p>
           <div className="mt-4 flex justify-center gap-4">
             <Link href="/aviso-legal" className="hover:text-white">Aviso legal</Link>
             <Link href="/privacidad" className="hover:text-white">Privacidad</Link>

@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
     // Sirve AVIF (mejor compresión) con fallback a WebP. Mejora LCP del hero.
     formats: ["image/avif", "image/webp"],
   },
+  // viajajapon.es y www → 301 al dominio canónico .com (mismo worker sirve ambos).
+  async redirects() {
+    return ["viajajapon.es", "www.viajajapon.es", "www.viajajapon.com"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host }],
+      destination: "https://viajajapon.com/:path*",
+      permanent: true,
+    }));
+  },
   // Cabeceras de seguridad básicas (no rompen nada, suman en auditorías).
   async headers() {
     return [
