@@ -51,3 +51,12 @@ en este proyecto).
 | arashiyama-bambu.jpg | Bosque de bambú de Sagano (Arashiyama) | Jakub Hałun | CC BY 4.0 | Sagano Bamboo forest, Kyoto, 20240818 1730 4584.jpg |
 | nikko-senjogahara.jpg | Llanura de Senjogahara (Nikko) | Guilhem Vellut | CC BY 2.0 | Senjogahara Marsh @ Nikko (9821650533).jpg |
 | nikko-kegon.jpg | Cascada Kegon en otoño (Nikko) | Jordy Meow | CC BY-SA 3.0 | Kegon Taki.jpg |
+| izakaya-omoide-yokocho.jpg | Puesto nocturno de Omoide Yokocho (Shinjuku) | Stephen Kelly | CC BY 2.0 | Night Eatery in Omoide Yokocho, Shinjuku 2013-09-10.jpg |
+| kaiten-zushi-otaru.jpg | Pila de platos en un kaiten-zushi (Otaru) | june29 | CC BY 2.0 | Kaiten zushi plates by june29 in Otaru, Hokkaido.jpg (recorte) |
+| kaiseki-ryokan.jpg | Cena kaiseki en un ryokan (Ikaho) | Tomo | CC BY 2.0 | Ikaho dinner 01.jpg |
+| nishiki-market.jpg | Puesto de dulces del mercado Nishiki (Kioto) | Sergiy Galyonkin | CC BY-SA 2.0 | Nishiki Market, Kyoto - Flickr - Sergiy Galyonkin.jpg (recorte) |
+| ticket-machine.jpg | Máquina de tickets (shokkenki) de un local de fideos | Nesnad | CC BY 4.0 | Meal ticket - shokkenki - May 13 2022 01-38PM.jpeg (recorte) |
+| sake-barriles-meiji.jpg | Barriles de sake (kazaridaru) en Meiji Jingu | Bernard Spragg | Dominio público | Meiji Jingu Shrine. Saki Barrels. (27915377617).jpg |
+| sake-tokkuri.jpg | Tokkuri y ochoko de sake | Kentin | CC BY-SA 3.0 | Tokkuri sake and takowasa.JPG |
+| whisky-yamazaki-bodega.jpg | Bodega de barricas de la destilería Yamazaki | Toukou Sousui | CC BY 2.0 | Yamazaki Distillery 山崎蒸留所15.jpg |
+| matcha-ceremonia.jpg | Cuenco de matcha en una ceremonia del té | WorldContributor | CC BY-SA 4.0 | Japanese cup of matcha during the tea ceremony.jpg |
