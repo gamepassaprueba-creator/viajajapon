@@ -60,3 +60,8 @@ en este proyecto).
 | sake-tokkuri.jpg | Tokkuri y ochoko de sake | Kentin | CC BY-SA 3.0 | Tokkuri sake and takowasa.JPG |
 | whisky-yamazaki-bodega.jpg | Bodega de barricas de la destilería Yamazaki | Toukou Sousui | CC BY 2.0 | Yamazaki Distillery 山崎蒸留所15.jpg |
 | matcha-ceremonia.jpg | Cuenco de matcha en una ceremonia del té | WorldContributor | CC BY-SA 4.0 | Japanese cup of matcha during the tea ceremony.jpg |
+| tokio-sensoji-kaminarimon.jpg | Farolillo de Kaminarimon (Senso-ji, Asakusa) | Zairon | CC BY-SA 4.0 | Senso-ji Kaminarimon Laterne.jpg |
+| tokio-tower-noche.jpg | Torre de Tokio iluminada entre el skyline nocturno | David Kernan | CC BY 4.0 | Tokyo Tower, Minato City.jpg |
+| tokio-takeshita.jpg | Entrada de Takeshita Street (Harajuku) | Syced | CC0 | Takeshita Street.jpg (recorte) |
+| tokio-meiji-torii.jpg | Torii del santuario Meiji | Kakidai | CC BY-SA 4.0 | Torii of Meiji Shrine 2018.jpg |
+| tokio-shibuya-sky.jpg | Mirador al aire libre de Shibuya Sky | Kakidai | CC BY-SA 4.0 | Shibuya Scramble Square - SHIBUYA SKY 10.jpg |
