@@ -15,3 +15,19 @@ en este proyecto).
 | friki-nakano.jpg | Entrada de Nakano Broadway | Kentin | CC BY-SA 3.0 | Nakano broadway entrance.JPG |
 | friki-ufo-catcher.jpg | UFO Catcher en un arcade | Luca Mascaro | CC BY-SA 2.0 | Amusement arcade in Akihabara (2011-04-08 by Luca Mascaro).jpg |
 | friki-gashapon.jpg | Máquinas de gashapon | Ka23 13 | CC BY 4.0 | Capsule toy machine 20211229 142535.jpg |
+| shinkansen-tren.jpg | Shinkansen N700S entre campos de té | MaedaAkihiko | CC0 | Tokaido-Shinkansen N700S Kikugawa.jpg |
+| suica-tarjeta.jpg | Tarjeta Welcome Suica | Ravi Dwivedi | CC BY-SA 4.0 | Welcome Suica.jpg |
+| yenes-billetes.jpg | Billetes de yen | Japanexperterna.se | Dominio público | YenBils-Multidivisas.jpg |
+| estacion-tokio.jpg | Estación de Tokio (Marunouchi) al anochecer | Kestrel | CC BY-SA 4.0 | Tokyo Station Marunouchi Building P5228787.jpg |
+| konbini-japon.jpg | FamilyMart nocturno | Tokumeigakarinoaoshima | CC BY-SA 4.0 | FamilyMart Keihan Kyobashi store at night.jpg |
+| fushimi-inari-toriis.jpg | Toriis de Fushimi Inari | Basile Morin | CC BY-SA 4.0 | Torii path with lantern at Fushimi Inari Taisha Shrine, Kyoto, Japan.jpg |
+| miyajima-torii.jpg | Torii de Itsukushima | JordyMeow | CC BY-SA 3.0 | Itsukushima Gate.jpg |
+| kenrokuen-jardin.jpg | Kenroku-en (Kanazawa) | Daderot | CC BY-SA 3.0 | Kenrokuen linterna fall.JPG |
+| shirakawa-go.jpg | Casas gassho de Shirakawa-go | Bernard Gagnon | CC BY-SA 3.0 | Gassho-zukuri farmhouse-01.jpg |
+| onsen-rotenburo.jpg | Rotenburo de Takanoyu Onsen | RickardA | Dominio público | Takanoyu Onsen Rotenburo 157.jpg |
+| sakura-cerezos.jpg | Sakura en Chidorigafuchi | Suicasmo | CC BY-SA 4.0 | Sakura in Chidorigafuchi 20190406-2.jpg |
+| momiji-otono.jpg | Otoño en Tofukuji (Kioto) | 663highland | CC BY 2.5 | Tofukuji Kyoto01bs3200.jpg |
+| gion-calle.jpg | Calle Sannenzaka (Higashiyama) | Andrea Schaffer | CC BY 2.0 | Sannenzaka street, Kyoto (3811257874).jpg |
+| shibuya-cruce.jpg | Cruce de Shibuya de noche | Benh LIEU SONG | CC BY-SA 2.0 | Tokyo Shibuya Scramble Crossing 2018-10-09.jpg |
+| nikko-toshogu.jpg | Puerta Yomeimon, Toshogu (Nikko) | Jpatokal | CC BY-SA 4.0 | Nikko Toshogu Yomeimon Gate 2024.jpg |
+| taquillas-estacion.jpg | Coin lockers de estación | Crispin Semmens | CC BY-SA 2.0 | Coin lockers are convenient (9878328536).jpg |
