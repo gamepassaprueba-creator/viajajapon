@@ -7,6 +7,7 @@ export function organizationLd() {
     "@type": "Organization",
     name: SITE.name,
     url: SITE.url,
+    logo: `${SITE.url}/logo.png`,
     description: SITE.description,
   };
 }

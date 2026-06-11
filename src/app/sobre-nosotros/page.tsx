@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sobre nosotros: la historia detrás de ViajaJapón",
@@ -33,7 +34,7 @@ export default function Page() {
         </p>
         <p>
           Hubo de todo: un ryokan en Kioto con desayuno con ceremonia del té cuya dueña le regaló a mi
-          madre una figurita de cristal "para la suerte"; un hotel en Yokohama que le cantó el
+          madre una figurita de cristal «para la suerte»; un hotel en Yokohama que le cantó el
           cumpleaños feliz con tarta y cesta de frutas incluidas (todo era sorpresa, ella no sabía
           nada); y hasta un error con los billetes del tren bala que nos plantó en primera clase sin
           saberlo. Todo eso — lo que salió perfecto y lo que aprendimos a base de equivocarnos — está
@@ -78,9 +79,9 @@ export default function Page() {
 
       <p className="mt-8 text-lg leading-relaxed text-fg-muted">
         ¿Por dónde empezar? Por donde empezamos todos:{" "}
-        <a href="/logistica/japon-por-libre-primer-viaje" className="text-primary underline-offset-2 hover:underline">
+        <Link href="/logistica/japon-por-libre-primer-viaje" className="text-primary underline-offset-2 hover:underline">
           Japón por libre: tu primer viaje
-        </a>
+        </Link>
         .
       </p>
     </article>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 const COLS = [
   {
@@ -49,10 +50,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link href="/" className="mb-4 inline-flex items-baseline">
-              <span className="font-display text-3xl text-white">ViajaJapón</span>
-              <span className="ml-1 text-sm text-gray-400">.com</span>
-            </Link>
+            <Logo tono="claro" className="mb-4" />
             <p className="mb-6 text-gray-400">
               Tu guía completa para viajar a Japón: consejos, rutas, cultura y todo lo que necesitas — con datos
               de este año.
