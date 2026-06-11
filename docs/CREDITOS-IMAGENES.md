@@ -2,10 +2,9 @@
 
 ## Avatares (public/avatares/)
 
-Estilo **"Adventurer"** de [DiceBear](https://www.dicebear.com) — ilustraciones de
-Lisa Wischofsky, licencia **CC BY 4.0**. Generados con parámetros (madre: rubia,
-melena ondulada; hijo: rubio/castaño con entradas), sin gafas. Provisionales hasta
-encargar ilustraciones propias.
+Retratos de los autores en estilo anime/acuarela: **ilustración asistida por IA,
+generada y aprobada por el propio autor** (junio de 2026). No son fotografías ni
+representan lugares reales; uso puramente identitario de la marca madre-hijo.
 
 ## Fotos (Wikimedia Commons)
 

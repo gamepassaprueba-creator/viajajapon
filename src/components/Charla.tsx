@@ -3,9 +3,9 @@
  * frases reales o reconstrucciones fieles aprobadas por el autor — jamás
  * guionizar a personas reales.
  *
- * Avatares: /public/avatares/{madre,hijo}.svg (estilo "Adventurer" de DiceBear,
- * CC BY 4.0 — crédito en docs/CREDITOS-IMAGENES.md). Para cambiar un avatar,
- * basta con sustituir el archivo.
+ * Avatares: /public/avatares/{madre,hijo}.webp — retratos estilo anime/acuarela
+ * generados por el propio autor (ilustración asistida por IA, declarada en
+ * docs/CREDITOS-IMAGENES.md). Para cambiar un avatar, sustituir el archivo.
  */
 
 const NOMBRES = { madre: "Mamá", hijo: "Yo" } as const;
@@ -14,7 +14,7 @@ function Avatar({ quien }: { quien: "madre" | "hijo" }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element -- SVG estático diminuto: next/image no aporta y complica servir SVG
     <img
-      src={`/avatares/${quien}.svg`}
+      src={`/avatares/${quien}.webp`}
       alt={`Avatar de ${NOMBRES[quien] === "Yo" ? "el autor" : "la madre del autor"}`}
       width={40}
       height={40}
