@@ -1,4 +1,13 @@
-# Créditos de imágenes (Wikimedia Commons)
+# Créditos de imágenes
+
+## Avatares (public/avatares/)
+
+Estilo **"Adventurer"** de [DiceBear](https://www.dicebear.com) — ilustraciones de
+Lisa Wischofsky, licencia **CC BY 4.0**. Generados con parámetros (madre: rubia,
+melena ondulada; hijo: rubio/castaño con entradas), sin gafas. Provisionales hasta
+encargar ilustraciones propias.
+
+## Fotos (Wikimedia Commons)
 
 Fotos reales con licencia libre. Las CC BY / CC BY-SA exigen citar autor y licencia
 (lo hace el componente `<Foto credito="..." />` en el propio artículo). Las CC0 no lo
