@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import { ChevronDown, Info, Lightbulb, TriangleAlert } from "lucide-react";
@@ -116,6 +117,37 @@ export function Steps({ items }: { items: { titulo: string; texto: string }[] })
         </li>
       ))}
     </ol>
+  );
+}
+
+/**
+ * Foto dentro del artículo, con pie y crédito de licencia (obligatorio para
+ * imágenes CC de Wikimedia Commons; en fotos propias basta el caption).
+ */
+export function Foto({
+  src,
+  alt,
+  caption,
+  credito,
+}: {
+  src: string;
+  alt: string;
+  caption?: string;
+  credito?: string;
+}) {
+  return (
+    <figure className="my-6">
+      <div className="relative aspect-video overflow-hidden rounded-lg bg-muted">
+        <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
+      </div>
+      {(caption || credito) && (
+        <figcaption className="mt-2 text-xs text-fg-muted">
+          {caption}
+          {caption && credito ? " · " : ""}
+          {credito && <>Foto: {credito}</>}
+        </figcaption>
+      )}
+    </figure>
   );
 }
 
@@ -243,4 +275,5 @@ export const mdxComponents = {
   RouteStops,
   ItineraryDay,
   PackingChecklist,
+  Foto,
 };
