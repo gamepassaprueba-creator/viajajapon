@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { ChevronDown, Info, Lightbulb, TriangleAlert } from "lucide-react";
 import { AffiliateBox } from "./AffiliateBox";
+import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
 
 /** Id de ancla a partir del texto del encabezado (sin tildes, kebab-case). */
@@ -276,4 +277,5 @@ export const mdxComponents = {
   ItineraryDay,
   PackingChecklist,
   Foto,
+  Charla,
 };
