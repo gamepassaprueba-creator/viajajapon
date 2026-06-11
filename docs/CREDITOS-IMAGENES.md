@@ -45,3 +45,9 @@ en este proyecto).
 | friki-square-enix-cafe.jpg | Square Enix Café | Immanuelle | CC BY 4.0 | Square Enix Cafe.jpg |
 | friki-capcom-store.jpg | Capcom Store Tokyo (Shibuya Parco) | Cabeza2000 | CC BY-SA 4.0 | Capcom Store Tokyo at Shibuya PARCO - Dec 2019.jpg |
 | friki-pokemon-store.jpg | Pokémon Store (estación de Tokio) | 電車(新幹線)でゴー！ | CC0 | Pokemon store in Tokyo Station 01.jpg |
+| fuji-yoshida-sendero.jpg | Senda Yoshida del Monte Fuji con mar de nubes | Photos of Japan | CC0 | Mt. Fuji Yoshida Trail Jun 21 621am.jpg |
+| kumano-kodo-daimonzaka.jpg | Escalones de Daimonzaka (Kumano Kodo) | 663highland | CC BY 2.5 | Daimonzaka25 2048.jpg (recorte 3:2) |
+| kamikochi-kappabashi.jpg | Puente Kappa-bashi y montes Hotaka (Kamikochi) | 663highland | CC BY 2.5 | Kappabashi Kamikochi02s5s3990.jpg |
+| arashiyama-bambu.jpg | Bosque de bambú de Sagano (Arashiyama) | Jakub Hałun | CC BY 4.0 | Sagano Bamboo forest, Kyoto, 20240818 1730 4584.jpg |
+| nikko-senjogahara.jpg | Llanura de Senjogahara (Nikko) | Guilhem Vellut | CC BY 2.0 | Senjogahara Marsh @ Nikko (9821650533).jpg |
+| nikko-kegon.jpg | Cascada Kegon en otoño (Nikko) | Jordy Meow | CC BY-SA 3.0 | Kegon Taki.jpg |
