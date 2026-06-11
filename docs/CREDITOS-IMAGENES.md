@@ -15,7 +15,7 @@ exigen, pero citamos igualmente por cortesía. NO mezclar con imágenes IA (proh
 en este proyecto).
 
 | Archivo | Tema | Autor | Licencia | Origen (título en Commons) |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | parque-disneyland.jpg | Castillo de Tokyo Disneyland | LMP 2001 | CC BY-SA 4.0 | Tokyo Disneyland Cinderella Castle 2023-07-02.jpg |
 | parque-disneysea.jpg | Mount Prometheus, DisneySea | Okwhatev | CC BY-SA 2.5 | Tokyo DisneySea-Volcania.jpg |
 | parque-usj-nintendo.jpg | Super Nintendo World, USJ | archive 2025 ark | CC0 | Super Nintendo World Entrance 5th Anniversary decoration at Universal Studios Japan.jpg |
