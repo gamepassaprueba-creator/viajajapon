@@ -65,3 +65,21 @@ en este proyecto).
 | tokio-takeshita.jpg | Entrada de Takeshita Street (Harajuku) | Syced | CC0 | Takeshita Street.jpg (recorte) |
 | tokio-meiji-torii.jpg | Torii del santuario Meiji | Kakidai | CC BY-SA 4.0 | Torii of Meiji Shrine 2018.jpg |
 | tokio-shibuya-sky.jpg | Mirador al aire libre de Shibuya Sky | Kakidai | CC BY-SA 4.0 | Shibuya Scramble Square - SHIBUYA SKY 10.jpg |
+| kioto-kinkakuji.jpg | Kinkaku-ji reflejado en el estanque | Basile Morin | CC BY-SA 4.0 | Water reflection of Kinkaku-ji Temple a sunny day, Kyoto, Japan.jpg |
+| kioto-kiyomizu-noche.jpg | Kiyomizu-dera iluminado de noche con momiji | Haibo Lu | CC BY-SA 4.0 | Kiyoumizudera2.JPG |
+| kioto-kiyomizu-pagoda.jpg | Pagoda de Kiyomizu-dera iluminada | Martin Falbisoner | CC BY-SA 4.0 | Kiyomizu-dera, Kyoto, November 2016 -07.jpg (recorte) |
+| kioto-ryoanji.jpg | Jardín seco de Ryoan-ji con visitantes | DimiTalen | CC0 | Ryōan-ji rock garden with silhouettes of tourists, Kyoto, 2016.jpg |
+| kioto-gion.jpg | Calle Hanamikoji (Gion) | Yanajin33 | CC BY-SA 4.0 | Gion Hanamikôji-dôri.jpg |
+| nara-todaiji.jpg | Daibutsuden de Todai-ji (Nara) | Cun Cun | CC BY-SA 4.0 | Tōdai-ji Daibutsuden, June 2019.jpg |
+| kioto-wagashi.jpg | Wagashi y matcha | Andy Li | CC0 | Wagashi and matcha by Noriko Jazayeri 2025-05-18.jpg |
+| kioto-yudofu.jpg | Menú de yudofu en Kioto | ZhengZhou | CC BY-SA 4.0 | Yudofu meal set in Kyoto.jpg |
+| tokio-ginza.jpg | Cruce de Ginza a la hora azul | Basile Morin | CC BY-SA 4.0 | Illuminated street corner at blue hour... Fujiya in Ginza.jpg |
+| tokio-ameyoko.jpg | Mercadillo de Ameya-Yokocho (Ueno) | Syced | CC0 | Ameyoko June 2022.jpg |
+| tokio-palacio-nijubashi.jpg | Puente Nijubashi del Palacio Imperial | Chris 73 | CC BY-SA 3.0 | Imperial Palace Tokyo Nijubashi Bridge.JPG |
+| tokio-tsukiji.jpg | Mercado exterior de Tsukiji | Aimaimyi | CC BY-SA 3.0 | Tsukiji Outer Market -02.jpg |
+| tokio-gundam.jpg | Gundam Unicorn de DiverCity (Odaiba) | Pelpinosas R. Justin James | CC0 | Life-Sized Unicorn Gundam Statue.jpg (recorte) |
+| tokio-teamlab.jpg | Sala de luces en teamLab Planets | Sasa0403 | CC BY-SA 4.0 | Photos at teamlab planets tokyo.jpg |
+| kamakura-buda.jpg | Gran Buda de Kamakura | Alexandar Vujadin | CC BY-SA 4.0 | The Great Buddha of Kamakura.jpg |
+| hakone-ashi.jpg | Lago Ashi con el torii y el Fuji nevado | Kentagon | CC BY-SA 4.0 | LakeAshi and MtFuji Hakone.JPG |
+| yokohama-minatomirai.jpg | Minato Mirai de noche con la noria (Yokohama) | Suicasmo | CC BY-SA 4.0 | Views of Minato Mirai 21 from Osanbashi Pier at night 20211212-5.jpg |
+| tokio-shibuya-noche.jpg | Calles de Shibuya de noche | Maarten Heerlien | CC BY 2.0 | Neon in the streets of Shibuya (9412153000).jpg |

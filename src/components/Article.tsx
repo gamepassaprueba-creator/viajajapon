@@ -105,6 +105,11 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
             {meta.excerpt && <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-white/90">{meta.excerpt}</p>}
             <p className="nums mt-4 text-sm text-white/75">{dateLine}</p>
           </div>
+          {meta.heroCredito && (
+            <span className="absolute bottom-1.5 right-2 rounded bg-black/50 px-1.5 py-0.5 text-[10px] leading-none text-white/80">
+              Foto: {meta.heroCredito}
+            </span>
+          )}
         </header>
       ) : (
         <header className="mx-auto max-w-3xl px-4 pt-12">

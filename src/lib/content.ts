@@ -15,6 +15,8 @@ export interface ArticleMeta {
   excerpt: string;
   /** Imagen de cabecera opcional (ruta bajo /public, p. ej. "/images/kioto.jpg"). */
   hero?: string;
+  /** Crédito del hero (obligatorio si la imagen es CC BY / CC BY-SA; se pinta sobre la foto). */
+  heroCredito?: string;
   draft?: boolean;
   readingMinutes?: number;
 }
