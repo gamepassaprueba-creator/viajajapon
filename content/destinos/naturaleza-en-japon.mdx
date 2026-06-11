@@ -11,13 +11,11 @@ draft: false
 
 Japón no es solo templos y neones: es un país con un 70% de montaña donde puedes amanecer sobre un mar de nubes a 3.776 metros o caminar una ruta de peregrinación hermana del Camino de Santiago. La respuesta corta, según tu perfil: **si quieres LA experiencia, el Monte Fuji (solo de julio a septiembre y ahora con reserva y tasa obligatorias); si quieres caminar varios días entre cedros milenarios, el Kumano Kodo; y si solo tienes hueco para un paseo dentro de un viaje normal, Arashiyama, el monte Misen o Nikko caben en una mañana**. Vamos ruta por ruta, con las normas de 2026 verificadas y sin venderte distancias infladas.
 
-<KeyFacts items={[
-  { label: "Temporada del Fuji 2026", value: "Yoshida y Subashiri: 1 jul – 10 sep; Fujinomiya y Gotemba: 10 jul – 10 sep" },
-  { label: "Tasa del Fuji", value: "¥4.000 (≈22 €) por persona + reserva online" },
-  { label: "La ruta de varios días", value: "Kumano Kodo (camino Nakahechi, 2-5 días)" },
-  { label: "Sin esfuerzo", value: "Arashiyama, Senjogahara (Nikko) y monte Misen con teleférico" },
-  { label: "JR Pass", value: "Cubre el tren a Kumano y el ferry de Miyajima; NO el tramo final al Fuji (Fujikyu) ni el Tobu a Nikko" },
-  { label: "App imprescindible", value: "YAMAP (mapas de montaña offline, gratis)" },
+<StatCards items={[
+  { icon: "calendario", label: "Temporada del Fuji 2026", value: "1 jul – 10 sep", sub: "Yoshida y Subashiri; Fujinomiya y Gotemba abren el 10 jul" },
+  { icon: "yen", label: "Tasa del Fuji", value: "¥4.000 (≈22 €)", sub: "Por persona + reserva online" },
+  { icon: "montana", label: "La ruta de varios días", value: "Kumano Kodo", sub: "Camino Nakahechi, 2-5 días" },
+  { icon: "hoja", label: "Sin esfuerzo", value: "Arashiyama · Misen · Nikko", sub: "Paseos de una mañana dentro de un viaje normal" },
 ]} />
 
 <Toc items={[
@@ -35,14 +33,68 @@ Japón no es solo templos y neones: es un país con un 70% de montaña donde pue
 
 ## De un vistazo: qué ruta es para ti
 
-| Ruta | Dificultad | Tiempo | Mejor época | Para quién |
-| --- | --- | --- | --- | --- |
-| Monte Fuji (senda Yoshida) | Exigente | 1-2 días | Solo jul-sep | Quien busca el reto del viaje |
-| Kumano Kodo (Nakahechi) | Media | 2-5 días | Mar-may y oct-nov | Senderistas con varios días |
-| Kamikochi (fondo del valle) | Fácil (llano) | Medio día – 1 día | Med. abr – med. nov | Cualquiera: el paseo es llano |
-| Monte Misen (Miyajima) | Media (o teleférico) | 2-4 horas | Casi todo el año | Encaja en la ruta clásica |
-| Bosque de bambú (Arashiyama) | Paseo | 1-2 horas | Todo el año | Todos — gestiona expectativas |
-| Senjogahara (Nikko) | Fácil (llano) | 2-3 horas | May-nov | Excursión de día desde Tokio |
+<Cards cols={3} items={[
+  {
+    title: "Monte Fuji (senda Yoshida)",
+    desc: "La cima de Japón (3.776 m): alta montaña con normas estrictas y una ventana de solo dos meses.",
+    tags: ["Exigente", "Solo jul-sep"],
+    datos: [
+      { icon: "reloj", texto: "1-2 días" },
+      { icon: "calendario", texto: "Solo jul-sep" },
+      { icon: "personas", texto: "Quien busca el reto del viaje" },
+    ],
+  },
+  {
+    title: "Kumano Kodo (Nakahechi)",
+    desc: "Red de rutas de peregrinación con más de mil años por la península de Kii, hermana del Camino de Santiago.",
+    tags: ["Media", "Primavera y otoño"],
+    datos: [
+      { icon: "reloj", texto: "2-5 días" },
+      { icon: "calendario", texto: "Mar-may y oct-nov" },
+      { icon: "personas", texto: "Senderistas con varios días" },
+    ],
+  },
+  {
+    title: "Kamikochi (fondo del valle)",
+    desc: "Valle a 1.500 m en los Alpes Japoneses: el paseo de montaña más espectacular y más llano del país.",
+    tags: ["Fácil (llano)", "Abre med. abr"],
+    datos: [
+      { icon: "reloj", texto: "Medio día – 1 día" },
+      { icon: "calendario", texto: "Med. abr – med. nov" },
+      { icon: "personas", texto: "Cualquiera: el paseo es llano" },
+    ],
+  },
+  {
+    title: "Monte Misen (Miyajima)",
+    desc: "El monte sagrado de la isla del torii flotante, con teleférico para la versión cómoda.",
+    tags: ["Media (o teleférico)", "Casi todo el año"],
+    datos: [
+      { icon: "reloj", texto: "2-4 horas" },
+      { icon: "calendario", texto: "Casi todo el año" },
+      { icon: "personas", texto: "Encaja en la ruta clásica" },
+    ],
+  },
+  {
+    title: "Bosque de bambú (Arashiyama)",
+    desc: "Un paseo urbano con bambú: corto, gratis y abierto siempre — la clave es la hora a la que vas.",
+    tags: ["Paseo", "Todo el año"],
+    datos: [
+      { icon: "reloj", texto: "1-2 horas" },
+      { icon: "calendario", texto: "Todo el año" },
+      { icon: "personas", texto: "Todos — gestiona expectativas" },
+    ],
+  },
+  {
+    title: "Senjogahara (Nikko)",
+    desc: "Marisma de altura con pasarelas de madera, monte arriba de los santuarios de Nikko.",
+    tags: ["Fácil (llano)", "May-nov"],
+    datos: [
+      { icon: "reloj", texto: "2-3 horas" },
+      { icon: "calendario", texto: "May-nov" },
+      { icon: "personas", texto: "Excursión de día desde Tokio" },
+    ],
+  },
+]} />
 
 La trampa habitual de las guías es tratar todo esto como si fuera lo mismo. No lo es: el Fuji es alta montaña con normas estrictas y ventana de dos meses; Arashiyama es un paseo urbano con bambú. Saber en qué casilla estás te ahorra disgustos (y equipaje absurdo).
 
@@ -93,8 +145,18 @@ Aquí va una corrección a casi todas las guías: **Kamikochi no es una ruta «a
 
 Dos cosas que sí tienes que saber:
 
-- **Está cerrado en invierno**: el valle abre de mediados de abril a mediados de noviembre. Fuera de esas fechas no hay acceso por carretera.
-- **No se puede entrar en coche privado** (tampoco de alquiler): se llega en bus o taxi desde Matsumoto (vía tren Alpico hasta Shin-Shimashima) o desde Takayama. Es parte de por qué el valle sigue impecable.
+<Cards items={[
+  {
+    title: "Cerrado en invierno",
+    desc: "El valle abre de mediados de abril a mediados de noviembre. Fuera de esas fechas no hay acceso por carretera.",
+    datos: [{ icon: "calendario", texto: "Abierto de med. abril a med. noviembre" }],
+  },
+  {
+    title: "Sin coche privado",
+    desc: "No se puede entrar en coche privado (tampoco de alquiler): se llega en bus o taxi desde Matsumoto (vía tren Alpico hasta Shin-Shimashima) o desde Takayama. Es parte de por qué el valle sigue impecable.",
+    datos: [{ icon: "bus", texto: "Bus o taxi desde Matsumoto o Takayama" }],
+  },
+]} />
 
 Si los Alpes te llaman pero buscas algo más civilizado, la combinación con [Takayama y Shirakawa-go del itinerario de 15 días](/itinerarios/itinerario-japon-15-dias) es la forma natural de meterlos en una primera ruta.
 
@@ -102,23 +164,57 @@ Si los Alpes te llaman pero buscas algo más civilizado, la combinación con [Ta
 
 No todo requiere botas. Estos tres encajan en un viaje normal de ciudades — y por eso mismo conviene contarte lo que las fotos no dicen.
 
-### El bosque de bambú de Arashiyama (Kioto)
-
-<Foto src="/images/arashiyama-bambu.jpg" alt="Camino del bosque de bambú de Sagano en Arashiyama, sin gente, al atardecer" caption="El camino de Sagano sin gente: así solo lo verás a primera hora de la mañana (o con suerte, al cierre del día)." credito="Jakub Hałun, CC BY 4.0 (Wikimedia Commons)" />
-
-Seamos honestos: el camino entre el bambú es **corto (unos 400-500 metros) y a media mañana va lleno**. ¿Significa eso que no merece la pena? No — significa que hay que ir **a las 7-8 de la mañana**, cuando la luz se cuela entre las cañas y solo se oye el crujido del bambú. Es gratis y está abierto siempre. Y el error de casi todos es irse al acabar el túnel: sube al parque Kameyama (mirador sobre el río Hozu) o sigue hasta el templo Adashino Nenbutsu-ji y tendrás el Arashiyama tranquilo que viste en fotos. Más ideas de la zona, en la [guía de dónde dormir en Kioto](/destinos/donde-dormir-en-kioto).
-
-### El monte Misen (Miyajima)
-
-<Foto src="/images/miyajima-torii.jpg" alt="Torii flotante del santuario de Itsukushima, en la isla de Miyajima" caption="El torii de Itsukushima desde la isla: la subida al Misen te lo pone a vista de pájaro." credito="JordyMeow, CC BY-SA 3.0 (Wikimedia Commons)" />
-
-La isla del torii flotante esconde la mejor media jornada de naturaleza del oeste de Japón: el **monte Misen (535 m)**, sagrado desde hace doce siglos. Versión cómoda: teleférico hasta cerca de la cima y un último tramo a pie de unos 30 minutos (que pica más de lo que parece) — ojo, cierra por mantenimiento algunas semanas al año: verifica que opere en tus fechas. Versión senderista: subir a pie por la ruta de Daisho-in, 1,5-2 horas de escalones entre bosque con vistas crecientes al mar interior de Seto. La jugada redonda es subir en teleférico, bajar andando y llegar al torii con la marea alta del atardecer.
-
-### Nikko: Senjogahara y la cascada Kegon
-
-<Foto src="/images/nikko-senjogahara.jpg" alt="Llanura de Senjogahara con las montañas de Nikko al fondo bajo el cielo azul" caption="Senjogahara: 400 hectáreas de marisma con pasarelas de madera, llanas de principio a fin." credito="Guilhem Vellut, CC BY 2.0 (Wikimedia Commons)" />
-
-Nikko es famoso por el santuario Toshogu, pero la mitad del viaje está monte arriba: la **llanura de Senjogahara**, una marisma de altura con pasarelas de madera donde caminas 2-3 horas en llano absoluto entre praderas y abedules, con los volcanes de Nikko de fondo. Se combina con la **cascada Kegon (97 m)**, donde el lago Chuzenji se despeña por una pared volcánica — hay un ascensor de pago que baja a la plataforma de la base (verifica horarios según temporada), y en otoño el momiji la convierte en una de las estampas grandes de Japón.
+<Cards cols={3} items={[
+  {
+    title: "El bosque de bambú de Arashiyama (Kioto)",
+    img: "/images/arashiyama-bambu.jpg",
+    alt: "Camino del bosque de bambú de Sagano en Arashiyama, sin gente, al atardecer",
+    credito: "Jakub Hałun, CC BY 4.0",
+    desc: "Seamos honestos: el camino entre el bambú es corto (unos 400-500 metros) y a media mañana va lleno. ¿Significa eso que no merece la pena? No — significa que hay que ir a las 7-8 de la mañana, cuando la luz se cuela entre las cañas y solo se oye el crujido del bambú.",
+    tags: ["Paseo", "Gratis", "Todo el año"],
+    puntos: [
+      "Sin gente solo lo verás a primera hora de la mañana (o, con suerte, al cierre del día)",
+      "El error de casi todos: irse al acabar el túnel. Sube al parque Kameyama (mirador sobre el río Hozu) o sigue hasta el templo Adashino Nenbutsu-ji y tendrás el Arashiyama tranquilo que viste en fotos",
+    ],
+    datos: [
+      { icon: "yen", texto: "Gratis y abierto siempre" },
+    ],
+    href: "/destinos/donde-dormir-en-kioto",
+    cta: "Más ideas de la zona: dónde dormir en Kioto",
+  },
+  {
+    title: "El monte Misen (Miyajima)",
+    img: "/images/miyajima-torii.jpg",
+    alt: "Torii flotante del santuario de Itsukushima, en la isla de Miyajima",
+    credito: "JordyMeow, CC BY-SA 3.0",
+    desc: "La isla del torii flotante esconde la mejor media jornada de naturaleza del oeste de Japón: el monte Misen (535 m), sagrado desde hace doce siglos — la subida te pone el torii de Itsukushima a vista de pájaro.",
+    tags: ["Media (o teleférico)", "Isla"],
+    puntos: [
+      "Versión cómoda: teleférico hasta cerca de la cima y un último tramo a pie de unos 30 minutos (que pica más de lo que parece)",
+      "Versión senderista: subir a pie por la ruta de Daisho-in, 1,5-2 horas de escalones entre bosque con vistas crecientes al mar interior de Seto",
+      "La jugada redonda: subir en teleférico, bajar andando y llegar al torii con la marea alta del atardecer",
+    ],
+    datos: [
+      { icon: "info", texto: "El teleférico cierra por mantenimiento algunas semanas al año: verifica que opere en tus fechas" },
+    ],
+  },
+  {
+    title: "Nikko: Senjogahara y la cascada Kegon",
+    img: "/images/nikko-senjogahara.jpg",
+    alt: "Llanura de Senjogahara con las montañas de Nikko al fondo bajo el cielo azul",
+    credito: "Guilhem Vellut, CC BY 2.0",
+    desc: "Nikko es famoso por el santuario Toshogu, pero la mitad del viaje está monte arriba: la llanura de Senjogahara, una marisma de altura de 400 hectáreas con pasarelas de madera entre praderas y abedules, con los volcanes de Nikko de fondo.",
+    tags: ["Fácil (llano)", "Otoño top"],
+    puntos: [
+      "Se combina con la cascada Kegon (97 m), donde el lago Chuzenji se despeña por una pared volcánica",
+      "Un ascensor de pago baja a la plataforma de la base (verifica horarios según temporada)",
+      "En otoño el momiji la convierte en una de las estampas grandes de Japón",
+    ],
+    datos: [
+      { icon: "reloj", texto: "2-3 horas en llano absoluto, de principio a fin" },
+    ],
+  },
+]} />
 
 <Foto src="/images/nikko-kegon.jpg" alt="Cascada Kegon cayendo 97 metros entre paredes de roca con colores de otoño" caption="La cascada Kegon en otoño. El ascensor baja hasta la plataforma de la base." credito="Jordy Meow, CC BY-SA 3.0 (Wikimedia Commons)" />
 
@@ -139,10 +235,42 @@ Nikko es famoso por el santuario Toshogu, pero la mitad del viaje está monte ar
 
 Japón tiene 35 parques nacionales; estos cuatro son los que de verdad se cruzan con un viaje real:
 
-- **Fuji-Hakone-Izu** — el más visitado del país y el más fácil de tocar: la zona de los lagos del Fuji y los onsen de Hakone caben en una excursión desde Tokio. La [ruta de 10 días](/itinerarios/itinerario-japon-10-dias) ya lo incluye vía Hakone.
-- **Nikko** — santuarios Patrimonio de la Humanidad abajo, Senjogahara y Kegon arriba. Excursión de día perfecta desde Tokio (mejor con madrugón).
-- **Shiretoko (Hokkaido)** — el Japón salvaje de verdad, Patrimonio de la Humanidad: osos pardos, acantilados y los Cinco Lagos. Aquí las reglas van en serio: en temporada de osos (primavera-verano) varios senderos solo se pueden hacer con guía certificado. Es un viaje en sí mismo, no una parada.
-- **Aso-Kuju (Kyushu)** — una de las calderas volcánicas más grandes del mundo, con praderas que no parecen de Japón. Ojo: **el acceso al borde del cráter depende del nivel de alerta volcánica del día** — compruébalo en la web oficial del parque antes de organizar nada alrededor.
+<Cards items={[
+  {
+    title: "Fuji-Hakone-Izu",
+    desc: "El más visitado del país y el más fácil de tocar: la zona de los lagos del Fuji y los onsen de Hakone caben en una excursión desde Tokio. La ruta de 10 días ya lo incluye vía Hakone.",
+    tags: ["El más visitado", "Onsen"],
+    datos: [
+      { icon: "tren", texto: "Cabe en una excursión desde Tokio" },
+    ],
+    href: "/itinerarios/itinerario-japon-10-dias",
+    cta: "Ver la ruta de 10 días",
+  },
+  {
+    title: "Nikko",
+    desc: "Santuarios Patrimonio de la Humanidad abajo, Senjogahara y Kegon arriba.",
+    tags: ["Patrimonio", "Cascadas"],
+    datos: [
+      { icon: "tren", texto: "Excursión de día perfecta desde Tokio (mejor con madrugón)" },
+    ],
+  },
+  {
+    title: "Shiretoko (Hokkaido)",
+    desc: "El Japón salvaje de verdad, Patrimonio de la Humanidad: osos pardos, acantilados y los Cinco Lagos. Es un viaje en sí mismo, no una parada.",
+    tags: ["Patrimonio", "Salvaje"],
+    datos: [
+      { icon: "escudo", texto: "Las reglas van en serio: en temporada de osos (primavera-verano) varios senderos solo se pueden hacer con guía certificado" },
+    ],
+  },
+  {
+    title: "Aso-Kuju (Kyushu)",
+    desc: "Una de las calderas volcánicas más grandes del mundo, con praderas que no parecen de Japón.",
+    tags: ["Volcánico", "Praderas"],
+    datos: [
+      { icon: "info", texto: "Ojo: el acceso al borde del cráter depende del nivel de alerta volcánica del día — compruébalo en la web oficial del parque antes de organizar nada alrededor" },
+    ],
+  },
+]} />
 
 ## Cómo llegar y qué cubre el JR Pass
 
@@ -181,4 +309,13 @@ La lista completa, adaptada a tu temporada y con casillas que se guardan solas, 
   { q: "¿Se puede hacer senderismo en Japón en invierno?", a: "En rutas bajas, sí y muy a gusto: Fushimi Inari, los senderos de Kioto y Nara, Kamakura, Daimonzaka o Senjogahara con el suelo nevado (hay alquiler de raquetas en Nikko). La alta montaña — Fuji, Alpes, Kamikochi — está cerrada o reservada a alpinistas con experiencia invernal real." },
 ]} />
 
-¿Siguiente paso? Decide primero la época con la [guía de la mejor temporada](/logistica/mejor-epoca-viajar-japon), encaja las rutas en tu [itinerario según los días que tengas](/itinerarios/itinerario-japon-15-dias), y si es tu primera vez, empieza por [Japón por libre](/logistica/japon-por-libre-primer-viaje) para atar la logística sin agobios.
+Y si es tu primera vez, empieza por [Japón por libre](/logistica/japon-por-libre-primer-viaje) para atar la logística sin agobios.
+
+<CTABand
+  title="¿Siguiente paso?"
+  texto="Decide primero la época del viaje y luego encaja las rutas en tu itinerario según los días que tengas."
+  href="/logistica/mejor-epoca-viajar-japon"
+  cta="Cuándo ir, mes a mes"
+  href2="/itinerarios/itinerario-japon-15-dias"
+  cta2="Itinerario de 15 días"
+/>

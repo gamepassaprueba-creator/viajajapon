@@ -79,31 +79,52 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
 
+  const dateLine =
+    cfg.dateMode === "updated"
+      ? `Última actualización: ${formatDate(meta.dateModified)}`
+      : `${formatDate(meta.dateModified)} · ${readingMinutes(content)} min de lectura`;
+
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12">
-      {cfg.back && (
-        <Link href={cfg.back.href} className="text-sm font-medium text-primary hover:underline">
-          {cfg.back.label}
-        </Link>
+    <article>
+      {/* Hero a sangre completa con overlay (lenguaje visual de los mockups) */}
+      {meta.hero ? (
+        <header className="relative">
+          <Image src={meta.hero} alt="" fill priority sizes="100vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
+          <div className="relative mx-auto flex min-h-[420px] max-w-5xl flex-col justify-end px-4 pb-12 pt-32 sm:min-h-[500px]">
+            <nav className="flex items-center gap-2 text-sm text-white/80">
+              <Link href="/" className="hover:text-white hover:underline">Inicio</Link>
+              <span aria-hidden="true">›</span>
+              <Link href={cfg.basePath} className="hover:text-white hover:underline">{cfg.crumbName}</Link>
+              <span aria-hidden="true">›</span>
+              <span className="font-medium text-white">{meta.kicker}</span>
+            </nav>
+            <h1 className="mt-4 max-w-3xl text-balance text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+              {meta.title}
+            </h1>
+            {meta.excerpt && <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-white/90">{meta.excerpt}</p>}
+            <p className="nums mt-4 text-sm text-white/75">{dateLine}</p>
+          </div>
+        </header>
+      ) : (
+        <header className="mx-auto max-w-3xl px-4 pt-12">
+          {cfg.back && (
+            <Link href={cfg.back.href} className="text-sm font-medium text-primary hover:underline">
+              {cfg.back.label}
+            </Link>
+          )}
+          <p className={`kicker text-primary ${cfg.back ? "mt-4" : ""}`}>{meta.kicker}</p>
+          <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{meta.title}</h1>
+          <p className="nums mt-3 text-sm text-fg-muted">{dateLine}</p>
+        </header>
       )}
+
+      <div className="mx-auto max-w-3xl px-4 py-10">
       {meta.draft && (
-        <p className="mt-4 rounded-md bg-muted px-3 py-2 text-xs font-medium text-fg-muted">
+        <p className="mb-6 rounded-md bg-muted px-3 py-2 text-xs font-medium text-fg-muted">
           Borrador · no indexado. Revisa los datos y añade tu experiencia antes de publicar (draft: false).
         </p>
       )}
-      <p className={`kicker text-primary ${cfg.back || meta.draft ? "mt-4" : ""}`}>{meta.kicker}</p>
-      <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{meta.title}</h1>
-      <p className="nums mt-3 text-sm text-fg-muted">
-        {cfg.dateMode === "updated"
-          ? `Última actualización: ${formatDate(meta.dateModified)}`
-          : `${formatDate(meta.dateModified)} · ${readingMinutes(content)} min de lectura`}
-      </p>
-      {meta.hero && (
-        <div className="relative mt-6 h-56 overflow-hidden rounded-xl sm:h-72">
-          <Image src={meta.hero} alt={meta.title} fill priority sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
-        </div>
-      )}
-      <div className="mt-6">
         {/* blockJS:false — nuestro MDX es contenido propio del repo (no remoto), y los
             componentes ricos (KeyFacts/Steps/FAQ/Toc) reciben sus datos como expresiones
             en atributos, que la v6 elimina por defecto. blockDangerousJS sigue activo. */}

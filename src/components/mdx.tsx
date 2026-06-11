@@ -1,7 +1,45 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { ChevronDown, Info, Lightbulb, TriangleAlert } from "lucide-react";
+import {
+  ArrowRight,
+  Baby,
+  Beer,
+  Building2,
+  Bus,
+  CalendarDays,
+  Camera,
+  Check,
+  ChevronDown,
+  Clock,
+  CreditCard,
+  CupSoda,
+  Info,
+  JapaneseYen,
+  Landmark,
+  Leaf,
+  Lightbulb,
+  Map,
+  MapPin,
+  Moon,
+  Shield,
+  Mountain,
+  ShoppingBag,
+  Smartphone,
+  Sparkles,
+  Star,
+  Sun,
+  Ticket,
+  TrainFront,
+  TreePine,
+  TriangleAlert,
+  Users,
+  UtensilsCrossed,
+  Wallet,
+  Wifi,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import { AffiliateBox } from "./AffiliateBox";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
@@ -224,6 +262,214 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
   );
 }
 
+/* ============================================================================
+ * Kit de tarjetas (lenguaje visual de los mockups): grids de cards con foto,
+ * stat-cards con icono, comparativas, do/don't y banda CTA. Todos "sangran"
+ * más anchos que la columna de texto en pantallas grandes (BLEED) para que el
+ * artículo respire como una landing y no como un documento.
+ * ========================================================================== */
+
+const BLEED = "lg:-mx-24 xl:-mx-44";
+
+/** Iconos disponibles en los componentes MDX por nombre (clave en español). */
+const ICONOS: Record<string, LucideIcon> = {
+  reloj: Clock, yen: JapaneseYen, pin: MapPin, tren: TrainFront, bus: Bus,
+  calendario: CalendarDays, estrella: Star, camara: Camera, montana: Mountain,
+  comida: UtensilsCrossed, cerveza: Beer, te: CupSoda, hoja: Leaf, arbol: TreePine,
+  sol: Sun, luna: Moon, personas: Users, edificio: Building2, templo: Landmark,
+  ticket: Ticket, brillo: Sparkles, mapa: Map, cartera: Wallet, tarjeta: CreditCard,
+  movil: Smartphone, info: Info, ninos: Baby, compras: ShoppingBag, escudo: Shield, wifi: Wifi,
+};
+
+function Icono({ nombre, className }: { nombre?: string; className?: string }) {
+  const I = (nombre && ICONOS[nombre]) || Sparkles;
+  return <I size={18} className={className} aria-hidden="true" />;
+}
+
+const TAG_STYLES = [
+  "bg-red-100 text-red-800",
+  "bg-blue-100 text-blue-800",
+  "bg-green-100 text-green-800",
+  "bg-purple-100 text-purple-800",
+  "bg-amber-100 text-amber-800",
+  "bg-pink-100 text-pink-800",
+] as const;
+
+/** Fila de tarjetas de datos clave con icono (cabeceras tipo mockup). */
+export function StatCards({ items }: { items: { icon?: string; label: string; value: string; sub?: string }[] }) {
+  return (
+    <div className={`my-8 grid grid-cols-2 gap-4 lg:grid-cols-4 ${BLEED}`}>
+      {items.map((s) => (
+        <div key={s.label} className="rounded-xl border border-border bg-gradient-to-br from-muted/70 to-surface p-5 text-center shadow-sm">
+          <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <Icono nombre={s.icon} />
+          </div>
+          <p className="kicker text-fg-muted">{s.label}</p>
+          <p className="nums mt-1 text-xl font-bold leading-tight text-primary">{s.value}</p>
+          {s.sub && <p className="mt-1 text-xs text-fg-muted">{s.sub}</p>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+interface CardItem {
+  title: string;
+  desc: string;
+  img?: string;
+  alt?: string;
+  credito?: string;
+  jp?: string;
+  tags?: string[];
+  datos?: { icon?: string; texto: string }[];
+  puntos?: string[];
+  href?: string;
+  cta?: string;
+}
+
+/**
+ * Grid de tarjetas con foto, chips y filas de datos (el bloque estrella de los
+ * mockups). El título de cada tarjeta es un h3 real con ancla (SEO intacto).
+ */
+export function Cards({ items, cols = 2 }: { items: CardItem[]; cols?: 2 | 3 }) {
+  return (
+    <div className={`my-8 grid gap-6 md:grid-cols-2 ${cols === 3 ? "lg:grid-cols-3" : ""} ${BLEED}`}>
+      {items.map((c) => (
+        <div key={c.title} className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          {c.img && (
+            <div className="relative h-48 shrink-0 overflow-hidden">
+              <Image src={c.img} alt={c.alt ?? c.title} fill sizes="(max-width:768px) 100vw, 420px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              {c.credito && (
+                <span className="absolute bottom-1 right-1 rounded bg-black/55 px-1.5 py-0.5 text-[10px] leading-none text-white/90">
+                  Foto: {c.credito}
+                </span>
+              )}
+            </div>
+          )}
+          <div className="flex flex-1 flex-col p-6">
+            <div className="flex items-start justify-between gap-3">
+              <h3 id={slugify(c.title) || undefined} className="scroll-mt-24 text-lg font-bold leading-snug">{c.title}</h3>
+              {c.jp && <span className="shrink-0 rounded-full bg-muted px-3 py-1 text-sm text-fg-muted">{c.jp}</span>}
+            </div>
+            <p className="mt-2 text-sm leading-relaxed text-fg-muted">{c.desc}</p>
+            {c.tags && c.tags.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {c.tags.map((t, i) => (
+                  <span key={t} className={`rounded-full px-2.5 py-1 text-xs font-medium ${TAG_STYLES[i % TAG_STYLES.length]}`}>{t}</span>
+                ))}
+              </div>
+            )}
+            {c.puntos && c.puntos.length > 0 && (
+              <ul className="mt-3 space-y-1.5">
+                {c.puntos.map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-fg-muted">
+                    <Check size={15} className="mt-0.5 shrink-0 text-success" aria-hidden="true" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {c.datos && c.datos.length > 0 && (
+              <div className="mt-4 space-y-2 border-t border-border pt-4">
+                {c.datos.map((d) => (
+                  <div key={d.texto} className="flex items-start gap-2 text-sm text-fg-muted">
+                    <Icono nombre={d.icon} className="mt-0.5 shrink-0 text-primary" />
+                    <span>{d.texto}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {c.href && (
+              <Link href={c.href} className="mt-4 inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-primary group-hover:underline">
+                {c.cta ?? "Ver guía"} <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Tarjetas comparativas (mirador A vs B vs C, pases, parques...). */
+export function VsCards({ items }: { items: { title: string; badge?: string; precio?: string; destacado?: boolean; puntos: string[]; nota?: string }[] }) {
+  return (
+    <div className={`my-8 grid gap-6 md:grid-cols-3 ${BLEED}`}>
+      {items.map((v) => (
+        <div key={v.title} className={`relative flex flex-col rounded-xl border bg-surface p-6 shadow-sm ${v.destacado ? "border-2 border-primary" : "border-border"}`}>
+          {v.badge && (
+            <span className={`absolute -top-3 left-5 rounded-full px-3 py-1 text-xs font-bold ${v.destacado ? "bg-primary text-white" : "bg-muted text-fg-muted"}`}>
+              {v.badge}
+            </span>
+          )}
+          <h3 className="mt-1 text-lg font-bold">{v.title}</h3>
+          {v.precio && <p className="nums mt-2 text-xl font-bold text-primary">{v.precio}</p>}
+          <ul className="mt-4 flex-1 space-y-2">
+            {v.puntos.map((p) => (
+              <li key={p} className="flex items-start gap-2 text-sm text-fg-muted">
+                <Check size={15} className="mt-0.5 shrink-0 text-success" aria-hidden="true" />
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+          {v.nota && <p className="mt-4 border-t border-border pt-3 text-xs text-fg-muted">{v.nota}</p>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Dos columnas qué hacer / qué evitar (etiqueta, normas...). */
+export function DoDont({ hacer, evitar }: { hacer: { titulo: string; texto?: string }[]; evitar: { titulo: string; texto?: string }[] }) {
+  const col = (items: { titulo: string; texto?: string }[], ok: boolean) => (
+    <div className="rounded-xl border border-border bg-surface p-6 shadow-sm">
+      <div className="mb-4 flex items-center gap-3">
+        <span className={`flex size-10 items-center justify-center rounded-full ${ok ? "bg-success/10 text-success" : "bg-primary/10 text-primary"}`}>
+          {ok ? <Check size={20} aria-hidden="true" /> : <X size={20} aria-hidden="true" />}
+        </span>
+        <h3 className="text-lg font-bold">{ok ? "Qué hacer" : "Qué evitar"}</h3>
+      </div>
+      <ul className="space-y-3">
+        {items.map((i) => (
+          <li key={i.titulo} className="flex items-start gap-2">
+            {ok ? <Check size={15} className="mt-1 shrink-0 text-success" aria-hidden="true" /> : <X size={15} className="mt-1 shrink-0 text-primary" aria-hidden="true" />}
+            <div>
+              <p className="text-sm font-semibold text-fg">{i.titulo}</p>
+              {i.texto && <p className="text-sm text-fg-muted">{i.texto}</p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+  return (
+    <div className={`my-8 grid gap-6 md:grid-cols-2 ${BLEED}`}>
+      {col(hacer, true)}
+      {col(evitar, false)}
+    </div>
+  );
+}
+
+/** Banda CTA degradada de cierre de sección (como el final de los mockups). */
+export function CTABand({ title, texto, href, cta, href2, cta2 }: { title: string; texto?: string; href: string; cta: string; href2?: string; cta2?: string }) {
+  return (
+    <div className={`my-10 rounded-2xl bg-gradient-to-br from-primary to-primary-strong p-8 text-center text-white shadow-lg sm:p-12 ${BLEED}`}>
+      <p className="text-balance text-2xl font-bold sm:text-3xl">{title}</p>
+      {texto && <p className="mx-auto mt-3 max-w-xl text-pretty text-white/90">{texto}</p>}
+      <div className="mt-6 flex flex-wrap justify-center gap-3">
+        <Link href={href} className="rounded-md bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-gray-100">
+          {cta}
+        </Link>
+        {href2 && cta2 && (
+          <Link href={href2} className="rounded-md border-2 border-white/80 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10">
+            {cta2}
+          </Link>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export const mdxComponents = {
   h2: ({ children, ...p }: ComponentProps<"h2">) => (
     <h2 id={slugify(headingText(children)) || undefined} className="mt-10 scroll-mt-24 text-2xl font-bold" {...p}>
@@ -278,4 +524,9 @@ export const mdxComponents = {
   PackingChecklist,
   Foto,
   Charla,
+  StatCards,
+  Cards,
+  VsCards,
+  DoDont,
+  CTABand,
 };

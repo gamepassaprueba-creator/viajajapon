@@ -11,13 +11,11 @@ draft: false
 
 En Japón no existe «un restaurante japonés»: existe el local de ramen donde pides en una máquina, el bar de tapas donde te cobran un aperitivo que no has pedido, la cinta de sushi donde la cuenta es una pila de platos y el menú degustación que se reserva con semanas. La buena noticia: **en casi todos comerás de lujo sin reserva, sin propina y sin hablar japonés** — solo necesitas saber qué tipo de sitio tienes delante y cómo funciona. Esta guía te lo cuenta tipo por tipo, con precios reales. Para decidir *qué* pedir una vez dentro, ya tienes la [guía de platos imprescindibles](/gastronomia/que-comer-en-japon).
 
-<KeyFacts items={[
-  { label: "Propina", value: "No se deja, nunca — puede resultar hasta ofensivo" },
-  { label: "Agua y té", value: "Gratis en casi todos los restaurantes" },
-  { label: "Comida sencilla", value: "Ramen, gyudon o teishoku: ¥500–1.500 (3–8 €)" },
-  { label: "Izakaya", value: "¥2.000–4.500 por persona con bebidas (11–24 €)" },
-  { label: "Kaiseki", value: "¥10.000–30.000+ (54–162 €) — o incluido en la cena del ryokan" },
-  { label: "Reservas", value: "Solo para alta cocina; el día a día es entrar y sentarse" },
+<StatCards items={[
+  { icon: "yen", label: "Propina", value: "No se deja, nunca", sub: "Puede resultar hasta ofensivo" },
+  { icon: "comida", label: "Comida sencilla", value: "¥500–1.500", sub: "Ramen, gyudon o teishoku (3–8 €)" },
+  { icon: "cerveza", label: "Izakaya", value: "¥2.000–4.500", sub: "Por persona con bebidas (11–24 €)" },
+  { icon: "ticket", label: "Reservas", value: "Solo alta cocina", sub: "El día a día es entrar y sentarse" },
 ]} />
 
 <Toc items={[
@@ -36,7 +34,7 @@ En Japón no existe «un restaurante japonés»: existe el local de ramen donde 
 
 <Foto src="/images/ticket-machine.jpg" alt="Máquina de tickets de un local de fideos en Japón, con botones por plato y precios" caption="La máquina de tickets (shokkenki): pagas antes de entrar, entregas el papelito y a comer. Los botones de arriba son los platos estrella." credito="Nesnad, CC BY 4.0 (Wikimedia Commons)" />
 
-Olvida el miedo al idioma: el sistema japonés está diseñado para funcionar sin palabras.
+Olvida el miedo al idioma: el sistema japonés está diseñado para funcionar sin palabras. Y un detalle que alivia cualquier cuenta: el agua y el té son **gratis en casi todos los restaurantes**.
 
 <Steps items={[
   { titulo: "La máquina de tickets (shokkenki)", texto: "Habitual en locales de ramen, soba y gyudon. Metes el dinero ANTES de sentarte, pulsas el botón de tu plato (los de arriba a la izquierda suelen ser los estrella, muchas tienen fotos o inglés), entregas el ticket en la barra y listo. Si no entiendes nada: botón de arriba a la izquierda y a ciegas — rara vez falla." },
@@ -71,9 +69,31 @@ No esperes el sushi de tu vida: espéralo *bueno*, rápido y barato — el sushi
 
 El día a día japonés se come en tres tipos de sitio, todos sin reserva y casi todos con máquina de tickets:
 
-- **Ramen-ya**: locales pequeños, a menudo solo barra, especializados en un único estilo de ramen. Se pide en la máquina, se come en 20 minutos y se deja el sitio — no es lugar de sobremesa. **¥1.000–1.500** el cuenco grande. En la [guía de qué comer](/gastronomia/que-comer-en-japon) tienes los estilos (shoyu, miso, tonkotsu, shio).
-- **Shokudo / teishoku-ya**: el «menú del día» japonés. Un teishoku es plato principal + arroz + sopa de miso + encurtidos, **¥800–1.500**, comida casera honesta. Busca los carteles con bandejas fotografiadas a mediodía.
-- **Cadenas de gyudon y curry**: Yoshinoya, Sukiya y Matsuya (bol de arroz con ternera desde ~¥500) y CoCo Ichibanya (curry japonés configurable). Abiertas hasta tarde o 24 h, perfectas para el día de excursión que se alarga. Cero glamour, cero fallo.
+<Cards cols={3} items={[
+  {
+    title: "Ramen-ya",
+    jp: "ラーメン屋",
+    desc: "Locales pequeños, a menudo solo barra, especializados en un único estilo de ramen (shoyu, miso, tonkotsu, shio). Se pide en la máquina, se come en 20 minutos y se deja el sitio — no es lugar de sobremesa.",
+    tags: ["Solo barra", "Máquina de tickets"],
+    datos: [{ icon: "yen", texto: "¥1.000–1.500 el cuenco grande" }],
+    href: "/gastronomia/que-comer-en-japon",
+    cta: "Los estilos, en la guía de qué comer",
+  },
+  {
+    title: "Shokudo / teishoku-ya",
+    jp: "食堂",
+    desc: "El «menú del día» japonés. Un teishoku es plato principal + arroz + sopa de miso + encurtidos: comida casera honesta. Busca los carteles con bandejas fotografiadas a mediodía.",
+    tags: ["Menú del día", "Comida casera"],
+    datos: [{ icon: "yen", texto: "¥800–1.500" }],
+  },
+  {
+    title: "Cadenas de gyudon y curry",
+    jp: "チェーン",
+    desc: "Yoshinoya, Sukiya y Matsuya (bol de arroz con ternera) y CoCo Ichibanya (curry japonés configurable). Abiertas hasta tarde o 24 h, perfectas para el día de excursión que se alarga.",
+    tags: ["Cero glamour", "Cero fallo"],
+    datos: [{ icon: "yen", texto: "Gyudon desde ~¥500" }],
+  },
+]} />
 
 ¿Aún más barato? El konbini es una categoría en sí misma — onigiri, bentos y sandos por calderilla — y le dedicamos una [guía entera a comer barato en konbinis](/gastronomia/comer-barato-konbini-japon).
 
@@ -81,9 +101,29 @@ El día a día japonés se come en tres tipos de sitio, todos sin reserva y casi
 
 Los tres comparten idea —cocinas tú en la mesa— y son el plan de cena de celebración japonés:
 
-- **Yakiniku**: parrilla de carbón o gas empotrada en la mesa y bandejas de carne cruda que tú mismo asas. De ¥3.000 por persona en cadenas (Gyukaku, Yakiniku Like para ir solo) hasta lo que quieras pagar si entras en wagyu serio. Busca «tabehodai» si quieres buffet libre de carne por precio cerrado.
-- **Shabu-shabu**: láminas finísimas de carne que escaldas segundos en caldo hirviendo (el nombre es la onomatopeya del meneo). Ligero, elegante, ideal en invierno.
-- **Sukiyaki**: la versión dulce — la carne se cocina en salsa de soja, azúcar y mirin y se moja en huevo crudo batido. Suena raro; es de las cosas más ricas que probarás. **¥2.500–8.000** según el nivel de la carne.
+<Cards cols={3} items={[
+  {
+    title: "Yakiniku",
+    jp: "焼肉",
+    desc: "Parrilla de carbón o gas empotrada en la mesa y bandejas de carne cruda que tú mismo asas. Busca «tabehodai» si quieres buffet libre de carne por precio cerrado.",
+    tags: ["Parrilla en mesa", "Tabehodai"],
+    datos: [{ icon: "yen", texto: "De ¥3.000 por persona en cadenas (Gyukaku, Yakiniku Like para ir solo) hasta lo que quieras pagar si entras en wagyu serio" }],
+  },
+  {
+    title: "Shabu-shabu",
+    jp: "しゃぶしゃぶ",
+    desc: "Láminas finísimas de carne que escaldas segundos en caldo hirviendo (el nombre es la onomatopeya del meneo).",
+    tags: ["Caldo hirviendo", "Invierno"],
+    datos: [{ icon: "hoja", texto: "Ligero, elegante, ideal en invierno" }],
+  },
+  {
+    title: "Sukiyaki",
+    jp: "すき焼き",
+    desc: "La versión dulce — la carne se cocina en salsa de soja, azúcar y mirin y se moja en huevo crudo batido. Suena raro; es de las cosas más ricas que probarás.",
+    tags: ["Dulce", "Huevo crudo"],
+    datos: [{ icon: "yen", texto: "¥2.500–8.000 según el nivel de la carne" }],
+  },
+]} />
 
 ## Kaiseki: la alta cocina japonesa
 
@@ -107,10 +147,43 @@ El truco que casi nadie te cuenta: **la forma más natural (y rentable) de vivir
 
 Aviso para navegantes que leyeron guías viejas: **la famosa lonja de Tsukiji ya no existe como tal — el mercado mayorista y la subasta de atún se mudaron a Toyosu en 2018**. Lo que sigue (y muy vivo) es el *mercado exterior* de Tsukiji: callejones de puestos donde desayunar sushi, tamagoyaki recién hecho y marisco a la brasa.
 
-- **Tsukiji (mercado exterior), Tokio** — para comer de puesto en puesto por la mañana. Ve antes de las 10:00; muchos cierran a primera hora de la tarde.
-- **Toyosu, Tokio** — el mercado nuevo: moderno, acristalado, con la subasta de atún visible desde pasarelas a primerísima hora (consulta el sistema de acceso en su web oficial). Interesante para frikis del producto; para comer ambiente, Tsukiji exterior gana.
-- **Nishiki, Kioto** — «la cocina de Kioto»: una calle techada de 400 años con encurtidos, dulces, brochetas y tofu. Nota honesta: muy turístico a mediodía y comer andando está mal visto — come en el puesto o en sus barras.
-- **Kuromon, Osaka** — el más golosamente callejero: vieiras a la brasa, fugu, fruta de lujo y wagyu en brocheta. Encaja perfecto con la ruta de comer por Dotonbori.
+<Cards items={[
+  {
+    title: "Tsukiji (mercado exterior)",
+    desc: "Para comer de puesto en puesto por la mañana: sushi, tamagoyaki recién hecho y marisco a la brasa.",
+    tags: ["Desayuno", "Puestos"],
+    datos: [
+      { icon: "reloj", texto: "Ve antes de las 10:00; muchos cierran a primera hora de la tarde" },
+      { icon: "pin", texto: "Tokio" },
+    ],
+  },
+  {
+    title: "Toyosu",
+    desc: "El mercado nuevo: moderno, acristalado. Interesante para frikis del producto; para comer ambiente, Tsukiji exterior gana.",
+    tags: ["Subasta de atún", "Moderno"],
+    datos: [
+      { icon: "reloj", texto: "Subasta de atún visible desde pasarelas a primerísima hora (consulta el sistema de acceso en su web oficial)" },
+      { icon: "pin", texto: "Tokio" },
+    ],
+  },
+  {
+    title: "Nishiki",
+    desc: "«La cocina de Kioto»: una calle techada de 400 años con encurtidos, dulces, brochetas y tofu. Nota honesta: comer andando está mal visto — come en el puesto o en sus barras.",
+    tags: ["400 años", "Calle techada"],
+    datos: [
+      { icon: "reloj", texto: "Muy turístico a mediodía" },
+      { icon: "pin", texto: "Kioto" },
+    ],
+  },
+  {
+    title: "Kuromon",
+    desc: "El más golosamente callejero: vieiras a la brasa, fugu, fruta de lujo y wagyu en brocheta. Encaja perfecto con la ruta de comer por Dotonbori.",
+    tags: ["Callejero", "Wagyu"],
+    datos: [
+      { icon: "pin", texto: "Osaka" },
+    ],
+  },
+]} />
 
 <AffiliateBox title="Tour gastronómico con guía en español" partner="civitatis" cta="Ver tours de comida y precios">Si es tu primer viaje y quieres que alguien te lleve por puestos, izakayas y callejones explicándote qué es cada cosa (y pidiendo por ti), un tour gastronómico la primera noche te da soltura para el resto del viaje.</AffiliateBox>
 
@@ -137,4 +210,11 @@ La regla de oro japonesa: **el mediodía es la ganga**. Muchos restaurantes que 
   { q: "¿Se puede pagar con tarjeta en los restaurantes?", a: "En cadenas, kaiten-zushi y sitios medianos-grandes, cada vez más sí (tarjeta y monederos tipo Suica). Pero los locales pequeños — ramen-ya de barrio, puestos de mercado, izakayas familiares — siguen siendo territorio del efectivo. Lleva siempre yenes encima; lo contamos en la guía de cómo pagar en Japón." },
 ]} />
 
-¿Siguiente paso? Decide qué vas a pedir con la [guía de platos imprescindibles](/gastronomia/que-comer-en-japon), aprende a no meter la pata con los [modales en la mesa](/cultura/etiqueta-y-costumbres-japon), y si viajas ajustado de presupuesto, domina el arte del [konbini](/gastronomia/comer-barato-konbini-japon).
+<CTABand
+  title="¿Siguiente paso? Decide qué vas a pedir"
+  texto="Ya sabes cómo funciona cada tipo de sitio; ahora elige los platos imprescindibles — y si viajas ajustado de presupuesto, domina el arte del konbini."
+  href="/gastronomia/que-comer-en-japon"
+  cta="Qué pedir: platos imprescindibles"
+  href2="/gastronomia/comer-barato-konbini-japon"
+  cta2="Comer barato: konbini"
+/>

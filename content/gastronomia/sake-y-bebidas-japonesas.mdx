@@ -11,13 +11,11 @@ draft: false
 
 La carta de bebidas de un izakaya puede intimidar más que la de comida: ¿el sake se pide frío o caliente?, ¿qué es ese «highball» que beben en todas las mesas?, ¿por qué hay tres cervezas con el mismo nombre y distinto precio? La respuesta corta para tu primera noche: **un highball o una cerveza de barril para empezar, un sake junmai frío para acompañar el pescado, y de postre ya hablamos del matcha**. Y un dato que sorprende a muchos: en Japón **la edad legal para beber son los 20 años**, aunque la mayoría de edad general bajó a 18 — para alcohol (y tabaco) siguen siendo 20.
 
-<KeyFacts items={[
-  { label: "Edad legal para alcohol", value: "20 años (no 18) — pueden pedir pasaporte" },
-  { label: "Sake (nihonshu)", value: "≈15% alcohol — es vino de arroz, no un licor fuerte" },
-  { label: "Los tipos que importan", value: "Junmai (puro), ginjo y daiginjo (más pulidos y aromáticos)" },
-  { label: "La bebida de moda", value: "Highball: whisky con soda, ¥300–600 en izakaya" },
-  { label: "Cerveza", value: "¥500–800 en bar; ¥230–350 en konbini (ojo al happoshu)" },
-  { label: "Té verde", value: "Gratis en la mayoría de restaurantes, frío o caliente" },
+<StatCards items={[
+  { icon: "escudo", label: "Edad legal para alcohol", value: "20 años", sub: "No 18 — pueden pedir pasaporte" },
+  { icon: "te", label: "Sake (nihonshu)", value: "≈15% alcohol", sub: "Es vino de arroz, no un licor fuerte" },
+  { icon: "cerveza", label: "La bebida de moda", value: "Highball", sub: "Whisky con soda, ¥300–600 en izakaya" },
+  { icon: "hoja", label: "Té verde", value: "Gratis", sub: "En la mayoría de restaurantes, frío o caliente" },
 ]} />
 
 <Toc items={[
@@ -37,11 +35,38 @@ La carta de bebidas de un izakaya puede intimidar más que la de comida: ¿el sa
 
 Primera aclaración: lo que en España llamamos «sake» (ese chupito fuerte de restaurante chino) no es sake. El **nihonshu** es un fermentado de arroz de unos **15% de alcohol** — territorio vino, no aguardiente — y se bebe en vasitos o copas acompañando la comida. Lo que pone la etiqueta, traducido a humano:
 
-- **Junmai** — «arroz puro»: solo arroz, agua, koji y levadura, sin alcohol añadido. Sabor con cuerpo, el todoterreno.
-- **Honjozo** — con un toque de alcohol destilado añadido (técnica legítima, lo hace más ligero y aromático).
-- **Ginjo** — arroz pulido hasta dejar el 60% o menos del grano: más fino, afrutado, aromático.
-- **Daiginjo** — pulido al 50% o menos: la gama alta, elegante y cara. Si la etiqueta dice **junmai daiginjo**, es lo más puro y pulido a la vez.
-- **Nigori** — sin filtrar del todo: turbio, lechoso, algo dulce. De postre o para curiosos.
+<Cards cols={3} items={[
+  {
+    title: "Junmai",
+    jp: "純米",
+    desc: "«Arroz puro»: solo arroz, agua, koji y levadura, sin alcohol añadido. Sabor con cuerpo, el todoterreno.",
+    tags: ["Con cuerpo"],
+  },
+  {
+    title: "Honjozo",
+    jp: "本醸造",
+    desc: "Con un toque de alcohol destilado añadido (técnica legítima, lo hace más ligero y aromático).",
+    tags: ["Ligero"],
+  },
+  {
+    title: "Ginjo",
+    jp: "吟醸",
+    desc: "Arroz pulido hasta dejar el 60% o menos del grano: más fino, afrutado, aromático.",
+    tags: ["Aromático"],
+  },
+  {
+    title: "Daiginjo",
+    jp: "大吟醸",
+    desc: "Pulido al 50% o menos: la gama alta, elegante y cara. Si la etiqueta dice junmai daiginjo, es lo más puro y pulido a la vez.",
+    tags: ["Gama alta"],
+  },
+  {
+    title: "Nigori",
+    jp: "にごり",
+    desc: "Sin filtrar del todo: turbio, lechoso, algo dulce. De postre o para curiosos.",
+    tags: ["Dulce/turbio"],
+  },
+]} />
 
 En un izakaya, una copa o vasito de sake decente cuesta **¥500–900** (3–5 €). ¿No sabes cuál pedir? Di «junmai, onegaishimasu» y señala el rango medio de la carta: el sake de la casa en Japón es infinitamente mejor que el «sake» que hayas probado fuera. Detalle bonito: en algunos sitios tradicionales te lo sirven hasta rebosar el vaso dentro de un cajoncito de madera (masu) — es generosidad, no torpeza; se sorbe primero del vaso.
 
@@ -55,15 +80,30 @@ Las dos cosas valen — depende del sake y de la estación:
 - **Caliente (atsukan)**: el clásico de invierno, servido en la jarrita (tokkuri) templada al baño maría. Funciona de maravilla con junmai y honjozo robustos — y con el frío de diciembre que se mete en los huesos.
 - **La regla social**: el sake se sirve al de enfrente, nunca a uno mismo. Sujeta el vasito con las dos manos cuando te sirvan, y devuelve el gesto rellenando el suyo. Es la mitad del encanto.
 
-¿El brindis? **Kanpai** — y un matiz: «chin chin» en japonés es el pene en lenguaje infantil, así que mejor evítalo aunque te salga solo.
+¿El brindis? **Kanpai** — y un matiz: «chin chin» en japonés es el pene en lenguaje infantil, así que mejor evítalo aunque te salga solo. El resto de [modales en la mesa](/cultura/etiqueta-y-costumbres-japon), en la guía de etiqueta.
 
 ## Shochu, umeshu y chuhai
 
-El **shochu** es el destilado nacional (20–25% de alcohol, a veces más): se hace de batata (*imo*, terroso y potente), cebada (*mugi*, suave) o arroz (*kome*). Los japoneses lo beben rebajado — **mizuwari** (con agua fría), **oyuwari** (con agua caliente, glorioso en invierno) o con hielo. Es la bebida de señor de barra de toda la vida, y pedirlo bien te gana respeto inmediato.
+El trío que completa la carta del izakaya, traducido a humano:
 
-El **umeshu** es el licor de ciruela: dulce, suave, peligroso de lo fácil que entra. Con hielo o con soda, es la puerta de entrada perfecta si el sake te resulta raro.
-
-¿Y el **chuhai**? Shochu (o vodka) con soda y sabor a fruta, en jarra en el izakaya o **en lata en cualquier konbini por ¥150–250** — el icono de lata es ese limón amarillo de Strong Zero que verás por todas partes. Ojo con los «Strong» de 9%: entran como un refresco y pegan como tres.
+<Cards cols={3} items={[
+  {
+    title: "Shochu",
+    jp: "焼酎",
+    desc: "El destilado nacional (20–25% de alcohol, a veces más): se hace de batata (imo, terroso y potente), cebada (mugi, suave) o arroz (kome). Los japoneses lo beben rebajado — mizuwari (con agua fría), oyuwari (con agua caliente, glorioso en invierno) o con hielo. Es la bebida de señor de barra de toda la vida, y pedirlo bien te gana respeto inmediato.",
+  },
+  {
+    title: "Umeshu",
+    jp: "梅酒",
+    desc: "El licor de ciruela: dulce, suave, peligroso de lo fácil que entra. Con hielo o con soda, es la puerta de entrada perfecta si el sake te resulta raro.",
+  },
+  {
+    title: "Chuhai",
+    jp: "酎ハイ",
+    desc: "Shochu (o vodka) con soda y sabor a fruta, en jarra en el izakaya o en lata en cualquier konbini — el icono de lata es ese limón amarillo de Strong Zero que verás por todas partes. Ojo con los «Strong» de 9%: entran como un refresco y pegan como tres.",
+    datos: [{ icon: "yen", texto: "En lata en cualquier konbini por ¥150–250" }],
+  },
+]} />
 
 ## Whisky japonés: la fama es merecida (y cara)
 
@@ -71,9 +111,23 @@ El **umeshu** es el licor de ciruela: dulce, suave, peligroso de lo fácil que e
 
 El whisky japonés pasó de secreto local a fenómeno mundial — Yamazaki, Hakushu, Hibiki (Suntory) y Yoichi o Miyagikyo (Nikka) acumulan premios desde hace dos décadas. La consecuencia honesta: **las botellas con edad (12, 18 años) están agotadas o a precios absurdos**, en Japón también. No vayas esperando gangas de Yamazaki 18; ve esperando beberlo bien:
 
-- **El highball**: whisky con soda y mucho hielo, **¥300–600 en cualquier izakaya**. Es LA bebida de Japón ahora mismo — refrescante, ligera, pensada para acompañar comida frita. Pide un «haibōru» y entenderás por qué conquistó el país.
-- **Bares de whisky**: en Ginza, Shinjuku o Kioto hay bares diminutos con paredes de botellas donde probar por copa lo que jamás comprarías por botella. Una copa de algo especial: ¥1.500–4.000.
-- **Visitar las destilerías**: Yamazaki (entre Kioto y Osaka) y Hakushu tienen visitas y catas — pero la demanda es tal que **las plazas se asignan por sorteo o se agotan al minuto: míralo en la web de Suntory meses antes**, no al llegar. La alternativa con más plazas suele ser Nikka (Yoichi en Hokkaido, Miyagikyo cerca de Sendai) — verifica disponibilidad igualmente.
+<Cards cols={3} items={[
+  {
+    title: "El highball",
+    desc: "Whisky con soda y mucho hielo. Es LA bebida de Japón ahora mismo — refrescante, ligera, pensada para acompañar comida frita. Pide un «haibōru» y entenderás por qué conquistó el país.",
+    datos: [{ icon: "yen", texto: "¥300–600 en cualquier izakaya" }],
+  },
+  {
+    title: "Bares de whisky",
+    desc: "En Ginza, Shinjuku o Kioto hay bares diminutos con paredes de botellas donde probar por copa lo que jamás comprarías por botella.",
+    datos: [{ icon: "yen", texto: "Una copa de algo especial: ¥1.500–4.000" }],
+  },
+  {
+    title: "Visitar las destilerías",
+    desc: "Yamazaki (entre Kioto y Osaka) y Hakushu tienen visitas y catas — pero la demanda es tal que las plazas se asignan por sorteo o se agotan al minuto: míralo en la web de Suntory meses antes, no al llegar. La alternativa con más plazas suele ser Nikka (Yoichi en Hokkaido, Miyagikyo cerca de Sendai) — verifica disponibilidad igualmente.",
+    datos: [{ icon: "calendario", texto: "Reserva con meses de antelación" }],
+  },
+]} />
 
 ## Cerveza japonesa y la trampa del happoshu
 
@@ -91,10 +145,28 @@ Para los curiosos del lúpulo: la escena craft japonesa (Yo-Ho con su Yona Yona 
 
 El té es el agua de Japón: en la mayoría de restaurantes te pondrán **té verde o de cebada gratis**, frío en verano y caliente en invierno, sin pedirlo. Los nombres que verás:
 
-- **Sencha** — el té verde de diario, el que te sirven gratis.
-- **Hojicha** — té verde tostado: color caramelo, sabor a frutos secos, bajo en teína. El de las cenas.
-- **Genmaicha** — verde con arroz tostado, aroma a palomitas. Adictivo.
-- **Matcha** — el té molido de la ceremonia: amargo, denso, espumoso. Una cosa es el matcha latte azucarado de moda y otra el cuenco batido a mano de un salón de té de Kioto o de un templo — prueba el segundo, con su dulce wagashi al lado, por ¥600–1.500.
+<Cards cols={2} items={[
+  {
+    title: "Sencha",
+    jp: "煎茶",
+    desc: "El té verde de diario, el que te sirven gratis.",
+  },
+  {
+    title: "Hojicha",
+    jp: "ほうじ茶",
+    desc: "Té verde tostado: color caramelo, sabor a frutos secos, bajo en teína. El de las cenas.",
+  },
+  {
+    title: "Genmaicha",
+    jp: "玄米茶",
+    desc: "Verde con arroz tostado, aroma a palomitas. Adictivo.",
+  },
+  {
+    title: "Matcha",
+    jp: "抹茶",
+    desc: "El té molido de la ceremonia: amargo, denso, espumoso. Una cosa es el matcha latte azucarado de moda y otra el cuenco batido a mano de un salón de té de Kioto o de un templo — prueba el segundo, con su dulce wagashi al lado, por ¥600–1.500.",
+  },
+]} />
 
 ¿Dónde vivirlo bien? Uji (a 20 minutos de Kioto) es la capital histórica del té; y muchos templos y jardines —en Kioto, Kanazawa o Tokio— sirven matcha con vistas al jardín por pocos cientos de yenes, que es la versión exprés y barata de la ceremonia.
 
@@ -123,4 +195,11 @@ Una nota de presupuesto: el alcohol es de las pocas cosas que pueden inflar la c
   { q: "¿Merece la pena visitar una destilería de whisky?", a: "Si te gusta el whisky, mucho — bodega, historia y catas que fuera costarían una fortuna. Pero planifícalo: Yamazaki y Hakushu (Suntory) asignan plazas por sorteo o se agotan en cuanto abren el calendario, con meses de antelación. Nikka (Yoichi y Miyagikyo) suele tener más disponibilidad. Reserva antes de cerrar el itinerario, no después." },
 ]} />
 
-¿Siguiente paso? Aprende cómo funciona el sitio donde vas a beber todo esto en la [guía de tipos de restaurantes](/gastronomia/tipos-restaurantes-japon), repasa los [modales en la mesa](/cultura/etiqueta-y-costumbres-japon), y cuadra el gasto con la [guía de presupuesto](/logistica/cuanto-cuesta-viajar-japon).
+<CTABand
+  title="¿Siguiente paso?"
+  texto="Aprende cómo funciona el sitio donde vas a beber todo esto — izakaya, otoshi y compañía — y cuadra el gasto para que las rondas no descuadren el viaje."
+  href="/gastronomia/tipos-restaurantes-japon"
+  cta="Dónde se bebe: guía de izakayas"
+  href2="/logistica/cuanto-cuesta-viajar-japon"
+  cta2="Cuadrar el presupuesto"
+/>
