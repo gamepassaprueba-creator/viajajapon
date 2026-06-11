@@ -31,3 +31,9 @@ en este proyecto).
 | shibuya-cruce.jpg | Cruce de Shibuya de noche | Benh LIEU SONG | CC BY-SA 2.0 | Tokyo Shibuya Scramble Crossing 2018-10-09.jpg |
 | nikko-toshogu.jpg | Puerta Yomeimon, Toshogu (Nikko) | Jpatokal | CC BY-SA 4.0 | Nikko Toshogu Yomeimon Gate 2024.jpg |
 | taquillas-estacion.jpg | Coin lockers de estación | Crispin Semmens | CC BY-SA 2.0 | Coin lockers are convenient (9878328536).jpg |
+| friki-akihabara-dia.jpg | Chuo-dori de Akihabara (día) | Ximonic (Simo Räsänen) | CC BY-SA 4.0 | Urban architectural portrait from Chuo-dori of Akihabara, Chiyoda, Tokyo, Japan, 2024 May.jpg |
+| friki-museo-ghibli.jpg | Exterior del Museo Ghibli (Mitaka) | Jakub Hałun | CC BY 4.0 | Ghibli Museum, Mitaka, Tokyo, 20240823 1131 5545.jpg |
+| friki-nintendo-tokyo.jpg | Nintendo TOKYO (Shibuya Parco) | IagoQnsi | CC BY 4.0 | Nintendo Tokyo (PXL 20231220 022539971).jpg |
+| friki-square-enix-cafe.jpg | Square Enix Café | Immanuelle | CC BY 4.0 | Square Enix Cafe.jpg |
+| friki-capcom-store.jpg | Capcom Store Tokyo (Shibuya Parco) | Cabeza2000 | CC BY-SA 4.0 | Capcom Store Tokyo at Shibuya PARCO - Dec 2019.jpg |
+| friki-pokemon-store.jpg | Pokémon Store (estación de Tokio) | 電車(新幹線)でゴー！ | CC0 | Pokemon store in Tokyo Station 01.jpg |
