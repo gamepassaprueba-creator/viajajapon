@@ -12,7 +12,7 @@ const NOMBRES = { madre: "Mamá", hijo: "Yo" } as const;
 
 function Avatar({ quien }: { quien: "madre" | "hijo" }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- SVG estático diminuto: next/image no aporta y complica servir SVG
+    // eslint-disable-next-line @next/next/no-img-element -- webp de 12-19 KB ya optimizado a su tamaño final: next/image no aporta nada aquí
     <img
       src={`/avatares/${quien}.webp`}
       alt={`Avatar de ${NOMBRES[quien] === "Yo" ? "el autor" : "la madre del autor"}`}
