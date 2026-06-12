@@ -83,3 +83,13 @@ en este proyecto).
 | hakone-ashi.jpg | Lago Ashi con el torii y el Fuji nevado | Kentagon | CC BY-SA 4.0 | LakeAshi and MtFuji Hakone.JPG |
 | yokohama-minatomirai.jpg | Minato Mirai de noche con la noria (Yokohama) | Suicasmo | CC BY-SA 4.0 | Views of Minato Mirai 21 from Osanbashi Pier at night 20211212-5.jpg |
 | tokio-shibuya-noche.jpg | Calles de Shibuya de noche | Maarten Heerlien | CC BY 2.0 | Neon in the streets of Shibuya (9412153000).jpg |
+| osaka-dotonbori-glico.jpg | Canal de Dotonbori con el cartel Glico y el puente Ebisubashi de noche | Soramimi (そらみみ) | CC BY-SA 4.0 | Glico Man Neon Sign and Ebisubashi Bridge at night.jpg |
+| osaka-castillo-sakura.jpg | Castillo de Osaka entre cerezos en flor | Luka Peternel | CC BY-SA 4.0 | Osaka-Castle-cherry-blossom-2018-Luka-Peternel.jpg |
+| osaka-kuromon.jpg | Puesto de anguila y marisco en el mercado Kuromon | Choi2451 | CC BY-SA 3.0 | Seafood in Kuromon Market, Osaka on June 7th, 2017.jpg |
+| osaka-shinsekai.jpg | Shinsekai de noche con la torre Tsutenkaku | Sakai Yayoi | CC0 | Shinsekai and Tsutenkaku Tower.jpg |
+| osaka-umeda-sky.jpg | Umeda Sky Building en contrapicado | Martin Falbisoner | CC BY-SA 4.0 | Umeda Sky Building, Osaka, November 2016 -01.jpg |
+| osaka-takoyaki.jpg | Plato de takoyaki con katsuobushi | SytheeBoyo | CC0 | Takoyaki Dish.jpg |
+| osaka-okonomiyaki.jpg | Okonomiyaki en la plancha (teppan) | Lianguanlun | CC BY 4.0 | Okonomiyaki cooking on teppan Osaka.jpg |
+| osaka-kushikatsu.jpg | Set de kushikatsu con col y salsa en Shinsekai | Ajay Suresh | CC BY 2.0 | Kushikatsu - Shinsekai (28289215848).jpg |
+| kobe-port-tower.jpg | Puerto de Kobe con la Port Tower | Balon Greyjoy | CC0 | 20190901 Kobe harbor-1.jpg |
+| koyasan-konpon-daito.jpg | Pagoda Konpon Daito en el Danjo Garan (Koyasan) | Andrea Schaffer | CC BY 2.0 | Konpon Daito, Koyasan (3811155264).jpg |

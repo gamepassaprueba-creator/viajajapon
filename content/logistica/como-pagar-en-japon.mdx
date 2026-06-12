@@ -3,7 +3,7 @@ title: "Cómo pagar en Japón: efectivo, tarjeta y tarjetas IC (2026)"
 description: "Guía práctica para pagar en Japón en 2026: cuánto efectivo llevar, dónde sacar yenes sin comisiones abusivas, tarjetas que funcionan, Suica/Pasmo y los errores típicos (DCC, cambiar en casa)."
 kicker: "Dinero"
 datePublished: "2026-06-10"
-dateModified: "2026-06-10"
+dateModified: "2026-06-12"
 excerpt: "En Japón conviven el pago con tarjeta, las tarjetas IC tipo Suica y un efectivo que sigue siendo imprescindible. Dónde sacar yenes, con qué tarjeta pagar y qué errores evitar."
 draft: false
 ---
@@ -20,13 +20,15 @@ draft: false
 ]} />
 
 <Toc items={[
+  { href: "#donde-sacar-yenes-cajeros-de-konbini", label: "Dónde sacar yenes" },
+  { href: "#cambiar-euros-o-pesos-a-yenes-antes-de-salir", label: "¿Cambiar antes de salir?" },
   { href: "#la-regla-de-las-tres-capas", label: "La regla de las tres capas" },
   { href: "#cuanto-efectivo-llevar-orientacion-honesta", label: "Cuánto efectivo llevar" },
-  { href: "#donde-sacar-yenes-cajeros-de-konbini", label: "Dónde sacar yenes" },
   { href: "#la-tarjeta-correcta-importa-mucho", label: "La tarjeta correcta importa" },
   { href: "#el-error-del-dcc-paga-siempre-en-yenes", label: "El error del DCC" },
-  { href: "#cambiar-euros-o-pesos-a-yenes-antes-de-salir", label: "¿Cambiar dinero antes de salir?" },
   { href: "#suica-y-pasmo-tu-monedero-del-dia-a-dia", label: "Suica y Pasmo" },
+  { href: "#compras-tax-free-como-funciona-y-que-esta-cambiando", label: "Compras tax-free" },
+  { href: "#consejos-rapidos-seguridad-perdidas-y-cuando-cambiar", label: "Consejos rápidos" },
   { href: "#propinas-y-pequenos-codigos-del-dinero", label: "Propinas y códigos del dinero" },
   { href: "#preguntas-frecuentes", label: "Preguntas frecuentes" },
 ]} />
@@ -34,19 +36,68 @@ draft: false
 
 <Foto src="/images/yenes-billetes.jpg" alt="Billetes de yen japonés esparcidos" caption="El efectivo sigue mandando en templos, mercados y restaurantes pequeños" credito="Japanexperterna.se (dominio público, Wikimedia Commons)" />
 
-## La regla de las tres capas
-
-1. **Tarjeta (crédito/débito):** hoteles, restaurantes medianos y grandes, cadenas, tiendas, billetes de tren caros. Visa y Mastercard funcionan bien; American Express, algo menos.
-2. **Tarjeta IC (Suica, Pasmo, ICOCA):** transporte urbano, konbinis, máquinas expendedoras, taquillas. Se recarga con efectivo (y la versión digital, desde el móvil). Si llevas iPhone, puedes tenerla [en el propio teléfono](/logistica/suica-iphone) sin tarjeta física.
-3. **Efectivo:** todo lo demás. Sí, en 2026 todavía.
-
-## Cuánto efectivo llevar (orientación honesta)
-
-Depende de cómo comas y te muevas, pero como referencia: con la tarjeta cubriendo lo gordo, mucha gente gasta en efectivo **el equivalente a 20-40 € al día por persona** (comidas pequeñas, templos, recargas de la IC, antojos de konbini si no los pagas con la propia IC). No cargues cientos de euros en yenes "por si acaso" desde el primer día: los cajeros están en cada esquina, literalmente.
+<CTABand
+  title="¿A cuánto está el yen hoy?"
+  texto="El tipo de cambio del día lo tienes siempre en nuestra página viva del yen. Esta guía usa ¥185 = 1 € como referencia."
+  href="/cambio-yen-euro"
+  cta="Ver el cambio yen-euro"
+/>
 
 ## Dónde sacar yenes: cajeros de konbini
 
-El gran truco logístico de Japón: **los cajeros de 7-Eleven (Seven Bank) y de Japan Post (oficinas de correos) aceptan tarjetas extranjeras de forma fiable**, con menús en inglés (y a menudo en español). Los de Lawson también suelen funcionar. En cambio, muchos cajeros de bancos japoneses tradicionales **no aceptan** tarjetas extranjeras: si uno te rechaza la tarjeta, no es tu tarjeta, es el cajero — busca un 7-Eleven.
+El gran truco logístico de Japón es saber qué cajero acepta tu tarjeta — y cuál no. Las cuatro opciones para conseguir yenes, comparadas:
+
+<Cards items={[
+  {
+    title: "Cajeros de konbini y correos",
+    desc: "Los cajeros de 7-Eleven (Seven Bank) y de Japan Post (oficinas de correos) aceptan tarjetas extranjeras de forma fiable, con menús en inglés y a menudo en español. Los de Lawson también suelen funcionar.",
+    tags: ["La opción fiable"],
+    puntos: [
+      "Están en cada esquina, literalmente",
+      "Menú en inglés (y a menudo en español)",
+      "Mejor pocas retiradas grandes que muchas pequeñas",
+    ],
+    datos: [
+      { icon: "cartera", texto: "Pequeña tarifa fija por retirada + la que añada tu banco" },
+    ],
+  },
+  {
+    title: "Cajeros de bancos japoneses",
+    desc: "Muchos cajeros de bancos tradicionales no aceptan tarjetas extranjeras. Si uno te rechaza la tarjeta, no es tu tarjeta: es el cajero — busca un 7-Eleven o una oficina de correos.",
+    tags: ["Lotería"],
+    puntos: [
+      "Rechazos frecuentes con tarjetas emitidas fuera de Japón",
+      "Algunos limitan el importe por operación; si necesitas más, repite",
+    ],
+    datos: [
+      { icon: "info", texto: "Ante la duda, directo a Seven Bank o Japan Post" },
+    ],
+  },
+  {
+    title: "Casas de cambio en tu país",
+    desc: "En general no compensan: suelen dar un tipo peor que sacar de un cajero japonés con una tarjeta decente, y desde Latinoamérica el cambio directo de pesos a yenes puede ser difícil o directamente imposible.",
+    tags: ["No compensa"],
+    puntos: [
+      "Solo un importe pequeño si te da tranquilidad aterrizar con yenes",
+      "Unos euros o dólares de reserva por si todo falla",
+    ],
+    datos: [
+      { icon: "yen", texto: "Tipo de cambio peor que cajero + tarjeta sin comisiones" },
+    ],
+  },
+  {
+    title: "El cajero del aeropuerto",
+    desc: "Para el aterrizaje, funciona: hay cajeros en el propio aeropuerto y resuelven el efectivo del primer día sin haber cambiado nada en casa.",
+    tags: ["Para aterrizar"],
+    puntos: [
+      "Saca el equivalente a 50-100 € para arrancar",
+      "Repón después en konbinis según gastes",
+    ],
+    datos: [
+      { icon: "cartera", texto: "Misma regla que siempre: rechaza la conversión \"garantizada\" (DCC)" },
+    ],
+  },
+]} />
 
 <InfoBox variant="consejo" title="Apuntes prácticos">
 
@@ -55,6 +106,61 @@ El gran truco logístico de Japón: **los cajeros de 7-Eleven (Seven Bank) y de 
 - Lleva **dos tarjetas** de emisores distintos por si una falla o te la bloquean.
 
 </InfoBox>
+
+## ¿Cambiar euros o pesos a yenes antes de salir?
+
+En general, **no compensa**: las casas de cambio de tu país suelen dar un tipo peor que sacar de un cajero japonés con una tarjeta decente, y desde Latinoamérica el cambio directo de pesos a yenes puede ser difícil o directamente imposible. Si te da tranquilidad, lleva un importe pequeño cambiado (o unos euros/dólares por si todo falla) y saca el resto al llegar: hay cajeros en el propio aeropuerto. El tipo de cambio del día lo tienes siempre en nuestra [página viva del yen](/cambio-yen-euro).
+
+## La regla de las tres capas
+
+Tres medios de pago, cada uno con su trabajo. Si montas las tres capas, el dinero deja de ser un tema:
+
+<Cards cols={3} items={[
+  {
+    title: "Efectivo",
+    jp: "現金",
+    desc: "La capa de los templos, el ramen de barrio, los mercados, las taquillas de monedas y muchos restaurantes pequeños. Sí, en 2026 todavía.",
+    puntos: [
+      "≈20-40 € al día por persona, con la tarjeta cubriendo lo gordo",
+      "El primer día: el equivalente a 50-100 € en yenes",
+      "La moneda más alta vale ¥500 (≈2,7 €): un monedero pequeño ayuda",
+    ],
+    datos: [
+      { icon: "cartera", texto: "Se saca de cajeros de konbini, no se cambia en casa" },
+    ],
+  },
+  {
+    title: "Tarjeta de crédito o débito",
+    jp: "カード",
+    desc: "Hoteles, restaurantes medianos y grandes, cadenas, tiendas y billetes de tren caros. Visa y Mastercard funcionan bien; American Express, algo menos.",
+    puntos: [
+      "Sin comisiones de cambio te ahorras el 2-3 % de cada pago",
+      "Lleva dos tarjetas de emisores distintos",
+      "Avisa a tu banco del viaje antes de salir",
+    ],
+    datos: [
+      { icon: "tarjeta", texto: "Paga siempre en yenes: rechaza el DCC" },
+    ],
+  },
+  {
+    title: "Tarjeta IC y móvil",
+    jp: "ICカード",
+    desc: "Suica, Pasmo o ICOCA: tocas y listo en tren, metro, bus, konbini, máquinas expendedoras y taquillas. Se recarga con efectivo — y la versión digital, desde el propio móvil.",
+    puntos: [
+      "En iPhone: Suica digital en Apple Wallet, sin tarjeta física ni depósito",
+      "Perfecta para gastos pequeños y para descargar monedas",
+    ],
+    datos: [
+      { icon: "movil", texto: "Funcionan indistintamente en casi todo el país" },
+    ],
+    href: "/logistica/suica-iphone",
+    cta: "Suica en el iPhone, paso a paso",
+  },
+]} />
+
+## Cuánto efectivo llevar (orientación honesta)
+
+Depende de cómo comas y te muevas, pero como referencia: con la tarjeta cubriendo lo gordo, mucha gente gasta en efectivo **el equivalente a 20-40 € al día por persona** (comidas pequeñas, templos, recargas de la IC, antojos de konbini si no los pagas con la propia IC). No cargues cientos de euros en yenes "por si acaso" desde el primer día: los cajeros están en cada esquina, literalmente.
 
 ## La tarjeta correcta importa (mucho)
 
@@ -68,16 +174,102 @@ La diferencia entre pagar con una tarjeta clásica de banco —con un 2-3 % de c
 En muchos datáfonos y cajeros te preguntarán si quieres pagar/retirar "en tu moneda" (euros, pesos) o en yenes. Elige **siempre yenes**. La conversión dinámica de divisa (DCC) usa un tipo de cambio propio, peor que el de tu tarjeta, y es de los pocos "peajes al turista" reales que hay en Japón. Misma regla en cajeros: si te ofrece "conversión garantizada", recházala.
 </InfoBox>
 
-## ¿Cambiar euros o pesos a yenes antes de salir?
-
-En general, **no compensa**: las casas de cambio de tu país suelen dar un tipo peor que sacar de un cajero japonés con una tarjeta decente, y desde Latinoamérica el cambio directo de pesos a yenes puede ser difícil o directamente imposible. Si te da tranquilidad, lleva un importe pequeño cambiado (o unos euros/dólares por si todo falla) y saca el resto al llegar: hay cajeros en el propio aeropuerto. El tipo de cambio del día lo tienes siempre en nuestra [página viva del yen](/cambio-yen-euro).
-
 ## Suica y Pasmo: tu monedero del día a día
 
 La tarjeta IC es el pago del día a día japonés: tocas y listo en tren, metro, bus, konbini, máquinas y muchas taquillas. Dos apuntes de 2026:
 
 - En iPhone puedes crear una **Suica digital en Apple Wallet** y recargarla desde el móvil, sin tarjeta física ni depósito: el paso a paso está en nuestra [guía de Suica en iPhone](/logistica/suica-iphone).
 - La disponibilidad de tarjetas **físicas** ha tenido idas y venidas en los últimos años (hubo suspensiones de venta por escasez de chips, y versiones para turistas como la Welcome Suica). Verifica la situación al llegar; la versión digital ha sido la opción más estable.
+
+## Compras tax-free: cómo funciona (y qué está cambiando)
+
+Si vas de compras —electrónica, ropa, regalos—, Japón exime a los turistas del **10 % de IVA** en las tiendas adheridas al sistema tax-free. Ojo: el sistema está en plena revisión normativa, con un cambio aprobado hacia un modelo de devolución (pagas el IVA y te lo reembolsan al salir del país) a lo largo de 2026 — verifica qué versión rige en tus fechas antes de contar con el descuento. Los requisitos de siempre:
+
+<Cards items={[
+  {
+    title: "Compra mínima de ¥5.000",
+    desc: "≈27 €, en la misma tienda y el mismo día. Solo en tiendas adheridas: busca el cartel «Tax-Free Shop» en el escaparate o en caja.",
+    datos: [
+      { icon: "compras", texto: "El descuento es sobre el 10 % de IVA" },
+    ],
+  },
+  {
+    title: "Pasaporte físico, en mano",
+    desc: "El trámite se hace enseñando el pasaporte original al pagar — una foto o una copia no valen. El registro de la compra queda asociado digitalmente a tu pasaporte.",
+    datos: [
+      { icon: "info", texto: "Llévalo encima los días de compras" },
+    ],
+  },
+  {
+    title: "Solo visitantes temporales",
+    desc: "Es para turistas de estancia corta (estatus de visitante temporal, ≈ menos de 6 meses); los residentes en Japón no entran. Verifica tu caso si tu estancia es atípica.",
+    datos: [
+      { icon: "calendario", texto: "El sello de entrada como turista es la llave" },
+    ],
+  },
+  {
+    title: "Las compras salen contigo de Japón",
+    desc: "El IVA se perdona porque los artículos se consumen fuera del país: los consumibles (comida, bebida, cosmética) van en una bolsa sellada que no debes abrir dentro de Japón.",
+    datos: [
+      { icon: "escudo", texto: "Aduana puede comprobarlo a la salida" },
+    ],
+  },
+]} />
+
+El proceso, de la caja al avión:
+
+<Steps items={[
+  { titulo: "Compra en una tienda adherida y pide el tax-free en caja", texto: "Busca el cartel «Tax-Free Shop». En grandes almacenes y cadenas suele haber un mostrador tax-free específico; en el resto se tramita al pagar." },
+  { titulo: "Enseña el pasaporte físico", texto: "El registro queda asociado a tu pasaporte. Según la tienda, te descuentan el 10 % directamente en caja o te lo devuelven en el mostrador tax-free después de pagar." },
+  { titulo: "Guarda los tickets y no abras los precintos", texto: "Las bolsas selladas de consumibles viajan cerradas hasta que salgas del país; la ropa o la electrónica no llevan precinto." },
+  { titulo: "En el aeropuerto, antes de salir", texto: "En el control de salida se escanea el pasaporte y aduana puede pedir ver las compras: llévalas localizables y llega con margen. Si en tus fechas ya rige el modelo de devolución, será aquí donde se tramite el reembolso — verifica el procedimiento vigente." },
+]} />
+
+¿Dónde se usa más? Lo verás en marcha en los grandes almacenes y la electrónica de [Tokio](/destinos/que-ver-en-tokio#compras-en-tokio) y en las tiendas friki de [Akihabara](/cultura/japon-friki-guia-otaku).
+
+## Consejos rápidos: seguridad, pérdidas y cuándo cambiar
+
+<Cards items={[
+  {
+    title: "Cuándo cambiar (mejor: cuándo sacar)",
+    desc: "No cargues cientos de euros en yenes \"por si acaso\" desde el primer día: los cajeros están en cada esquina. Saca al llegar lo del primer día y repón según gastes.",
+    tags: ["Timing"],
+    puntos: [
+      "Pocas retiradas grandes mejor que muchas pequeñas",
+      "El tipo del día, en nuestra página viva del yen",
+    ],
+    href: "/cambio-yen-euro",
+    cta: "Ver el cambio de hoy",
+  },
+  {
+    title: "Rechaza el DCC, siempre",
+    desc: "Si el datáfono o el cajero te ofrece pagar \"en tu moneda\" o una \"conversión garantizada\", di que no: el DCC usa un tipo de cambio propio, peor que el de tu tarjeta.",
+    tags: ["Regla de oro"],
+    puntos: [
+      "Elige siempre yenes, en tiendas y en cajeros",
+      "Es de los pocos peajes al turista reales que hay en Japón",
+    ],
+  },
+  {
+    title: "Efectivo y seguridad",
+    desc: "Japón es un país muy seguro para llevar efectivo encima, pero el sentido común también viaja: el riesgo real son los despistes, no los robos.",
+    tags: ["Seguridad"],
+    puntos: [
+      "Reparte el efectivo entre la cartera y la mochila o la caja del hotel",
+      "Si pierdes algo, pregunta en el kōban (caseta de policía): los objetos perdidos suelen aparecer",
+    ],
+  },
+  {
+    title: "Si pierdes la tarjeta (o te la bloquean)",
+    desc: "Por esto se llevan dos tarjetas de emisores distintos: si una falla, la otra te saca del apuro mientras lo resuelves.",
+    tags: ["Plan B"],
+    puntos: [
+      "Bloquéala desde la app del banco en cuanto lo detectes",
+      "Localiza antes de salir el teléfono de emergencias de tu banco",
+      "Un pequeño colchón de efectivo te da margen mientras tanto",
+    ],
+  },
+]} />
 
 ## Propinas y pequeños códigos del dinero
 
@@ -94,6 +286,9 @@ La tarjeta IC es el pago del día a día japonés: tocas y listo en tren, metro,
   { q: "¿Cuánto efectivo llevo encima el primer día?", a: "Lo razonable es aterrizar con el equivalente a 50-100 € en yenes (sacados en el cajero del aeropuerto al llegar, o cambiados antes si te da tranquilidad) y reponer en konbinis según gastes." },
   { q: "¿Funciona mi tarjeta de débito latinoamericana?", a: "Visa y Mastercard internacionales funcionan en los cajeros de Seven Bank y Japan Post en la gran mayoría de los casos. Avisa a tu banco del viaje, revisa las comisiones por uso en el extranjero (a veces son altas; valora una fintech sin comisiones como complemento) y lleva una segunda tarjeta." },
   { q: "¿Pago el tren bala con tarjeta?", a: "Sí: los billetes de shinkansen se pagan con tarjeta sin problema, tanto en taquilla como en máquinas y online. Para saber si te compensa un pase antes de comprar billetes sueltos, pasa por la calculadora del JR Pass." },
+  { q: "¿Hay un límite de efectivo para entrar o salir de Japón?", a: "Llevar dinero no está prohibido, pero si entras o sales con el equivalente a más de ¥1.000.000 (≈5.400 €) en efectivo y otros medios de pago, estás obligado a declararlo en aduanas. En un viaje normal, sacando de cajeros sobre la marcha, no te acercarás ni de lejos a esa cifra." },
+  { q: "¿Los bancos cierran los fines de semana? ¿Y en festivos?", a: "Las oficinas bancarias abren solo entre semana y en horario corto, pero al viajero apenas le afecta: los cajeros de 7-Eleven y Japan Post funcionan a diario y hasta tarde (muchos, las 24 horas). El único matiz son los festivos largos como la Golden Week, cuando conviene llevar algo más de colchón de efectivo por si tu cajero habitual está fuera de servicio — verifica si viajas en esas fechas." },
+  { q: "¿Cómo reclamo un cargo que no reconozco en la tarjeta?", a: "Como en casa: revisa los movimientos en la app durante el viaje, guarda los recibos y, si un cargo no te cuadra, abre una disputa con tu banco — Visa y Mastercard tienen procesos estándar de reclamación. Ten en cuenta que algunos comercios japoneses liquidan con días de retraso y que el importe en euros baila con el cambio del día: espera a que el cargo se consolide antes de alarmarte." },
 ]} />
 
 <CalculatorCTA />
@@ -101,6 +296,15 @@ La tarjeta IC es el pago del día a día japonés: tocas y listo en tren, metro,
 ## En resumen
 
 Tarjeta sin comisiones para lo gordo, Suica para el día a día, y efectivo de los cajeros de 7-Eleven o correos para el resto. Paga siempre en yenes, olvida la propina y no cambies dinero en casa salvo un colchón pequeño. Con eso, el dinero deja de ser un tema en tu viaje. Para encajar las cifras en tu presupuesto total, sigue con [cuánto cuesta viajar a Japón](/logistica/cuanto-cuesta-viajar-japon).
+
+<CTABand
+  title="El dinero, resuelto — ahora el presupuesto"
+  texto="Consulta el cambio del día antes de sacar yenes y encaja estas cifras en el presupuesto completo del viaje."
+  href="/cambio-yen-euro"
+  cta="Cambio yen-euro hoy"
+  href2="/logistica/cuanto-cuesta-viajar-japon"
+  cta2="Cuánto cuesta viajar a Japón"
+/>
 
 ---
 

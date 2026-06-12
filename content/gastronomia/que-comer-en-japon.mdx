@@ -3,7 +3,7 @@ title: "Qué comer en Japón: platos imprescindibles (y cuánto cuestan)"
 description: "Guía de qué comer en Japón: ramen, sushi, tempura, okonomiyaki y más, con precios orientativos en euros, dónde probarlos y opciones para celíacos y veganos."
 kicker: "Gastronomía"
 datePublished: "2026-06-10"
-dateModified: "2026-06-11"
+dateModified: "2026-06-12"
 excerpt: "Los platos que no te puedes perder en Japón, con precios orientativos en euros, dónde probarlos y notas para celíacos y veganos."
 hero: "/images/sushi.jpg"
 draft: false
@@ -21,8 +21,12 @@ Comer en Japón es, para mucha gente, la mitad del viaje — y la buena noticia 
 ]} />
 
 <Toc items={[
+  { href: "#la-filosofia-culinaria-japonesa", label: "La filosofía culinaria" },
   { href: "#platos-imprescindibles", label: "Platos imprescindibles" },
+  { href: "#etiqueta-en-la-mesa", label: "Etiqueta en la mesa" },
+  { href: "#vocabulario-util-para-pedir", label: "Vocabulario para pedir" },
   { href: "#comer-segun-tu-presupuesto", label: "Comer según tu presupuesto" },
+  { href: "#consejos-para-ahorrar", label: "Consejos para ahorrar" },
   { href: "#y-si-soy-celiaco-vegano-o-no-como-cerdo", label: "¿Y si soy celíaco, vegano o no como cerdo?" },
   { href: "#una-nota-honesta-sobre-los-precios", label: "Una nota honesta sobre los precios" },
 ]} />
@@ -32,52 +36,250 @@ Comer en Japón es, para mucha gente, la mitad del viaje — y la buena noticia 
   { quien: "madre", texto: "Porque cualquiera estaba rico." },
 ]} />
 
+## La filosofía culinaria japonesa
+
+Entender seis ideas hace que todo lo demás cobre sentido — las cartas que cambian con los meses, los menús de muchos platitos, el cuidado casi ceremonial al servir — y, de paso, te ayuda a pedir mejor:
+
+<Cards cols={3} items={[
+  {
+    title: "Shun: la estación manda",
+    jp: "旬",
+    desc: "Cada ingrediente tiene su momento óptimo (shun) y las cartas cambian con él: brotes en primavera, anguila en verano, setas en otoño, hot pots en invierno. Si un menú anuncia «de temporada», va en serio.",
+    datos: [{ icon: "hoja", texto: "Lo de temporada es casi siempre la mejor compra de la carta" }],
+  },
+  {
+    title: "Los cinco sabores",
+    jp: "五味",
+    desc: "Dulce, salado, ácido, amargo y umami — el «quinto sabor» que el mundo entero conoce por su nombre japonés. Una comida bien planteada los equilibra todos: por eso son muchos platitos y no un platazo.",
+    datos: [{ icon: "comida", texto: "El umami vive en el dashi, la salsa de soja y el miso" }],
+  },
+  {
+    title: "Se come con los ojos",
+    jp: "盛り付け",
+    desc: "El moritsuke (emplatado) es media cocina: vajilla elegida pieza a pieza, colores de la estación y espacio vacío que también cuenta. Hasta un bento de konbini viene compuesto como un cuadro.",
+    datos: [{ icon: "brillo", texto: "La vajilla cambia con el plato y con la estación" }],
+  },
+  {
+    title: "El ingrediente, sin disfraz",
+    jp: "素材",
+    desc: "La técnica está al servicio del producto, no al revés: el pescado fresco apenas se toca, la tempura es un velo y los caldos buscan realzar, no tapar. Menos salsa, más producto.",
+    datos: [{ icon: "estrella", texto: "Si el ingrediente es bueno, se nota — y se respeta" }],
+  },
+  {
+    title: "Ichigo-ichie: el respeto",
+    jp: "一期一会",
+    desc: "«Un encuentro, una oportunidad»: cada comida es irrepetible y se agradece — al cocinero, al producto y al momento. Es la raíz del itadakimasu al empezar y del gochisousama al terminar.",
+    datos: [{ icon: "te", texto: "Nació en la ceremonia del té y empapa toda la mesa" }],
+  },
+  {
+    title: "Armonía: el washoku",
+    jp: "和食",
+    desc: "La cocina tradicional japonesa (washoku, declarada Patrimonio Cultural Inmaterial por la UNESCO) gira en torno al equilibrio: arroz, sopa y acompañamientos variados, sin que nada domine sobre el resto.",
+    datos: [{ icon: "sol", texto: "Ichiju-sansai: «una sopa, tres acompañamientos» como patrón" }],
+  },
+]} />
+
 ## Platos imprescindibles
 
-### Ramen
+Los nueve nombres que resuelven dos semanas de comidas. Cómo funciona cada tipo de local donde se sirven — la máquina de tickets, el izakaya, la cinta de sushi — lo tienes en la [guía de tipos de restaurantes](/gastronomia/tipos-restaurantes-japon):
 
-El plato estrella del día a día japonés: caldo, fideos y diferentes toppings. Hay muchas variantes (shoyu, miso, tonkotsu) y cada región tiene la suya. Se come en locales especializados, muchos con máquina de tickets a la entrada, y suele costar lo de **una comida sencilla** (verifica el precio en cada sitio). Rápido, contundente y casi siempre delicioso.
+<Cards cols={3} items={[
+  {
+    title: "Ramen",
+    jp: "ラーメン",
+    desc: "El plato estrella del día a día japonés: caldo, fideos y toppings, con muchas variantes (shoyu, miso, tonkotsu) y una por región. Se come en locales especializados, muchos con máquina de tickets a la entrada. Rápido, contundente y casi siempre delicioso.",
+    tags: ["Día a día", "Máquina de tickets"],
+    datos: [{ icon: "yen", texto: "Lo de una comida sencilla — verifica el precio en cada sitio" }],
+  },
+  {
+    title: "Sushi y sashimi",
+    jp: "寿司・刺身",
+    desc: "Del sushi de cinta (kaiten-zushi, donde los platos giran y pagas por color de plato) a la barra de alta gama con maestro. El sashimi — pescado crudo sin arroz — es la otra forma de disfrutarlo.",
+    tags: ["En cinta o en barra"],
+    datos: [{ icon: "yen", texto: "El kaiten es la opción económica y divertida; la barra tradicional, la experiencia cara" }],
+  },
+  {
+    title: "Tempura",
+    jp: "天ぷら",
+    desc: "Verduras y marisco rebozados en una masa ligerísima y fritos: crujiente y mucho menos pesado de lo que parece. Como plato propio en restaurantes especializados o acompañando a udon y soba.",
+    tags: ["Ligera", "Crujiente"],
+    datos: [{ icon: "comida", texto: "Pídela también como topping de tus udon o soba" }],
+  },
+  {
+    title: "Tonkatsu",
+    jp: "とんかつ",
+    desc: "Filete de cerdo empanado y frito, jugoso por dentro, servido con col rallada, arroz y salsa. Comida reconfortante por excelencia.",
+    tags: ["Reconfortante"],
+    datos: [{ icon: "ninos", texto: "Opción segura con peques o paladares poco aventureros" }],
+  },
+  {
+    title: "Gyudon y curry japonés",
+    jp: "牛丼・カレー",
+    desc: "El bol de arroz con ternera guisada de cadenas como Yoshinoya o Sukiya, y el curry japonés (más dulce y suave que el indio). Comida barata y saciante, ideal para días de mucho turismo.",
+    tags: ["Cadenas", "Hasta tarde"],
+    datos: [{ icon: "yen", texto: "Las opciones más económicas y rápidas del día a día" }],
+  },
+  {
+    title: "Okonomiyaki y takoyaki",
+    jp: "お好み焼き・たこ焼き",
+    desc: "Las estrellas de Osaka: la tortita salada con col y los ingredientes que elijas, hecha a la plancha, y las bolitas de masa con pulpo de puesto callejero. Comerlas en Dotonbori es casi un rito.",
+    tags: ["Osaka", "Callejero"],
+    datos: [{ icon: "yen", texto: "Takoyaki de puesto: unos pocos cientos de yenes" }],
+  },
+  {
+    title: "Udon y soba",
+    jp: "うどん・そば",
+    desc: "Fideos gruesos y blancos (udon) o finos de trigo sarraceno (soba). Se toman calientes en caldo o fríos para mojar, según la estación.",
+    tags: ["Caliente o frío"],
+    datos: [{ icon: "tren", texto: "Los tachigui (locales de pie) de las estaciones: muy baratos y rápidos" }],
+  },
+  {
+    title: "Yakitori",
+    jp: "焼き鳥",
+    desc: "Brochetas de pollo (y otras partes) a la brasa, típicas de izakaya: se piden varias para compartir y maridan de maravilla con una cerveza. El tapeo japonés.",
+    tags: ["Izakaya", "Para compartir"],
+    datos: [{ icon: "cerveza", texto: "Perfecto para una cena informal de tapeo" }],
+  },
+  {
+    title: "Dulces y matcha",
+    jp: "和菓子・抹茶",
+    desc: "Mochi, dorayaki, taiyaki y la repostería de temporada, además del té matcha en mil formatos (helado, bollería, bebidas).",
+    tags: ["Dulce", "Para llevar"],
+    datos: [{ icon: "compras", texto: "Konbini y depachika (sótanos de grandes almacenes): una mina a buen precio" }],
+  },
+]} />
 
-### Sushi y sashimi
+¿Y con qué regarlo? Sake, cerveza, té y whisky tienen guía propia: [sake y bebidas japonesas](/gastronomia/sake-y-bebidas-japonesas).
 
-Desde el sushi de cinta (*kaiten-zushi*, donde los platos giran y pagas por color de plato) hasta la barra de alta gama. El *kaiten* es una opción **económica y divertida** para probar variedad; la barra tradicional con maestro es la experiencia cara. El sashimi (pescado crudo sin arroz) es otra forma de disfrutarlo.
+## Etiqueta en la mesa
 
-### Tempura
+Pocas cosas relajan más en un viaje que saber que no estás metiendo la pata. Lo esencial de la mesa japonesa cabe en dos columnas:
 
-Verduras y marisco rebozados en una masa ligerísima y fritos. Crujiente y mucho menos pesado de lo que parece. Lo encuentras como plato propio en restaurantes especializados o acompañando a udon y soba.
+<DoDont
+  hacer={[
+    { titulo: "Di itadakimasu y gochisousama", texto: "Antes de empezar y al terminar: el agradecimiento de mesa que siempre cae bien." },
+    { titulo: "Sorbe los fideos sin complejos", texto: "Con ramen, udon y soba está bien visto — indica que lo estás disfrutando." },
+    { titulo: "Usa el reposapalillos", texto: "Entre bocados, los palillos descansan en el hashioki o apoyados juntos sobre el cuenco." },
+    { titulo: "Levanta el cuenco para la sopa", texto: "La sopa de miso se bebe directamente del cuenco; los palillos son para los tropezones." },
+  ]}
+  evitar={[
+    { titulo: "Clavar los palillos verticales en el arroz", texto: "Evoca los ritos funerarios: el tabú número uno de la mesa japonesa." },
+    { titulo: "Pasar comida de palillos a palillos", texto: "También remite a un rito funerario — mejor apoya la pieza en un platito." },
+    { titulo: "Dejar propina", texto: "No se deja nunca y puede incomodar: el buen servicio va incluido en el precio." },
+    { titulo: "Comer andando por la calle", texto: "Como norma general está mal visto: come en el puesto, en sus barras o sentado." },
+  ]}
+/>
 
-### Tonkatsu
+El resto de normas del viaje — zapatos, onsen, transporte, templos — están en la [guía de etiqueta y costumbres](/cultura/etiqueta-y-costumbres-japon).
 
-Filete de cerdo empanado y frito, jugoso por dentro, servido con col rallada, arroz y salsa. Es comida reconfortante por excelencia y una opción segura si viajas con peques o con paladares poco aventureros.
+## Vocabulario útil para pedir
 
-### Gyudon y curry japonés
+Seis frases resuelven prácticamente todas las comidas del viaje — y el intento, por torpe que salga, siempre se agradece:
 
-Las opciones **más económicas y rápidas**: el gyudon (bol de arroz con ternera guisada) de cadenas como Yoshinoya o Sukiya, y el curry japonés (más dulce y suave que el indio). Comida de calle, barata y saciante, ideal para días de mucho turismo.
-
-### Okonomiyaki y takoyaki
-
-Estrellas de Osaka. El okonomiyaki es una especie de tortita salada con col y los ingredientes que elijas, hecha a la plancha. El takoyaki son bolitas de masa con pulpo, típicas de puesto callejero y de **unos pocos cientos de yenes**. Comer esto en Dotonbori es casi un rito.
-
-### Udon y soba
-
-Fideos: gruesos y blancos (udon) o finos de trigo sarraceno (soba). Se toman calientes en caldo o fríos para mojar, según la estación. Hay locales *tachigui* (de pie) muy baratos y rápidos en las estaciones.
-
-### Yakitori
-
-Brochetas de pollo (y otras partes) a la brasa, típicas de izakaya. Se piden varias para compartir y maridan de maravilla con una cerveza. Perfecto para una cena informal de tapeo japonés.
-
-### Dulces y matcha
-
-Mochi, dorayaki, taiyaki y la repostería de temporada, además del té matcha en mil formatos (helado, bollería, bebidas). Los konbini y las pastelerías de los grandes almacenes (*depachika*) son una mina de dulces a buen precio.
+<Cards cols={3} items={[
+  {
+    title: "Sumimasen",
+    jp: "すみません",
+    desc: "«Disculpe»: la llave maestra para llamar al camarero — en muchos sitios se dice en voz alta y sin pudor, es lo normal — o para pedir paso.",
+  },
+  {
+    title: "Kore o kudasai",
+    jp: "これをください",
+    desc: "«Esto, por favor»: señalando la carta, la réplica de plástico del escaparate o una foto del plato. Resuelve casi cualquier pedido sin saber japonés.",
+  },
+  {
+    title: "Oishii",
+    jp: "おいしい",
+    desc: "«Qué rico»: el cumplido universal. Dicho con cara de felicidad genuina, abre sonrisas detrás de cualquier barra.",
+  },
+  {
+    title: "Okaikei onegaishimasu",
+    jp: "お会計お願いします",
+    desc: "«La cuenta, por favor». Recuerda que casi siempre se paga en la caja al salir, no en la mesa.",
+  },
+  {
+    title: "Gochisousama deshita",
+    jp: "ごちそうさまでした",
+    desc: "«Gracias por la comida», al terminar o al salir: la forma japonesa de dejar propina — la única que existe.",
+  },
+  {
+    title: "Omizu o kudasai",
+    jp: "お水をください",
+    desc: "«Agua, por favor». La buena noticia: el agua (y a menudo el té) se sirve gratis en casi todos los restaurantes.",
+  },
+]} />
 
 ## Comer según tu presupuesto
 
-| Estilo | Qué esperar | Precio orientativo |
-| --- | --- | --- |
-| Konbini / puesto callejero | Onigiri, bento, takoyaki, bollería | menos de ¥800 por comida (≈3–4,5 €) |
-| Cadena rápida (gyudon, curry, soba) | Comida sencilla, rápida y saciante | en torno a una comida económica (verifica) |
-| Restaurante / izakaya | Ramen, tonkatsu, yakitori, platos para compartir | ¥1.500–4.000 (≈8–22 €) por persona |
-| Experiencia especial | Sushi de barra, kaiseki de varios platos | bastante más; resérvalo como capricho |
+Tres formas de plantear el día gastronómico, con el desayuno-almuerzo-cena resuelto en cada una. Cifras orientativas por persona y día, al cambio de referencia de ¥185 por euro:
+
+<VsCards items={[
+  {
+    title: "Económico",
+    badge: "Mochilero",
+    precio: "≈¥2.000/día (11 €)",
+    puntos: [
+      "Desayuno: onigiri y café de konbini",
+      "Almuerzo: cadena de gyudon o curry, o ramen de máquina de tickets",
+      "Cena: bento de konbini — una comida montada sale por menos de ¥800 (≈3–4,5 €)",
+    ],
+    nota: "Suena a apaño y no lo es: la comida de konbini en Japón es otra liga.",
+  },
+  {
+    title: "Medio",
+    badge: "El punto dulce",
+    destacado: true,
+    precio: "≈¥4.500/día (24 €)",
+    puntos: [
+      "Desayuno: cafetería, o konbini con calma",
+      "Almuerzo: teishoku o menú del mediodía — la ganga japonesa",
+      "Cena «de verdad»: izakaya o kaiten-zushi, ¥1.500–4.000 (8–22 €) por persona",
+    ],
+    nota: "El equilibrio que mejor funciona en un primer viaje: barato de día, memorable de noche.",
+  },
+  {
+    title: "Alto",
+    badge: "Cómodo",
+    precio: "≈¥9.000/día (49 €)",
+    puntos: [
+      "Desayuno: de hotel o cafetería, sin mirar el reloj",
+      "Almuerzo: restaurante «serio» aprovechando el menú del mediodía",
+      "Cena: izakaya bueno o sushi de barra",
+    ],
+    nota: "La experiencia especial (kaiseki de varios platos, sushi de barra de alta gama) va aparte del día a día: resérvala como capricho.",
+  },
+]} />
+
+Las mismas cifras, desglosadas tipo de local a tipo de local (izakaya, kaiten, teishoku, kaiseki), en la [guía de tipos de restaurantes](/gastronomia/tipos-restaurantes-japon).
+
+## Consejos para ahorrar
+
+Japón es de los países donde mejor se come por poco dinero — si conoces los cuatro trucos locales:
+
+<Cards items={[
+  {
+    title: "El menú del mediodía (teishoku)",
+    desc: "La regla de oro japonesa: el mediodía es la ganga. Muchos restaurantes que de noche cuestan ≈¥5.000 o más sirven menús de almuerzo por ≈¥1.000–2.000 con la misma cocina — principal, arroz, sopa de miso y encurtidos. Verifica precios en cada sitio.",
+    puntos: ["Si quieres probar un sitio caro, ve a comer, no a cenar", "Busca los carteles con bandejas fotografiadas a mediodía"],
+  },
+  {
+    title: "El konbini para el día a día",
+    desc: "7-Eleven, Lawson y FamilyMart venden comida de verdad: onigiri, bentos, sandos y dulces, las 24 horas. Una comida montada sale por menos de ¥800 (≈3–4,5 €).",
+    puntos: ["Calientan el bento y te dan palillos sin pedirlo", "Ideal para desayunos y días de excursión"],
+    href: "/gastronomia/comer-barato-konbini-japon",
+    cta: "La guía completa del konbini",
+  },
+  {
+    title: "Los descuentos de última hora",
+    desc: "Al final del día, supermercados y depachika (los sótanos de alimentación de los grandes almacenes) marcan bentos y comida fresca con pegatinas de rebaja: cena rica a mitad de precio.",
+    puntos: ["Busca las pegatinas de descuento al caer la tarde", "El depachika rebajado es el secreto mejor guardado del viajero ahorrador"],
+  },
+  {
+    title: "Agua y té, gratis",
+    desc: "En casi todos los restaurantes el agua — y muchas veces el té — se sirve gratis y sin pedirlo. Renunciar a la bebida de pago en las comidas del día a día es de los ahorros más fáciles del viaje.",
+    puntos: ["Pídela con un «omizu o kudasai» si no llega sola", "En cadenas y teishoku-ya suele haber jarra o dispensador a libre disposición"],
+  },
+]} />
 
 <InfoBox variant="consejo" title="La clave para no disparar el gasto">
 Mezclar estilos es la clave para comer increíble sin disparar el gasto: konbini o cadena para el día a día, y reservar el restaurante para una comida memorable. Tienes el desglose del presupuesto del viaje en la [guía de cuánto cuesta viajar a Japón](/logistica/cuanto-cuesta-viajar-japon).
