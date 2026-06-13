@@ -57,11 +57,27 @@ export function articleMetadata(pillar: string, slug: string): Metadata {
   if (!article || !cfg) return {};
   const { meta } = article;
   const url = `${cfg.basePath}/${slug}`;
+  // Imagen social: el hero del artículo si lo tiene, si no la portada por defecto.
+  const ogImage = meta.hero ?? "/images/hero-fuji.jpg";
   return {
     title: meta.title,
     description: meta.description,
     alternates: { canonical: url },
-    openGraph: { type: "article", title: meta.title, description: meta.description },
+    openGraph: {
+      type: "article",
+      url,
+      title: meta.title,
+      description: meta.description,
+      images: [{ url: ogImage, alt: meta.title }],
+      publishedTime: meta.datePublished,
+      modifiedTime: meta.dateModified,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: [ogImage],
+    },
     // Borradores: visibles en la URL para previsualizar, pero NO indexables (puerta humana).
     ...(meta.draft ? { robots: { index: false, follow: false } } : {}),
   };

@@ -14,7 +14,7 @@ export const SITE = {
     { href: "/destinos", label: "Destinos" },
     { href: "/cultura", label: "Cultura" },
     { href: "/gastronomia", label: "Gastronomía" },
-    { href: "/blog", label: "Noticias" },
+    { href: "/blog", label: "Blog" },
     { href: "/logistica", label: "Consejos" },
   ],
 } as const;

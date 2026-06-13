@@ -93,3 +93,5 @@ en este proyecto).
 | osaka-kushikatsu.jpg | Set de kushikatsu con col y salsa en Shinsekai | Ajay Suresh | CC BY 2.0 | Kushikatsu - Shinsekai (28289215848).jpg |
 | kobe-port-tower.jpg | Puerto de Kobe con la Port Tower | Balon Greyjoy | CC0 | 20190901 Kobe harbor-1.jpg |
 | koyasan-konpon-daito.jpg | Pagoda Konpon Daito en el Danjo Garan (Koyasan) | Andrea Schaffer | CC BY 2.0 | Konpon Daito, Koyasan (3811155264).jpg |
+| tokio-yakitori.jpg | Brochetas de yakitori glaseadas con sesamo | Francesc Fort | CC BY-SA 4.0 | Yakitori - Tora.jpg |
+| tokio-toyosu-atun.jpg | Atunes alineados y compradores en la subasta de Toyosu | Edomura no Tokuzo (江戸村のとくぞう) | CC BY-SA 4.0 | Toyosu fish market-4b.jpg |

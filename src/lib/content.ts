@@ -53,6 +53,18 @@ export function getArticles(pillar: string): ArticleMeta[] {
   return out.sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
 }
 
+/** Todos los artículos publicados de todos los pilares, de más reciente a más antiguo.
+ *  Para el hub editorial (/blog), el feed y la búsqueda. */
+export function getAllArticles(): ArticleMeta[] {
+  if (!fs.existsSync(CONTENT_DIR)) return [];
+  const pillars = fs
+    .readdirSync(CONTENT_DIR, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name);
+  const out = pillars.flatMap((p) => getArticles(p));
+  return out.sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
+}
+
 /** Slugs publicados (excluye borradores). Para generateStaticParams + feed. */
 export function getPublishedSlugs(pillar: string): string[] {
   return getArticleSlugs(pillar).filter((slug) => {

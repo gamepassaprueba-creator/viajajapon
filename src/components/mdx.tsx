@@ -43,6 +43,8 @@ import {
 import { AffiliateBox } from "./AffiliateBox";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
+import { JsonLd } from "./JsonLd";
+import { faqLd } from "@/lib/jsonld";
 
 /** Id de ancla a partir del texto del encabezado (sin tildes, kebab-case). */
 function slugify(text: string): string {
@@ -258,6 +260,8 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
           <p className="px-5 pb-5 text-sm leading-relaxed text-fg-muted">{f.a}</p>
         </details>
       ))}
+      {/* FAQPage structured data → rich result de preguntas en Google */}
+      <JsonLd data={faqLd(items)} />
     </div>
   );
 }
