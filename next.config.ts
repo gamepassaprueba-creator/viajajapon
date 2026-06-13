@@ -6,13 +6,24 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   // viajajapon.es y www → 301 al dominio canónico .com (mismo worker sirve ambos).
+  // Regla explícita para la raíz ANTES del catch-all: en el adaptador de Cloudflare,
+  // "/:path*" deja el token ":path*" sin interpolar cuando el path va vacío (raíz).
+  // Con "/" exacto + "/:path+" (uno o más segmentos) cada caso interpola bien.
   async redirects() {
-    return ["viajajapon.es", "www.viajajapon.es", "www.viajajapon.com"].map((host) => ({
-      source: "/:path*",
-      has: [{ type: "host" as const, value: host }],
-      destination: "https://viajajapon.com/:path*",
-      permanent: true,
-    }));
+    return ["viajajapon.es", "www.viajajapon.es", "www.viajajapon.com"].flatMap((host) => [
+      {
+        source: "/",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://viajajapon.com/",
+        permanent: true,
+      },
+      {
+        source: "/:path+",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://viajajapon.com/:path+",
+        permanent: true,
+      },
+    ]);
   },
   // Cabeceras de seguridad básicas (no rompen nada, suman en auditorías).
   async headers() {

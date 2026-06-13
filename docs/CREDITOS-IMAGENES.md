@@ -102,3 +102,19 @@ en este proyecto).
 | ryokan-habitacion.jpg | Habitación de ryokan con tatami y mesa baja | ㇹヮィㇳ | CC BY 2.0 | Interior of a ryokan room (2999708441).jpg |
 | farmacia-matsumoto.jpg | Farmacia Matsumoto Kiyoshi en Himeji | Corpse Reviver | CC BY-SA 3.0 | Matsumoto KiYoshi Himeji-Ekimae 01.jpg |
 | visado-permiso.jpg | Permiso de desembarco (Temporary Visitor) en el pasaporte | M. Minderhoud | Dominio público | Japan Landing Permission from Nagoya Airport FP0099676.jpg |
+
+### Sustituciones (junio 2026): imágenes base antes sin crédito, ahora fotos verificadas de Commons
+
+| Archivo | Tema | Autor | Licencia | Origen (título en Commons) |
+| --- | --- | --- | --- | --- |
+| sushi.jpg | Surtido de nigiri (atún, salmón, tamago) | Missvain | CC BY 4.0 | Shige Sushi and Izakaya - December 2023 - Sarah Stierch 03.jpg (recorte) |
+| ramen.jpg | Ramen shoyu de Onomichi con gyozas | The Other View (Onomichi) | CC BY-SA 2.0 | Onomichi ramen and jiaozi by The Other View in Onomichi.jpg |
+| yatai.jpg | Puestos de comida en un festival nocturno (Shiinamachi, Tokio) | Daniel Lu (dllu) | CC BY-SA 4.0 | Shiinamachi night festival Toshima Tokyo 2024 dllu.jpg |
+| akihabara.jpg | Calle de Akihabara (Electric Town) | Hyppolyte de Saint-Rambert | CC BY-SA 4.0 | Akihabara Electric Town 9999 281.jpg |
+| bamboo.jpg | Bosque de bambú de Arashiyama | Basile Morin | CC BY-SA 4.0 | Bamboo Forest, Arashiyama, Kyoto, Japan.jpg |
+| tea.jpg | Anfitriona preparando matcha en una ceremonia del té (Kioto) | Atticus Nguyen | CC BY-SA 4.0 | A Japanese Tea Ceremony's Host Preparing Tea - Kyoto, 2023.jpg |
+| tokio.jpg | Skyline de Tokio de noche con la Torre de Tokio | David Kernan | CC BY 4.0 | Tokyo Tower, Minato City.jpg |
+| kioto.jpg | Yasaka-dori al amanecer con la pagoda de Hokan-ji (Higashiyama) | Basile Morin | CC BY-SA 4.0 | Yasaka-dori early morning with street lanterns and the Tower of Yasaka (Hokan-ji Temple), Kyoto, Japan.jpg |
+| osaka.jpg | Dotonbori de noche con el canal y el cartel del Glico | Kristoffer Trolle | CC BY 2.0 | Dōtonbori at night, Osaka (19551420339).jpg |
+| festival.jpg | Mikoshi en la puerta Kaminarimon durante un matsuri (Asakusa) | Takao Sato | CC BY-SA 4.0 | Mikoshi, Kaminarimon and the Crowd.jpg |
+| hero-fuji.jpg | Monte Fuji con la pagoda Chureito y cerezos en flor | bruchez (Flickr) | CC BY-SA 2.0 | Chuurei-tou Fujiyoshida 33415029934 8bdb607294 o.jpg |
