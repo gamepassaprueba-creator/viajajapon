@@ -95,3 +95,10 @@ en este proyecto).
 | koyasan-konpon-daito.jpg | Pagoda Konpon Daito en el Danjo Garan (Koyasan) | Andrea Schaffer | CC BY 2.0 | Konpon Daito, Koyasan (3811155264).jpg |
 | tokio-yakitori.jpg | Brochetas de yakitori glaseadas con sesamo | Francesc Fort | CC BY-SA 4.0 | Yakitori - Tora.jpg |
 | tokio-toyosu-atun.jpg | Atunes alineados y compradores en la subasta de Toyosu | Edomura no Tokuzo (江戸村のとくぞう) | CC BY-SA 4.0 | Toyosu fish market-4b.jpg |
+| tanabata-festival.jpg | Túnel de farolillos del festival de Tanabata | Fred Cherrygarden | CC BY-SA 4.0 | Tanabata Teruteru Tunnel.jpg |
+| esim-japon-tarifas.jpg | Panel comparativo de tarifas móviles (docomo/SoftBank/au) | nagi usano | CC BY-SA 2.0 | New plans from docomo SoftBank au (50954852648).jpg |
+| avion-japon.jpg | Ala de avión (con el círculo rojo) sobre las nubes | Harry Knight | CC0 | In flight above scattered clouds (Unsplash).jpg |
+| maleta-equipaje.jpg | Maleta abierta con camisa doblada y reloj (recorte) | Angelina Litvin | CC0 | Packing for a business trip (Unsplash).jpg |
+| ryokan-habitacion.jpg | Habitación de ryokan con tatami y mesa baja | ㇹヮィㇳ | CC BY 2.0 | Interior of a ryokan room (2999708441).jpg |
+| farmacia-matsumoto.jpg | Farmacia Matsumoto Kiyoshi en Himeji | Corpse Reviver | CC BY-SA 3.0 | Matsumoto KiYoshi Himeji-Ekimae 01.jpg |
+| visado-permiso.jpg | Permiso de desembarco (Temporary Visitor) en el pasaporte | M. Minderhoud | Dominio público | Japan Landing Permission from Nagoya Airport FP0099676.jpg |
