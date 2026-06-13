@@ -118,3 +118,7 @@ en este proyecto).
 | osaka.jpg | Dotonbori de noche con el canal y el cartel del Glico | Kristoffer Trolle | CC BY 2.0 | Dōtonbori at night, Osaka (19551420339).jpg |
 | festival.jpg | Mikoshi en la puerta Kaminarimon durante un matsuri (Asakusa) | Takao Sato | CC BY-SA 4.0 | Mikoshi, Kaminarimon and the Crowd.jpg |
 | hero-fuji.jpg | Monte Fuji con la pagoda Chureito y cerezos en flor | bruchez (Flickr) | CC BY-SA 2.0 | Chuurei-tou Fujiyoshida 33415029934 8bdb607294 o.jpg |
+| sumo-kokugikan.jpg | Interior del Ryogoku Kokugikan durante un torneo de sumo | Gregg Tavares | CC BY 2.0 | Inside the Ryogoku Kokugikan at the 2014 January Sumo Tournament.jpg |
+| sumo-combate.jpg | Combate de sumo con el gyoji (árbitro) en el dohyo | amanderson2 | CC BY 2.0 | Amateur sumo tournament 2014-08-06 3.jpg |
+| geiko-maiko-gion.jpg | Geiko y maiko en una calle de Kioto | Franklin Heijnen | CC BY-SA 2.0 | Geisha and maiko in Kyoto - 20150620 - 01.jpg |
+| hanami-yoyogi.jpg | Hanami bajo los cerezos del parque Yoyogi (Tokio) | Guilhem Vellut | CC BY 2.0 | Picnic @ White cherry blossoms @ Yoyogi Park (13607382754).jpg |
