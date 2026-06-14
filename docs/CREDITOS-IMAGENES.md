@@ -106,6 +106,10 @@ en este proyecto).
 | soba.jpg | Ten-zaru soba (fideos fríos con tempura), Nagano | hirotomo | CC BY-SA 2.0 | Shinshu soba, ten zaru by hirotomo in Suwa, Nagano.jpg |
 | genkan.jpg | Genkan (escalón de entrada) con un par de zapatos | Fg2 | Dominio público | Genkan-M9778.jpg |
 | temizuya.jpg | Caño-dragón de una fuente de purificación (temizuya), Seimei-jinja (Kioto) | Hyppolyte de Saint-Rambert | CC BY 4.0 | Seimei-jinja (Kamigyo-ku, Kyoto) Chōzuya temizuya hdsr S5 03.jpg |
+| kimono-furisode.jpg | Kimono furisode con motivos de pino, arces y olas | Khalili Collections | CC BY-SA 4.0 | Khalili Collection Kimono 02.jpg |
+| daruma.jpg | Muñecos daruma rojos en un puesto de mercado | masaki ikeda | CC BY-SA 3.0 | Daruma doll sai2011.jpg |
+| daruma-ojos.jpg | Daruma rojo con un ojo sin pintar (recorte) | Crisco 1492 | Dominio público | Daruma doll, cut out, 02.jpg |
+| kintsugi.jpg | Cuenco de cerámica reparado con oro (kintsugi), Museo Etnológico de Berlín | Daderot | CC0 | Tea bowl, Korea, Joseon dynasty... gold lacquer - Ethnological Museum, Berlin - DSC02061.JPG |
 
 ### Sustituciones (junio 2026): imágenes base antes sin crédito, ahora fotos verificadas de Commons
 
