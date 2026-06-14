@@ -6,7 +6,7 @@ export const SITE = {
     "Planifica tu viaje a Japón en 2026: calculadora del JR Pass, presupuesto en euros, reservas, transporte y consejos prácticos con datos actualizados y experiencia real.",
   locale: "es_ES",
   author: {
-    name: "Macro", // TODO: nombre real del autor (firma E-E-A-T)
+    name: "Sergio Morillo",
     url: "https://viajajapon.com/sobre-nosotros",
   },
   nav: [
