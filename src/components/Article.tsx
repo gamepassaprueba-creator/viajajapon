@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import { mdxComponents } from "@/components/mdx";
 import { getArticle, getArticles, readingMinutes } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
@@ -146,10 +147,16 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
           Borrador · no indexado. Revisa los datos y añade tu experiencia antes de publicar (draft: false).
         </p>
       )}
-        {/* blockJS:false — nuestro MDX es contenido propio del repo (no remoto), y los
-            componentes ricos (KeyFacts/Steps/FAQ/Toc) reciben sus datos como expresiones
-            en atributos, que la v6 elimina por defecto. blockDangerousJS sigue activo. */}
-        <MDXRemote source={content} components={mdxComponents} options={{ blockJS: false }} />
+        {/* remark-gfm: tablas, tachado y autolinks GFM (sin él, las tablas markdown
+            salen como texto plano con pipes). blockJS:false — nuestro MDX es contenido
+            propio del repo (no remoto), y los componentes ricos (KeyFacts/Steps/FAQ/Toc)
+            reciben sus datos como expresiones en atributos, que la v6 elimina por defecto.
+            blockDangerousJS sigue activo. */}
+        <MDXRemote
+          source={content}
+          components={mdxComponents}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
+        />
       </div>
 
       {related.length > 0 && (

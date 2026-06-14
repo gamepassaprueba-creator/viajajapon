@@ -68,45 +68,61 @@ Para usar una eSIM en Japón necesitas dos cosas:
 
 Antes de elegir proveedor, la decisión de base: en Japón hay tres formas de tener internet, y no compiten en lo mismo. El Pocket WiFi es un router de bolsillo que se alquila por días; la eSIM va dentro de tu móvil; el WiFi gratis existe, pero va a su aire. Y como hasta [recargar la Suica desde el iPhone](/logistica/suica-iphone) necesita datos, esta elección conviene cerrarla antes de volar:
 
-<VsCards items={[
-  {
-    title: "Pocket WiFi",
-    badge: "Para grupos",
-    precio: "≈4-8 €/día (verifica)",
-    puntos: [
-      "Un router en la mochila que conecta varios dispositivos a la vez",
-      "Hay que reservarlo con antelación y recogerlo al llegar (o recibirlo en el hotel)",
-      "Un aparato más que cargar cada noche — y que devolver al salir",
-      "Si se pierde o se rompe, pagas penalización",
-    ],
-    nota: "Su caso de uso real: familias y grupos donde un solo alquiler conecta todos los móviles. El precio por día baja en alquileres largos — verifica al reservar.",
-  },
-  {
-    title: "eSIM",
-    badge: "Nuestra elección",
-    destacado: true,
-    precio: "Desde ≈16 € / 30 días",
-    puntos: [
-      "Se compra online y se instala en casa: internet desde que aterrizas",
-      "Nada que recoger, cargar ni devolver",
-      "Hotspot para compartir con acompañantes (con tope diario en las ilimitadas)",
-      "Requiere móvil compatible con eSIM y libre (mira el truco del EID de arriba)",
-    ],
-    nota: "El resto de esta guía compara las tres eSIM más populares para Japón.",
-  },
-  {
-    title: "WiFi gratis",
-    badge: "Complemento",
-    precio: "0 €",
-    puntos: [
-      "Disponible en hoteles, konbinis, muchas estaciones y cafeterías",
-      "Sin reserva ni configuración previa",
-      "Te deja colgado justo cuando más lo necesitas: por la calle, buscando el camino",
-      "Redes abiertas: evita operaciones sensibles (banca) sin protección",
-    ],
-    nota: "Perfecto para descargas pesadas y videollamadas desde el hotel; insuficiente como plan único.",
-  },
-]} />
+<Comparativa
+  caption="Comparativa de opciones de internet en Japón"
+  columnas={[
+    { title: "Pocket WiFi", icon: "wifi", color: "secondary" },
+    { title: "eSIM", icon: "movil", color: "success" },
+    { title: "WiFi gratuito", icon: "wifi", color: "amber" },
+  ]}
+  filas={[
+    { label: "Precio", valores: [
+      { value: "≈4-8 €/día", sub: "Más barato en alquileres largos" },
+      { value: "Desde ≈16 €", sub: "10 GB / 30 días" },
+      { value: "0 €", sub: "Con limitaciones" },
+    ] },
+    { label: "Velocidad", valores: [
+      { value: "Alta (4G)", sub: "Router 4G/LTE" },
+      { value: "Alta (4G/LTE)", sub: "Softbank o KDDI" },
+      { value: "Variable", sub: "Según el punto" },
+    ] },
+    { label: "Cobertura", valores: [
+      { value: "Excelente", sub: "Todo el país" },
+      { value: "Excelente", sub: "Todo el país" },
+      { value: "Limitada", sub: "Solo puntos concretos" },
+    ] },
+    { label: "Datos", valores: [
+      { value: "Ilimitado o alto", sub: "Según el plan" },
+      { value: "Por GB o ilimitado", sub: "Según el plan" },
+      { value: "Variable", sub: "A veces limitado" },
+    ] },
+    { label: "Dispositivos", valores: [
+      { value: "Varios", sub: "5-10 a la vez" },
+      { value: "Solo 1", sub: "+ hotspot con tope" },
+      { value: "1 por registro", sub: "Según el lugar" },
+    ] },
+    { label: "Batería", valores: [
+      { value: "8-12 h", sub: "Hay que cargar el router" },
+      { value: "No afecta", sub: "Usa la del móvil" },
+      { value: "No aplica" },
+    ] },
+    { label: "Reserva", valores: [
+      { value: "Anticipada", sub: "Recogida o envío al hotel" },
+      { value: "Online", sub: "Instalas en casa" },
+      { value: "No requiere" },
+    ] },
+  ]}
+  ventajas={[
+    ["Ideal para grupos y familias", "Conecta varios dispositivos", "No gasta la batería del móvil"],
+    ["Sin aparato extra que llevar", "Internet desde que aterrizas", "Nada que recoger ni devolver"],
+    ["Gratis", "Sin contratar nada", "En hoteles, konbinis y estaciones"],
+  ]}
+  inconvenientes={[
+    ["Un aparato más que cargar", "Hay que recogerlo y devolverlo", "Penalización si se pierde"],
+    ["Requiere móvil compatible y libre", "Hotspot con tope diario en las ilimitadas", "Solo datos, sin número japonés"],
+    ["Te deja tirado por la calle", "Velocidad variable", "Redes abiertas: evita banca"],
+  ]}
+/>
 
 <InfoBox variant="info" title="Pocket WiFi y WiFi gratis, en la práctica">
 El Pocket WiFi se reserva online antes del viaje y se recoge en mostradores del aeropuerto o directamente en el hotel; al terminar se devuelve en el mostrador o por correo en un sobre prefranqueado que viene incluido. El WiFi gratis, por su parte, funciona como red de apoyo: lo tienes en hoteles, en los [konbinis](/gastronomia/comer-barato-konbini-japon) (7-Eleven, Lawson, FamilyMart) y en muchas estaciones, pero es irregular y desaparece justo donde más falta hace, que es por la calle.

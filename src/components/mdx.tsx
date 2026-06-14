@@ -423,6 +423,103 @@ export function VsCards({ items }: { items: { title: string; badge?: string; pre
   );
 }
 
+const COMPARATIVA_COLORS = {
+  secondary: "bg-secondary/10 text-secondary",
+  success: "bg-success/10 text-success",
+  amber: "bg-amber-100 text-amber-700",
+  primary: "bg-primary/10 text-primary",
+} as const;
+
+/**
+ * Matriz comparativa tipo mockup: cabeceras con icono en círculo de color, filas
+ * de característica (valor + subtítulo gris) y, opcionalmente, dos filas finales
+ * de ✓ ventajas / ✗ inconvenientes por columna. En móvil hace scroll horizontal
+ * (la matriz es ancha por diseño); en escritorio sangra a lo ancho (BLEED).
+ */
+export function Comparativa({
+  caption,
+  columnas,
+  filas,
+  ventajas,
+  inconvenientes,
+}: {
+  caption?: string;
+  columnas: { title: string; icon?: string; color?: keyof typeof COMPARATIVA_COLORS }[];
+  filas: { label: string; valores: { value: string; sub?: string }[] }[];
+  ventajas?: string[][];
+  inconvenientes?: string[][];
+}) {
+  return (
+    <figure className={`my-8 ${BLEED}`}>
+      {caption && <figcaption className="mb-5 text-center text-xl font-bold text-fg sm:text-2xl">{caption}</figcaption>}
+      <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
+        <table className="w-full min-w-[620px] border-collapse text-sm">
+          <thead>
+            <tr className="border-b border-border bg-muted/40">
+              <th className="p-4 text-left align-bottom font-bold text-fg">Características</th>
+              {columnas.map((c) => (
+                <th key={c.title} className="p-4 text-center align-bottom font-bold text-fg">
+                  <span className={`mx-auto mb-2 flex size-11 items-center justify-center rounded-full ${COMPARATIVA_COLORS[c.color ?? "secondary"]}`}>
+                    <Icono nombre={c.icon} />
+                  </span>
+                  {c.title}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filas.map((f) => (
+              <tr key={f.label} className="border-b border-border">
+                <th scope="row" className="p-4 text-left font-semibold text-fg">{f.label}</th>
+                {f.valores.map((v, i) => (
+                  <td key={i} className="p-4 text-center align-top">
+                    <span className="block font-semibold text-fg">{v.value}</span>
+                    {v.sub && <span className="mt-0.5 block text-xs text-fg-muted">{v.sub}</span>}
+                  </td>
+                ))}
+              </tr>
+            ))}
+            {ventajas && (
+              <tr className="border-b border-border">
+                <th scope="row" className="p-4 text-left align-top font-semibold text-fg">Principales ventajas</th>
+                {ventajas.map((items, i) => (
+                  <td key={i} className="p-4 align-top">
+                    <ul className="space-y-1.5 text-left">
+                      {items.map((it) => (
+                        <li key={it} className="flex items-start gap-1.5 text-xs text-fg-muted">
+                          <Check size={14} className="mt-0.5 shrink-0 text-success" aria-hidden="true" />
+                          <span>{it}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                ))}
+              </tr>
+            )}
+            {inconvenientes && (
+              <tr>
+                <th scope="row" className="p-4 text-left align-top font-semibold text-fg">Principales inconvenientes</th>
+                {inconvenientes.map((items, i) => (
+                  <td key={i} className="p-4 align-top">
+                    <ul className="space-y-1.5 text-left">
+                      {items.map((it) => (
+                        <li key={it} className="flex items-start gap-1.5 text-xs text-fg-muted">
+                          <X size={14} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                          <span>{it}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
+                ))}
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </figure>
+  );
+}
+
 /** Dos columnas qué hacer / qué evitar (etiqueta, normas...). */
 export function DoDont({ hacer, evitar }: { hacer: { titulo: string; texto?: string }[]; evitar: { titulo: string; texto?: string }[] }) {
   const col = (items: { titulo: string; texto?: string }[], ok: boolean) => (
@@ -531,6 +628,7 @@ export const mdxComponents = {
   StatCards,
   Cards,
   VsCards,
+  Comparativa,
   DoDont,
   CTABand,
 };
