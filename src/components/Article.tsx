@@ -106,7 +106,7 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
       {/* Hero a sangre completa con overlay (lenguaje visual de los mockups) */}
       {meta.hero ? (
         <header className="relative">
-          <Image src={meta.hero} alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src={meta.hero} alt={meta.heroAlt ?? meta.title} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
           <div className="relative mx-auto flex min-h-[420px] max-w-5xl flex-col justify-end px-4 pb-12 pt-32 sm:min-h-[500px]">
             <nav className="flex items-center gap-2 text-sm text-white/80">
@@ -123,7 +123,7 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
             <p className="nums mt-4 text-sm text-white/75">{dateLine}</p>
           </div>
           {meta.heroCredito && (
-            <span className="absolute bottom-1.5 right-2 rounded bg-black/50 px-1.5 py-0.5 text-[10px] leading-none text-white/80">
+            <span className="absolute bottom-1.5 right-2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] leading-none text-white/90">
               Foto: {meta.heroCredito}
             </span>
           )}
@@ -186,6 +186,7 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
             slug: url,
             datePublished: meta.datePublished,
             dateModified: meta.dateModified,
+            image: meta.hero ?? "/images/hero-fuji.jpg",
           }),
           breadcrumbLd([
             { name: "Inicio", url: "/" },

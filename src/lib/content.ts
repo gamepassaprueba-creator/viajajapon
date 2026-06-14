@@ -17,6 +17,8 @@ export interface ArticleMeta {
   hero?: string;
   /** Crédito del hero (obligatorio si la imagen es CC BY / CC BY-SA; se pinta sobre la foto). */
   heroCredito?: string;
+  /** Alt del hero (describe la foto para lectores de pantalla y SEO de imágenes); si falta, se usa el título. */
+  heroAlt?: string;
   draft?: boolean;
   readingMinutes?: number;
 }
