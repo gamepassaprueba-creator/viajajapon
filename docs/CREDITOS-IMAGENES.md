@@ -102,6 +102,10 @@ en este proyecto).
 | ryokan-habitacion.jpg | Habitación de ryokan con tatami y mesa baja | ㇹヮィㇳ | CC BY 2.0 | Interior of a ryokan room (2999708441).jpg |
 | farmacia-matsumoto.jpg | Farmacia Matsumoto Kiyoshi en Himeji | Corpse Reviver | CC BY-SA 3.0 | Matsumoto KiYoshi Himeji-Ekimae 01.jpg |
 | visado-permiso.jpg | Permiso de desembarco (Temporary Visitor) en el pasaporte | M. Minderhoud | Dominio público | Japan Landing Permission from Nagoya Airport FP0099676.jpg |
+| tempura.jpg | Teishoku de tempura (arroz, encurtidos, sopa de miso) | Ocdp | CC0 | Tempura 002.jpg |
+| soba.jpg | Ten-zaru soba (fideos fríos con tempura), Nagano | hirotomo | CC BY-SA 2.0 | Shinshu soba, ten zaru by hirotomo in Suwa, Nagano.jpg |
+| genkan.jpg | Genkan (escalón de entrada) con un par de zapatos | Fg2 | Dominio público | Genkan-M9778.jpg |
+| temizuya.jpg | Caño-dragón de una fuente de purificación (temizuya), Seimei-jinja (Kioto) | Hyppolyte de Saint-Rambert | CC BY 4.0 | Seimei-jinja (Kamigyo-ku, Kyoto) Chōzuya temizuya hdsr S5 03.jpg |
 
 ### Sustituciones (junio 2026): imágenes base antes sin crédito, ahora fotos verificadas de Commons
 
