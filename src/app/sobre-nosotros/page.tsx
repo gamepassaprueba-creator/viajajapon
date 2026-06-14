@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Sobre nosotros: la historia detrás de ViajaJapón",
   description:
-    "ViajaJapón nació de un viaje real: 15 días por Japón cumpliendo el sueño que mi madre tenía desde niña, por su 70 cumpleaños. Quién escribe esto y por qué puedes fiarte.",
+    "ViajaJapón nació de un viaje real: 15 días por Japón con mi madre por su 70 cumpleaños. Soy Sergio Morillo (Madrid); quién escribe esto y por qué fiarte.",
   alternates: { canonical: "/sobre-nosotros" },
 };
 
@@ -41,8 +43,9 @@ export default function Page() {
           repartido por las guías de esta web.
         </p>
         <p>
-          Tengo 35 años y, aunque la vida no siempre me ha tratado de la mejor manera, siempre he
-          intentado mirar al futuro con ilusión. Aquel viaje fue mi forma de devolverle a mi madre un
+          Soy <strong className="text-fg">Sergio Morillo</strong>, tengo 35 años y vivo en Madrid.
+          Aunque la vida no siempre me ha tratado de la mejor manera, siempre he intentado mirar al
+          futuro con ilusión. Aquel viaje fue mi forma de devolverle a mi madre un
           poco de todo lo que ella me ha dado desde que nací. Esta web es la continuación: ayudar a que
           tu viaje a Japón —el tuyo, el de tu familia, el que llevas años posponiendo— salga tan bien
           como salió el nuestro.
@@ -84,6 +87,22 @@ export default function Page() {
         </Link>
         .
       </p>
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          mainEntity: {
+            "@type": "Person",
+            name: SITE.author.name,
+            url: `${SITE.url}/sobre-nosotros`,
+            homeLocation: { "@type": "Place", name: "Madrid, España" },
+            description:
+              "Autor de ViajaJapón. Viajó quince días por Japón con su madre en diciembre de 2025 y vuelca esa experiencia real en las guías de la web.",
+            knowsAbout: ["Viajes a Japón", "JR Pass", "Tokio", "Kioto", "planificación de viajes"],
+          },
+        }}
+      />
     </article>
   );
 }
