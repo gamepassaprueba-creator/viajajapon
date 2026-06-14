@@ -3,7 +3,7 @@ import Link from "next/link";
 import heroFuji from "../../public/images/hero-fuji.jpg";
 import {
   Search, MapPin, ArrowRight, Check, Tag, Train, Wifi, Coins, Plug, Luggage, CalendarDays,
-  Flower2, Utensils, Sparkles, Gamepad2, Clapperboard, Mountain, Trees,
+  Flower2, Utensils, Sparkles, Gamepad2, Clapperboard, Mountain, Trees, Route, Landmark,
 } from "lucide-react";
 import type { Metadata } from "next";
 import { getYenRate } from "@/lib/fx";
@@ -24,6 +24,16 @@ const ITIN = [
   { img: "/images/kioto.jpg", badge: "10 días", title: "Ruta clásica", ruta: "Tokio, Hakone, Kioto, Osaka", href: "/itinerarios/itinerario-japon-10-dias" },
   { img: "/images/osaka.jpg", badge: "15 días", title: "Japón profundo", ruta: "+ Hiroshima, Kanazawa", href: "/itinerarios/itinerario-japon-15-dias" },
   { img: "/images/hero-fuji.jpg", badge: "1 mes", title: "Japón completo", ruta: "Tokio, Kansai, Hiroshima y los Alpes", href: "/itinerarios/itinerario-japon-1-mes" },
+];
+
+// Accesos rápidos (patrón móvil del mockup "Guía de Viaje"): atajos a las secciones clave.
+const ACCESOS = [
+  { label: "Itinerarios", href: "/itinerarios", Icon: Route, bg: "bg-red-100", color: "text-primary" },
+  { label: "Preparativos", href: "/logistica", Icon: Luggage, bg: "bg-blue-100", color: "text-secondary" },
+  { label: "Destinos", href: "/destinos", Icon: MapPin, bg: "bg-green-100", color: "text-green-600" },
+  { label: "Comida", href: "/gastronomia", Icon: Utensils, bg: "bg-amber-100", color: "text-amber-600" },
+  { label: "Transporte", href: "/logistica/jr-pass-2026", Icon: Train, bg: "bg-purple-100", color: "text-purple-600" },
+  { label: "Cultura", href: "/cultura", Icon: Landmark, bg: "bg-pink-100", color: "text-pink-600" },
 ];
 
 const DEST = [
@@ -125,6 +135,25 @@ export default async function Home() {
           <Link href="/sobre-nosotros" className="font-medium text-primary hover:underline">quiénes somos</Link>
         </div>
       </div>
+
+      {/* Accesos rápidos (rejilla de iconos del mockup; brilla en móvil, 3 cols → 6 en desktop) */}
+      <section aria-label="Accesos rápidos" className="border-b border-border bg-surface py-8 sm:py-10">
+        <div className="mx-auto max-w-3xl px-4">
+          <h2 className="mb-6 text-center text-xs font-semibold uppercase tracking-wider text-fg-muted">Accesos rápidos</h2>
+          <ul className="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-6">
+            {ACCESOS.map((a) => (
+              <li key={a.label}>
+                <Link href={a.href} className="group flex flex-col items-center gap-2 text-center">
+                  <span className={`flex size-16 items-center justify-center rounded-full ${a.bg} ${a.color} shadow-sm transition-transform group-hover:-translate-y-0.5`}>
+                    <a.Icon size={26} aria-hidden="true" />
+                  </span>
+                  <span className="text-xs font-medium text-fg">{a.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Planifica */}
       <section id="planifica" className="bg-surface py-16">
