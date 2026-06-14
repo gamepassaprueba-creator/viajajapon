@@ -29,7 +29,7 @@ const ITIN = [
 // Accesos rápidos (patrón móvil del mockup "Guía de Viaje"): atajos a las secciones clave.
 const ACCESOS = [
   { label: "Itinerarios", href: "/itinerarios", Icon: Route, bg: "bg-red-100", color: "text-primary" },
-  { label: "Preparativos", href: "/logistica", Icon: Luggage, bg: "bg-blue-100", color: "text-secondary" },
+  { label: "Preparativos", href: "/logistica/preparativos-viaje-japon", Icon: Luggage, bg: "bg-blue-100", color: "text-secondary" },
   { label: "Destinos", href: "/destinos", Icon: MapPin, bg: "bg-green-100", color: "text-green-600" },
   { label: "Comida", href: "/gastronomia", Icon: Utensils, bg: "bg-amber-100", color: "text-amber-600" },
   { label: "Transporte", href: "/logistica/jr-pass-2026", Icon: Train, bg: "bg-purple-100", color: "text-purple-600" },

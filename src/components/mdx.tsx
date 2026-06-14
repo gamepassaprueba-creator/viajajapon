@@ -571,6 +571,65 @@ export function CTABand({ title, texto, href, cta, href2, cta2 }: { title: strin
   );
 }
 
+interface AcordeonItem {
+  icon?: string;
+  title: string;
+  sub?: string;
+  intro?: string;
+  puntos?: string[];
+  href?: string;
+  cta?: string;
+  abierto?: boolean;
+}
+
+/**
+ * Acordeón de secciones (patrón del mockup de Preparativos): icono en cuadrado de
+ * color + título + subtítulo, desplegable a un resumen con puntos y enlace a la
+ * guía completa. Native <details> (accesible, sin JS). El tinte del icono alterna
+ * rojo/azul como en el mockup.
+ */
+export function Acordeon({ items }: { items: AcordeonItem[] }) {
+  return (
+    <div className={`my-8 space-y-3 ${BLEED}`}>
+      {items.map((it, i) => {
+        const tint = i % 2 === 0 ? "bg-primary/10 text-primary" : "bg-secondary/10 text-secondary";
+        return (
+          <details key={it.title} open={it.abierto || undefined} className="group overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+            <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">
+              <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl ${tint}`}>
+                <Icono nombre={it.icon} />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-bold leading-snug text-fg">{it.title}</span>
+                {it.sub && <span className="mt-0.5 block text-sm text-fg-muted">{it.sub}</span>}
+              </span>
+              <ChevronDown size={20} className="shrink-0 text-fg-muted transition-transform group-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <div className="border-t border-border px-4 pb-5 pt-4 sm:px-5">
+              {it.intro && <p className="text-sm leading-relaxed text-fg-muted">{it.intro}</p>}
+              {it.puntos && it.puntos.length > 0 && (
+                <ul className="mt-3 space-y-2">
+                  {it.puntos.map((p) => (
+                    <li key={p} className="flex items-start gap-2 text-sm text-fg-muted">
+                      <Check size={15} className="mt-0.5 shrink-0 text-success" aria-hidden="true" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {it.href && (
+                <Link href={it.href} className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+                  {it.cta ?? "Leer la guía completa"} <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              )}
+            </div>
+          </details>
+        );
+      })}
+    </div>
+  );
+}
+
 export const mdxComponents = {
   h2: ({ children, ...p }: ComponentProps<"h2">) => (
     <h2 id={slugify(headingText(children)) || undefined} className="mt-10 scroll-mt-24 text-2xl font-bold" {...p}>
@@ -629,6 +688,7 @@ export const mdxComponents = {
   Cards,
   VsCards,
   Comparativa,
+  Acordeon,
   DoDont,
   CTABand,
 };
