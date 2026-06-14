@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -7,10 +6,10 @@ import {
   CalendarDays,
   Check,
   Coins,
-  MapPin,
   TrainFront,
 } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
+import { ItinerariosFiltro } from "@/components/ItinerariosFiltro";
 
 export const metadata: Metadata = {
   title: "Itinerarios por Japón: 7, 10, 15 días y 1 mes",
@@ -187,70 +186,7 @@ export default function Page() {
             title="Elige según tus días"
             sub="Cuatro plantillas según el tiempo que tengas. Empieza por la que más se acerque y ajústala a tu viaje."
           />
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {ITINERARIOS.map((it) =>
-              it.href ? (
-                <Link
-                  key={it.badge}
-                  href={it.href}
-                  className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={it.img}
-                      alt={it.alt}
-                      fill
-                      sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span className="inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-primary">
-                      {it.badge}
-                    </span>
-                    <h3 className="mt-3 text-xl font-bold">{it.title}</h3>
-                    <p className="mt-2 flex items-start gap-2 text-sm text-fg-muted">
-                      <MapPin size={16} className="mt-0.5 shrink-0" aria-hidden="true" /> {it.ruta}
-                    </p>
-                    <p className="mt-2 text-sm text-fg-muted">{it.desc}</p>
-                    <span className="mt-4 inline-flex items-center gap-1 font-medium text-primary">
-                      Ver itinerario <ArrowRight size={16} aria-hidden="true" />
-                    </span>
-                  </div>
-                </Link>
-              ) : (
-                <div
-                  key={it.badge}
-                  className="overflow-hidden rounded-lg border border-border bg-surface opacity-70 shadow-md"
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src={it.img}
-                      alt={it.alt}
-                      fill
-                      sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-primary">
-                        {it.badge}
-                      </span>
-                      <span className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-semibold text-fg-muted">
-                        En preparación
-                      </span>
-                    </div>
-                    <h3 className="mt-3 text-xl font-bold">{it.title}</h3>
-                    <p className="mt-2 flex items-start gap-2 text-sm text-fg-muted">
-                      <MapPin size={16} className="mt-0.5 shrink-0" aria-hidden="true" /> {it.ruta}
-                    </p>
-                    <p className="mt-2 text-sm text-fg-muted">{it.desc}</p>
-                  </div>
-                </div>
-              ),
-            )}
-          </div>
+          <ItinerariosFiltro items={ITINERARIOS} />
         </div>
       </section>
 
