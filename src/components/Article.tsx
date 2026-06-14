@@ -9,6 +9,7 @@ import { getArticle, getArticles, readingMinutes } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { articleLd, breadcrumbLd } from "@/lib/jsonld";
 import { formatDate } from "@/lib/format";
+import { SITE } from "@/lib/site";
 
 interface PillarConfig {
   basePath: string; // "/blog" | "/logistica"
@@ -120,7 +121,17 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
               {meta.title}
             </h1>
             {meta.excerpt && <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-white/90">{meta.excerpt}</p>}
-            <p className="nums mt-4 text-sm text-white/75">{dateLine}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/75">
+              <Image src="/avatares/hijo.webp" alt="" width={28} height={28} className="rounded-full ring-1 ring-white/30" />
+              <span>
+                por{" "}
+                <Link href="/sobre-nosotros" className="font-medium text-white/90 underline-offset-2 hover:underline">
+                  {SITE.author.name}
+                </Link>
+              </span>
+              <span aria-hidden="true">·</span>
+              <span className="nums">{dateLine}</span>
+            </div>
           </div>
           {meta.heroCredito && (
             <span className="absolute bottom-1.5 right-2 rounded bg-black/60 px-1.5 py-0.5 text-[11px] leading-none text-white/90">
@@ -137,7 +148,17 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
           )}
           <p className={`kicker text-primary ${cfg.back ? "mt-4" : ""}`}>{meta.kicker}</p>
           <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{meta.title}</h1>
-          <p className="nums mt-3 text-sm text-fg-muted">{dateLine}</p>
+          <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-fg-muted">
+            <Image src="/avatares/hijo.webp" alt="" width={24} height={24} className="rounded-full ring-1 ring-border" />
+            <span>
+              por{" "}
+              <Link href="/sobre-nosotros" className="font-medium text-fg underline-offset-2 hover:underline">
+                {SITE.author.name}
+              </Link>
+            </span>
+            <span aria-hidden="true">·</span>
+            <span className="nums">{dateLine}</span>
+          </div>
         </header>
       )}
 

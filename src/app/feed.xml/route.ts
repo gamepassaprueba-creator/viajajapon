@@ -23,7 +23,7 @@ export async function GET() {
   const lastBuild = items[0] ? new Date(items[0].dateModified).toUTCString() : new Date(0).toUTCString();
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${esc(SITE.name)} — Noticias y guías para viajar a Japón</title>
     <link>${SITE.url}</link>
@@ -38,6 +38,7 @@ ${items
       <link>${SITE.url}${it.path}</link>
       <guid isPermaLink="true">${SITE.url}${it.path}</guid>
       <pubDate>${new Date(it.dateModified).toUTCString()}</pubDate>
+      <dc:creator>${esc(SITE.author.name)}</dc:creator>
       <description>${esc(it.excerpt || it.description)}</description>
     </item>`,
   )
