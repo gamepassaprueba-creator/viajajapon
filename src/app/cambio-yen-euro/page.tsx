@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getYenRate } from "@/lib/fx";
+import { CurrencyConverter } from "@/components/CurrencyConverter";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
@@ -37,6 +38,8 @@ export default async function Page() {
           Es un tipo de referencia, no incluye comisiones de cambio de tu banco o tarjeta.
         </p>
       </div>
+
+      <CurrencyConverter rate={rate} />
 
       <div className="mt-8 space-y-4 text-lg leading-relaxed text-fg-muted">
         <p>
