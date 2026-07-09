@@ -33,11 +33,11 @@ export function ToriiMark({ className }: { className?: string }) {
 export function Logo({ tono = "oscuro", className = "" }: { tono?: "oscuro" | "claro"; className?: string }) {
   const claro = tono === "claro";
   return (
-    <Link href="/" className={`inline-flex items-center gap-2 ${className}`}>
-      <ToriiMark className={`size-7 shrink-0 ${claro ? "text-white" : "text-primary"}`} />
-      <span className="flex items-baseline">
-        <span className={`font-display text-3xl font-black leading-none tracking-tight ${claro ? "text-white" : "text-primary"}`}>ViajaJapón</span>
-        <span className={`ml-1 text-sm ${claro ? "text-gray-400" : "text-fg-muted"}`}>.com</span>
+    <Link href="/" className={`inline-flex items-center gap-2.5 ${className}`}>
+      <ToriiMark className={`size-8 shrink-0 ${claro ? "text-white" : "text-primary"}`} />
+      <span className="flex items-baseline gap-0.5">
+        <span className={`font-display text-2xl font-black leading-none tracking-tighter ${claro ? "text-white" : "text-fg"}`}>ViajaJapón</span>
+        <span className={`text-xs font-bold uppercase tracking-widest ${claro ? "text-white/40" : "text-primary"}`}>.com</span>
       </span>
     </Link>
   );

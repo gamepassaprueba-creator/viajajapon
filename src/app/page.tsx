@@ -95,62 +95,84 @@ export default async function Home() {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative isolate flex min-h-[34rem] items-center overflow-hidden sm:min-h-[600px]">
-        <Image src={heroFuji} alt="Monte Fuji con una pagoda y cerezos en flor" fill priority placeholder="blur" sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-white/10" />
-        <div className="relative mx-auto w-full max-w-7xl px-4 py-16 sm:py-20">
-          <div className="max-w-2xl">
-            <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong shadow-sm">
-              {season}
-            </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-fg sm:text-5xl">Planifica tu viaje a Japón en 2026</h1>
-            <p className="mt-6 text-lg text-fg-muted">
-              Todo lo que necesitas para planificar tu aventura: JR Pass, presupuesto, itinerarios, cultura y
-              gastronomía — con datos reales y de este año.
-            </p>
-            <div className="mt-8">
-              <Link href="/herramientas/jr-pass-calculadora" className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-strong">
-                Calcula si te compensa el JR Pass <ArrowRight size={18} aria-hidden="true" />
-              </Link>
-            </div>
-            <form action="/buscar" className="mt-4 flex max-w-xl items-center gap-2 rounded-lg bg-surface p-2 shadow-lg focus-within:ring-2 focus-within:ring-primary">
-              <Search size={20} className="ml-2 text-gray-400" aria-hidden="true" />
-              <label htmlFor="q" className="sr-only">Buscar en la guía</label>
-              <input id="q" name="q" type="search" autoComplete="off" placeholder="¿Qué quieres descubrir sobre Japón?" className="flex-1 border-none bg-transparent px-2 py-2 text-fg outline-none" />
-              <button type="submit" className="rounded-md bg-primary px-6 py-2 font-medium text-white transition-colors hover:bg-primary-strong">Buscar</button>
-            </form>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <HeroChip Icon={Coins} label="Yen hoy" value={`1€ = ¥${rate}`} />
-              <HeroChip Icon={Flower2} label="Sakura" value="finales mar–abr" />
-              <HeroChip Icon={Train} label="JR Pass" value="desde ¥50.000" />
-            </div>
+      {/* HERO — overlay negro 70%, tipografía display 900, layout brutal */}
+      <section className="relative isolate overflow-hidden">
+        <Image src={heroFuji} alt="Monte Fuji con una pagoda y cerezos en flor" fill priority placeholder="blur" sizes="100vw" className="object-cover object-center" />
+        {/* Overlay negro oscuro — queremos foto pero sin que borre el texto */}
+        <div className="absolute inset-0 bg-black/65" />
+        {/* Línea de acento roja diagonal — rasgo manga */}
+        <div className="absolute inset-y-0 left-0 w-1.5 bg-primary" />
+
+        <div className="relative mx-auto w-full max-w-7xl px-6 py-20 sm:py-28 lg:py-32">
+          {/* Kicker con forma de punta de flecha */}
+          <span className="tag-manga mb-6 inline-block">{season}</span>
+
+          {/* H1 brutal — peso 900, tamaño enorme, leading comprimido */}
+          <h1 className="text-display max-w-4xl text-5xl text-white sm:text-7xl lg:text-8xl">
+            <span className="block">Planifica tu</span>
+            <span className="block text-primary">viaje a Japón</span>
+            <span className="block">en 2026</span>
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+            JR Pass, presupuesto, itinerarios, cultura y gastronomía — con datos reales y de este año.
+          </p>
+
+          {/* CTAs en fila */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/herramientas/jr-pass-calculadora"
+              className="panel-manga inline-flex items-center gap-2 bg-primary px-6 py-3 text-sm font-black uppercase tracking-wide text-white transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+            >
+              Calculadora JR Pass <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            <Link
+              href="/itinerarios"
+              className="panel-manga inline-flex items-center gap-2 bg-surface px-6 py-3 text-sm font-black uppercase tracking-wide text-fg transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+            >
+              Ver itinerarios
+            </Link>
+          </div>
+
+          {/* Buscador */}
+          <form action="/buscar" className="mt-8 flex max-w-lg items-center gap-0 overflow-hidden border-2 border-white/80 bg-white/10 backdrop-blur-sm focus-within:border-primary focus-within:bg-white/15">
+            <label htmlFor="q" className="sr-only">Buscar en la guía</label>
+            <Search size={18} className="ml-4 shrink-0 text-white/60" aria-hidden="true" />
+            <input id="q" name="q" type="search" autoComplete="off" placeholder="Buscar en la guía…" className="flex-1 border-none bg-transparent px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none" />
+            <button type="submit" className="bg-primary px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-primary-strong">Buscar</button>
+          </form>
+
+          {/* Chips de datos en vivo */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <HeroChip Icon={Coins} label="Yen hoy" value={`1€ = ¥${rate}`} />
+            <HeroChip Icon={Flower2} label="Sakura" value="finales mar–abr" />
+            <HeroChip Icon={Train} label="JR Pass" value="desde ¥50.000" />
           </div>
         </div>
       </section>
 
-      {/* Franja de confianza (E-E-A-T) */}
-      <div className="border-b border-border bg-surface">
-        <div className="mx-auto max-w-7xl px-4 py-3 text-center text-sm text-fg-muted">
+      {/* Franja de confianza — fondo fg (tinta), texto blanco, rompe con el hero */}
+      <div className="bg-fg">
+        <div className="mx-auto max-w-7xl px-4 py-2.5 text-center text-sm text-white/70">
           ✓ Escrito por{" "}
-          <Link href="/sobre-nosotros" className="font-semibold text-primary hover:underline">{SITE.author.name}</Link>
+          <Link href="/sobre-nosotros" className="font-bold text-primary hover:underline">{SITE.author.name}</Link>
           {" "}· datos verificados y de 2026 ·{" "}
-          <Link href="/sobre-nosotros" className="font-medium text-primary hover:underline">quiénes somos</Link>
+          <Link href="/sobre-nosotros" className="font-medium text-white/70 hover:text-white">quiénes somos</Link>
         </div>
       </div>
 
-      {/* Accesos rápidos (rejilla de iconos del mockup; brilla en móvil, 3 cols → 6 en desktop) */}
-      <section aria-label="Accesos rápidos" className="border-b border-border bg-surface py-8 sm:py-10">
+      {/* Accesos rápidos */}
+      <section aria-label="Accesos rápidos" className="border-b-2 border-fg bg-surface py-6">
         <div className="mx-auto max-w-3xl px-4">
-          <h2 className="mb-6 text-center text-xs font-semibold uppercase tracking-wider text-fg-muted">Accesos rápidos</h2>
-          <ul className="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-6">
+          <p className="mb-5 text-center font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-fg-muted">Acceso directo</p>
+          <ul className="grid grid-cols-3 gap-3 sm:grid-cols-6">
             {ACCESOS.map((a) => (
               <li key={a.label}>
-                <Link href={a.href} className="group flex flex-col items-center gap-2 text-center">
-                  <span className={`flex size-16 items-center justify-center rounded-full ${a.bg} ${a.color} shadow-sm transition-transform group-hover:-translate-y-0.5`}>
-                    <a.Icon size={26} aria-hidden="true" />
+                <Link href={a.href} className="group flex flex-col items-center gap-1.5 text-center">
+                  <span className={`panel-manga-sm flex size-14 items-center justify-center bg-surface ${a.color} transition-all group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-none`}>
+                    <a.Icon size={24} aria-hidden="true" />
                   </span>
-                  <span className="text-xs font-medium text-fg">{a.label}</span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-fg-muted group-hover:text-fg">{a.label}</span>
                 </Link>
               </li>
             ))}
@@ -158,21 +180,27 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Planifica */}
-      <section id="planifica" className="bg-surface py-16">
+      {/* Itinerarios */}
+      <section id="planifica" className="bg-bg py-16">
         <div className="mx-auto max-w-7xl px-4">
-          <SectionHead title="Planifica tu aventura japonesa" sub="Itinerarios adaptados a la duración de tu viaje para aprovechar cada día." />
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mb-8 flex items-end justify-between">
+            <div className="border-accent-left">
+              <p className="font-mono text-xs font-bold uppercase tracking-widest text-primary">Itinerarios</p>
+              <h2 className="mt-1 text-display text-3xl text-fg sm:text-4xl">Planifica tu aventura</h2>
+            </div>
+            <Link href="/itinerarios" className="hidden font-mono text-xs font-bold uppercase tracking-wide text-fg-muted hover:text-primary sm:block">Ver todos →</Link>
+          </div>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {ITIN.map((it) => (
-              <Link key={it.badge} href={it.href} className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
-                <div className="relative h-48">
+              <Link key={it.badge} href={it.href} className="panel-manga group flex flex-col overflow-hidden bg-surface transition-all hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none">
+                <div className="relative h-44 overflow-hidden">
                   <Image src={it.img} alt={it.title} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <span className="absolute left-0 top-3 bg-primary px-3 py-1 font-mono text-xs font-bold uppercase tracking-wide text-white">{it.badge}</span>
                 </div>
-                <div className="p-6">
-                  <span className="inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-primary">{it.badge}</span>
-                  <h3 className="mt-3 text-xl font-bold">{it.title}</h3>
-                  <p className="mt-2 flex items-center gap-2 text-sm text-fg-muted"><MapPin size={16} aria-hidden="true" /> {it.ruta}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 font-medium text-primary">Ver itinerario <ArrowRight size={16} aria-hidden="true" /></span>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="text-lg font-black leading-tight text-fg">{it.title}</h3>
+                  <p className="mt-1.5 flex items-center gap-1.5 text-xs font-mono text-fg-muted"><MapPin size={12} aria-hidden="true" /> {it.ruta}</p>
+                  <span className="mt-auto pt-4 font-mono text-xs font-bold uppercase tracking-wide text-primary group-hover:underline">Ver itinerario →</span>
                 </div>
               </Link>
             ))}
@@ -405,20 +433,20 @@ export default async function Home() {
 
 function SectionHead({ title, sub }: { title: string; sub: string }) {
   return (
-    <div className="mb-12 text-center">
-      <h2 className="mb-4 text-balance text-3xl font-bold">{title}</h2>
-      <p className="mx-auto max-w-2xl text-pretty text-fg-muted">{sub}</p>
+    <div className="mb-10 border-accent-left">
+      <h2 className="text-display text-2xl text-fg sm:text-3xl">{title}</h2>
+      <p className="mt-2 max-w-2xl text-pretty text-sm text-fg-muted">{sub}</p>
     </div>
   );
 }
 
 function HeroChip({ Icon, label, value }: { Icon: typeof Coins; label: string; value: string }) {
   return (
-    <div className="flex items-center gap-3 rounded-lg bg-surface/80 p-3 shadow-sm backdrop-blur-sm">
-      <Icon size={20} className="text-primary" aria-hidden="true" />
+    <div className="panel-manga-sm flex items-center gap-3 bg-black/50 px-4 py-2.5 backdrop-blur-sm">
+      <Icon size={18} className="text-primary" aria-hidden="true" />
       <div>
-        <p className="text-xs text-fg-muted">{label}</p>
-        <p className="nums font-medium">{value}</p>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-white/50">{label}</p>
+        <p className="nums text-sm font-bold text-white">{value}</p>
       </div>
     </div>
   );
