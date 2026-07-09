@@ -124,14 +124,14 @@ export function Article({
         <header className="relative">
           <Image src={meta.hero} alt={meta.heroAlt ?? meta.title} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
-          <div className="relative mx-auto flex min-h-[420px] max-w-5xl flex-col justify-end px-4 pb-12 pt-32 sm:min-h-[500px]">
+          <div className="relative mx-auto flex min-h-[300px] max-w-5xl flex-col justify-end px-4 pb-8 pt-20 sm:min-h-[420px] sm:pb-12 sm:pt-32">
             <Breadcrumbs items={crumbs} variant="onDark" />
-            <h1 className="mt-4 max-w-3xl text-balance text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+            <h1 className="mt-3 max-w-3xl text-balance text-3xl font-black leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {meta.title}
             </h1>
-            {meta.excerpt && <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-white/90">{meta.excerpt}</p>}
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/75">
-              <Image src="/avatares/hijo.webp" alt="" width={28} height={28} className="rounded-full ring-1 ring-white/30" />
+            {meta.excerpt && <p className="mt-3 max-w-2xl text-pretty text-sm leading-relaxed text-white/85 sm:mt-4 sm:text-lg">{meta.excerpt}</p>}
+            <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/75 sm:mt-4 sm:text-sm">
+              <Image src="/avatares/hijo.webp" alt="" width={24} height={24} className="rounded-full ring-1 ring-white/30 sm:size-7" />
               <span>
                 por{" "}
                 <Link href="/sobre-nosotros" className="font-medium text-white/90 underline-offset-2 hover:underline">
@@ -157,7 +157,7 @@ export function Article({
             </Link>
           )}
           <p className="kicker mt-4 text-primary">{meta.kicker}</p>
-          <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{meta.title}</h1>
+          <h1 className="mt-2 text-3xl font-black sm:text-4xl lg:text-5xl">{meta.title}</h1>
           <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-fg-muted">
             <Image src="/avatares/hijo.webp" alt="" width={24} height={24} className="rounded-full ring-1 ring-border" />
             <span>

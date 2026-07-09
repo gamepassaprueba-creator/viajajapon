@@ -77,9 +77,9 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Navegación inferior"
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-surface/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t-[3px] border-[#0a0a0a] bg-white pb-[env(safe-area-inset-bottom)] md:hidden"
     >
-      <ul className="grid grid-cols-5">
+      <ul className="grid grid-cols-5 divide-x-[3px] divide-[#0a0a0a]">
         {TABS.map(({ href, label, Icon }) => {
           const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
           return (
@@ -87,12 +87,14 @@ export function MobileTabBar() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`flex h-16 flex-col items-center justify-center gap-1 text-[0.625rem] font-medium transition-colors ${
-                  active ? "text-primary" : "text-fg-muted hover:text-fg"
+                className={`flex h-14 flex-col items-center justify-center gap-1 transition-colors ${
+                  active
+                    ? "bg-[#e1352e] text-white"
+                    : "text-[#555] hover:bg-[#f5f5f5]"
                 }`}
               >
-                <Icon className="size-6" />
-                <span>{label}</span>
+                <Icon className="size-5" />
+                <span className="font-mono text-[8px] font-black uppercase tracking-wider">{label}</span>
               </Link>
             </li>
           );

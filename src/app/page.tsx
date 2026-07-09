@@ -69,12 +69,12 @@ export default async function Home() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl">
 
-          {/* Tira superior: season + buscador */}
-          <div className="flex items-center justify-between gap-4 border-b-[3px] border-[#0a0a0a] px-5 py-2.5">
-            <span className="font-mono text-[11px] font-black uppercase tracking-[0.15em] text-[#e1352e]">
+          {/* Tira superior: season + buscador (solo desktop; móvil lo tiene más abajo) */}
+          <div className="flex items-center justify-between gap-4 border-b-[3px] border-[#0a0a0a] px-4 py-2 sm:px-5">
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.15em] text-[#e1352e]">
               {season} · 2026
             </span>
-            <form action="/buscar" className="flex max-w-xs flex-1 items-center border-[2px] border-[#0a0a0a]">
+            <form action="/buscar" className="hidden max-w-xs flex-1 items-center border-[2px] border-[#0a0a0a] sm:flex">
               <label htmlFor="hero-q" className="sr-only">Buscar en la guía</label>
               <input
                 id="hero-q" name="q" type="search" autoComplete="off"
@@ -87,57 +87,13 @@ export default async function Home() {
             </form>
           </div>
 
-          {/* Grid hero: texto 55% | foto 45% */}
+          {/* ── MÓVIL: foto arriba, texto abajo ─────────────────────
+              En móvil la foto va primero (impacto inmediato),
+              el texto debajo. En desktop: grid lado a lado. */}
           <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
 
-            {/* Columna texto */}
-            <div className="flex flex-col justify-between border-b-[3px] border-[#0a0a0a] p-6 lg:border-b-0 lg:border-r-[3px] lg:p-10 xl:p-14">
-              <div>
-                <h1
-                  className="display-xl text-[#0a0a0a]"
-                  style={{ fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)" }}
-                >
-                  <span className="block">La guía de</span>
-                  <span className="block text-[#e1352e]">Japón</span>
-                  <span className="block">en español.</span>
-                </h1>
-
-                <p className="mt-6 max-w-sm text-base leading-relaxed text-[#555]">
-                  JR Pass, presupuesto, itinerarios, cultura y gastronomía con datos reales y experiencia de primera mano.
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href="/herramientas/jr-pass-calculadora" className="btn-primary">
-                    Calculadora JR Pass <ArrowRight size={14} aria-hidden="true" />
-                  </Link>
-                  <Link href="/itinerarios" className="btn-outline">
-                    Ver itinerarios
-                  </Link>
-                </div>
-              </div>
-
-              {/* Datos en vivo — tira de 3 chips */}
-              <div className="mt-10 grid grid-cols-3 gap-3">
-                <div className="data-chip">
-                  <p className="font-mono text-[9px] font-black uppercase tracking-widest text-[#999]">Yen hoy</p>
-                  <p className="nums mt-1 font-mono text-xl font-black text-[#0a0a0a]">¥{rate}</p>
-                  <p className="font-mono text-[9px] text-[#999]">por euro</p>
-                </div>
-                <div className="data-chip">
-                  <p className="font-mono text-[9px] font-black uppercase tracking-widest text-[#999]">Sakura</p>
-                  <p className="nums mt-1 font-mono text-xl font-black text-[#0a0a0a]">Mar–Abr</p>
-                  <p className="font-mono text-[9px] text-[#999]">temporada</p>
-                </div>
-                <div className="data-chip">
-                  <p className="font-mono text-[9px] font-black uppercase tracking-widest text-[#999]">JR Pass</p>
-                  <p className="nums mt-1 font-mono text-xl font-black text-[#0a0a0a]">¥50k</p>
-                  <p className="font-mono text-[9px] text-[#999]">desde 7 días</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Columna foto — viñeta manga dura, sin border-radius */}
-            <div className="relative min-h-[50vw] lg:min-h-0">
+            {/* Foto — móvil primera, desktop segunda columna */}
+            <div className="relative order-first h-[58vw] min-h-[240px] border-b-[3px] border-[#0a0a0a] lg:order-last lg:border-b-0 lg:border-l-[3px] lg:h-auto">
               <Image
                 src={heroFuji}
                 alt="Monte Fuji con pagoda y cerezos"
@@ -145,9 +101,78 @@ export default async function Home() {
                 sizes="(max-width:1024px) 100vw, 45vw"
                 className="object-cover object-center"
               />
+              {/* Título superpuesto sobre la foto solo en móvil */}
+              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 lg:hidden">
+                <h1 className="display-xl text-white" style={{ fontSize: "clamp(2.8rem, 12vw, 4.5rem)" }}>
+                  <span className="block">La guía de</span>
+                  <span className="block text-[#ff5b4e]">Japón</span>
+                  <span className="block">en español.</span>
+                </h1>
+              </div>
               <span className="absolute bottom-2 right-2 border border-white/40 bg-black/50 px-1.5 py-0.5 font-mono text-[9px] text-white/70">
                 © Wikimedia Commons
               </span>
+            </div>
+
+            {/* Columna texto — desktop: izquierda; móvil: debajo de la foto */}
+            <div className="order-last flex flex-col justify-between border-b-[3px] border-[#0a0a0a] p-5 lg:order-first lg:border-b-0 lg:border-r-[3px] lg:p-10 xl:p-14">
+              <div>
+                {/* H1 solo visible en desktop (en móvil va sobre la foto) */}
+                <h1
+                  className="display-xl hidden text-[#0a0a0a] lg:block"
+                  style={{ fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)" }}
+                >
+                  <span className="block">La guía de</span>
+                  <span className="block text-[#e1352e]">Japón</span>
+                  <span className="block">en español.</span>
+                </h1>
+
+                <p className="mt-4 text-sm leading-relaxed text-[#555] lg:mt-6 lg:max-w-sm lg:text-base">
+                  JR Pass, presupuesto, itinerarios, cultura y gastronomía con datos reales y experiencia de primera mano.
+                </p>
+
+                {/* CTAs — en móvil apilados, en desktop en fila */}
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:mt-8">
+                  <Link href="/herramientas/jr-pass-calculadora" className="btn-primary justify-center sm:justify-start">
+                    Calculadora JR Pass <ArrowRight size={14} aria-hidden="true" />
+                  </Link>
+                  <Link href="/itinerarios" className="btn-outline justify-center sm:justify-start">
+                    Ver itinerarios
+                  </Link>
+                </div>
+
+                {/* Buscador móvil (solo móvil, debajo de los CTAs) */}
+                <form action="/buscar" className="mt-4 flex items-center border-[2px] border-[#0a0a0a] sm:hidden">
+                  <label htmlFor="hero-q-mob" className="sr-only">Buscar en la guía</label>
+                  <input
+                    id="hero-q-mob" name="q" type="search" autoComplete="off"
+                    placeholder="Busca: JR Pass, Kioto, onsen…"
+                    className="flex-1 bg-transparent px-3 py-2.5 text-sm text-[#0a0a0a] placeholder:text-[#999] outline-none"
+                  />
+                  <button type="submit" aria-label="Buscar" className="border-l-[2px] border-[#0a0a0a] bg-[#e1352e] px-4 py-2.5 text-white">
+                    <Search size={16} aria-hidden="true" />
+                  </button>
+                </form>
+              </div>
+
+              {/* Datos en vivo — 3 chips horizontales */}
+              <div className="mt-6 grid grid-cols-3 divide-x-[2px] divide-[#0a0a0a] border-[2px] border-[#0a0a0a] lg:mt-10">
+                <div className="px-3 py-2.5 lg:px-4 lg:py-3">
+                  <p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#999]">Yen hoy</p>
+                  <p className="nums mt-0.5 font-mono text-base font-black text-[#0a0a0a] lg:text-xl">¥{rate}</p>
+                  <p className="font-mono text-[8px] text-[#999]">por euro</p>
+                </div>
+                <div className="px-3 py-2.5 lg:px-4 lg:py-3">
+                  <p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#999]">Sakura</p>
+                  <p className="nums mt-0.5 font-mono text-base font-black text-[#0a0a0a] lg:text-xl">Mar–Abr</p>
+                  <p className="font-mono text-[8px] text-[#999]">temporada</p>
+                </div>
+                <div className="px-3 py-2.5 lg:px-4 lg:py-3">
+                  <p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#999]">JR Pass</p>
+                  <p className="nums mt-0.5 font-mono text-base font-black text-[#0a0a0a] lg:text-xl">¥50k</p>
+                  <p className="font-mono text-[8px] text-[#999]">desde 7 días</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -200,10 +225,16 @@ export default async function Home() {
           </div>
 
           {/* Grid: cita grande + viñetas */}
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-
-            {/* Viñeta 1 — panel manga con borde duro */}
-            <div className="panel-manga-red bg-white p-6">
+          {/* Viñetas: scroll horizontal snap en móvil, grid en desktop */}
+          <div
+            className="flex gap-5 overflow-x-auto pb-2 lg:grid lg:grid-cols-2 lg:overflow-visible lg:pb-0"
+            style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+          >
+            {/* Viñeta 1 */}
+            <div
+              className="panel-manga-red w-[88vw] shrink-0 bg-white p-5 sm:p-6 lg:w-auto"
+              style={{ scrollSnapAlign: "start" }}
+            >
               <div className="mb-4 border-b-[2px] border-[#0a0a0a] pb-3">
                 <span className="font-mono text-[9px] font-black uppercase tracking-widest text-[#e1352e]">
                   Kioto · noche de diciembre
@@ -216,7 +247,10 @@ export default async function Home() {
             </div>
 
             {/* Viñeta 2 */}
-            <div className="panel-manga-red bg-white p-6">
+            <div
+              className="panel-manga-red w-[88vw] shrink-0 bg-white p-5 sm:p-6 lg:w-auto"
+              style={{ scrollSnapAlign: "start" }}
+            >
               <div className="mb-4 border-b-[2px] border-[#0a0a0a] pb-3">
                 <span className="font-mono text-[9px] font-black uppercase tracking-widest text-[#e1352e]">
                   Por todo Japón · 15 días
@@ -252,13 +286,20 @@ export default async function Home() {
               Ver todos →
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Scroll horizontal en móvil (snap), grid en desktop */}
+          <div className="flex gap-4 overflow-x-auto pb-1 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4"
+               style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
             {ITIN.map((it) => (
-              <Link key={it.badge} href={it.href} className="panel-manga-dark group flex flex-col bg-white">
-                <div className="relative h-44 overflow-hidden border-b-[3px] border-[#0a0a0a]">
+              <Link
+                key={it.badge}
+                href={it.href}
+                className="panel-manga-dark group flex w-[72vw] shrink-0 flex-col bg-white sm:w-auto"
+                style={{ scrollSnapAlign: "start" }}
+              >
+                <div className="relative h-40 overflow-hidden border-b-[3px] border-[#0a0a0a]">
                   <Image
                     src={it.img} alt={it.title} fill
-                    sizes="(max-width:1024px) 50vw, 25vw"
+                    sizes="(max-width:640px) 72vw, (max-width:1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="tag-manga absolute left-0 top-0">{it.badge}</span>
@@ -292,9 +333,15 @@ export default async function Home() {
               Todos →
             </Link>
           </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="flex gap-4 overflow-x-auto pb-1 md:grid md:grid-cols-3 md:overflow-visible md:pb-0"
+               style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
             {DEST.map((d) => (
-              <Link key={d.title} href={d.href} className="panel-manga-dark group block">
+              <Link
+                key={d.title}
+                href={d.href}
+                className="panel-manga-dark group block w-[80vw] shrink-0 md:w-auto"
+                style={{ scrollSnapAlign: "start" }}
+              >
                 <div className="relative h-56 overflow-hidden border-b-[3px] border-[#0a0a0a]">
                   <Image
                     src={d.img} alt={d.title} fill

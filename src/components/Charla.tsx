@@ -26,28 +26,27 @@ function Avatar({ quien }: { quien: "madre" | "hijo" }) {
 export function Charla({ lineas }: { lineas: { quien: "madre" | "hijo"; texto: string }[] }) {
   return (
     <figure
-      className="space-y-8 py-2"
+      className="space-y-6 py-2"
       role="group"
       aria-label="Conversación real entre los autores durante su viaje a Japón"
     >
       {lineas.map((l, i) => {
         const esMadre = l.quien === "madre";
         return (
-          <div key={i} className={`flex items-end gap-3 ${esMadre ? "flex-row" : "flex-row-reverse"}`}>
-            <div className="shrink-0 flex flex-col items-center gap-1.5">
+          <div key={i} className={`flex items-end gap-2.5 sm:gap-3 ${esMadre ? "flex-row" : "flex-row-reverse"}`}>
+            {/* Avatar + nombre */}
+            <div className="shrink-0 flex flex-col items-center gap-1">
               <Avatar quien={l.quien} />
-              <span
-                className="font-mono text-[9px] font-black uppercase tracking-wider text-[#0a0a0a]"
-              >
+              <span className="font-mono text-[8px] font-black uppercase tracking-wide text-[#0a0a0a]">
                 {NOMBRES[l.quien]}
               </span>
             </div>
-            {/* Globo de texto manga */}
+            {/* Globo — cola abajo, margin para no cortarla */}
             <div
-              className={`relative max-w-[75%] ${esMadre ? "globo globo-left" : "globo globo-right"}`}
-              style={{ marginBottom: "20px" }}
+              className={`relative max-w-[78%] ${esMadre ? "globo globo-left" : "globo globo-right"}`}
+              style={{ marginBottom: "22px" }}
             >
-              <p className="text-sm leading-relaxed text-[#0a0a0a]">{l.texto}</p>
+              <p className="text-sm leading-relaxed text-[#0a0a0a] sm:text-base">{l.texto}</p>
             </div>
           </div>
         );
