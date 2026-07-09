@@ -191,17 +191,17 @@ export function Article({
       </div>
 
       {related.length > 0 && (
-        <section className="mt-12 border-t border-border pt-8">
-          <h2 className="text-xl font-bold">Sigue leyendo</h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+        <section className="mt-12 border-t-[3px] border-[#0a0a0a] pt-8">
+          <h2 className="display-md text-xl text-[#0a0a0a]">Sigue leyendo</h2>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-3">
             {related.map((a) => (
               <li key={a.slug}>
                 <Link
                   href={`${cfg.basePath}/${a.slug}`}
-                  className="flex h-full flex-col rounded-lg border border-border bg-surface p-4 transition-colors hover:border-primary"
+                  className="panel-manga-dark flex h-full flex-col bg-white p-4 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
                 >
-                  <span className="kicker text-primary">{a.kicker}</span>
-                  <span className="mt-1 font-medium text-fg">{a.title}</span>
+                  <span className="kicker text-[#e1352e]">{a.kicker}</span>
+                  <span className="mt-1 font-black text-[#0a0a0a]">{a.title}</span>
                 </Link>
               </li>
             ))}

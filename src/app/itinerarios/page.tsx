@@ -85,7 +85,7 @@ const FEATURES: Feature[] = [
   {
     Icon: Calculator,
     color: "text-primary",
-    bg: "bg-red-100",
+    bg: "",
     title: "Cifras ancladas a tarifas reales",
     desc: "Los trayectos en tren de cada itinerario se calculan con las tarifas reales de las rutas, no con estimaciones a ojo.",
     bullets: [
@@ -96,8 +96,8 @@ const FEATURES: Feature[] = [
   },
   {
     Icon: Coins,
-    color: "text-green-600",
-    bg: "bg-green-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Presupuesto en euros",
     desc: "Cada itinerario incluye su presupuesto pasado a euros con un cambio de referencia, para que sepas qué te cuesta de verdad.",
     bullets: [
@@ -109,7 +109,7 @@ const FEATURES: Feature[] = [
   {
     Icon: TrainFront,
     color: "text-secondary",
-    bg: "bg-blue-100",
+    bg: "",
     title: "La cuenta honesta del JR Pass",
     desc: "En estas rutas el JR Pass casi nunca compensa, y te enseñamos la cuenta para que lo compruebes tú mismo.",
     bullets: [
@@ -171,7 +171,7 @@ export default function Page() {
             {CHIPS.map((c) => (
               <li
                 key={c.label}
-                className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-fg shadow-sm"
+                className="flex items-center gap-2 border border-border bg-surface px-4 py-2 text-sm font-medium text-fg"
               >
                 <c.Icon size={16} className="text-primary" aria-hidden="true" />
                 {c.label}
@@ -201,8 +201,8 @@ export default function Page() {
           />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {FEATURES.map((f) => (
-              <div key={f.title} className="rounded-lg bg-surface p-6 shadow-md transition-all hover:-translate-y-1">
-                <div className={`mb-4 flex size-12 items-center justify-center rounded-lg ${f.bg} ${f.color}`}>
+              <div key={f.title} className="panel-manga-dark bg-surface p-6">
+                <div className={`mb-4 flex size-12 items-center justify-center ${f.color}`}>
                   <f.Icon size={24} aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold">{f.title}</h3>
@@ -237,7 +237,7 @@ export default function Page() {
           </p>
           <Link
             href="/herramientas/jr-pass-calculadora"
-            className="mt-8 inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 font-semibold text-primary shadow-md transition-colors hover:bg-gray-100"
+            className="mt-8 inline-flex items-center gap-2 bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-gray-100"
           >
             Abrir la calculadora del JR Pass <ArrowRight size={18} aria-hidden="true" />
           </Link>
@@ -259,7 +259,7 @@ export default function Page() {
               <Link
                 key={e.href}
                 href={e.href}
-                className="group rounded-lg border border-border bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                className="group panel-manga-dark bg-surface p-6"
               >
                 <p className="kicker text-fg-muted">{e.kicker}</p>
                 <h3 className="mt-2 text-lg font-bold transition-colors group-hover:text-primary">{e.title}</h3>

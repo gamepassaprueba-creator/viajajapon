@@ -36,7 +36,7 @@ const TEMAS: Tema[] = [
   {
     Icon: FileCheck,
     color: "text-primary",
-    bg: "bg-red-100",
+    bg: "",
     title: "Antes de ir",
     desc: "Los trámites y reservas que conviene dejar atados antes de subirte al avión.",
     links: [
@@ -47,8 +47,8 @@ const TEMAS: Tema[] = [
   },
   {
     Icon: Coins,
-    color: "text-green-600",
-    bg: "bg-green-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Dinero",
     desc: "Cómo pagar, cuánto presupuestar y cómo sacar el máximo partido a tus euros.",
     links: [
@@ -60,7 +60,7 @@ const TEMAS: Tema[] = [
   {
     Icon: TrainFront,
     color: "text-secondary",
-    bg: "bg-blue-100",
+    bg: "",
     title: "Transporte",
     desc: "Del Shinkansen al metro de Tokio: muévete por Japón sin perderte ni pagar de más.",
     links: [
@@ -71,24 +71,24 @@ const TEMAS: Tema[] = [
   },
   {
     Icon: Wifi,
-    color: "text-purple-600",
-    bg: "bg-purple-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Conectividad",
     desc: "Llega con internet funcionando: mapas, traductor y reservas desde el primer minuto.",
     links: [{ href: "/logistica/esim-japon", label: "eSIM para Japón: comparativa" }],
   },
   {
     Icon: CalendarDays,
-    color: "text-amber-600",
-    bg: "bg-amber-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Cuándo viajar",
     desc: "Sakura, momiji, festivales o nieve: cada temporada cambia el viaje por completo.",
     links: [{ href: "/logistica/mejor-epoca-viajar-japon", label: "Mejor época para viajar a Japón" }],
   },
   {
     Icon: Plane,
-    color: "text-teal-600",
-    bg: "bg-teal-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Desde Latinoamérica",
     desc: "Si vuelas desde México u otro país de Latinoamérica, tu logística tiene sus propias claves.",
     links: [
@@ -119,7 +119,7 @@ export default function Page() {
             </div>
             <Link
               href="/logistica/japon-por-libre-primer-viaje"
-              className="group relative block h-72 overflow-hidden rounded-lg shadow-md sm:h-80"
+              className="group relative block h-72 overflow-hidden sm:h-80"
             >
               <Image
                 src="/images/tokio.jpg"
@@ -130,7 +130,7 @@ export default function Page() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
+                <span className="inline-block bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong">
                   Empieza aquí
                 </span>
                 <h2 className="mt-3 text-2xl font-bold">Japón por libre: tu primer viaje</h2>
@@ -156,8 +156,8 @@ export default function Page() {
           />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {TEMAS.map((t) => (
-              <div key={t.title} className="rounded-lg bg-surface p-6 shadow-md transition-all hover:-translate-y-1">
-                <div className={`mb-4 flex size-12 items-center justify-center rounded-lg ${t.bg} ${t.color}`}>
+              <div key={t.title} className="panel-manga-dark bg-surface p-6">
+                <div className={`mb-4 flex size-12 items-center justify-center ${t.color}`}>
                   <t.Icon size={24} aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold">{t.title}</h3>
@@ -184,8 +184,8 @@ export default function Page() {
       {/* CTA calculadora */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-1 items-center gap-8 rounded-lg bg-muted p-8 md:grid-cols-[auto_1fr_auto] md:p-12">
-            <div className="flex size-14 items-center justify-center rounded-lg bg-red-100 text-primary">
+          <div className="grid grid-cols-1 items-center gap-8 panel-manga-dark bg-muted p-8 md:grid-cols-[auto_1fr_auto] md:p-12">
+            <div className="flex size-14 items-center justify-center text-primary">
               <Calculator size={28} aria-hidden="true" />
             </div>
             <div>
@@ -197,7 +197,7 @@ export default function Page() {
             </div>
             <Link
               href="/herramientas/jr-pass-calculadora"
-              className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-primary-strong"
+              className="btn-primary inline-flex items-center gap-2"
             >
               Abrir la calculadora <ArrowRight size={18} aria-hidden="true" />
             </Link>

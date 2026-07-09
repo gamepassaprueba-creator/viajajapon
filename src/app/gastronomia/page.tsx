@@ -67,7 +67,7 @@ const FEATURES: Feature[] = [
   {
     Icon: UtensilsCrossed,
     color: "text-primary",
-    bg: "bg-red-100",
+    bg: "",
     title: "Pedir sin saber japonés",
     desc: "Comer en Japón sin idioma es mucho más fácil de lo que parece: el sistema está pensado para que no haga falta hablar.",
     bullets: [
@@ -81,7 +81,7 @@ const FEATURES: Feature[] = [
   {
     Icon: Store,
     color: "text-secondary",
-    bg: "bg-blue-100",
+    bg: "",
     title: "Konbini y depachika",
     desc: "Las tiendas de conveniencia y las plantas de alimentación de los grandes almacenes son una despensa de calidad sorprendente.",
     bullets: [
@@ -94,8 +94,8 @@ const FEATURES: Feature[] = [
   },
   {
     Icon: HandPlatter,
-    color: "text-green-600",
-    bg: "bg-green-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Etiqueta en la mesa",
     desc: "Unas pocas costumbres básicas bastan para comer con respeto y sentirte cómodo en cualquier restaurante.",
     bullets: [
@@ -176,7 +176,7 @@ export default function Page() {
               <Link
                 key={p.title}
                 href="/gastronomia/que-comer-en-japon"
-                className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl"
+                className="group overflow-hidden panel-manga-dark bg-surface"
               >
                 <div className="relative h-48">
                   <Image
@@ -206,7 +206,7 @@ export default function Page() {
       {/* Comer bien gastando poco */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="grid grid-cols-1 items-center gap-8 rounded-lg bg-muted p-8 md:grid-cols-2 md:p-12">
+          <div className="grid grid-cols-1 items-center gap-8 panel-manga-dark bg-muted p-8 md:grid-cols-2 md:p-12">
             <div>
               <h2 className="mb-4 text-balance text-3xl font-bold">Comer bien gastando poco</h2>
               <p className="mb-4 text-pretty text-fg-muted">
@@ -234,12 +234,12 @@ export default function Page() {
               </ul>
               <Link
                 href="/gastronomia/comer-barato-konbini-japon"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 font-medium text-white transition-colors hover:bg-primary-strong"
+                className="btn-primary inline-flex items-center gap-2"
               >
                 Cómo comer barato en Japón <ArrowRight size={18} aria-hidden="true" />
               </Link>
             </div>
-            <div className="relative h-72 overflow-hidden rounded-lg md:h-96">
+            <div className="relative h-72 overflow-hidden md:h-96">
               <Image
                 src="/images/tea.jpg"
                 alt="Té y dulces tradicionales servidos a la japonesa"
@@ -263,9 +263,9 @@ export default function Page() {
             {FEATURES.map((c) => (
               <div
                 key={c.title}
-                className="rounded-lg border border-border bg-surface p-6 shadow-md transition-all hover:-translate-y-1"
+                className="panel-manga-dark bg-surface p-6"
               >
-                <div className={`mb-4 flex size-12 items-center justify-center rounded-lg ${c.bg} ${c.color}`}>
+                <div className={`mb-4 flex size-12 items-center justify-center ${c.color}`}>
                   <c.Icon size={24} aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold">{c.title}</h3>
@@ -302,9 +302,9 @@ export default function Page() {
               <Link
                 key={c.href}
                 href={c.href}
-                className="group rounded-lg border border-border bg-surface p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl"
+                className="group panel-manga-dark bg-surface p-6"
               >
-                <div className="mb-4 flex size-12 items-center justify-center rounded-lg bg-amber-100 text-amber-600">
+                <div className="mb-4 flex size-12 items-center justify-center text-[#0a0a0a]">
                   <c.Icon size={24} aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold transition-colors group-hover:text-primary">

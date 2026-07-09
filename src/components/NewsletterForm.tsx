@@ -70,7 +70,7 @@ export function NewsletterForm({
 
   if (status === "ok") {
     return (
-      <p role="status" className="rounded-lg bg-success/10 px-4 py-3 text-center text-sm font-medium text-success">
+      <p role="status" className="border-[2px] border-[#15803d] bg-[#f0fdf4] px-4 py-3 text-center text-sm font-bold text-[#15803d]">
         {msg}
       </p>
     );
@@ -101,7 +101,7 @@ export function NewsletterForm({
           onChange={(e) => setEmail(e.target.value)}
           aria-invalid={status === "error"}
           disabled={status === "loading"}
-          className="flex-1 rounded-lg border border-border bg-surface px-4 py-3 shadow-sm disabled:opacity-60"
+          className="flex-1 border-[2px] border-[#0a0a0a] bg-white px-4 py-3 text-[#0a0a0a] placeholder:text-[#999] outline-none focus:border-[#e1352e] disabled:opacity-60"
         />
         {/* Honeypot: oculto a humanos, los bots lo rellenan. */}
         <input
@@ -117,7 +117,7 @@ export function NewsletterForm({
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-md bg-primary px-6 py-3 font-medium text-white transition-colors hover:bg-primary-strong disabled:opacity-60"
+          className="btn-primary disabled:opacity-60"
         >
           {status === "loading" ? "Enviando…" : buttonLabel}
         </button>

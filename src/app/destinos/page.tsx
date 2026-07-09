@@ -69,7 +69,7 @@ const BASE_FEATURES: BaseFeature[] = [
   {
     Icon: MapPin,
     color: "text-primary",
-    bg: "bg-red-100",
+    bg: "",
     title: "Cerca de una estación grande",
     desc: "Vas a entrar y salir de tu barrio varias veces al día. Dormir a un paseo de una estación importante te ahorra tiempo, cansancio y arrastrar la maleta de más.",
     bullets: [
@@ -83,7 +83,7 @@ const BASE_FEATURES: BaseFeature[] = [
   {
     Icon: TrainFront,
     color: "text-secondary",
-    bg: "bg-blue-100",
+    bg: "",
     title: "Conexión Yamanote o shinkansen",
     desc: "En Tokio, la línea Yamanote conecta los barrios clave. Y si vas a cambiar de ciudad, comprueba que tu base llegue fácil a la estación del shinkansen.",
     bullets: [
@@ -96,8 +96,8 @@ const BASE_FEATURES: BaseFeature[] = [
   },
   {
     Icon: CalendarDays,
-    color: "text-amber-600",
-    bg: "bg-amber-100",
+    color: "text-[#0a0a0a]",
+    bg: "",
     title: "Reserva pronto en temporada alta",
     desc: (
       <>
@@ -170,7 +170,7 @@ export default function Page() {
           />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {CITIES.map((c) => (
-              <Link key={c.title} href={c.href} className="group relative block h-96 overflow-hidden rounded-lg shadow-md">
+              <Link key={c.title} href={c.href} className="group relative block h-96 overflow-hidden">
                 <Image
                   src={c.img}
                   alt={c.alt}
@@ -184,10 +184,10 @@ export default function Page() {
                   <p className="mt-2 text-sm text-gray-200">{c.desc}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {c.tags.map((t) => (
-                      <span key={t} className="rounded-full bg-white/20 px-2 py-1 text-xs backdrop-blur-sm">{t}</span>
+                      <span key={t} className="bg-white/20 px-2 py-1 text-xs backdrop-blur-sm">{t}</span>
                     ))}
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-2 rounded-md bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur-sm transition-colors group-hover:bg-white/25">
+                  <span className="mt-4 inline-flex items-center gap-2 bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur-sm transition-colors group-hover:bg-white/25">
                     {c.cta} <ArrowRight size={16} aria-hidden="true" />
                   </span>
                 </div>
@@ -206,8 +206,8 @@ export default function Page() {
           />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {BASE_FEATURES.map((f) => (
-              <div key={f.title} className="rounded-lg bg-surface p-6 shadow-md transition-all hover:-translate-y-1">
-                <div className={`mb-4 flex size-12 items-center justify-center rounded-lg ${f.bg} ${f.color}`}>
+              <div key={f.title} className="panel-manga-dark bg-surface p-6">
+                <div className={`mb-4 flex size-12 items-center justify-center ${f.color}`}>
                   <f.Icon size={24} aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-xl font-bold">{f.title}</h3>
@@ -236,7 +236,7 @@ export default function Page() {
       {/* Franja final: siguientes pasos */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4">
-          <div className="rounded-lg bg-muted p-8 md:p-12">
+          <div className="panel-manga-dark bg-muted p-8 md:p-12">
             <div className="mb-8 text-center">
               <h2 className="text-balance text-3xl font-bold">¿Ya sabes dónde vas a dormir?</h2>
               <p className="mx-auto mt-4 max-w-2xl text-pretty text-fg-muted">
@@ -249,7 +249,7 @@ export default function Page() {
                 <Link
                   key={s.href}
                   href={s.href}
-                  className="group rounded-lg border border-border bg-surface p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                  className="group panel-manga-dark bg-surface p-6"
                 >
                   <h3 className="font-bold transition-colors group-hover:text-primary">{s.title}</h3>
                   <p className="mt-2 text-sm text-fg-muted">{s.desc}</p>

@@ -74,8 +74,10 @@ function Pill({ label, activo, onClick, count }: { label: string; activo: boolea
       role="tab"
       aria-selected={activo}
       onClick={onClick}
-      className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-        activo ? "bg-primary text-white" : "bg-muted text-fg-muted hover:bg-border"
+      className={`border-[2px] border-[#0a0a0a] px-4 py-2 font-mono text-[10px] font-black uppercase tracking-wide transition-colors ${
+        activo
+          ? "bg-[#0a0a0a] text-white"
+          : "bg-white text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-white"
       }`}
     >
       {label} <span className={activo ? "text-white/80" : "text-fg-muted/70"}>({count})</span>
@@ -87,9 +89,9 @@ function Card({ item }: { item: HubItem }) {
   return (
     <Link
       href={item.href}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-all hover:-translate-y-1 hover:border-primary hover:shadow-lg"
+      className="panel-manga-dark group flex h-full flex-col overflow-hidden bg-white transition-all hover:translate-x-0.5 hover:translate-y-0.5"
     >
-      <div className="relative aspect-[16/9] overflow-hidden bg-muted">
+      <div className="relative aspect-[16/9] overflow-hidden border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5]">
         {item.hero ? (
           <Image
             src={item.hero}
@@ -99,20 +101,18 @@ function Card({ item }: { item: HubItem }) {
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-muted to-surface">
-            <span className="font-serif text-lg font-bold text-fg-muted/50">{item.category}</span>
+          <div className="flex h-full items-center justify-center bg-[#f5f5f5]">
+            <span className="font-mono text-xs font-black uppercase tracking-widest text-[#ccc]">{item.category}</span>
           </div>
         )}
-        <span className={`absolute left-3 top-3 rounded-full px-2.5 py-1 text-xs font-semibold ${item.badge}`}>
-          {item.category}
-        </span>
+        <span className="tag-manga absolute left-0 top-0">{item.category}</span>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-serif text-lg font-bold leading-snug text-fg group-hover:text-primary">{item.title}</h3>
-        <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-fg-muted">{item.excerpt}</p>
-        <p className="nums mt-4 text-xs text-fg-muted">
+        <h3 className="display-md text-base leading-snug text-[#0a0a0a] group-hover:text-[#e1352e]">{item.title}</h3>
+        <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-[#555]">{item.excerpt}</p>
+        <p className="nums mt-4 font-mono text-[10px] text-[#999]">
           {item.date}
-          {item.readingMinutes ? ` · ${item.readingMinutes} min de lectura` : ""}
+          {item.readingMinutes ? ` · ${item.readingMinutes} min` : ""}
         </p>
       </div>
     </Link>

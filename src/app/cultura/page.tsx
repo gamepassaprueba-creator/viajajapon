@@ -122,7 +122,7 @@ export default function Page() {
         <div className="relative mx-auto w-full max-w-7xl px-4 py-16">
           <div className="max-w-2xl">
             <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Cultura", href: "/cultura" }]} className="mb-4" />
-            <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary shadow-sm">
+            <span className="inline-block bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
               Cultura
             </span>
             <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-fg sm:text-5xl">
@@ -148,7 +148,7 @@ export default function Page() {
             {TEMAS.map((t) => (
               <div
                 key={t.title}
-                className={`overflow-hidden rounded-lg border border-border bg-surface shadow-md ${t.href ? "" : "opacity-70"}`}
+                className={`overflow-hidden panel-manga-dark bg-surface ${t.href ? "" : "opacity-70"}`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="flex flex-col justify-center p-6">
@@ -166,7 +166,7 @@ export default function Page() {
                         {t.cta} <ArrowRight size={16} aria-hidden="true" />
                       </Link>
                     ) : (
-                      <span className="mt-4 inline-flex w-fit rounded-full bg-muted px-3 py-1 text-xs font-semibold text-fg-muted">
+                      <span className="mt-4 inline-flex w-fit bg-muted px-3 py-1 text-xs font-semibold text-fg-muted">
                         {t.badge}
                       </span>
                     )}
@@ -196,8 +196,8 @@ export default function Page() {
           />
           <ul className="mx-auto max-w-3xl space-y-6">
             {GESTOS.map((g) => (
-              <li key={g.title} className="flex items-start gap-4 rounded-lg bg-surface p-5 shadow-md">
-                <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+              <li key={g.title} className="flex items-start gap-4 panel-manga-dark bg-surface p-5">
+                <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center text-[#0a0a0a]">
                   <Check size={20} aria-hidden="true" />
                 </div>
                 <div>
@@ -224,7 +224,7 @@ export default function Page() {
           />
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             {SIGUE.map((s) => (
-              <Link key={s.href} href={s.href} className="group relative block h-64 overflow-hidden rounded-lg shadow-md">
+              <Link key={s.href} href={s.href} className="group relative block h-64 overflow-hidden">
                 <Image
                   src={s.img}
                   alt={s.alt}
