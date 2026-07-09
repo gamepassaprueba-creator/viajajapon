@@ -6,11 +6,13 @@
  * Avatares: /public/avatares/{madre,hijo}.webp — retratos estilo anime/acuarela
  * generados por el propio autor (ilustración asistida por IA, declarada en
  * docs/CREDITOS-IMAGENES.md). Para cambiar un avatar, sustituir el archivo.
+ *
+ * variant="dark": sobre fondo oscuro (sección home bg-fg). Por defecto: fondo claro (artículos).
  */
 
 const NOMBRES = { madre: "Mamá", hijo: "Yo" } as const;
 
-function Avatar({ quien }: { quien: "madre" | "hijo" }) {
+function Avatar({ quien, dark }: { quien: "madre" | "hijo"; dark?: boolean }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element -- webp de 12-19 KB ya optimizado a su tamaño final: next/image no aporta nada aquí
     <img
@@ -19,28 +21,41 @@ function Avatar({ quien }: { quien: "madre" | "hijo" }) {
       width={40}
       height={40}
       loading="lazy"
-      className="size-10 shrink-0 rounded-full"
+      className={`size-10 shrink-0 rounded-full border-2 ${dark ? "border-white/20" : "border-border"}`}
     />
   );
 }
 
-export function Charla({ lineas }: { lineas: { quien: "madre" | "hijo"; texto: string }[] }) {
+export function Charla({
+  lineas,
+  variant = "light",
+}: {
+  lineas: { quien: "madre" | "hijo"; texto: string }[];
+  variant?: "light" | "dark";
+}) {
+  const dark = variant === "dark";
   return (
-    <figure className="my-8 space-y-3" role="group" aria-label="Conversación entre la madre y el hijo, autores de la web">
+    <figure className="space-y-4" role="group" aria-label="Conversación entre la madre y el hijo, autores de la web">
       {lineas.map((l, i) => {
         const esMadre = l.quien === "madre";
         return (
           <div key={i} className={`flex items-end gap-3 ${esMadre ? "" : "flex-row-reverse"}`}>
-            <Avatar quien={l.quien} />
+            <Avatar quien={l.quien} dark={dark} />
             <div
-              className={`max-w-[80%] rounded-2xl border px-4 py-2.5 ${
+              className={`max-w-[80%] border-2 px-4 py-3 ${
                 esMadre
-                  ? "rounded-bl-sm border-border bg-muted"
-                  : "rounded-br-sm border-primary/20 bg-primary/5"
+                  ? dark
+                    ? "border-white/20 bg-white/5"
+                    : "border-border bg-muted"
+                  : dark
+                    ? "border-primary/60 bg-primary/10"
+                    : "border-primary/30 bg-primary/5"
               }`}
             >
-              <p className="kicker text-fg-muted">{NOMBRES[l.quien]}</p>
-              <p className="mt-0.5 leading-relaxed text-fg">{l.texto}</p>
+              <p className={`font-mono text-[10px] font-bold uppercase tracking-widest ${dark ? "text-white/40" : "text-fg-muted"}`}>
+                {NOMBRES[l.quien]}
+              </p>
+              <p className={`mt-1 leading-relaxed ${dark ? "text-white/90" : "text-fg"}`}>{l.texto}</p>
             </div>
           </div>
         );

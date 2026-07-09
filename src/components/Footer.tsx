@@ -37,35 +37,42 @@ const COLS = [
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 pt-16 pb-8 text-white">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Logo tono="claro" className="mb-4" />
-            <p className="mb-6 text-gray-400">
-              Tu guía completa para viajar a Japón: consejos, rutas, cultura y todo lo que necesitas — con datos
-              de este año.
+    <footer className="border-t-2 border-fg bg-fg text-white">
+      <div className="mx-auto max-w-7xl">
+        {/* Cabecera del footer — como portada de cierre de revista */}
+        <div className="border-b-2 border-white/20 px-6 py-4">
+          <Logo tono="claro" />
+        </div>
+        {/* Grid de columnas con divisores */}
+        <div className="grid grid-cols-1 divide-y-2 divide-white/10 sm:grid-cols-2 sm:divide-x-2 sm:divide-y-0 lg:grid-cols-4">
+          <div className="p-6 lg:p-8">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">La guía</p>
+            <p className="text-sm leading-relaxed text-white/50">
+              La mayor guía en español para planificar tu viaje a Japón. Datos reales, experiencia propia, sin relleno.
             </p>
           </div>
           {COLS.map((col) => (
-            <div key={col.title}>
-              <h3 className="mb-4 text-lg font-bold">{col.title}</h3>
+            <div key={col.title} className="p-6 lg:p-8">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 mb-3">{col.title}</p>
               <ul className="space-y-2">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <Link href={l.href} className="text-gray-400 transition-colors hover:text-white">{l.label}</Link>
+                    <Link href={l.href} className="text-sm text-white/60 transition-colors hover:text-white">{l.label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-          <p>© 2026 ViajaJapón.com · Algunas recomendaciones pueden contener enlaces de afiliado. Verifica precios y normas en la fuente oficial antes de viajar.</p>
-          <div className="mt-4 flex justify-center gap-4">
-            <Link href="/aviso-legal" className="hover:text-white">Aviso legal</Link>
-            <Link href="/privacidad" className="hover:text-white">Privacidad</Link>
-            <Link href="/cookies" className="hover:text-white">Cookies</Link>
+        {/* Pie legal */}
+        <div className="border-t-2 border-white/10 px-6 py-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <p className="font-mono text-[10px] text-white/30">© 2026 ViajaJapón.com · Algunos enlaces son de afiliado. Verifica precios en la fuente oficial.</p>
+            <div className="flex gap-4">
+              <Link href="/aviso-legal" className="font-mono text-[10px] text-white/30 hover:text-white">Aviso legal</Link>
+              <Link href="/privacidad" className="font-mono text-[10px] text-white/30 hover:text-white">Privacidad</Link>
+              <Link href="/cookies" className="font-mono text-[10px] text-white/30 hover:text-white">Cookies</Link>
+            </div>
           </div>
         </div>
       </div>

@@ -3,8 +3,9 @@ import Link from "next/link";
 import heroFuji from "../../public/images/hero-fuji.jpg";
 import {
   Search, MapPin, ArrowRight, Check, Tag, Train, Wifi, Coins, Plug, Luggage, CalendarDays,
-  Flower2, Utensils, Sparkles, Gamepad2, Clapperboard, Mountain, Trees, Route, Landmark,
+  Route, Landmark, Utensils,
 } from "lucide-react";
+import { Charla } from "@/components/Charla";
 import type { Metadata } from "next";
 import { getYenRate } from "@/lib/fx";
 import { getArticles } from "@/lib/content";
@@ -56,17 +57,6 @@ const DISHES = [
   { img: "/images/yatai.jpg", title: "Comida callejera", desc: "Takoyaki, okonomiyaki y más en los puestos (yatai).", lugar: "Dotonbori, Osaka", precio: "500–1.200¥" },
 ];
 
-const EXPERIENCIAS = [
-  { Icon: Utensils, title: "Clases de cocina", desc: "Aprende sushi o ramen con chefs locales." },
-  { Icon: Sparkles, title: "Ceremonia del té", desc: "La tradición milenaria del matcha." },
-  { Icon: MapPin, title: "Tours gastronómicos", desc: "Mercados y barrios de restaurantes." },
-];
-
-const ENTRET = [
-  { img: "/images/akihabara.jpg", title: "Japón friki (otaku)", desc: "Manga, anime, videojuegos y cultura pop.", href: "/cultura/japon-friki-guia-otaku", items: [{ Icon: Gamepad2, name: "Akihabara", note: "Barrio electrónico y otaku." }, { Icon: Clapperboard, name: "Museo Ghibli", note: "Las obras del estudio." }] },
-  { img: "/images/tokio.jpg", title: "Parques temáticos", desc: "Algunos de los mejores del mundo.", href: "/destinos/parques-tematicos-japon", items: [{ Icon: Sparkles, name: "Tokyo Disney / DisneySea", note: "DisneySea es exclusivo de Japón." }, { Icon: Clapperboard, name: "Universal Studios", note: "Super Nintendo World." }] },
-  { img: "/images/bamboo.jpg", title: "Naturaleza y paisajes", desc: "Más allá de las ciudades.", items: [{ Icon: Mountain, name: "Monte Fuji", note: "El icónico volcán." }, { Icon: Trees, name: "Bambú de Arashiyama", note: "Un paseo mágico en Kioto." }] },
-];
 
 export default async function Home() {
   const { rate } = await getYenRate();
@@ -343,6 +333,43 @@ export default async function Home() {
           </div>
         </section>
       )}
+
+      {/* ═══ CONVERSACIÓN MADRE-HIJO — el diferencial humano ═══
+          Solo frases reales del viaje de diciembre 2025. Ver docs/EXPERIENCIAS-DOCUMENTADAS.md */}
+      <section className="border-b-2 border-fg bg-fg py-0">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-center justify-between border-b-2 border-white/20 px-6 py-3">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-white/50">De nuestro viaje · diciembre 2025</span>
+            <Link href="/sobre-nosotros" className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-white/50 hover:text-primary">Quiénes somos →</Link>
+          </div>
+          {/* Grid asimétrico: cita grande izquierda | dos conversaciones derecha */}
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            {/* Cita destacada — ocupa más espacio */}
+            <div className="flex flex-col justify-center border-b-2 border-white/20 p-8 lg:col-span-5 lg:border-b-0 lg:border-r-2 lg:p-10">
+              <p className="text-display-lg text-3xl leading-tight text-white sm:text-4xl">
+                &ldquo;El Kiyomizu-dera de noche, iluminado. De todo el viaje, me quedo con eso.&rdquo;
+              </p>
+              <p className="mt-6 font-mono text-xs font-bold uppercase tracking-widest text-primary">— Mamá, 70 años, Kioto</p>
+              <p className="mt-2 text-sm text-white/40">Diciembre de 2025 · primer viaje a Japón</p>
+            </div>
+            {/* Dos conversaciones reales */}
+            <div className="flex flex-col divide-y-2 divide-white/20 lg:col-span-7">
+              <div className="p-6 lg:p-8">
+                <Charla variant="dark" lineas={[
+                  { quien: "madre", texto: "El Kiyomizu-dera de noche, iluminado. De todo el viaje, me quedo con eso." },
+                  { quien: "hijo", texto: "Y el Fushimi Inari te lo subiste hasta arriba del todo, con 70 años recién cumplidos. Así que lo de «madruga y sube» va en serio: si pudo ella, puedes tú." },
+                ]} />
+              </div>
+              <div className="p-6 lg:p-8">
+                <Charla variant="dark" lineas={[
+                  { quien: "hijo", texto: "En nuestros 15 días comimos ramen literalmente todos los días, y nos metíamos en cualquier sitio sin mirar reseñas." },
+                  { quien: "madre", texto: "Porque cualquiera estaba rico." },
+                ]} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ═══ CULTURA + GASTRONOMÍA — fila compacta ═══ */}
       <section className="border-b-2 border-fg bg-surface py-0">
