@@ -54,8 +54,20 @@ export function articleLd(opts: {
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     image: opts.image ? `${SITE.url}${opts.image}` : undefined,
-    author: { "@type": "Person", name: SITE.author.name, url: SITE.author.url },
-    publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    author: {
+      "@type": "Person",
+      name: SITE.author.name,
+      url: SITE.author.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      url: SITE.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE.url}/logo.png`,
+      },
+    },
     mainEntityOfPage: `${SITE.url}${opts.slug}`,
   };
 }

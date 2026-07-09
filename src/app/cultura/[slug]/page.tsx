@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { getArticleSlugs } from "@/lib/content";
+import { getArticle, getArticleSlugs } from "@/lib/content";
 import { Article, articleMetadata } from "@/components/Article";
+import { breadcrumbLd } from "@/lib/jsonld";
 
 const PILLAR = "cultura";
 
@@ -15,5 +16,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return <Article pillar={PILLAR} slug={slug} />;
+  const article = getArticle(PILLAR, slug);
+  const extraJsonLd = article
+    ? [
+        breadcrumbLd([
+          { name: "Inicio", url: "/" },
+          { name: "Cultura", url: "/cultura" },
+          { name: article.meta.title, url: `/${PILLAR}/${slug}` },
+        ]),
+      ]
+    : [];
+  return <Article pillar={PILLAR} slug={slug} extraJsonLd={extraJsonLd} />;
 }

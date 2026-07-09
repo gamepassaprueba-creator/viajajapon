@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getArticle, getArticleSlugs, extractItinerarySteps } from "@/lib/content";
 import { Article, articleMetadata } from "@/components/Article";
-import { howToLd } from "@/lib/jsonld";
+import { howToLd, breadcrumbLd } from "@/lib/jsonld";
 
 const PILLAR = "itinerarios";
 
@@ -18,15 +18,23 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const article = getArticle(PILLAR, slug);
   const steps = article ? extractItinerarySteps(article.content) : [];
-  const extraJsonLd =
-    article && steps.length > 0
-      ? [
-          howToLd({
-            name: article.meta.title,
-            description: article.meta.description,
-            steps: steps.map((s) => ({ name: `Día ${s.day} · ${s.title} (${s.city})`, text: s.text })),
-          }),
-        ]
-      : [];
+  const extraJsonLd = article
+    ? [
+        breadcrumbLd([
+          { name: "Inicio", url: "/" },
+          { name: "Itinerarios", url: "/itinerarios" },
+          { name: article.meta.title, url: `/${PILLAR}/${slug}` },
+        ]),
+        ...(steps.length > 0
+          ? [
+              howToLd({
+                name: article.meta.title,
+                description: article.meta.description,
+                steps: steps.map((s) => ({ name: `Día ${s.day} · ${s.title} (${s.city})`, text: s.text })),
+              }),
+            ]
+          : []),
+      ]
+    : [];
   return <Article pillar={PILLAR} slug={slug} extraJsonLd={extraJsonLd} />;
 }

@@ -44,6 +44,7 @@ import { AffiliateBox } from "./AffiliateBox";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
 import { JsonLd } from "./JsonLd";
+import { RelatedArticles } from "./RelatedArticles";
 import { faqLd } from "@/lib/jsonld";
 
 /** Id de ancla a partir del texto del encabezado (sin tildes, kebab-case). */
@@ -691,4 +692,5 @@ export const mdxComponents = {
   Acordeon,
   DoDont,
   CTABand,
+  RelatedArticles,
 };
