@@ -71,34 +71,115 @@ h1, h2, h3 { text-wrap: balance; }
 .font-jp { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, system-ui, sans-serif; }
 .kicker { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; font-family: var(--font-mono); }
 
-/* Utilidades de display para titulares impactantes */
+/* ── Utilidades de display ── */
 .text-display { font-family: var(--font-display); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; }
+.text-display-lg { font-family: var(--font-display); font-weight: 900; line-height: 0.92; letter-spacing: -0.04em; }
 
-/* Borde de acento rojo izquierdo — sello de manga/editorial JP */
-.border-accent-left { border-left: 4px solid var(--color-primary); padding-left: 1rem; }
+/* Borde rojo izquierdo — marca editorial JP */
+.border-accent-left { border-left: 3px solid var(--color-primary); padding-left: 0.875rem; }
 
-/* Panel de manga: borde negro grueso + sombra sólida offset */
-.panel-manga {
+/* ── Sistema de paneles editorial ── */
+/* Panel principal: borde negro 2px, sombra offset sólida negra */
+.panel {
   border: 2px solid var(--color-fg);
-  box-shadow: 4px 4px 0 var(--color-fg);
+  box-shadow: 5px 5px 0 var(--color-fg);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
-.panel-manga-sm {
-  border: 2px solid var(--color-border);
-  box-shadow: 3px 3px 0 var(--color-primary);
+.panel:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--color-fg);
+}
+/* Panel secundario: borde rojo sutil */
+.panel-red {
+  border: 2px solid var(--color-primary);
+  box-shadow: 4px 4px 0 var(--color-primary);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.panel-red:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-primary);
 }
 
-/* Tag/badge estilo manga */
-.tag-manga {
-  display: inline-block;
-  background: var(--color-primary);
-  color: #fff;
+/* ── Línea divisoria editorial ── */
+.divider-editorial {
+  border: none;
+  border-top: 2px solid var(--color-fg);
+  margin: 0;
+}
+
+/* ── Número de índice grande — estilo BRUTUS/Monocle ── */
+.index-number {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+/* ── Tag sencillo editorial ── */
+.tag-editorial {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.65rem;
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+  letter-spacing: 0.12em;
+  padding: 0.25rem 0.6rem;
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+.tag-editorial-red {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.25rem 0.6rem;
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* Botón editorial sólido */
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-fg);
+  box-shadow: 4px 4px 0 var(--color-primary);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.btn-editorial:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--color-primary);
+}
+.btn-editorial-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-fg);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-fg);
+  transition: background 0.12s, color 0.12s;
+}
+.btn-editorial-outline:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
 }
 
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
