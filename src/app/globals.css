@@ -1,54 +1,37 @@
 @import "tailwindcss";
 
-/* ViajaJapón — tokens (dirección "moderno anime/manga": tinta cálida, rojo torii vívido,
-   índigo eléctrico de acento, M PLUS 1p + JetBrains Mono). Sustituye la paleta genérica
-   Poppins/gris anterior. Rojo #E1352E elegido para mantener ≈4.7:1 con texto blanco
-   (similar al #d32f2f que sustituye, que ya estaba ajustado para WCAG AA). */
+/* ═══════════════════════════════════════════════════════════
+   ViajaJapón — Design System v3
+   Dirección: magazine moderno + guiños manga
+   Paleta: blanco puro · negro · rojo torii
+   Tipografía: M PLUS 1p (display 900) + JetBrains Mono (datos)
+   ═══════════════════════════════════════════════════════════ */
+
 @theme {
-  --color-bg: #fafafb;
-  --color-surface: #ffffff;
-  --color-fg: #16181d;
-  --color-fg-muted: #545b6b;
-  --color-primary: #e1352e;
+  /* Paleta base: blanco puro, negro intenso, rojo torii */
+  --color-bg:           #ffffff;
+  --color-surface:      #f5f5f5;
+  --color-fg:           #0a0a0a;
+  --color-fg-muted:     #555555;
+  --color-primary:      #e1352e;
   --color-primary-strong: #b8271f;
-  --color-secondary: #2d4fe0;
-  --color-border: #e3e5ec;
-  --color-muted: #f0f1f5;
-  --color-success: #15803d;
-  --color-danger: #e1352e;
-  --color-ring: #2d4fe0;
+  --color-secondary:    #0a0a0a;
+  --color-border:       #e0e0e0;
+  --color-muted:        #f5f5f5;
+  --color-success:      #15803d;
+  --color-danger:       #e1352e;
+  --color-ring:         #e1352e;
 
-  --font-sans: var(--font-mplus), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-mplus), system-ui, sans-serif;
+  --font-sans:    var(--font-mplus), system-ui, -apple-system, sans-serif;
+  --font-serif:   var(--font-mplus), system-ui, sans-serif;
   --font-display: var(--font-mplus), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-mono:    var(--font-jetbrains), ui-monospace, monospace;
 }
 
-/* Modo oscuro real (antes solo documentado, nunca implementado). Fuera de @theme y sin
-   @layer a propósito: las reglas sin capa ganan siempre a @theme, así que basta con
-   redefinir aquí las mismas custom properties para que todas las utilidades (bg-bg,
-   text-fg, etc.) cambien de valor automáticamente, sin tocar ninguna clase ni añadir
-   variantes dark: por todo el código. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #131418;
-    --color-surface: #1b1d23;
-    --color-fg: #f1f2f6;
-    --color-fg-muted: #a8afc2;
-    --color-primary: #ff5b4e;
-    --color-primary-strong: #ff7a6e;
-    --color-secondary: #6e8cff;
-    --color-border: #2b2e37;
-    --color-muted: #1f212a;
-    --color-success: #3fa873;
-    --color-danger: #ff5b4e;
-    --color-ring: #6e8cff;
-  }
-}
-
+/* Siempre light — el diseño gestiona sus propios fondos oscuros */
 html {
   -webkit-text-size-adjust: 100%;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 a, button, summary, label, input, select, [role="button"] {
@@ -66,126 +49,184 @@ body {
 p { text-wrap: pretty; }
 h1, h2, h3 { text-wrap: balance; }
 
-.nums { font-variant-numeric: tabular-nums; }
+/* ── Utilidades tipográficas ── */
+.nums       { font-variant-numeric: tabular-nums; }
 .font-display { font-family: var(--font-display); }
-.font-jp { font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, system-ui, sans-serif; }
-.kicker { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; font-family: var(--font-mono); }
+.font-jp    { font-family: "Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,system-ui,sans-serif; }
+.kicker     { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.7rem; font-weight: 700; font-family: var(--font-mono); }
 
-/* ── Utilidades de display ── */
-.text-display { font-family: var(--font-display); font-weight: 900; line-height: 1.0; letter-spacing: -0.03em; }
-.text-display-lg { font-family: var(--font-display); font-weight: 900; line-height: 0.92; letter-spacing: -0.04em; }
+/* Titulares de display — peso máximo, tracking comprimido */
+.display-xl  { font-family: var(--font-display); font-weight: 900; line-height: 0.9;  letter-spacing: -0.04em; }
+.display-lg  { font-family: var(--font-display); font-weight: 900; line-height: 0.95; letter-spacing: -0.03em; }
+.display-md  { font-family: var(--font-display); font-weight: 900; line-height: 1.0;  letter-spacing: -0.025em; }
 
-/* Borde rojo izquierdo — marca editorial JP */
-.border-accent-left { border-left: 3px solid var(--color-primary); padding-left: 0.875rem; }
+/* ── Sistema de viñetas manga ── */
 
-/* ── Sistema de paneles editorial ── */
-/* Panel principal: borde negro 2px, sombra offset sólida negra */
-.panel {
-  border: 2px solid var(--color-fg);
-  box-shadow: 5px 5px 0 var(--color-fg);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+/* Contenedor de viñeta: borde negro grueso, sin radius */
+.panel-manga {
+  border: 3px solid #0a0a0a;
+  overflow: hidden;
 }
-.panel:hover {
+
+/* Viñeta con sombra offset roja — para tarjetas destacadas */
+.panel-manga-red {
+  border: 3px solid #0a0a0a;
+  box-shadow: 5px 5px 0 #e1352e;
+  overflow: hidden;
+  transition: box-shadow 0.12s, transform 0.12s;
+}
+.panel-manga-red:hover {
   transform: translate(2px, 2px);
-  box-shadow: 3px 3px 0 var(--color-fg);
+  box-shadow: 3px 3px 0 #e1352e;
 }
-/* Panel secundario: borde rojo sutil */
-.panel-red {
-  border: 2px solid var(--color-primary);
-  box-shadow: 4px 4px 0 var(--color-primary);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+
+/* Viñeta con sombra offset negra — para tarjetas normales */
+.panel-manga-dark {
+  border: 3px solid #0a0a0a;
+  box-shadow: 4px 4px 0 #0a0a0a;
+  overflow: hidden;
+  transition: box-shadow 0.12s, transform 0.12s;
 }
-.panel-red:hover {
+.panel-manga-dark:hover {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--color-primary);
+  box-shadow: 2px 2px 0 #0a0a0a;
 }
 
-/* ── Línea divisoria editorial ── */
-.divider-editorial {
-  border: none;
-  border-top: 2px solid var(--color-fg);
-  margin: 0;
+/* ── Globo de texto manga ── */
+.globo {
+  position: relative;
+  background: #ffffff;
+  border: 2.5px solid #0a0a0a;
+  border-radius: 18px;
+  padding: 0.75rem 1rem;
+}
+/* Cola del globo izquierda (personaje izquierdo) */
+.globo-left::before {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 18px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 16px solid #0a0a0a;
+}
+.globo-left::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 13px solid #ffffff;
+}
+/* Cola del globo derecha (personaje derecho) */
+.globo-right::before {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  right: 18px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 16px solid #0a0a0a;
+}
+.globo-right::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 13px solid #ffffff;
 }
 
-/* ── Número de índice grande — estilo BRUTUS/Monocle ── */
-.index-number {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-}
-
-/* ── Tag sencillo editorial ── */
-.tag-editorial {
+/* ── Etiquetas ── */
+.tag-manga {
   display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 0.25rem 0.6rem;
-  background: var(--color-fg);
-  color: var(--color-bg);
-}
-.tag-editorial-red {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 0.25rem 0.6rem;
-  background: var(--color-primary);
+  background: #e1352e;
   color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid #0a0a0a;
+}
+.tag-dark {
+  display: inline-block;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.6rem;
 }
 
-/* Botón editorial sólido */
-.btn-editorial {
+/* ── Botones ── */
+.btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--color-fg);
-  color: var(--color-bg);
+  background: #e1352e;
+  color: #fff;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--color-fg);
-  box-shadow: 4px 4px 0 var(--color-primary);
-  transition: transform 0.12s, box-shadow 0.12s;
+  letter-spacing: 0.08em;
+  padding: 0.8rem 1.5rem;
+  border: 2.5px solid #0a0a0a;
+  box-shadow: 4px 4px 0 #0a0a0a;
+  transition: transform 0.1s, box-shadow 0.1s;
 }
-.btn-editorial:hover {
+.btn-primary:hover {
   transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 var(--color-primary);
+  box-shadow: 2px 2px 0 #0a0a0a;
 }
-.btn-editorial-outline {
+.btn-outline {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: transparent;
-  color: var(--color-fg);
+  background: #ffffff;
+  color: #0a0a0a;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--color-fg);
-  transition: background 0.12s, color 0.12s;
+  letter-spacing: 0.08em;
+  padding: 0.8rem 1.5rem;
+  border: 2.5px solid #0a0a0a;
+  box-shadow: 4px 4px 0 #e1352e;
+  transition: transform 0.1s, box-shadow 0.1s;
 }
-.btn-editorial-outline:hover {
-  background: var(--color-fg);
-  color: var(--color-bg);
+.btn-outline:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #e1352e;
+}
+
+/* ── Líneas divisorias ── */
+.rule-manga { border: none; border-top: 3px solid #0a0a0a; }
+
+/* ── Datos en vivo (estilo HUD) ── */
+.data-chip {
+  border: 2px solid #0a0a0a;
+  padding: 0.6rem 0.875rem;
+  background: #ffffff;
 }
 
 :where(a, button, input, select, textarea, [tabindex]):focus-visible {
   outline: 2px solid var(--color-ring);
   outline-offset: 2px;
-  border-radius: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,10 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroFuji from "../../public/images/hero-fuji.jpg";
-import {
-  Search, MapPin, ArrowRight, Check, Tag, Train, Wifi, Coins, Plug, Luggage, CalendarDays,
-  Route, Landmark, Utensils,
-} from "lucide-react";
+import { Search, MapPin, ArrowRight, Check, Train, Wifi, Coins, Plug, Luggage, CalendarDays, Route, Landmark, Utensils } from "lucide-react";
 import { Charla } from "@/components/Charla";
 import type { Metadata } from "next";
 import { getYenRate } from "@/lib/fx";
@@ -16,241 +13,264 @@ export const revalidate = 21600;
 
 export const metadata: Metadata = {
   title: { absolute: "ViajaJapón — Guía para viajar a Japón en 2026 (JR Pass, presupuesto y consejos)" },
-  description:
-    "Planifica tu viaje a Japón en 2026: calculadora del JR Pass, presupuesto en euros, reservas, transporte y gastronomía. Datos actualizados y experiencia real.",
+  description: "Planifica tu viaje a Japón en 2026: calculadora del JR Pass, presupuesto en euros, reservas, transporte y gastronomía. Datos actualizados y experiencia real.",
   alternates: { canonical: "/" },
 };
 
 const ITIN = [
-  { img: "/images/tokio.jpg", badge: "7 días", title: "Esencia de Japón", ruta: "Tokio, Kioto, Nara", href: "/itinerarios/itinerario-japon-7-dias" },
-  { img: "/images/kioto.jpg", badge: "10 días", title: "Ruta clásica", ruta: "Tokio, Hakone, Kioto, Osaka", href: "/itinerarios/itinerario-japon-10-dias" },
-  { img: "/images/osaka.jpg", badge: "15 días", title: "Japón profundo", ruta: "+ Hiroshima, Kanazawa", href: "/itinerarios/itinerario-japon-15-dias" },
-  { img: "/images/hero-fuji.jpg", badge: "1 mes", title: "Japón completo", ruta: "Tokio, Kansai, Hiroshima y los Alpes", href: "/itinerarios/itinerario-japon-1-mes" },
-];
-
-// Accesos rápidos (patrón móvil del mockup "Guía de Viaje"): atajos a las secciones clave.
-const ACCESOS = [
-  { label: "Itinerarios", href: "/itinerarios", Icon: Route, bg: "bg-red-100", color: "text-primary" },
-  { label: "Preparativos", href: "/logistica/preparativos-viaje-japon", Icon: Luggage, bg: "bg-blue-100", color: "text-secondary" },
-  { label: "Destinos", href: "/destinos", Icon: MapPin, bg: "bg-green-100", color: "text-green-600" },
-  { label: "Comida", href: "/gastronomia", Icon: Utensils, bg: "bg-amber-100", color: "text-amber-600" },
-  { label: "Transporte", href: "/logistica/jr-pass-2026", Icon: Train, bg: "bg-purple-100", color: "text-purple-600" },
-  { label: "Cultura", href: "/cultura", Icon: Landmark, bg: "bg-pink-100", color: "text-pink-600" },
+  { img: "/images/tokio.jpg",    badge: "7 días",  title: "Esencia de Japón",  ruta: "Tokio · Kioto · Nara",            href: "/itinerarios/itinerario-japon-7-dias" },
+  { img: "/images/kioto.jpg",    badge: "10 días", title: "Ruta clásica",      ruta: "Tokio · Hakone · Kioto · Osaka",  href: "/itinerarios/itinerario-japon-10-dias" },
+  { img: "/images/osaka.jpg",    badge: "15 días", title: "Japón profundo",    ruta: "+ Hiroshima · Kanazawa",          href: "/itinerarios/itinerario-japon-15-dias" },
+  { img: "/images/hero-fuji.jpg",badge: "1 mes",   title: "Japón completo",    ruta: "Tokio · Kansai · Alpes · más",    href: "/itinerarios/itinerario-japon-1-mes" },
 ];
 
 const DEST = [
-  { img: "/images/tokio.jpg", title: "Tokio", desc: "Tradición y vanguardia en una experiencia única.", tags: ["Shibuya", "Shinjuku", "Akihabara", "Asakusa"], href: "/destinos/que-ver-en-tokio" },
-  { img: "/images/kioto.jpg", title: "Kioto", desc: "El corazón cultural, con miles de templos y santuarios.", tags: ["Fushimi Inari", "Kinkaku-ji", "Arashiyama", "Gion"], href: "/destinos/que-ver-en-kioto" },
-  { img: "/images/osaka.jpg", title: "Osaka", desc: "La ciudad del buen comer y el ambiente desenfadado.", tags: ["Dotonbori", "Kuromon", "Castillo", "Universal"], href: "/destinos/que-ver-en-osaka" },
+  { img: "/images/tokio.jpg", title: "Tokio",  desc: "La megalópolis que nunca duerme.",           tags: ["Shibuya", "Shinjuku", "Akihabara", "Asakusa"],         href: "/destinos/que-ver-en-tokio" },
+  { img: "/images/kioto.jpg", title: "Kioto",  desc: "Mil templos, geishas y el Japón eterno.",    tags: ["Fushimi Inari", "Kinkaku-ji", "Arashiyama", "Gion"],   href: "/destinos/que-ver-en-kioto" },
+  { img: "/images/osaka.jpg", title: "Osaka",  desc: "Dotonbori, comida y buen rollo.",            tags: ["Dotonbori", "Namba", "Castillo", "USJ"],               href: "/destinos/que-ver-en-osaka" },
 ];
 
-const CULTURA = [
-  { img: "/images/festival.jpg", title: "Festivales (Matsuri)", desc: "Celebraciones llenas de color y tradición durante todo el año.", bullets: ["Gion Matsuri (Kioto) — julio", "Tanabata — julio", "Obon — agosto"], href: "/cultura" },
-  { img: "/images/tea.jpg", title: "Ceremonia del té y etiqueta", desc: "Costumbres básicas para disfrutar Japón con respeto.", bullets: ["Saludos y reverencias", "Descalzarse en interiores", "Etiqueta en la mesa"], href: "/cultura/etiqueta-y-costumbres-japon" },
-  { img: "/images/kimono.jpg", title: "Alquiler de kimono", desc: "Pasea por las calles históricas con un kimono tradicional.", bullets: ["Por horas o día completo", "Incluye peinado y accesorios", "Sesión fotográfica opcional"], href: "/cultura" },
-  { img: "/images/bamboo.jpg", title: "Ryokan y onsen", desc: "Alójate a la japonesa: tatami, futón y baños termales.", bullets: ["Tatami y futón", "Baños termales (onsen)", "Cena kaiseki"], href: "/cultura/onsen-guia-practica" },
+const ACCESOS = [
+  { label: "Itinerarios",  href: "/itinerarios",                       Icon: Route,      color: "text-primary" },
+  { label: "Preparativos", href: "/logistica/preparativos-viaje-japon",Icon: Luggage,    color: "text-[#0a0a0a]" },
+  { label: "Destinos",     href: "/destinos",                          Icon: MapPin,     color: "text-[#0a0a0a]" },
+  { label: "Comida",       href: "/gastronomia",                       Icon: Utensils,   color: "text-[#0a0a0a]" },
+  { label: "Transporte",   href: "/logistica/jr-pass-2026",            Icon: Train,      color: "text-primary" },
+  { label: "Cultura",      href: "/cultura",                           Icon: Landmark,   color: "text-[#0a0a0a]" },
 ];
-
-const DISHES = [
-  { img: "/images/sushi.jpg", title: "Sushi", desc: "El clásico, en su país de origen.", lugar: "Tsukiji, Tokio", precio: "desde 1.000¥" },
-  { img: "/images/ramen.jpg", title: "Ramen", desc: "Sopa de fideos; cada región, su versión.", lugar: "Por todo Japón", precio: "800–1.500¥" },
-  { img: "/images/yatai.jpg", title: "Comida callejera", desc: "Takoyaki, okonomiyaki y más en los puestos (yatai).", lugar: "Dotonbori, Osaka", precio: "500–1.200¥" },
-];
-
 
 export default async function Home() {
   const { rate } = await getYenRate();
   const month = new Date().getMonth();
   const season =
-    month >= 2 && month <= 4
-      ? "Primavera · temporada de sakura"
-      : month >= 5 && month <= 7
-        ? "Verano · festivales (matsuri)"
-        : month >= 8 && month <= 10
-          ? "Otoño · momiji (hojas rojas)"
-          : "Invierno · onsen y nieve";
+    month >= 2 && month <= 4 ? "Primavera · sakura" :
+    month >= 5 && month <= 7 ? "Verano · matsuri" :
+    month >= 8 && month <= 10 ? "Otoño · momiji" : "Invierno · onsen";
 
   const news = getArticles("blog");
   const featured = news[0];
-  const rest = news.slice(1, 5);
 
   const PRACT = [
-    { Icon: Train, color: "text-primary", bg: "bg-red-100", title: "JR Pass", desc: "Tren ilimitado, incluido el Shinkansen. Calcula si te sale a cuenta.", bullets: ["Para 7, 14 o 21 días", "Cómpralo antes de llegar", `Desde ¥50.000 (~${Math.round(50000 / rate)}€)`], href: "/herramientas/jr-pass-calculadora", link: "Calcular en la calculadora" },
-    { Icon: Wifi, color: "text-secondary", bg: "bg-blue-100", title: "Internet en Japón", desc: "Conéctate desde que aterrizas.", bullets: ["eSIM (Holafly, Airalo)", "Pocket WiFi", "WiFi gratis en muchos sitios"], href: "/logistica/esim-japon", link: "Comparativa de eSIM" },
-    { Icon: Coins, color: "text-green-600", bg: "bg-green-100", title: "Cambio de divisas", desc: "Euros a yenes y cómo pagar en Japón.", bullets: [`1€ ≈ ¥${rate} (en vivo)`, "Dónde cambiar", "Tarjetas y comisiones"], href: "/cambio-yen-euro", link: "Ver el cambio del yen" },
-    { Icon: Plug, color: "text-purple-600", bg: "bg-purple-100", title: "Enchufes y electricidad", desc: "Carga tus dispositivos sin problemas.", bullets: ["Tipo A (dos clavijas planas)", "Voltaje 100V", "Adaptadores recomendados"], href: "/logistica", link: "Más información" },
-    { Icon: Luggage, color: "text-amber-600", bg: "bg-amber-100", title: "Qué llevar en la maleta", desc: "Imprescindibles según la temporada.", bullets: ["Checklist interactiva", "Ropa por temporada", "Qué no deja pasar la aduana"], href: "/logistica/que-llevar-maleta-japon", link: "Lista completa" },
-    { Icon: CalendarDays, color: "text-teal-600", bg: "bg-teal-100", title: "Mejor época para viajar", desc: "El mejor momento según tu plan.", bullets: ["Primavera: sakura (mar–abr)", "Otoño: momiji (nov)", "Temporadas altas y bajas"], href: "/logistica/mejor-epoca-viajar-japon", link: "Guía por temporadas" },
+    { Icon: Train,       color: "text-primary",    title: "JR Pass",             desc: "Tren ilimitado incluyendo el Shinkansen.",  bullets: ["Para 7, 14 o 21 días", "Cómpralo antes de salir", `Desde ¥50.000 (~${Math.round(50000/rate)}€)`], href: "/herramientas/jr-pass-calculadora", link: "Calcular" },
+    { Icon: Wifi,        color: "text-[#2d4fe0]",  title: "Internet",            desc: "Conectado desde que aterrizas.",            bullets: ["eSIM Holafly o Airalo", "Pocket WiFi", "WiFi gratis en muchos sitios"], href: "/logistica/esim-japon", link: "Comparar eSIM" },
+    { Icon: Coins,       color: "text-[#15803d]",  title: "Dinero",              desc: "Euros a yenes y cómo pagar bien.",          bullets: [`1€ ≈ ¥${rate} ahora`, "Tarjeta sin comisiones (Revolut)", "Tax-free compras"], href: "/cambio-yen-euro", link: "Ver cambio" },
+    { Icon: Luggage,     color: "text-[#c07c00]",  title: "Maleta",              desc: "Lo que no puede faltarte.",                bullets: ["Checklist interactiva", "Ropa por temporada", "Qué no pasa la aduana"], href: "/logistica/que-llevar-maleta-japon", link: "Ver lista" },
+    { Icon: CalendarDays,color: "text-[#7c3aed]",  title: "Cuándo ir",           desc: "La mejor época para cada plan.",            bullets: ["Sakura: mar–abr", "Otoño momiji: nov", "Evitar Golden Week"], href: "/logistica/mejor-epoca-viajar-japon", link: "Ver guía" },
+    { Icon: Plug,        color: "text-[#0a0a0a]",  title: "Enchufes",            desc: "Tipo A, dos clavijas planas, 100V.",         bullets: ["Compatible con España", "Sin adaptador si es solo carga", "Voltaje 100V — verifica"], href: "/logistica", link: "Más info" },
   ];
 
   return (
-    <div>
-      {/* ═══ HERO EDITORIAL — grid asimétrico, tipografía protagonista ═══
-          Layout: columna izquierda texto puro | columna derecha foto panel */}
-      <section className="border-b-2 border-fg bg-bg">
+    <main>
+
+      {/* ══════════════════════════════════════════
+          HERO: foto panel de manga + tipografía XXL
+          Split: texto izquierda / foto derecha
+          ══════════════════════════════════════════ */}
+      <section className="bg-white">
         <div className="mx-auto max-w-7xl">
-          {/* Cabecera del hero — línea horizontal con issue number */}
-          <div className="flex items-center justify-between border-b-2 border-fg px-4 py-2 sm:px-6">
-            <span className="index-number">Edición 2026 · Guía de Japón</span>
-            <span className="index-number">{season}</span>
+
+          {/* Tira superior: season + buscador */}
+          <div className="flex items-center justify-between gap-4 border-b-[3px] border-[#0a0a0a] px-5 py-2.5">
+            <span className="font-mono text-[11px] font-black uppercase tracking-[0.15em] text-[#e1352e]">
+              {season} · 2026
+            </span>
+            <form action="/buscar" className="flex max-w-xs flex-1 items-center border-[2px] border-[#0a0a0a]">
+              <label htmlFor="hero-q" className="sr-only">Buscar en la guía</label>
+              <input
+                id="hero-q" name="q" type="search" autoComplete="off"
+                placeholder="Busca: JR Pass, Kioto…"
+                className="flex-1 bg-transparent px-3 py-1.5 text-xs text-[#0a0a0a] placeholder:text-[#999] outline-none"
+              />
+              <button type="submit" aria-label="Buscar" className="border-l-[2px] border-[#0a0a0a] bg-[#e1352e] px-3 py-1.5 text-white">
+                <Search size={14} aria-hidden="true" />
+              </button>
+            </form>
           </div>
 
-          {/* Grid asimétrico: 7/12 texto | 5/12 foto */}
-          <div className="grid min-h-[80vh] grid-cols-1 lg:grid-cols-12">
+          {/* Grid hero: texto 55% | foto 45% */}
+          <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
 
-            {/* Columna texto — tipografía protagonista */}
-            <div className="flex flex-col justify-between border-b-2 border-fg p-6 lg:col-span-7 lg:border-b-0 lg:border-r-2 lg:p-10 xl:p-14">
+            {/* Columna texto */}
+            <div className="flex flex-col justify-between border-b-[3px] border-[#0a0a0a] p-6 lg:border-b-0 lg:border-r-[3px] lg:p-10 xl:p-14">
               <div>
-                {/* H1 mega — texto ES el diseño */}
-                <h1 className="text-display-lg mt-4 text-[clamp(3.5rem,8vw,7rem)] leading-[0.9] text-fg">
-                  <span className="block">La mayor</span>
-                  <span className="block text-primary">guía de</span>
-                  <span className="block">Japón</span>
+                <h1
+                  className="display-xl text-[#0a0a0a]"
+                  style={{ fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)" }}
+                >
+                  <span className="block">La guía de</span>
+                  <span className="block text-[#e1352e]">Japón</span>
                   <span className="block">en español.</span>
                 </h1>
 
-                <p className="mt-8 max-w-md text-base leading-relaxed text-fg-muted">
-                  JR Pass, presupuesto, itinerarios, cultura y gastronomía — con datos reales y experiencia de primera mano.
+                <p className="mt-6 max-w-sm text-base leading-relaxed text-[#555]">
+                  JR Pass, presupuesto, itinerarios, cultura y gastronomía con datos reales y experiencia de primera mano.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href="/herramientas/jr-pass-calculadora" className="btn-editorial">
+                  <Link href="/herramientas/jr-pass-calculadora" className="btn-primary">
                     Calculadora JR Pass <ArrowRight size={14} aria-hidden="true" />
                   </Link>
-                  <Link href="/itinerarios" className="btn-editorial-outline">
+                  <Link href="/itinerarios" className="btn-outline">
                     Ver itinerarios
                   </Link>
                 </div>
-
-                {/* Buscador minimalista */}
-                <form action="/buscar" className="mt-6 flex max-w-md border-2 border-fg focus-within:border-primary">
-                  <label htmlFor="q" className="sr-only">Buscar en la guía</label>
-                  <input
-                    id="q" name="q" type="search" autoComplete="off"
-                    placeholder="Busca: JR Pass, Kioto, itinerario 10 días…"
-                    className="flex-1 bg-transparent px-4 py-3 text-sm text-fg placeholder:text-fg-muted outline-none"
-                  />
-                  <button type="submit" aria-label="Buscar" className="border-l-2 border-fg bg-fg px-4 text-bg transition-colors hover:bg-primary hover:border-primary">
-                    <Search size={16} aria-hidden="true" />
-                  </button>
-                </form>
               </div>
 
-              {/* Datos duros al pie — estilo tabla de datos */}
-              <div className="mt-10 grid grid-cols-3 border-t-2 border-fg">
-                <div className="border-r-2 border-fg py-4 pr-4">
-                  <p className="index-number">Yen hoy</p>
-                  <p className="mt-1 font-mono text-2xl font-black text-fg">¥{rate}</p>
-                  <p className="index-number mt-0.5 text-fg-muted">por euro</p>
+              {/* Datos en vivo — tira de 3 chips */}
+              <div className="mt-10 grid grid-cols-3 gap-3">
+                <div className="data-chip">
+                  <p className="font-mono text-[9px] font-black uppercase tracking-widest text-[#999]">Yen hoy</p>
+                  <p className="nums mt-1 font-mono text-xl font-black text-[#0a0a0a]">¥{rate}</p>
+                  <p className="font-mono text-[9px] text-[#999]">por euro</p>
                 </div>
-                <div className="border-r-2 border-fg px-4 py-4">
-                  <p className="index-number">Sakura</p>
-                  <p className="mt-1 font-mono text-2xl font-black text-fg">Mar–Abr</p>
-                  <p className="index-number mt-0.5 text-fg-muted">temporada</p>
+                <div className="data-chip">
+                  <p className="font-mono text-[9px] font-black uppercase tracking-widest text-[#999]">Sakura</p>
+                  <p className="nums mt-1 font-mono text-xl font-black text-[#0a0a0a]">Mar–Abr</p>
+                  <p className="font-mono text-[9px] text-[#999]">temporada</p>
                 </div>
-                <div className="pl-4 py-4">
-                  <p className="index-number">JR Pass</p>
-                  <p className="mt-1 font-mono text-2xl font-black text-fg">¥50k</p>
-                  <p className="index-number mt-0.5 text-fg-muted">desde 7 días</p>
+                <div className="data-chip">
+                  <p className="font-mono text-[9px] font-black uppercase tracking-widest text-[#999]">JR Pass</p>
+                  <p className="nums mt-1 font-mono text-xl font-black text-[#0a0a0a]">¥50k</p>
+                  <p className="font-mono text-[9px] text-[#999]">desde 7 días</p>
                 </div>
               </div>
             </div>
 
-            {/* Columna foto — panel duro sin border-radius */}
-            <div className="relative min-h-[40vh] lg:col-span-5 lg:min-h-0">
+            {/* Columna foto — viñeta manga dura, sin border-radius */}
+            <div className="relative min-h-[50vw] lg:min-h-0">
               <Image
                 src={heroFuji}
-                alt="Monte Fuji con una pagoda y cerezos en flor"
+                alt="Monte Fuji con pagoda y cerezos"
                 fill priority placeholder="blur"
-                sizes="(max-width:1024px) 100vw, 42vw"
+                sizes="(max-width:1024px) 100vw, 45vw"
                 className="object-cover object-center"
               />
-              {/* Crédito foto */}
-              <span className="absolute bottom-2 right-2 bg-black/60 px-1.5 py-0.5 font-mono text-[9px] text-white/70">
+              <span className="absolute bottom-2 right-2 border border-white/40 bg-black/50 px-1.5 py-0.5 font-mono text-[9px] text-white/70">
                 © Wikimedia Commons
               </span>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ═══ FRANJA DE AUTORÍA ═══ */}
-      <div className="border-b-2 border-fg bg-fg">
-        <div className="mx-auto max-w-7xl px-4 py-2.5">
-          <p className="font-mono text-xs text-white/60">
-            ✓ Escrito por{" "}
-            <Link href="/sobre-nosotros" className="font-bold text-primary hover:underline">{SITE.author.name}</Link>
-            {" "}· datos verificados 2026 ·{" "}
-            <Link href="/sobre-nosotros" className="text-white/60 hover:text-white">quiénes somos →</Link>
-          </p>
-        </div>
-      </div>
-
-      {/* ═══ ACCESOS RÁPIDOS — fila de íconos como índice ═══ */}
-      <section aria-label="Accesos rápidos" className="border-b-2 border-fg bg-surface">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-3 divide-x-2 divide-fg sm:grid-cols-6">
-            {ACCESOS.map((a, i) => (
-              <Link key={a.label} href={a.href} className="group flex flex-col items-center gap-2 px-4 py-5 transition-colors hover:bg-fg hover:text-bg">
-                <a.Icon size={22} className={`${a.color} group-hover:text-bg`} aria-hidden="true" />
-                <span className="index-number group-hover:text-bg">{String(i + 1).padStart(2, "0")}</span>
-                <span className="index-number group-hover:text-bg">{a.label}</span>
-              </Link>
-            ))}
+          {/* Franja de autoría */}
+          <div className="border-t-[3px] border-[#0a0a0a] bg-[#0a0a0a] px-5 py-2.5">
+            <p className="font-mono text-[11px] text-white/60">
+              ✓ Escrito por{" "}
+              <Link href="/sobre-nosotros" className="font-black text-[#e1352e] hover:underline">{SITE.author.name}</Link>
+              {" "}· datos verificados 2026 ·{" "}
+              <Link href="/sobre-nosotros" className="text-white/40 hover:text-white">quiénes somos →</Link>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ═══ ITINERARIOS — grid editorial con foto panel ═══ */}
-      <section id="planifica" className="border-b-2 border-fg bg-bg py-0">
+      {/* ══════════════════════════════════════════
+          ACCESOS RÁPIDOS — barra de iconos
+          ══════════════════════════════════════════ */}
+      <section aria-label="Accesos rápidos" className="border-b-[3px] border-[#0a0a0a] bg-white">
         <div className="mx-auto max-w-7xl">
-          {/* Cabecera de sección como portada de revista */}
-          <div className="flex items-center justify-between border-b-2 border-fg px-6 py-3">
-            <span className="text-display text-sm text-fg">Itinerarios</span>
-            <Link href="/itinerarios" className="index-number hover:text-primary">Ver todos →</Link>
-          </div>
-          <div className="grid grid-cols-1 divide-y-2 divide-fg sm:grid-cols-2 sm:divide-x-2 sm:divide-y-0 lg:grid-cols-4">
-            {ITIN.map((it) => (
-              <Link key={it.badge} href={it.href} className="group flex flex-col overflow-hidden transition-colors hover:bg-fg">
-                <div className="relative h-48 overflow-hidden border-b-2 border-fg">
-                  <Image src={it.img} alt={it.title} fill sizes="(max-width:1024px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:brightness-75" />
-                  <span className="tag-editorial-red absolute left-0 top-0">{it.badge}</span>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-display text-xl text-fg group-hover:text-bg">{it.title}</h3>
-                  <p className="mt-2 flex items-center gap-1.5 font-mono text-xs text-fg-muted group-hover:text-bg/70"><MapPin size={10} aria-hidden="true" /> {it.ruta}</p>
-                  <span className="mt-4 index-number text-primary group-hover:text-primary">Ver →</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ DESTINOS — grid asimétrico con fotos panel ═══ */}
-      <section id="destinos" className="border-b-2 border-fg bg-surface py-0">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between border-b-2 border-fg px-6 py-3">
-            <span className="text-display text-sm text-fg">Destinos</span>
-            <Link href="/destinos" className="index-number hover:text-primary">Ver todos →</Link>
-          </div>
-          {/* Grid: foto grande izquierda (col-span-2) + 2 fotos apiladas derecha */}
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {DEST.map((d, i) => (
+          <div className="grid grid-cols-3 divide-x-[3px] divide-[#0a0a0a] sm:grid-cols-6">
+            {ACCESOS.map((a) => (
               <Link
-                key={d.title}
-                href={d.href}
-                className={`group relative overflow-hidden border-b-2 border-fg last:border-b-0 md:border-b-0 ${i < 2 ? "md:border-r-2" : ""} block`}
+                key={a.label}
+                href={a.href}
+                className="group flex flex-col items-center gap-2 px-4 py-5 transition-colors hover:bg-[#e1352e]"
               >
-                <div className={`relative ${i === 0 ? "h-72 md:h-[28rem]" : "h-52 md:h-56"} overflow-hidden`}>
-                  <Image src={d.img} alt={d.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105 group-hover:brightness-75" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <a.Icon size={22} className={`${a.color} group-hover:text-white`} aria-hidden="true" />
+                <span className="font-mono text-[9px] font-black uppercase tracking-wider text-[#0a0a0a] group-hover:text-white">
+                  {a.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          VIÑETA MADRE-HIJO — protagonismo total
+          Panel manga: marco negro, globos de texto
+          ══════════════════════════════════════════ */}
+      <section className="border-b-[3px] border-[#0a0a0a] bg-white py-12">
+        <div className="mx-auto max-w-7xl px-5">
+          {/* Cabecera de sección estilo etiqueta de cómic */}
+          <div className="mb-8 flex items-center gap-4">
+            <span className="tag-manga">De nuestro viaje</span>
+            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#999]">
+              Diciembre 2025 · madre e hijo · primer viaje a Japón
+            </span>
+          </div>
+
+          {/* Grid: cita grande + viñetas */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+
+            {/* Viñeta 1 — panel manga con borde duro */}
+            <div className="panel-manga-red bg-white p-6">
+              <div className="mb-4 border-b-[2px] border-[#0a0a0a] pb-3">
+                <span className="font-mono text-[9px] font-black uppercase tracking-widest text-[#e1352e]">
+                  Kioto · noche de diciembre
+                </span>
+              </div>
+              <Charla lineas={[
+                { quien: "madre", texto: "El Kiyomizu-dera de noche, iluminado. De todo el viaje, me quedo con eso." },
+                { quien: "hijo",  texto: "Y el Fushimi Inari te lo subiste hasta arriba del todo, con 70 años recién cumplidos. Así que lo de «madruga y sube» va en serio: si pudo ella, puedes tú." },
+              ]} />
+            </div>
+
+            {/* Viñeta 2 */}
+            <div className="panel-manga-red bg-white p-6">
+              <div className="mb-4 border-b-[2px] border-[#0a0a0a] pb-3">
+                <span className="font-mono text-[9px] font-black uppercase tracking-widest text-[#e1352e]">
+                  Por todo Japón · 15 días
+                </span>
+              </div>
+              <Charla lineas={[
+                { quien: "hijo",  texto: "En nuestros 15 días comimos ramen literalmente todos los días, y nos metíamos en cualquier sitio sin mirar reseñas." },
+                { quien: "madre", texto: "Porque cualquiera estaba rico." },
+              ]} />
+            </div>
+          </div>
+
+          {/* CTA hacia sobre-nosotros */}
+          <div className="mt-8 text-center">
+            <Link href="/sobre-nosotros" className="btn-outline">
+              Conoce nuestra historia <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          ITINERARIOS — paneles manga con foto
+          ══════════════════════════════════════════ */}
+      <section id="planifica" className="border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5] py-12">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <span className="tag-dark">Itinerarios</span>
+              <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">¿Cuántos días tienes?</h2>
+            </div>
+            <Link href="/itinerarios" className="font-mono text-xs font-black uppercase tracking-wide text-[#e1352e] hover:underline">
+              Ver todos →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {ITIN.map((it) => (
+              <Link key={it.badge} href={it.href} className="panel-manga-dark group flex flex-col bg-white">
+                <div className="relative h-44 overflow-hidden border-b-[3px] border-[#0a0a0a]">
+                  <Image
+                    src={it.img} alt={it.title} fill
+                    sizes="(max-width:1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="tag-manga absolute left-0 top-0">{it.badge}</span>
                 </div>
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <h3 className="text-display text-2xl text-white">{d.title}</h3>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {d.tags.map((t) => <span key={t} className="tag-editorial bg-white/20 text-white" style={{background:"rgba(255,255,255,0.2)"}}>{t}</span>)}
-                  </div>
+                <div className="flex flex-1 flex-col p-4">
+                  <h3 className="display-md text-lg text-[#0a0a0a]">{it.title}</h3>
+                  <p className="mt-1 flex items-center gap-1.5 font-mono text-[10px] text-[#777]">
+                    <MapPin size={10} aria-hidden="true" /> {it.ruta}
+                  </p>
+                  <span className="mt-auto pt-3 font-mono text-[10px] font-black uppercase tracking-wide text-[#e1352e]">
+                    Ver día a día →
+                  </span>
                 </div>
               </Link>
             ))}
@@ -258,200 +278,130 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ═══ INFORMACIÓN PRÁCTICA — tabla de datos ═══ */}
-      <section id="consejos" className="border-b-2 border-fg bg-bg py-0">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between border-b-2 border-fg px-6 py-3">
-            <span className="text-display text-sm text-fg">Información práctica</span>
+      {/* ══════════════════════════════════════════
+          DESTINOS — tres paneles de foto
+          ══════════════════════════════════════════ */}
+      <section id="destinos" className="border-b-[3px] border-[#0a0a0a] bg-white py-12">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="mb-8 flex items-end justify-between">
+            <div>
+              <span className="tag-dark">Destinos</span>
+              <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">Las ciudades imprescindibles</h2>
+            </div>
+            <Link href="/destinos" className="font-mono text-xs font-black uppercase tracking-wide text-[#e1352e] hover:underline">
+              Todos →
+            </Link>
           </div>
-          <div className="grid grid-cols-1 divide-y-2 divide-fg sm:grid-cols-2 sm:divide-x-2 sm:divide-y-0 lg:grid-cols-3">
-            {PRACT.map((c, i) => (
-              <div key={c.title} className={`flex flex-col p-6 ${i > 2 ? "border-t-2 border-fg" : ""}`}>
-                <div className="flex items-start justify-between">
-                  <div className={`flex size-10 items-center justify-center border-2 border-fg bg-surface ${c.color}`}>
-                    <c.Icon size={18} aria-hidden="true" />
-                  </div>
-                  <span className="index-number">{String(i + 1).padStart(2, "0")}</span>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {DEST.map((d) => (
+              <Link key={d.title} href={d.href} className="panel-manga-dark group block">
+                <div className="relative h-56 overflow-hidden border-b-[3px] border-[#0a0a0a]">
+                  <Image
+                    src={d.img} alt={d.title} fill
+                    sizes="(max-width:768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="mt-4 text-lg font-black text-fg">{c.title}</h3>
-                <p className="mt-1 text-sm text-fg-muted">{c.desc}</p>
-                <ul className="mt-4 space-y-1.5">
+                <div className="bg-white p-4">
+                  <h3 className="display-md text-2xl text-[#0a0a0a]">{d.title}</h3>
+                  <p className="mt-1 text-sm text-[#555]">{d.desc}</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {d.tags.map((t) => (
+                      <span key={t} className="border border-[#0a0a0a] font-mono text-[9px] font-bold uppercase px-1.5 py-0.5 text-[#0a0a0a]">{t}</span>
+                    ))}
+                  </div>
+                  <span className="mt-3 block font-mono text-[10px] font-black uppercase tracking-wide text-[#e1352e]">
+                    Explorar →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
+          INFO PRÁCTICA — grid de tarjetas
+          ══════════════════════════════════════════ */}
+      <section id="consejos" className="border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5] py-12">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="mb-8">
+            <span className="tag-dark">Antes de salir</span>
+            <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">Lo que hay que saber</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {PRACT.map((c, i) => (
+              <div key={c.title} className="panel-manga bg-white p-5">
+                <div className="flex items-start justify-between">
+                  <c.Icon size={22} className={c.color} aria-hidden="true" />
+                  <span className="font-mono text-[9px] font-black text-[#ccc]">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <h3 className="mt-3 text-lg font-black text-[#0a0a0a]">{c.title}</h3>
+                <p className="mt-1 text-sm text-[#555]">{c.desc}</p>
+                <ul className="mt-3 space-y-1">
                   {c.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2 font-mono text-xs text-fg-muted">
-                      <span className="mt-0.5 text-primary">▸</span>
+                    <li key={b} className="flex items-start gap-1.5 font-mono text-[10px] text-[#777]">
+                      <span className="mt-0.5 text-[#e1352e] leading-none">▸</span>
                       <span className="nums">{b}</span>
                     </li>
                   ))}
                 </ul>
-                <Link href={c.href} className="mt-auto pt-5 index-number text-primary hover:underline">{c.link} →</Link>
+                <Link href={c.href} className="mt-4 block font-mono text-[10px] font-black uppercase tracking-wide text-[#e1352e] hover:underline">
+                  {c.link} →
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ ÚLTIMAS NOTICIAS — lista editorial ═══ */}
-      {news.length > 0 && (
-        <section className="border-b-2 border-fg bg-surface py-0">
-          <div className="mx-auto max-w-7xl">
-            <div className="flex items-center justify-between border-b-2 border-fg px-6 py-3">
-              <span className="text-display text-sm text-fg">Últimas noticias</span>
-              <Link href="/blog" className="index-number hover:text-primary">Ver todo →</Link>
+      {/* ══════════════════════════════════════════
+          NOTICIAS — si existen
+          ══════════════════════════════════════════ */}
+      {featured && (
+        <section className="border-b-[3px] border-[#0a0a0a] bg-white py-12">
+          <div className="mx-auto max-w-7xl px-5">
+            <div className="mb-8 flex items-end justify-between">
+              <div>
+                <span className="tag-dark">Actualidad</span>
+                <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">Novedades de Japón</h2>
+              </div>
+              <Link href="/blog" className="font-mono text-xs font-black uppercase tracking-wide text-[#e1352e] hover:underline">
+                Ver todo →
+              </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              {/* Noticia destacada */}
-              {featured && (
-                <Link href={`/blog/${featured.slug}`} className="group border-b-2 border-fg p-6 transition-colors hover:bg-fg md:border-b-0 md:border-r-2">
-                  <span className="tag-editorial-red">{featured.kicker}</span>
-                  <h3 className="mt-4 text-display text-xl text-fg group-hover:text-bg sm:text-2xl">{featured.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-fg-muted group-hover:text-bg/70">{featured.excerpt}</p>
-                  <p className="nums mt-4 font-mono text-xs text-fg-muted group-hover:text-bg/50">
-                    {new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "short", year: "numeric" }).format(new Date(featured.dateModified))}
-                    {featured.readingMinutes ? ` · ${featured.readingMinutes} min` : ""}
-                  </p>
-                </Link>
-              )}
-              {/* Lista secundaria */}
-              <ul className="divide-y-2 divide-fg">
-                {rest.map((p) => (
-                  <li key={p.slug}>
-                    <Link href={`/blog/${p.slug}`} className="group flex items-start gap-4 p-5 transition-colors hover:bg-fg">
-                      <div className="flex-1">
-                        <p className="index-number text-fg-muted group-hover:text-bg/60">{p.kicker}</p>
-                        <h3 className="mt-1 font-black leading-snug text-fg group-hover:text-bg">{p.title}</h3>
-                        <p className="nums mt-1 font-mono text-xs text-fg-muted group-hover:text-bg/50">
-                          {new Intl.DateTimeFormat("es-ES", { day: "numeric", month: "short" }).format(new Date(p.dateModified))}
-                          {p.readingMinutes ? ` · ${p.readingMinutes} min` : ""}
-                        </p>
-                      </div>
-                      <span className="shrink-0 font-mono text-xs text-fg-muted group-hover:text-bg/60">→</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Link href={`/blog/${featured.slug}`} className="panel-manga-red group block bg-white p-6 sm:p-8">
+              <span className="tag-manga">{featured.kicker}</span>
+              <h3 className="display-md mt-4 text-2xl text-[#0a0a0a] sm:text-3xl group-hover:text-[#e1352e]">
+                {featured.title}
+              </h3>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#555]">{featured.excerpt}</p>
+              <span className="mt-4 block font-mono text-[10px] font-black uppercase tracking-wide text-[#e1352e]">
+                Leer nota →
+              </span>
+            </Link>
           </div>
         </section>
       )}
 
-      {/* ═══ CONVERSACIÓN MADRE-HIJO — el diferencial humano ═══
-          Solo frases reales del viaje de diciembre 2025. Ver docs/EXPERIENCIAS-DOCUMENTADAS.md */}
-      <section className="border-b-2 border-fg bg-fg py-0">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-center justify-between border-b-2 border-white/20 px-6 py-3">
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-white/50">De nuestro viaje · diciembre 2025</span>
-            <Link href="/sobre-nosotros" className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-white/50 hover:text-primary">Quiénes somos →</Link>
-          </div>
-          {/* Grid asimétrico: cita grande izquierda | dos conversaciones derecha */}
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            {/* Cita destacada — ocupa más espacio */}
-            <div className="flex flex-col justify-center border-b-2 border-white/20 p-8 lg:col-span-5 lg:border-b-0 lg:border-r-2 lg:p-10">
-              <p className="text-display-lg text-3xl leading-tight text-white sm:text-4xl">
-                &ldquo;El Kiyomizu-dera de noche, iluminado. De todo el viaje, me quedo con eso.&rdquo;
-              </p>
-              <p className="mt-6 font-mono text-xs font-bold uppercase tracking-widest text-primary">— Mamá, 70 años, Kioto</p>
-              <p className="mt-2 text-sm text-white/40">Diciembre de 2025 · primer viaje a Japón</p>
-            </div>
-            {/* Dos conversaciones reales */}
-            <div className="flex flex-col divide-y-2 divide-white/20 lg:col-span-7">
-              <div className="p-6 lg:p-8">
-                <Charla variant="dark" lineas={[
-                  { quien: "madre", texto: "El Kiyomizu-dera de noche, iluminado. De todo el viaje, me quedo con eso." },
-                  { quien: "hijo", texto: "Y el Fushimi Inari te lo subiste hasta arriba del todo, con 70 años recién cumplidos. Así que lo de «madruga y sube» va en serio: si pudo ella, puedes tú." },
-                ]} />
-              </div>
-              <div className="p-6 lg:p-8">
-                <Charla variant="dark" lineas={[
-                  { quien: "hijo", texto: "En nuestros 15 días comimos ramen literalmente todos los días, y nos metíamos en cualquier sitio sin mirar reseñas." },
-                  { quien: "madre", texto: "Porque cualquiera estaba rico." },
-                ]} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ CULTURA + GASTRONOMÍA — fila compacta ═══ */}
-      <section className="border-b-2 border-fg bg-surface py-0">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 divide-y-2 divide-fg md:grid-cols-2 md:divide-x-2 md:divide-y-0">
-            {/* Cultura */}
+      {/* ══════════════════════════════════════════
+          NEWSLETTER — bloque de cierre
+          ══════════════════════════════════════════ */}
+      <section className="bg-[#0a0a0a] py-12">
+        <div className="mx-auto max-w-7xl px-5">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
-              <div className="flex items-center justify-between border-b-2 border-fg px-6 py-3">
-                <span className="text-display text-sm text-fg">Cultura</span>
-                <Link href="/cultura" className="index-number hover:text-primary">Explorar →</Link>
-              </div>
-              <div className="divide-y-2 divide-fg">
-                {CULTURA.slice(0, 2).map((c) => (
-                  <Link key={c.title} href={c.href} className="group grid grid-cols-2 transition-colors hover:bg-fg">
-                    <div className="flex flex-col justify-between p-5">
-                      <div>
-                        <h3 className="font-black text-fg group-hover:text-bg">{c.title}</h3>
-                        <p className="mt-1.5 text-xs text-fg-muted group-hover:text-bg/60">{c.desc}</p>
-                      </div>
-                      <span className="mt-3 index-number text-primary">Leer →</span>
-                    </div>
-                    <div className="relative h-32 border-l-2 border-fg overflow-hidden">
-                      <Image src={c.img} alt={c.title} fill sizes="20vw" className="object-cover transition-transform duration-500 group-hover:scale-105 group-hover:brightness-75" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <span className="tag-manga">Newsletter</span>
+              <h2 className="display-md mt-4 text-3xl text-white sm:text-4xl">¿Planificando tu viaje?</h2>
+              <p className="mt-3 text-sm text-white/50">Checklist, consejos y novedades. Sin spam.</p>
             </div>
-            {/* Gastronomía */}
-            <div>
-              <div className="flex items-center justify-between border-b-2 border-fg px-6 py-3">
-                <span className="text-display text-sm text-fg">Gastronomía</span>
-                <Link href="/gastronomia" className="index-number hover:text-primary">Explorar →</Link>
-              </div>
-              <div className="divide-y-2 divide-fg">
-                {DISHES.slice(0, 2).map((p) => (
-                  <Link key={p.title} href="/gastronomia/que-comer-en-japon" className="group grid grid-cols-2 transition-colors hover:bg-fg">
-                    <div className="flex flex-col justify-between p-5">
-                      <div>
-                        <h3 className="font-black text-fg group-hover:text-bg">{p.title}</h3>
-                        <p className="mt-1.5 text-xs text-fg-muted group-hover:text-bg/60">{p.desc}</p>
-                      </div>
-                      <p className="mt-2 font-mono text-xs text-fg-muted group-hover:text-bg/50">
-                        <span className="nums">{p.precio}</span> · {p.lugar}
-                      </p>
-                    </div>
-                    <div className="relative h-32 border-l-2 border-fg overflow-hidden">
-                      <Image src={p.img} alt={p.title} fill sizes="20vw" className="object-cover transition-transform duration-500 group-hover:scale-105 group-hover:brightness-75" />
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ NEWSLETTER — bloque editorial sólido ═══ */}
-      <section className="border-b-2 border-fg bg-fg">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="border-b-2 border-white/20 p-8 md:border-b-0 md:border-r-2 md:p-10">
-              <span className="tag-editorial-red">Newsletter</span>
-              <h2 className="mt-4 text-display text-3xl text-white sm:text-4xl">¿Planificando tu viaje a Japón?</h2>
-              <p className="mt-3 text-sm text-white/60">Checklist, consejos y novedades. Sin spam, sin relleno.</p>
-            </div>
-            <div className="flex items-center p-8 md:p-10">
+            <div className="flex items-center">
               <NewsletterForm source="home" />
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
-}
 
-// SectionHead ya no se usa en la nueva home editorial — se mantiene por si acaso
-function SectionHead({ title, sub }: { title: string; sub: string }) {
-  return (
-    <div className="mb-10 border-accent-left">
-      <h2 className="text-display text-2xl text-fg sm:text-3xl">{title}</h2>
-      <p className="mt-2 max-w-2xl text-pretty text-sm text-fg-muted">{sub}</p>
-    </div>
+    </main>
   );
 }

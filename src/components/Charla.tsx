@@ -1,66 +1,58 @@
 /**
- * Charla: diálogo madre-hijo (la marca de la casa). REGLA INNEGOCIABLE: solo
- * frases reales o reconstrucciones fieles aprobadas por el autor — jamás
- * guionizar a personas reales.
+ * Charla: diálogo madre-hijo estilo viñeta manga.
+ * REGLA INNEGOCIABLE: solo frases reales aprobadas por el autor.
+ * Ver docs/EXPERIENCIAS-DOCUMENTADAS.md.
  *
- * Avatares: /public/avatares/{madre,hijo}.webp — retratos estilo anime/acuarela
- * generados por el propio autor (ilustración asistida por IA, declarada en
- * docs/CREDITOS-IMAGENES.md). Para cambiar un avatar, sustituir el archivo.
- *
- * variant="dark": sobre fondo oscuro (sección home bg-fg). Por defecto: fondo claro (artículos).
+ * Avatares: /public/avatares/{madre,hijo}.webp — estilo anime/acuarela.
  */
 
 const NOMBRES = { madre: "Mamá", hijo: "Yo" } as const;
 
-function Avatar({ quien, dark }: { quien: "madre" | "hijo"; dark?: boolean }) {
+function Avatar({ quien }: { quien: "madre" | "hijo" }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element -- webp de 12-19 KB ya optimizado a su tamaño final: next/image no aporta nada aquí
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={`/avatares/${quien}.webp`}
-      alt={`Avatar de ${NOMBRES[quien] === "Yo" ? "el autor" : "la madre del autor"}`}
-      width={40}
-      height={40}
+      alt={quien === "madre" ? "Avatar de la madre del autor" : "Avatar del autor"}
+      width={52}
+      height={52}
       loading="lazy"
-      className={`size-10 shrink-0 rounded-full border-2 ${dark ? "border-white/20" : "border-border"}`}
+      className="shrink-0 rounded-full border-3 border-[#0a0a0a] shadow-[2px_2px_0_#0a0a0a]"
+      style={{ border: "2.5px solid #0a0a0a" }}
     />
   );
 }
 
-export function Charla({
-  lineas,
-  variant = "light",
-}: {
-  lineas: { quien: "madre" | "hijo"; texto: string }[];
-  variant?: "light" | "dark";
-}) {
-  const dark = variant === "dark";
+export function Charla({ lineas }: { lineas: { quien: "madre" | "hijo"; texto: string }[] }) {
   return (
-    <figure className="space-y-4" role="group" aria-label="Conversación entre la madre y el hijo, autores de la web">
+    <figure
+      className="space-y-8 py-2"
+      role="group"
+      aria-label="Conversación real entre los autores durante su viaje a Japón"
+    >
       {lineas.map((l, i) => {
         const esMadre = l.quien === "madre";
         return (
-          <div key={i} className={`flex items-end gap-3 ${esMadre ? "" : "flex-row-reverse"}`}>
-            <Avatar quien={l.quien} dark={dark} />
-            <div
-              className={`max-w-[80%] border-2 px-4 py-3 ${
-                esMadre
-                  ? dark
-                    ? "border-white/20 bg-white/5"
-                    : "border-border bg-muted"
-                  : dark
-                    ? "border-primary/60 bg-primary/10"
-                    : "border-primary/30 bg-primary/5"
-              }`}
-            >
-              <p className={`font-mono text-[10px] font-bold uppercase tracking-widest ${dark ? "text-white/40" : "text-fg-muted"}`}>
+          <div key={i} className={`flex items-end gap-3 ${esMadre ? "flex-row" : "flex-row-reverse"}`}>
+            <div className="shrink-0 flex flex-col items-center gap-1.5">
+              <Avatar quien={l.quien} />
+              <span
+                className="font-mono text-[9px] font-black uppercase tracking-wider text-[#0a0a0a]"
+              >
                 {NOMBRES[l.quien]}
-              </p>
-              <p className={`mt-1 leading-relaxed ${dark ? "text-white/90" : "text-fg"}`}>{l.texto}</p>
+              </span>
+            </div>
+            {/* Globo de texto manga */}
+            <div
+              className={`relative max-w-[75%] ${esMadre ? "globo globo-left" : "globo globo-right"}`}
+              style={{ marginBottom: "20px" }}
+            >
+              <p className="text-sm leading-relaxed text-[#0a0a0a]">{l.texto}</p>
             </div>
           </div>
         );
       })}
-      <figcaption className="sr-only">Conversación real de los autores durante su viaje a Japón</figcaption>
+      <figcaption className="sr-only">Conversación real de los autores durante su viaje a Japón en diciembre de 2025</figcaption>
     </figure>
   );
 }

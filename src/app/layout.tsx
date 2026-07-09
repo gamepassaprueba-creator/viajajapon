@@ -40,11 +40,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafb" },
-    { media: "(prefers-color-scheme: dark)", color: "#131418" },
-  ],
-  // Permite que la tab bar inferior respete el área segura (notch/home indicator).
+  themeColor: "#fafafb",
   viewportFit: "cover",
 };
 
