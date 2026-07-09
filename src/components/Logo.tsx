@@ -4,6 +4,11 @@
  * (currentColor): rojo en el navbar, blanco en el footer. La misma forma
  * alimenta el favicon (src/app/icon.svg) y el apple-icon — si se retoca
  * aquí, regenerar esos assets para que la marca no se desincronice.
+ *
+ * Wordmark: font-display resuelve a M PLUS 1p (ver globals.css). Antes usaba
+ * Pacifico (script/cursiva) — leía "blog casual"; se sustituyó por un peso 900
+ * con tracking ajustado para una identidad más firme, en línea con la dirección
+ * de marca "moderno anime/manga".
  */
 import Link from "next/link";
 
@@ -31,7 +36,7 @@ export function Logo({ tono = "oscuro", className = "" }: { tono?: "oscuro" | "c
     <Link href="/" className={`inline-flex items-center gap-2 ${className}`}>
       <ToriiMark className={`size-7 shrink-0 ${claro ? "text-white" : "text-primary"}`} />
       <span className="flex items-baseline">
-        <span className={`font-display text-3xl leading-none ${claro ? "text-white" : "text-primary"}`}>ViajaJapón</span>
+        <span className={`font-display text-3xl font-black leading-none tracking-tight ${claro ? "text-white" : "text-primary"}`}>ViajaJapón</span>
         <span className={`ml-1 text-sm ${claro ? "text-gray-400" : "text-fg-muted"}`}>.com</span>
       </span>
     </Link>

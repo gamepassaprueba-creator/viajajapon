@@ -35,15 +35,6 @@ const COLS = [
   },
 ];
 
-// Rellena `href` con tu perfil real y el enlace aparecerá solo. Sin URL no se renderiza
-// (evita enlaces muertos href="#").
-const SOCIAL: { name: string; href: string }[] = [
-  { name: "Instagram", href: "" },
-  { name: "YouTube", href: "" },
-  { name: "X", href: "" },
-  { name: "Facebook", href: "" },
-];
-
 export function Footer() {
   return (
     <footer className="bg-gray-900 pt-16 pb-8 text-white">
@@ -55,19 +46,6 @@ export function Footer() {
               Tu guía completa para viajar a Japón: consejos, rutas, cultura y todo lo que necesitas — con datos
               de este año.
             </p>
-            <div className="flex flex-wrap gap-2">
-              {SOCIAL.filter((s) => s.href).map((s) => (
-                <a
-                  key={s.name}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full bg-gray-800 px-3 py-1.5 text-xs font-medium transition-colors hover:bg-primary"
-                >
-                  {s.name}
-                </a>
-              ))}
-            </div>
           </div>
           {COLS.map((col) => (
             <div key={col.title}>

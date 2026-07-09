@@ -23,7 +23,9 @@ export type PartnerKey =
   | "airalo"
   | "skyscanner"
   | "jrpass"
-  | "revolut";
+  | "revolut"
+  | "booking"
+  | "getyourguide";
 
 interface Partner {
   /** Nombre visible del partner. */
@@ -91,6 +93,21 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     network: "Revolut Affiliate",
     fallback: "https://www.revolut.com/",
     env: "AFF_REVOLUT",
+  },
+  // Preparados para activar en cuanto haya IDs reales (ver auditoría, sección Monetización):
+  // hoy Civitatis es el único partner de alojamiento/actividades, sin cubrir hoteles (Booking)
+  // ni el inventario más amplio de tours (GetYourGuide).
+  booking: {
+    name: "Booking.com",
+    network: "Booking.com Partner Program",
+    fallback: "https://www.booking.com/country/jp.html",
+    env: "AFF_BOOKING",
+  },
+  getyourguide: {
+    name: "GetYourGuide",
+    network: "GetYourGuide Affiliate",
+    fallback: "https://www.getyourguide.com/japon-l117/",
+    env: "AFF_GETYOURGUIDE",
   },
 };
 

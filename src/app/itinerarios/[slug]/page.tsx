@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { getArticleSlugs } from "@/lib/content";
+import { getArticle, getArticleSlugs, extractItinerarySteps } from "@/lib/content";
 import { Article, articleMetadata } from "@/components/Article";
+import { howToLd } from "@/lib/jsonld";
 
 const PILLAR = "itinerarios";
 
@@ -15,5 +16,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return <Article pillar={PILLAR} slug={slug} />;
+  const article = getArticle(PILLAR, slug);
+  const steps = article ? extractItinerarySteps(article.content) : [];
+  const extraJsonLd =
+    article && steps.length > 0
+      ? [
+          howToLd({
+            name: article.meta.title,
+            description: article.meta.description,
+            steps: steps.map((s) => ({ name: `Día ${s.day} · ${s.title} (${s.city})`, text: s.text })),
+          }),
+        ]
+      : [];
+  return <Article pillar={PILLAR} slug={slug} extraJsonLd={extraJsonLd} />;
 }

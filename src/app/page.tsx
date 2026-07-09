@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import { getYenRate } from "@/lib/fx";
 import { getArticles } from "@/lib/content";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { SITE } from "@/lib/site";
 
 export const revalidate = 21600;
 
@@ -37,9 +38,9 @@ const ACCESOS = [
 ];
 
 const DEST = [
-  { img: "/images/tokio.jpg", title: "Tokio", desc: "Tradición y vanguardia en una experiencia única.", tags: ["Shibuya", "Shinjuku", "Akihabara", "Asakusa"] },
-  { img: "/images/kioto.jpg", title: "Kioto", desc: "El corazón cultural, con miles de templos y santuarios.", tags: ["Fushimi Inari", "Kinkaku-ji", "Arashiyama", "Gion"] },
-  { img: "/images/osaka.jpg", title: "Osaka", desc: "La ciudad del buen comer y el ambiente desenfadado.", tags: ["Dotonbori", "Kuromon", "Castillo", "Universal"] },
+  { img: "/images/tokio.jpg", title: "Tokio", desc: "Tradición y vanguardia en una experiencia única.", tags: ["Shibuya", "Shinjuku", "Akihabara", "Asakusa"], href: "/destinos/que-ver-en-tokio" },
+  { img: "/images/kioto.jpg", title: "Kioto", desc: "El corazón cultural, con miles de templos y santuarios.", tags: ["Fushimi Inari", "Kinkaku-ji", "Arashiyama", "Gion"], href: "/destinos/que-ver-en-kioto" },
+  { img: "/images/osaka.jpg", title: "Osaka", desc: "La ciudad del buen comer y el ambiente desenfadado.", tags: ["Dotonbori", "Kuromon", "Castillo", "Universal"], href: "/destinos/que-ver-en-osaka" },
 ];
 
 const CULTURA = [
@@ -103,7 +104,7 @@ export default async function Home() {
             <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary-strong shadow-sm">
               {season}
             </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">Planifica tu viaje a Japón en 2026</h1>
+            <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-fg sm:text-5xl">Planifica tu viaje a Japón en 2026</h1>
             <p className="mt-6 text-lg text-fg-muted">
               Todo lo que necesitas para planificar tu aventura: JR Pass, presupuesto, itinerarios, cultura y
               gastronomía — con datos reales y de este año.
@@ -131,7 +132,9 @@ export default async function Home() {
       {/* Franja de confianza (E-E-A-T) */}
       <div className="border-b border-border bg-surface">
         <div className="mx-auto max-w-7xl px-4 py-3 text-center text-sm text-fg-muted">
-          ✓ Escrito por alguien que ha viajado a Japón · datos verificados y de 2026 ·{" "}
+          ✓ Escrito por{" "}
+          <Link href="/sobre-nosotros" className="font-semibold text-primary hover:underline">{SITE.author.name}</Link>
+          {" "}· datos verificados y de 2026 ·{" "}
           <Link href="/sobre-nosotros" className="font-medium text-primary hover:underline">quiénes somos</Link>
         </div>
       </div>
@@ -246,7 +249,7 @@ export default async function Home() {
           <SectionHead title="Destinos imprescindibles" sub="Desde metrópolis bulliciosas hasta templos milenarios." />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {DEST.map((d) => (
-              <Link key={d.title} href="/destinos" className="group relative block h-96 overflow-hidden rounded-lg shadow-md">
+              <Link key={d.title} href={d.href} className="group relative block h-96 overflow-hidden rounded-lg shadow-md">
                 <Image src={d.img} alt={d.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white">

@@ -19,7 +19,7 @@ export function AffiliateBox({ partner, title, cta, children }: AffiliateBoxProp
   return (
     <aside className="my-8 rounded-lg border border-border bg-muted p-5">
       <p className="kicker text-fg-muted">{monetized ? "Recomendación · enlace de afiliado" : "Recomendación"}</p>
-      <h3 className="mt-1 font-serif text-lg text-fg">{title}</h3>
+      <h3 className="mt-1 text-lg font-bold text-fg">{title}</h3>
       <div className="mt-1 text-sm leading-relaxed text-fg-muted">{children}</div>
       <a
         href={href}

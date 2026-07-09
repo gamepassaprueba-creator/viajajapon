@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
 import { ItinerariosFiltro } from "@/components/ItinerariosFiltro";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Itinerarios por Japón: 7, 10, 15 días y 1 mes",
@@ -156,6 +157,7 @@ export default function Page() {
       {/* Hero textual */}
       <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 text-center">
+          <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Itinerarios", href: "/itinerarios" }]} className="mb-4 justify-center" />
           <p className="kicker text-primary">Itinerarios</p>
           <h1 className="mx-auto mt-3 max-w-3xl text-balance text-4xl font-bold leading-tight sm:text-5xl">
             Itinerarios por Japón día a día

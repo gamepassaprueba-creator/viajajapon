@@ -1,7 +1,7 @@
 import { SITE } from "@/lib/site";
-import { getArticles } from "@/lib/content";
+import { getAllArticles } from "@/lib/content";
 
-// Feed RSS de noticias + guías. Se regenera en el build (y con ISR cada 6 h).
+// Feed RSS completo (todos los pilares, los 20 más recientes). Antes solo cubría blog+logística.
 export const revalidate = 21600;
 
 const esc = (s: string) =>
@@ -13,11 +13,8 @@ const esc = (s: string) =>
     .replace(/'/g, "&apos;");
 
 export async function GET() {
-  const items = [
-    ...getArticles("blog").map((a) => ({ ...a, path: `/blog/${a.slug}` })),
-    ...getArticles("logistica").map((a) => ({ ...a, path: `/logistica/${a.slug}` })),
-  ]
-    .sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1))
+  const items = getAllArticles()
+    .map((a) => ({ ...a, path: `/${a.pillar}/${a.slug}` }))
     .slice(0, 20);
 
   const lastBuild = items[0] ? new Date(items[0].dateModified).toUTCString() : new Date(0).toUTCString();

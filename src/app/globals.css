@@ -1,31 +1,54 @@
 @import "tailwindcss";
 
-/* ViajaJapón — tokens (estilo del mockup: Poppins + Pacifico, rojo #e53e3e) */
+/* ViajaJapón — tokens (dirección "moderno anime/manga": tinta cálida, rojo torii vívido,
+   índigo eléctrico de acento, M PLUS 1p + JetBrains Mono). Sustituye la paleta genérica
+   Poppins/gris anterior. Rojo #E1352E elegido para mantener ≈4.7:1 con texto blanco
+   (similar al #d32f2f que sustituye, que ya estaba ajustado para WCAG AA). */
 @theme {
-  --color-bg: #f9fafb;
+  --color-bg: #fafafb;
   --color-surface: #ffffff;
-  --color-fg: #111827;
-  --color-fg-muted: #4b5563;
-  /* Rojo de marca, ajustado para cumplir WCAG AA con texto blanco (≈5:1 en botones y enlaces).
-     Antes #e53e3e daba 4,1:1 (fallaba AA en texto pequeño). Para volver al original: #e53e3e / #c53030. */
-  --color-primary: #d32f2f;
-  --color-primary-strong: #b71c1c;
-  --color-secondary: #4299e1;
-  --color-border: #e5e7eb;
-  --color-muted: #f3f4f6;
+  --color-fg: #16181d;
+  --color-fg-muted: #545b6b;
+  --color-primary: #e1352e;
+  --color-primary-strong: #b8271f;
+  --color-secondary: #2d4fe0;
+  --color-border: #e3e5ec;
+  --color-muted: #f0f1f5;
   --color-success: #15803d;
-  --color-danger: #d32f2f;
-  --color-ring: #d32f2f;
+  --color-danger: #e1352e;
+  --color-ring: #2d4fe0;
 
-  --font-sans: var(--font-poppins), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-poppins), system-ui, sans-serif;
-  --font-display: var(--font-pacifico), cursive;
-  --font-mono: var(--font-poppins), ui-monospace, monospace;
+  --font-sans: var(--font-mplus), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-mplus), system-ui, sans-serif;
+  --font-display: var(--font-mplus), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+/* Modo oscuro real (antes solo documentado, nunca implementado). Fuera de @theme y sin
+   @layer a propósito: las reglas sin capa ganan siempre a @theme, así que basta con
+   redefinir aquí las mismas custom properties para que todas las utilidades (bg-bg,
+   text-fg, etc.) cambien de valor automáticamente, sin tocar ninguna clase ni añadir
+   variantes dark: por todo el código. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #131418;
+    --color-surface: #1b1d23;
+    --color-fg: #f1f2f6;
+    --color-fg-muted: #a8afc2;
+    --color-primary: #ff5b4e;
+    --color-primary-strong: #ff7a6e;
+    --color-secondary: #6e8cff;
+    --color-border: #2b2e37;
+    --color-muted: #1f212a;
+    --color-success: #3fa873;
+    --color-danger: #ff5b4e;
+    --color-ring: #6e8cff;
+  }
 }
 
 html {
   -webkit-text-size-adjust: 100%;
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 a, button, summary, label, input, select, [role="button"] {

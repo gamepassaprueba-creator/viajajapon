@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, Check } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Cultura y costumbres de Japón",
@@ -120,10 +121,11 @@ export default function Page() {
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10" />
         <div className="relative mx-auto w-full max-w-7xl px-4 py-16">
           <div className="max-w-2xl">
+            <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Cultura", href: "/cultura" }]} className="mb-4" />
             <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary shadow-sm">
               Cultura
             </span>
-            <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
+            <h1 className="mt-6 text-balance text-4xl font-bold leading-tight text-fg sm:text-5xl">
               Cultura y costumbres de Japón para viajeros
             </h1>
             <p className="mt-6 text-pretty text-lg text-fg-muted">

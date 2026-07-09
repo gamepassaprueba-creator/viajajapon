@@ -3,7 +3,8 @@ import Link from "next/link";
 import { getYenRate } from "@/lib/fx";
 import { JrPassCalculator } from "./JrPassCalculator";
 import { JsonLd } from "@/components/JsonLd";
-import { faqLd, breadcrumbLd } from "@/lib/jsonld";
+import { faqLd } from "@/lib/jsonld";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SITE } from "@/lib/site";
 import { affiliateUrl } from "@/lib/affiliates";
 
@@ -44,7 +45,8 @@ export default async function Page() {
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
-      <p className="kicker text-primary">Herramienta · Transporte</p>
+      <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Calculadora JR Pass 2026", href: "/herramientas/jr-pass-calculadora" }]} />
+      <p className="kicker mt-4 text-primary">Herramienta · Transporte</p>
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">¿Merece la pena el JR Pass en 2026?</h1>
       <p className="mt-4 text-lg leading-relaxed text-fg-muted">
         Marca tu ruta y la calculadora suma los billetes sueltos reales, los compara con el pase nacional
@@ -77,10 +79,6 @@ export default async function Page() {
       <JsonLd
         data={[
           faqLd(FAQS),
-          breadcrumbLd([
-            { name: "Inicio", url: "/" },
-            { name: "Calculadora JR Pass 2026", url: "/herramientas/jr-pass-calculadora" },
-          ]),
           {
             "@context": "https://schema.org",
             "@type": "WebApplication",

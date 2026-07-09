@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Viajes prácticos: logística para tu viaje a Japón",
@@ -104,7 +105,8 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
             <div>
-              <p className="kicker text-primary">Consejos prácticos</p>
+              <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Consejos", href: "/logistica" }]} className="mb-4" />
+              <p className="kicker text-primary">Consejos</p>
               <h1 className="mt-3 text-balance text-4xl font-bold leading-tight sm:text-5xl">
                 La logística de tu viaje a Japón, resuelta
               </h1>

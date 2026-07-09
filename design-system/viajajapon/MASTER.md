@@ -2,93 +2,121 @@
 
 > **LÓGICA:** Al construir una página, primero revisa `design-system/viajajapon/pages/[page].md`. Si existe, sus reglas **anulan** este Master. Si no, sigue estrictamente lo de aquí.
 
-**Proyecto:** ViajaJapón — web de planificación de viajes a Japón en español (alta intención: afiliados de seguros/eSIM/JR Pass) construida sobre experiencia y fotos reales.
-**Estilo:** Magazine editorial minimalista, con sobriedad japonesa (espacio en blanco, tipografía protagonista, rojo como acento puntual). Light + Dark.
-**Generado:** 2026-06-02 · corregido a mano (se descartó la salida genérica del generador: estilo "biophilic", acento rosa #EC4899 y fuentes Public Sans — NO se usan).
+**Proyecto:** ViajaJapón — web de planificación de viajes a Japón en español.
+**Dirección de marca:** Moderno, producto digital, aire "anime/manga" contemporáneo (NO editorial/revista/serif clásico).
+**Última actualización real del código:** 9 jul 2026 (Fase 1 de transformación).
+**Stack:** Next.js 16 + React 19 + Tailwind v4 (tokens en `@theme` de `globals.css`) + next/font/google.
+
+> ⚠️ El documento anterior (editado 2026-06-02) describía un estilo "magazine editorial minimalista" con Noto Serif JP y paleta crema-washi. **YA NO ES VÁLIDO.** El código real usa el sistema definido en este documento.
 
 ---
 
 ## 1. Color (tokens semánticos, WCAG AA verificado)
 
+Los tokens se definen en `src/app/globals.css` dentro del bloque `@theme`. El modo oscuro está implementado via `@media (prefers-color-scheme: dark) { :root { ... } }` fuera del bloque `@theme` (sin `@layer`) — las utilidades Tailwind los leen en runtime vía `var(...)`.
+
 ### Light (por defecto)
-| Rol | Hex | CSS var | Uso / contraste |
+| Rol | Hex | CSS var | Uso |
 |---|---|---|---|
-| Paper (fondo) | `#FBF8F1` | `--color-bg` | Crema washi cálido |
-| Surface (tarjeta) | `#FFFFFF` | `--color-surface` | Tarjetas sobre el crema |
-| Ink (texto) | `#1C1917` | `--color-fg` | Texto principal · AAA sobre bg/surface |
-| Ink-muted (texto 2º) | `#57534E` | `--color-fg-muted` | Metadatos · ≥5:1 ✓ |
-| Rojo marca (primary/CTA) | `#C1121F` | `--color-primary` | Botones, kickers, acentos · blanco encima ≈6:1 ✓ |
-| Rojo hover/active | `#9E0E19` | `--color-primary-strong` | Estados |
-| Índigo (藍, 2º acento) | `#234E70` | `--color-accent` | Enlaces/tags · opcional, sobrio |
-| Borde | `#E7E1D6` | `--color-border` | 1px cálido |
-| Muted (secciones) | `#F3EEE3` | `--color-muted` | Bloques de fondo |
-| Éxito ("sí compensa") | `#15803D` | `--color-success` | Veredicto verde (+ icono+texto) |
-| Alerta ("no compensa") | `#C1121F` | `--color-danger` | Veredicto rojo (+ icono+texto) |
-| Ring (focus) | `#234E70` | `--color-ring` | Anillo de foco visible 2-3px |
+| Fondo (bg) | `#FAFAFB` | `--color-bg` | Fondo base de página |
+| Surface (tarjeta) | `#FFFFFF` | `--color-surface` | Tarjetas, navbar, superficies elevadas |
+| Tinta (fg) | `#16181D` | `--color-fg` | Texto principal — NUNCA usar `text-gray-900` (rompe dark mode) |
+| Tinta muted | `#545B6B` | `--color-fg-muted` | Metadatos, subtítulos |
+| Rojo marca (primary) | `#E1352E` | `--color-primary` | CTAs, kickers, acentos · blanco encima ≈4.7:1 ✓ |
+| Rojo hover | `#B8271F` | `--color-primary-strong` | Estado hover de primary |
+| Índigo eléctrico (secondary) | `#2D4FE0` | `--color-secondary` | Acento secundario, info boxes, links en contexto |
+| Borde | `#E3E5EC` | `--color-border` | Separadores, bordes de tarjetas |
+| Muted (secciones) | `#F0F1F5` | `--color-muted` | Fondos de secciones, cajas info |
+| Éxito | `#15803D` | `--color-success` | Veredictos positivos, checks |
+| Peligro | `#E1352E` | `--color-danger` | Igual que primary (rojo) |
+| Ring (foco) | `#2D4FE0` | `--color-ring` | Anillo de foco (índigo, visible en ambos modos) |
 
 ### Dark
 | Rol | Hex |
 |---|---|
-| Paper | `#1A1714` (marrón-tinta cálido, no negro puro) |
-| Surface | `#26211C` |
-| Ink | `#F5F0E6` |
-| Ink-muted | `#B8AFA2` (≥4.5:1 sobre paper) |
-| Rojo marca | `#F26D5B`→ usar `#E8584A` para texto/acento (rojo desaturado más claro, legible en oscuro) |
-| Borde | `#3A332C` |
+| Fondo | `#131418` |
+| Surface | `#1B1D23` |
+| Tinta | `#F1F2F6` |
+| Tinta muted | `#A8AFC2` |
+| Rojo marca | `#FF5B4E` (más saturado para visibilidad en oscuro) |
+| Rojo hover | `#FF7A6E` |
+| Índigo | `#6E8CFF` |
+| Borde | `#2B2E37` |
+| Muted | `#1F212A` |
+| Éxito | `#3FA873` |
 
-**Reglas de color:** acento rojo SIEMPRE puntual (CTA, kicker, dato clave) — nunca inundar. El color nunca comunica solo (añadir icono/texto). Nada de degradados morados/rosas genéricos de IA.
+**Regla crítica:** NUNCA usar `text-gray-*` ni `bg-gray-*` en elementos de contenido (rompe dark mode). Solo permitido en overlays explícitamente oscuros (ej. footer fijo `bg-gray-900`). Usar siempre tokens semánticos (`text-fg`, `bg-muted`, etc.).
 
 ---
 
-## 2. Tipografía (pairing "Japanese Elegant")
+## 2. Tipografía
 
-- **Titulares:** **Noto Serif JP** (600, 700) — editorial, elegante, con glifos japoneses.
-- **Cuerpo/UI:** **Noto Sans JP** (400, 500, 700).
-- **Datos/precios:** Noto Sans JP con `font-variant-numeric: tabular-nums`. Eyebrow/kicker/fechas: opcional **JetBrains Mono** (uppercase, `tracking-wide`) para sabor editorial.
-- **Carga (Core Web Vitals):** `next/font` con `subsets: ['latin']`, `display: 'swap'`, solo los pesos listados. Utilidad `.font-jp` (subset `japanese`) **solo** para texto japonés real (駅, nombres de platos), de forma puntual, para no cargar el set CJK completo de forma global.
+**Fuentes cargadas** (`src/app/layout.tsx` vía `next/font/google`):
+- `M_PLUS_1p` → variable CSS `--font-mplus` → pesos 400/500/700/900
+- `JetBrains_Mono` → variable CSS `--font-jetbrains` → variable weight
 
-**Escala:** 14 · 16(base) · 18 · 20 · 24 · 30 · 40 · 56(display). Line-height: cuerpo **1.65**, titulares **1.15**. Tracking: titulares `-0.01em`; eyebrow mono `+0.08em` uppercase. Medida de línea 60-75 car.
-
+**Mapeo en `@theme`:**
 ```css
-/* next/font expone variables; mapeo Tailwind */
---font-serif: 'Noto Serif JP', Georgia, serif;
---font-sans: 'Noto Sans JP', system-ui, sans-serif;
---font-mono: 'JetBrains Mono', ui-monospace, monospace;
+--font-sans:    var(--font-mplus), system-ui, sans-serif;   /* cuerpo y UI */
+--font-serif:   var(--font-mplus), system-ui, sans-serif;   /* sin serif real: apunta a mplus */
+--font-display: var(--font-mplus), system-ui, sans-serif;   /* logo y titulares: usa font-black (900) */
+--font-mono:    var(--font-jetbrains), ui-monospace, monospace; /* datos, kickers, fechas */
 ```
+
+**Usos:**
+- Titulares/logo: `font-display font-black` (M PLUS 1p 900) → estilo impactante, "pop japonés"
+- Cuerpo/UI: `font-sans` por defecto (M PLUS 1p 400/500/700)
+- Kickers/precios/fechas: clase `.kicker` o `font-mono` (JetBrains Mono)
+- `.font-jp`: pila de sistema japonés para texto kanji/kana real (no carga subconjunto CJK globalmente)
 
 ---
 
 ## 3. Espaciado, radios y sombras
 
-- **Espaciado** (escala 4/8): `4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96`. Ritmo vertical de sección: 24/40/64.
-- **Radios (sobrios, NO blobs):** `--radius-sm 4px` (botones/inputs), `--radius 8px` (tarjetas). Máx 12px. Nada de 16-24px "orgánicos".
-- **Sombras (mínimas, editorial = borde + aire):** `--shadow-sm: 0 1px 2px rgba(28,25,23,.06)`. Preferir borde 1px sobre sombra. Sombra mayor solo en modales/menús.
-- **Contenedor:** `max-w-3xl` (artículos, ~720px para medida de lectura), `max-w-6xl` (home/listados).
+- Radios: `rounded-lg` (8px) para tarjetas estándar, `rounded-xl` (12px) para tarjetas destacadas. No usar > 12px.
+- Sombras: `shadow-sm` preferido. Sombra mayor (`shadow-lg`) solo en modales/menús.
+- Contenedor artículo: `max-w-3xl` (~720px). Listados/home: `max-w-7xl`.
 
 ---
 
-## 4. Componentes base (specs)
+## 4. Componentes clave (ubicación real)
 
-- **Navbar:** sticky, fondo `--color-bg` con borde inferior 1px; logo (serif) a la izquierda; nav (Viajes · Gastronomía · Datos/Herramientas · Calculadora) en sans; mini-indicador **"Yen hoy ¥xxx/€"** que enlaza a la página viva. Foco visible, target ≥44px.
-- **Hero (editorial):** kicker mono rojo + titular grande Noto Serif JP + subtítulo + CTA primario a la calculadora. Sin imagen de stock genérica; foto propia o composición tipográfica.
-- **Card de artículo:** imagen 16:9 (next/image, AVIF, dimensiones declaradas), kicker categoría (mono, rojo), título serif, meta (autor real + fecha). Borde 1px, radius 8px, hover = sombra-sm + borde rojo sutil (sin desplazar layout).
-- **Tabla de datos:** `tabular-nums`, cabecera muted, zebra muy sutil, alineación de números a la derecha; responsive (scroll-x con sombra de borde o reflow a tarjetas en móvil); ordenable más adelante con `aria-sort`.
-- **Caja de afiliado/CTA:** recuadro con borde, fondo `--color-muted`, título + 1 frase + botón primario; **disclosure visible "enlace de afiliado"**; máx 1-2 por artículo.
-- **Calculadora — caja de veredicto:** verde (`--color-success`) si compensa / rojo (`--color-danger`) si no; SIEMPRE con icono (SVG Lucide) + frase completa ("El JR Pass NO te compensa: ahorras 142€ con billetes sueltos"), nunca solo color. Cifras en `tabular-nums`. Sello "Datos actualizados: [fecha]".
-
-**Botones:** primario = fondo `--color-primary`, texto blanco, radius 4px, peso 600, transición 200ms, `cursor-pointer`, focus-ring visible; hover = `--color-primary-strong` (sin transform que desplace). Secundario = transparente, borde 1px ink, texto ink.
+| Componente | Archivo | Notas |
+|---|---|---|
+| `Breadcrumbs` | `src/components/Breadcrumbs.tsx` | Emite visual + JSON-LD BreadcrumbList. Props: `items`, `variant` (onDark/onLight), `className` |
+| `Article` | `src/components/Article.tsx` | Motor de artículos. Prop `extraJsonLd?: object[]` para schema adicional (ej. HowTo en itinerarios) |
+| `AffiliateBox` | `src/components/AffiliateBox.tsx` | Partner del registro central. Título: `font-bold` (no font-serif) |
+| `YenIndicator` | `src/components/YenIndicator.tsx` | Server component async. Montado en Navbar desktop |
+| `PillarArticles` | `src/components/PillarIndex.tsx` | Grid auto de artículos por pilar |
+| Kit MDX (17 comps) | `src/components/mdx.tsx` | `Cards`, `InfoBox`, `StatCards`, `VsCards`, `DoDont`, `FAQ`, `ItineraryDay`, etc. |
 
 ---
 
-## 5. Anti-patrones (NO usar)
-- ❌ Acento rosa/morado o degradados "IA"; ❌ fuentes genéricas (Inter/Roboto/Space Grotesk); ❌ estilo "biophilic"/blobs redondeados; ❌ emojis como iconos (usar SVG Lucide/Heroicons); ❌ rojo inundando la página (es acento); ❌ imágenes de stock de turistas genéricas (usar fotos propias reales = el moat); ❌ hovers que desplazan layout; ❌ contraste <4.5:1; ❌ cambios de estado instantáneos (usar 150-300ms); ❌ foco invisible.
+## 5. Registro de afiliados
 
-## 6. Checklist pre-entrega
-- [ ] Contraste texto ≥4.5:1 (light y dark verificados por separado)
-- [ ] Iconos SVG consistentes (Lucide), nunca emoji
-- [ ] `cursor-pointer` + foco visible en todo lo clicable; targets ≥44px
-- [ ] `prefers-reduced-motion` respetado; transiciones 150-300ms
-- [ ] `next/image` con dimensiones (CLS<0.1); fuentes `display:swap` subset latin
-- [ ] Color nunca comunica solo (icono/texto)
-- [ ] Responsive 375 / 768 / 1024 / 1440; sin scroll horizontal en móvil
-- [ ] Jerarquía de encabezados h1→h6 sin saltos; un solo CTA primario por vista
+11 partners en `src/lib/affiliates.ts`: civitatis, klook, iati, heymondo, holafly, airalo, skyscanner, jrpass, revolut, **booking**, **getyourguide** (últimos dos añadidos en Fase 1, sin IDs reales todavía).
+
+Variables de entorno en `.env.example` y en Cloudflare Worker secrets para producción.
+
+---
+
+## 6. Anti-patrones (NO usar)
+
+- ❌ `text-gray-*` / `bg-gray-*` en elementos de contenido — rompe dark mode (usar `text-fg`, `bg-muted`)
+- ❌ `font-serif` con intención de serif real — ahora apunta a M PLUS 1p (sans)
+- ❌ Hardcodear colores hex en clases Tailwind — usar siempre tokens semánticos
+- ❌ `breadcrumbLd()` manual inline — usar el componente `<Breadcrumbs>` que lo emite automáticamente
+- ❌ `getArticles("logistica")` + `getArticles("blog")` para cubrir todo — usar `getAllArticles()`
+- ❌ Fuentes Poppins / Pacifico — eliminadas en Fase 1
+
+---
+
+## 7. Checklist pre-entrega
+
+- [ ] H1 y títulos principales usan `text-fg` (nunca `text-gray-900`)
+- [ ] Breadcrumbs presentes en artículo y en hub (visual + JSON-LD via componente `<Breadcrumbs>`)
+- [ ] Contraste ≥4.5:1 verificado en light Y dark
+- [ ] `prefers-reduced-motion` respetado (`globals.css` lo cubre globalmente)
+- [ ] `next/image` con dimensiones declaradas; fuentes `display:swap`
+- [ ] Iconos SVG Lucide — nunca emoji como icono
+- [ ] Targets táctiles ≥44px en elementos interactivos

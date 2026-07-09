@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getArticles } from "@/lib/content";
+import { getAllArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Buscar",
@@ -21,10 +21,12 @@ function buildIndex(): SearchDoc[] {
     { title: "Consejos prácticos para viajar a Japón", href: "/logistica", desc: "Transporte, eSIM, seguros, enchufes, maleta y mejor época." },
     { title: "Noticias y novedades de Japón", href: "/blog", desc: "Actualidad útil para tu viaje: yen, festivales y reservas." },
   ];
-  const fromArticles: SearchDoc[] = [
-    ...getArticles("logistica").map((a) => ({ title: a.title, href: `/logistica/${a.slug}`, desc: a.excerpt || a.description })),
-    ...getArticles("blog").map((a) => ({ title: a.title, href: `/blog/${a.slug}`, desc: a.excerpt || a.description })),
-  ];
+  // Todos los pilares, no solo logística/blog (antes dejaba 36 de 53 artículos sin indexar).
+  const fromArticles: SearchDoc[] = getAllArticles().map((a) => ({
+    title: a.title,
+    href: `/${a.pillar}/${a.slug}`,
+    desc: a.excerpt || a.description,
+  }));
   return [...fixed, ...fromArticles];
 }
 

@@ -2,20 +2,25 @@ import Link from "next/link";
 import { SITE } from "@/lib/site";
 import { Logo } from "@/components/Logo";
 import { MobileMenu } from "@/components/MobileMenu";
+import { YenIndicator } from "@/components/YenIndicator";
 
-export function Navbar() {
+export async function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
         <Logo />
 
-        <nav aria-label="Principal" className="hidden items-center gap-8 md:flex">
-          {SITE.nav.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm font-medium text-fg-muted transition-colors hover:text-primary">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="hidden items-center gap-6 md:flex">
+          <nav aria-label="Principal" className="flex items-center gap-8">
+            {SITE.nav.map((item) => (
+              <Link key={item.href} href={item.href} className="text-sm font-medium text-fg-muted transition-colors hover:text-primary">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          {/* "Yen hoy" ya prometido en docs/web-plan.md; existía como componente pero no se usaba en ningún sitio. */}
+          <YenIndicator />
+        </div>
 
         {/* Cluster derecho en móvil: buscador + menú hamburguesa */}
         <div className="flex items-center gap-1 md:hidden">

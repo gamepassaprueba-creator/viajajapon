@@ -5,6 +5,7 @@ import { BlogHub, type HubItem } from "@/components/BlogHub";
 import { CATEGORIAS, categoriaDe } from "@/lib/categorias";
 import { getAllArticles } from "@/lib/content";
 import { formatDate } from "@/lib/format";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Blog: guías y noticias para viajar a Japón",
@@ -41,6 +42,7 @@ export default function Page() {
       {/* Hero contenido con buscador */}
       <section className="border-b border-border bg-gradient-to-b from-surface to-bg">
         <div className="mx-auto max-w-5xl px-4 py-16 text-center sm:py-20">
+          <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Blog", href: "/blog" }]} className="mb-4 justify-center" />
           <p className="kicker text-primary">Blog</p>
           <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Blog de viajes a Japón</h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-fg-muted">

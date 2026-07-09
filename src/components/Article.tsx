@@ -7,9 +7,10 @@ import remarkGfm from "remark-gfm";
 import { mdxComponents } from "@/components/mdx";
 import { getArticle, getArticles, readingMinutes } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
-import { articleLd, breadcrumbLd } from "@/lib/jsonld";
+import { articleLd } from "@/lib/jsonld";
 import { formatDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 interface PillarConfig {
   basePath: string; // "/blog" | "/logistica"
@@ -27,7 +28,7 @@ const PILLARS: Record<string, PillarConfig> = {
   },
   logistica: {
     basePath: "/logistica",
-    crumbName: "Consejos prácticos",
+    crumbName: "Consejos", // alineado con src/lib/categorias.ts (antes decía "Consejos prácticos")
     dateMode: "updated",
   },
   itinerarios: {
@@ -86,12 +87,26 @@ export function articleMetadata(pillar: string, slug: string): Metadata {
 }
 
 /** Renderiza un artículo completo (cabecera + MDX + JSON-LD Article/Breadcrumb). */
-export function Article({ pillar, slug }: { pillar: string; slug: string }) {
+export function Article({
+  pillar,
+  slug,
+  extraJsonLd = [],
+}: {
+  pillar: string;
+  slug: string;
+  /** JSON-LD adicional específico de la página que lo renderiza (p. ej. HowTo en itinerarios). */
+  extraJsonLd?: object[];
+}) {
   const cfg = PILLARS[pillar];
   const article = getArticle(pillar, slug);
   if (!article || !cfg) notFound();
   const { meta, content } = article;
   const url = `${cfg.basePath}/${slug}`;
+  const crumbs = [
+    { name: "Inicio", href: "/" },
+    { name: cfg.crumbName, href: cfg.basePath },
+    { name: meta.title, href: url },
+  ];
   // Hermanos publicados del mismo pilar (excluye borradores y el actual) para interlinking.
   const related = getArticles(pillar)
     .filter((a) => a.slug !== slug)
@@ -110,13 +125,7 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
           <Image src={meta.hero} alt={meta.heroAlt ?? meta.title} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/25" />
           <div className="relative mx-auto flex min-h-[420px] max-w-5xl flex-col justify-end px-4 pb-12 pt-32 sm:min-h-[500px]">
-            <nav className="flex items-center gap-2 text-sm text-white/80">
-              <Link href="/" className="hover:text-white hover:underline">Inicio</Link>
-              <span aria-hidden="true">›</span>
-              <Link href={cfg.basePath} className="hover:text-white hover:underline">{cfg.crumbName}</Link>
-              <span aria-hidden="true">›</span>
-              <span className="font-medium text-white">{meta.kicker}</span>
-            </nav>
+            <Breadcrumbs items={crumbs} variant="onDark" />
             <h1 className="mt-4 max-w-3xl text-balance text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
               {meta.title}
             </h1>
@@ -141,12 +150,13 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
         </header>
       ) : (
         <header className="mx-auto max-w-3xl px-4 pt-12">
+          <Breadcrumbs items={crumbs} variant="onLight" />
           {cfg.back && (
-            <Link href={cfg.back.href} className="text-sm font-medium text-primary hover:underline">
+            <Link href={cfg.back.href} className="mt-4 block text-sm font-medium text-primary hover:underline">
               {cfg.back.label}
             </Link>
           )}
-          <p className={`kicker text-primary ${cfg.back ? "mt-4" : ""}`}>{meta.kicker}</p>
+          <p className="kicker mt-4 text-primary">{meta.kicker}</p>
           <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{meta.title}</h1>
           <div className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-fg-muted">
             <Image src="/avatares/hijo.webp" alt="" width={24} height={24} className="rounded-full ring-1 ring-border" />
@@ -209,11 +219,7 @@ export function Article({ pillar, slug }: { pillar: string; slug: string }) {
             dateModified: meta.dateModified,
             image: meta.hero ?? "/images/hero-fuji.jpg",
           }),
-          breadcrumbLd([
-            { name: "Inicio", url: "/" },
-            { name: cfg.crumbName, url: cfg.basePath },
-            { name: meta.title, url },
-          ]),
+          ...extraJsonLd,
         ]}
       />
     </article>

@@ -74,3 +74,34 @@ export function getPublishedSlugs(pillar: string): string[] {
     return !!a && !a.meta.draft;
   });
 }
+
+export interface ItineraryStep {
+  day: number;
+  title: string;
+  city: string;
+  text: string;
+}
+
+/**
+ * Extrae los días de un itinerario a partir del markdown crudo (no del árbol MDX ya
+ * compilado: <ItineraryDay> recibe sus hijos como nodos React, no como texto). Los 4
+ * artículos de content/itinerarios/ usan <ItineraryDay dia={N} titulo="..." ciudad="...">
+ * con el mismo orden de atributos, así que una regex tolerante es suficiente. Se usa
+ * para construir el schema.org HowTo de cada itinerario (src/lib/jsonld.ts).
+ */
+export function extractItinerarySteps(content: string): ItineraryStep[] {
+  const re = /<ItineraryDay\s+dia=\{(\d+)\}\s+titulo="([^"]+)"\s+ciudad="([^"]+)"[^>]*>([\s\S]*?)<\/ItineraryDay>/g;
+  const steps: ItineraryStep[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(content))) {
+    const [, dia, titulo, ciudad, body] = match;
+    const text = body
+      .replace(/<[^>]+>/g, " ") // componentes anidados (Foto, InfoBox…)
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // enlaces markdown → solo el texto visible
+      .replace(/[*_`#]/g, "") // énfasis/markdown restante
+      .replace(/\s+/g, " ")
+      .trim();
+    steps.push({ day: Number(dia), title: titulo, city: ciudad, text });
+  }
+  return steps.sort((a, b) => a.day - b.day);
+}

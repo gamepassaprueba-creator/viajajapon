@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArrowRight, CalendarDays, Check, MapPin, TrainFront, type LucideIcon } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Destinos de Japón: guías por ciudad",
@@ -46,10 +47,10 @@ const CITIES: CityCard[] = [
     img: "/images/osaka.jpg",
     alt: "Ambiente nocturno de Osaka con carteles luminosos",
     title: "Osaka",
-    desc: "La ciudad del buen comer y del ambiente desenfadado. Su guía propia está en preparación; mientras tanto, te contamos cómo encajarla en la ruta clásica.",
+    desc: "La ciudad del buen comer y del ambiente desenfadado: Dotonbori, el castillo y Universal Studios Japan.",
     tags: ["Dotonbori", "Namba", "Castillo"],
-    href: "/itinerarios/itinerario-japon-10-dias",
-    cta: "Osaka en la ruta de 10 días",
+    href: "/destinos/que-ver-en-osaka",
+    cta: "Qué ver en Osaka",
   },
 ];
 
@@ -147,6 +148,7 @@ export default function Page() {
       {/* Hero textual */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4">
+          <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Destinos", href: "/destinos" }]} className="mb-4" />
           <p className="kicker text-primary">Destinos</p>
           <h1 className="mt-2 max-w-3xl text-balance text-4xl font-bold sm:text-5xl">
             Destinos de Japón: dónde ir y dónde dormir

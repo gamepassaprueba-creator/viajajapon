@@ -13,6 +13,7 @@ import {
   Wallet,
 } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import ramenHero from "../../../public/images/ramen.jpg";
 
 export const metadata: Metadata = {
@@ -149,8 +150,9 @@ export default function Page() {
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10" />
         <div className="relative mx-auto w-full max-w-7xl px-4 py-16">
           <div className="max-w-2xl">
+            <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Gastronomía", href: "/gastronomia" }]} className="mb-4" />
             <p className="kicker text-primary">Gastronomía</p>
-            <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-gray-900 sm:text-5xl">
+            <h1 className="mt-3 text-balance text-4xl font-bold leading-tight text-fg sm:text-5xl">
               Comer en Japón: qué pedir y cuánto cuesta
             </h1>
             <p className="mt-6 text-pretty text-lg text-fg-muted">

@@ -71,3 +71,19 @@ export function faqLd(items: { q: string; a: string }[]) {
     })),
   };
 }
+
+/** HowTo para guías paso a paso (itinerarios). steps en orden; position se calcula aquí. */
+export function howToLd(opts: { name: string; description: string; steps: { name: string; text: string }[] }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: opts.name,
+    description: opts.description,
+    step: opts.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
