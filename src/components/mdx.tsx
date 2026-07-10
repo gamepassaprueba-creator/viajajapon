@@ -67,13 +67,10 @@ function headingText(children: React.ReactNode): string {
 /** CTA reutilizable a la calculadora (para usar dentro de los MDX). */
 export function CalculatorCTA() {
   return (
-    <div className="my-6 rounded-lg border border-secondary/30 bg-secondary/5 p-5">
-      <p className="font-semibold text-fg">Calcúlalo con tu ruta exacta</p>
-      <p className="mt-1 text-sm text-fg-muted">La calculadora suma tus billetes reales y los compara con el pase, en euros.</p>
-      <Link
-        href="/herramientas/jr-pass-calculadora"
-        className="mt-3 inline-flex rounded-sm bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-strong"
-      >
+    <div className="panel-manga-red my-6 bg-white p-5">
+      <p className="font-black text-[#0a0a0a]">Calcúlalo con tu ruta exacta</p>
+      <p className="mt-1 text-sm text-[#555]">La calculadora suma tus billetes reales y los compara con el pase, en euros.</p>
+      <Link href="/herramientas/jr-pass-calculadora" className="btn-primary mt-3">
         Abrir la calculadora →
       </Link>
     </div>
@@ -88,7 +85,7 @@ export function AuthorNote({ children }: { children: React.ReactNode }) {
 /** Índice de la guía: enlaces de ancla a los h2 (los ids se generan solos del texto). */
 export function Toc({ items }: { items: { href: string; label: string }[] }) {
   return (
-    <nav aria-label="En esta guía" className="my-6 rounded-lg border border-border bg-muted/60 p-5">
+    <nav aria-label="En esta guía" className="my-6 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-5">
       <p className="kicker text-fg-muted">En esta guía</p>
       <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
         {items.map((i) => (
@@ -104,7 +101,7 @@ export function Toc({ items }: { items: { href: string; label: string }[] }) {
 /** Ficha de datos clave al inicio del artículo (respuesta rápida / AEO). */
 export function KeyFacts({ items }: { items: { label: string; value: string }[] }) {
   return (
-    <div className="nums my-6 grid gap-x-6 gap-y-4 rounded-lg border border-border bg-muted/60 p-5 sm:grid-cols-2">
+    <div className="nums my-6 grid gap-x-6 gap-y-4 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-5 sm:grid-cols-2">
       {items.map((f) => (
         <div key={f.label}>
           <p className="kicker text-fg-muted">{f.label}</p>
@@ -133,7 +130,7 @@ export function InfoBox({
 }) {
   const v = INFOBOX_VARIANTS[variant] ?? INFOBOX_VARIANTS.info;
   return (
-    <aside className={`my-6 flex gap-3 rounded-lg border p-4 ${v.frame}`}>
+    <aside className={`my-6 flex gap-3 border-[2px] p-4 ${v.frame}`}>
       <v.Icon size={20} className={`mt-0.5 shrink-0 ${v.icon}`} aria-hidden="true" />
       <div className="min-w-0 text-sm leading-relaxed text-fg-muted [&>p]:mt-2 [&>p:first-child]:mt-0">
         {title && <p className="font-semibold text-fg">{title}</p>}
@@ -149,7 +146,7 @@ export function Steps({ items }: { items: { titulo: string; texto: string }[] })
     <ol className="my-6 space-y-4">
       {items.map((s, i) => (
         <li key={s.titulo} className="flex gap-4">
-          <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
+          <span aria-hidden="true" className="flex size-8 shrink-0 items-center justify-center border-[2px] border-[#0a0a0a] bg-[#e1352e] text-sm font-black text-white">
             {i + 1}
           </span>
           <div className="min-w-0">
@@ -179,7 +176,7 @@ export function Foto({
 }) {
   return (
     <figure className="my-6">
-      <div className="relative aspect-video overflow-hidden rounded-lg bg-muted">
+      <div className="relative aspect-video overflow-hidden border-[2px] border-[#0a0a0a] bg-[#f5f5f5]">
         <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
       </div>
       {(caption || credito) && (
@@ -202,7 +199,7 @@ export function RouteStops({ items }: { items: { ciudad: string; dias: string; n
           {i < items.length - 1 && (
             <span aria-hidden="true" className="absolute left-4 top-9 h-[calc(100%-1.75rem)] w-px -translate-x-1/2 bg-border" />
           )}
-          <span aria-hidden="true" className="z-10 flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
+          <span aria-hidden="true" className="z-10 flex size-8 shrink-0 items-center justify-center border-[2px] border-[#0a0a0a] bg-[#e1352e] text-sm font-black text-white">
             {i + 1}
           </span>
           <div className="min-w-0 pt-1">
@@ -232,9 +229,9 @@ export function ItineraryDay({
   children: React.ReactNode;
 }) {
   return (
-    <details open={abierto || undefined} className="group my-3 overflow-hidden rounded-lg border border-border bg-surface">
+    <details open={abierto || undefined} className="group my-3 overflow-hidden border-[2px] border-[#0a0a0a] bg-white">
       <summary className="flex cursor-pointer list-none items-center gap-4 px-5 py-4 [&::-webkit-details-marker]:hidden">
-        <span aria-hidden="true" className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+        <span aria-hidden="true" className="flex size-9 shrink-0 items-center justify-center border-[2px] border-[#0a0a0a] bg-[#e1352e] text-sm font-black text-white">
           {dia}
         </span>
         <span className="min-w-0 flex-1">
@@ -251,9 +248,9 @@ export function ItineraryDay({
 /** Preguntas frecuentes en acordeón nativo (details/summary: accesible, sin JS). */
 export function FAQ({ items }: { items: { q: string; a: string }[] }) {
   return (
-    <div className="my-6 overflow-hidden rounded-lg border border-border bg-surface">
+    <div className="my-6 overflow-hidden border-[2px] border-[#0a0a0a] bg-white">
       {items.map((f) => (
-        <details key={f.q} className="group border-b border-border last:border-b-0">
+        <details key={f.q} className="group border-b-[2px] border-[#0a0a0a] last:border-b-0">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-semibold text-fg [&::-webkit-details-marker]:hidden">
             {f.q}
             <ChevronDown size={18} className="shrink-0 text-fg-muted transition-transform group-open:rotate-180" aria-hidden="true" />
@@ -305,8 +302,8 @@ export function StatCards({ items }: { items: { icon?: string; label: string; va
   return (
     <div className={`my-8 grid grid-cols-2 gap-4 lg:grid-cols-4 ${BLEED}`}>
       {items.map((s) => (
-        <div key={s.label} className="rounded-xl border border-border bg-gradient-to-br from-muted/70 to-surface p-5 text-center shadow-sm">
-          <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <div key={s.label} className="border-[2px] border-[#0a0a0a] bg-white p-5 text-center">
+          <div className="mx-auto mb-3 flex size-12 items-center justify-center border-[2px] border-[#0a0a0a] bg-[#e1352e] text-white">
             <Icono nombre={s.icon} />
           </div>
           <p className="kicker text-fg-muted">{s.label}</p>
@@ -340,7 +337,7 @@ export function Cards({ items, cols = 2 }: { items: CardItem[]; cols?: 2 | 3 }) 
   return (
     <div className={`my-8 grid gap-6 md:grid-cols-2 ${cols === 3 ? "lg:grid-cols-3" : ""} ${BLEED}`}>
       {items.map((c) => (
-        <div key={c.title} className="group flex flex-col overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div key={c.title} className="panel-manga-dark group flex flex-col overflow-hidden bg-white transition-all hover:translate-x-0.5 hover:translate-y-0.5">
           {c.img && (
             <div className="relative h-48 shrink-0 overflow-hidden">
               <Image src={c.img} alt={c.alt ?? c.title} fill sizes="(max-width:768px) 100vw, 420px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -354,13 +351,13 @@ export function Cards({ items, cols = 2 }: { items: CardItem[]; cols?: 2 | 3 }) 
           <div className="flex flex-1 flex-col p-6">
             <div className="flex items-start justify-between gap-3">
               <h3 id={slugify(c.title) || undefined} className="scroll-mt-24 text-lg font-bold leading-snug">{c.title}</h3>
-              {c.jp && <span className="shrink-0 rounded-full bg-muted px-3 py-1 text-sm text-fg-muted">{c.jp}</span>}
+              {c.jp && <span className="tag-dark shrink-0">{c.jp}</span>}
             </div>
             <p className="mt-2 text-sm leading-relaxed text-fg-muted">{c.desc}</p>
             {c.tags && c.tags.length > 0 && (
               <div className="mt-3 flex flex-wrap gap-2">
                 {c.tags.map((t, i) => (
-                  <span key={t} className={`rounded-full px-2.5 py-1 text-xs font-medium ${TAG_STYLES[i % TAG_STYLES.length]}`}>{t}</span>
+                  <span key={t} className={`border border-[#0a0a0a] px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wide ${i % 2 === 0 ? "bg-[#e1352e] text-white border-[#e1352e]" : "bg-white text-[#0a0a0a]"}`}>{t}</span>
                 ))}
               </div>
             )}
@@ -401,9 +398,9 @@ export function VsCards({ items }: { items: { title: string; badge?: string; pre
   return (
     <div className={`my-8 grid gap-6 md:grid-cols-3 ${BLEED}`}>
       {items.map((v) => (
-        <div key={v.title} className={`relative flex flex-col rounded-xl border bg-surface p-6 shadow-sm ${v.destacado ? "border-2 border-primary" : "border-border"}`}>
+        <div key={v.title} className={`relative flex flex-col bg-white p-6 ${v.destacado ? "border-[3px] border-[#e1352e]" : "border-[2px] border-[#0a0a0a]"}`} style={v.destacado ? {boxShadow:"5px 5px 0 #e1352e"} : {boxShadow:"4px 4px 0 #0a0a0a"}}>
           {v.badge && (
-            <span className={`absolute -top-3 left-5 rounded-full px-3 py-1 text-xs font-bold ${v.destacado ? "bg-primary text-white" : "bg-muted text-fg-muted"}`}>
+            <span className={`tag-manga absolute -top-3 left-5 ${v.destacado ? "" : "bg-[#0a0a0a]"}`}>
               {v.badge}
             </span>
           )}
@@ -453,14 +450,14 @@ export function Comparativa({
   return (
     <figure className={`my-8 ${BLEED}`}>
       {caption && <figcaption className="mb-5 text-center text-xl font-bold text-fg sm:text-2xl">{caption}</figcaption>}
-      <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
+      <div className="overflow-x-auto border-[2px] border-[#0a0a0a] bg-white">
         <table className="w-full min-w-[620px] border-collapse text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/40">
               <th className="p-4 text-left align-bottom font-bold text-fg">Características</th>
               {columnas.map((c) => (
                 <th key={c.title} className="p-4 text-center align-bottom font-bold text-fg">
-                  <span className={`mx-auto mb-2 flex size-11 items-center justify-center rounded-full ${COMPARATIVA_COLORS[c.color ?? "secondary"]}`}>
+                  <span className="mx-auto mb-2 flex size-11 items-center justify-center border-[2px] border-[#0a0a0a] bg-[#e1352e] text-white">
                     <Icono nombre={c.icon} />
                   </span>
                   {c.title}
@@ -524,9 +521,9 @@ export function Comparativa({
 /** Dos columnas qué hacer / qué evitar (etiqueta, normas...). */
 export function DoDont({ hacer, evitar }: { hacer: { titulo: string; texto?: string }[]; evitar: { titulo: string; texto?: string }[] }) {
   const col = (items: { titulo: string; texto?: string }[], ok: boolean) => (
-    <div className="rounded-xl border border-border bg-surface p-6 shadow-sm">
+    <div className="border-[2px] border-[#0a0a0a] bg-white p-6" style={{boxShadow: ok ? "4px 4px 0 #15803d" : "4px 4px 0 #e1352e"}}>
       <div className="mb-4 flex items-center gap-3">
-        <span className={`flex size-10 items-center justify-center rounded-full ${ok ? "bg-success/10 text-success" : "bg-primary/10 text-primary"}`}>
+        <span className={`flex size-10 items-center justify-center border-[2px] border-[#0a0a0a] ${ok ? "bg-[#15803d] text-white" : "bg-[#e1352e] text-white"}`}>
           {ok ? <Check size={20} aria-hidden="true" /> : <X size={20} aria-hidden="true" />}
         </span>
         <h3 className="text-lg font-bold">{ok ? "Qué hacer" : "Qué evitar"}</h3>
@@ -555,15 +552,15 @@ export function DoDont({ hacer, evitar }: { hacer: { titulo: string; texto?: str
 /** Banda CTA degradada de cierre de sección (como el final de los mockups). */
 export function CTABand({ title, texto, href, cta, href2, cta2 }: { title: string; texto?: string; href: string; cta: string; href2?: string; cta2?: string }) {
   return (
-    <div className={`my-10 rounded-2xl bg-gradient-to-br from-primary to-primary-strong p-8 text-center text-white shadow-lg sm:p-12 ${BLEED}`}>
-      <p className="text-balance text-2xl font-bold sm:text-3xl">{title}</p>
-      {texto && <p className="mx-auto mt-3 max-w-xl text-pretty text-white/90">{texto}</p>}
+    <div className={`my-10 border-[3px] border-[#0a0a0a] bg-[#e1352e] p-8 text-center text-white sm:p-10 ${BLEED}`} style={{boxShadow:"6px 6px 0 #0a0a0a"}}>
+      <p className="display-md text-2xl text-white sm:text-3xl">{title}</p>
+      {texto && <p className="mx-auto mt-3 max-w-xl text-pretty text-white/85">{texto}</p>}
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link href={href} className="rounded-md bg-white px-6 py-3 font-semibold text-primary transition-colors hover:bg-gray-100">
+        <Link href={href} className="btn-outline border-white text-white hover:bg-white hover:text-[#e1352e]">
           {cta}
         </Link>
         {href2 && cta2 && (
-          <Link href={href2} className="rounded-md border-2 border-white/80 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10">
+          <Link href={href2} className="border-[2px] border-white/80 px-6 py-3 font-mono text-xs font-black uppercase tracking-wide text-white transition-colors hover:bg-white/20">
             {cta2}
           </Link>
         )}
@@ -595,9 +592,9 @@ export function Acordeon({ items }: { items: AcordeonItem[] }) {
       {items.map((it, i) => {
         const tint = i % 2 === 0 ? "bg-primary/10 text-primary" : "bg-secondary/10 text-secondary";
         return (
-          <details key={it.title} open={it.abierto || undefined} className="group overflow-hidden rounded-xl border border-border bg-surface shadow-sm">
+          <details key={it.title} open={it.abierto || undefined} className="group overflow-hidden border-[2px] border-[#0a0a0a] bg-white">
             <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">
-              <span className={`flex size-12 shrink-0 items-center justify-center rounded-xl ${tint}`}>
+              <span className={`flex size-12 shrink-0 items-center justify-center border-[2px] border-[#0a0a0a] ${i % 2 === 0 ? "bg-[#e1352e] text-white" : "bg-[#0a0a0a] text-white"}`}>
                 <Icono nombre={it.icon} />
               </span>
               <span className="min-w-0 flex-1">
@@ -633,12 +630,12 @@ export function Acordeon({ items }: { items: AcordeonItem[] }) {
 
 export const mdxComponents = {
   h2: ({ children, ...p }: ComponentProps<"h2">) => (
-    <h2 id={slugify(headingText(children)) || undefined} className="mt-10 scroll-mt-24 text-2xl font-bold" {...p}>
+    <h2 id={slugify(headingText(children)) || undefined} className="mt-10 scroll-mt-24 text-2xl font-black text-[#0a0a0a]" {...p}>
       {children}
     </h2>
   ),
   h3: ({ children, ...p }: ComponentProps<"h3">) => (
-    <h3 id={slugify(headingText(children)) || undefined} className="mt-6 scroll-mt-24 text-xl font-bold" {...p}>
+    <h3 id={slugify(headingText(children)) || undefined} className="mt-6 scroll-mt-24 text-xl font-black text-[#0a0a0a]" {...p}>
       {children}
     </h3>
   ),
@@ -665,7 +662,7 @@ export const mdxComponents = {
   },
   strong: (p: ComponentProps<"strong">) => <strong className="font-semibold text-fg" {...p} />,
   table: (p: ComponentProps<"table">) => (
-    <div className="mt-4 overflow-x-auto rounded-lg border border-border">
+    <div className="mt-4 overflow-x-auto border-[2px] border-[#0a0a0a]">
       <table className="nums w-full text-sm" {...p} />
     </div>
   ),
