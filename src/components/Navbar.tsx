@@ -21,15 +21,18 @@ export async function Navbar() {
           <YenIndicator />
         </div>
 
-        {/* Cluster derecho en móvil: buscador + menú hamburguesa */}
-        <div className="flex items-center gap-1 md:hidden">
-          <Link href="/buscar" aria-label="Buscar" className="flex size-11 items-center justify-center rounded-md text-fg">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {/* Cluster derecho en móvil: yen en vivo + buscador + hamburguesa */}
+        <div className="flex items-center gap-0.5 md:hidden">
+          {/* Yen mini en móvil */}
+          <Link href="/cambio-yen-euro" className="hidden min-[380px]:flex items-center gap-1 border-[2px] border-[#0a0a0a] px-2 py-1">
+            <span className="font-mono text-[9px] font-black text-[#e1352e]">¥ hoy</span>
+          </Link>
+          <Link href="/buscar" aria-label="Buscar" className="flex size-11 items-center justify-center text-[#0a0a0a]">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="7" />
               <path d="m21 21-4.3-4.3" />
             </svg>
           </Link>
-          {/* Menú móvil (details nativo + cierre al navegar) */}
           <MobileMenu items={SITE.nav} />
         </div>
       </div>

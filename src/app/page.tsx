@@ -214,13 +214,13 @@ export default async function Home() {
           VIÑETA MADRE-HIJO — protagonismo total
           Panel manga: marco negro, globos de texto
           ══════════════════════════════════════════ */}
-      <section className="border-b-[3px] border-[#0a0a0a] bg-white py-12">
-        <div className="mx-auto max-w-7xl px-5">
+      <section className="border-b-[3px] border-[#0a0a0a] bg-white py-8 sm:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-5">
           {/* Cabecera de sección estilo etiqueta de cómic */}
-          <div className="mb-8 flex items-center gap-4">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
             <span className="tag-manga">De nuestro viaje</span>
-            <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#999]">
-              Diciembre 2025 · madre e hijo · primer viaje a Japón
+            <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[#999]">
+              Dic. 2025 · madre e hijo
             </span>
           </div>
 
@@ -275,12 +275,12 @@ export default async function Home() {
       {/* ══════════════════════════════════════════
           ITINERARIOS — paneles manga con foto
           ══════════════════════════════════════════ */}
-      <section id="planifica" className="border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5] py-12">
-        <div className="mx-auto max-w-7xl px-5">
-          <div className="mb-8 flex items-end justify-between">
+      <section id="planifica" className="border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5] py-8 sm:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-5">
+          <div className="mb-6 flex items-end justify-between">
             <div>
               <span className="tag-dark">Itinerarios</span>
-              <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">¿Cuántos días tienes?</h2>
+              <h2 className="display-md mt-2 text-2xl text-[#0a0a0a] sm:text-3xl lg:text-4xl">¿Cuántos días tienes?</h2>
             </div>
             <Link href="/itinerarios" className="font-mono text-xs font-black uppercase tracking-wide text-[#e1352e] hover:underline">
               Ver todos →
@@ -322,12 +322,12 @@ export default async function Home() {
       {/* ══════════════════════════════════════════
           DESTINOS — tres paneles de foto
           ══════════════════════════════════════════ */}
-      <section id="destinos" className="border-b-[3px] border-[#0a0a0a] bg-white py-12">
-        <div className="mx-auto max-w-7xl px-5">
-          <div className="mb-8 flex items-end justify-between">
+      <section id="destinos" className="border-b-[3px] border-[#0a0a0a] bg-white py-8 sm:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-5">
+          <div className="mb-6 flex items-end justify-between">
             <div>
               <span className="tag-dark">Destinos</span>
-              <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">Las ciudades imprescindibles</h2>
+              <h2 className="display-md mt-2 text-2xl text-[#0a0a0a] sm:text-3xl lg:text-4xl">Las ciudades imprescindibles</h2>
             </div>
             <Link href="/destinos" className="font-mono text-xs font-black uppercase tracking-wide text-[#e1352e] hover:underline">
               Todos →
@@ -370,11 +370,11 @@ export default async function Home() {
       {/* ══════════════════════════════════════════
           INFO PRÁCTICA — grid de tarjetas
           ══════════════════════════════════════════ */}
-      <section id="consejos" className="border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5] py-12">
-        <div className="mx-auto max-w-7xl px-5">
-          <div className="mb-8">
+      <section id="consejos" className="border-b-[3px] border-[#0a0a0a] bg-[#f5f5f5] py-8 sm:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-5">
+          <div className="mb-6">
             <span className="tag-dark">Antes de salir</span>
-            <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">Lo que hay que saber</h2>
+            <h2 className="display-md mt-2 text-2xl text-[#0a0a0a] sm:text-3xl lg:text-4xl">Lo que hay que saber</h2>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {PRACT.map((c, i) => (
@@ -406,12 +406,12 @@ export default async function Home() {
           NOTICIAS — si existen
           ══════════════════════════════════════════ */}
       {featured && (
-        <section className="border-b-[3px] border-[#0a0a0a] bg-white py-12">
-          <div className="mx-auto max-w-7xl px-5">
-            <div className="mb-8 flex items-end justify-between">
+        <section className="border-b-[3px] border-[#0a0a0a] bg-white py-8 sm:py-12">
+          <div className="mx-auto max-w-7xl px-4 sm:px-5">
+            <div className="mb-6 flex items-end justify-between">
               <div>
                 <span className="tag-dark">Actualidad</span>
-                <h2 className="display-md mt-3 text-3xl text-[#0a0a0a] sm:text-4xl">Novedades de Japón</h2>
+                <h2 className="display-md mt-2 text-2xl text-[#0a0a0a] sm:text-3xl lg:text-4xl">Novedades de Japón</h2>
               </div>
               <Link href="/blog" className="font-mono text-xs font-black uppercase tracking-wide text-[#e1352e] hover:underline">
                 Ver todo →
@@ -434,13 +434,13 @@ export default async function Home() {
       {/* ══════════════════════════════════════════
           NEWSLETTER — bloque de cierre
           ══════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] py-12">
-        <div className="mx-auto max-w-7xl px-5">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+      <section className="bg-[#0a0a0a] py-8 sm:py-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-5">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
             <div>
               <span className="tag-manga">Newsletter</span>
-              <h2 className="display-md mt-4 text-3xl text-white sm:text-4xl">¿Planificando tu viaje?</h2>
-              <p className="mt-3 text-sm text-white/50">Checklist, consejos y novedades. Sin spam.</p>
+              <h2 className="display-md mt-4 text-2xl text-white sm:text-3xl lg:text-4xl">¿Planificando tu viaje?</h2>
+              <p className="mt-2 text-sm text-white/50">Checklist, consejos y novedades. Sin spam.</p>
             </div>
             <div className="flex items-center">
               <NewsletterForm source="home" />
