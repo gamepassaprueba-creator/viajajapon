@@ -89,9 +89,9 @@ export function PackingChecklist({
   const pct = total ? Math.round((done / total) * 100) : 0;
 
   return (
-    <div className="my-8 rounded-lg border border-border bg-surface">
+    <div className="my-8 border-[2px] border-[#0a0a0a] bg-white" style={{boxShadow:"4px 4px 0 #0a0a0a"}}>
       {/* Cabecera con progreso global */}
-      <div className="flex flex-wrap items-center gap-4 border-b border-border p-5">
+      <div className="flex flex-wrap items-center gap-4 border-b-[2px] border-[#0a0a0a] p-5">
         <div className="min-w-0 flex-1">
           <p className="font-semibold text-fg">
             Tu maleta: <span className="nums">{done}/{total}</span>
@@ -102,23 +102,23 @@ export function PackingChecklist({
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label="Progreso de la maleta"
-            className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted"
+            className="mt-2 h-2 w-full overflow-hidden bg-[#f5f5f5]"
           >
-            <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${pct}%` }} />
+            <div className="h-full bg-[#e1352e] transition-all" style={{ width: `${pct}%` }} />
           </div>
         </div>
         <div className="flex gap-2 print:hidden">
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm font-medium text-fg transition-colors hover:border-primary hover:text-primary"
+            className="inline-flex items-center gap-1.5 border-[2px] border-[#0a0a0a] bg-white px-3 py-1.5 font-mono text-[10px] font-black uppercase tracking-wide text-[#0a0a0a] transition-colors hover:bg-[#0a0a0a] hover:text-white"
           >
-            <Printer size={15} aria-hidden="true" /> Imprimir
+            <Printer size={14} aria-hidden="true" /> Imprimir
           </button>
           <button
             type="button"
             onClick={() => setChecked(() => ({}))}
-            className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm font-medium text-fg-muted transition-colors hover:border-primary hover:text-primary"
+            className="inline-flex items-center gap-1.5 border-[2px] border-[#0a0a0a] bg-white px-3 py-1.5 font-mono text-[10px] font-black uppercase tracking-wide text-[#555] transition-colors hover:bg-[#0a0a0a] hover:text-white"
           >
             <RotateCcw size={15} aria-hidden="true" /> Reiniciar
           </button>
@@ -127,8 +127,8 @@ export function PackingChecklist({
 
       {/* Selector de temporada: adapta la categoría de ropa */}
       {temporadas && temporadas.length > 0 && (
-        <div className="border-b border-border px-5 py-4">
-          <p className="text-sm font-semibold text-fg">Ajusta la ropa a tu temporada:</p>
+        <div className="border-b-[2px] border-[#0a0a0a] px-5 py-4">
+          <p className="font-mono text-[10px] font-black uppercase tracking-widest text-[#555]">Ajusta la ropa a tu temporada:</p>
           <div className="mt-2 flex flex-wrap gap-2">
             {temporadas.map((t) => {
               const activa = temporada === t.id;
@@ -138,10 +138,10 @@ export function PackingChecklist({
                   type="button"
                   aria-pressed={activa}
                   onClick={() => setStore((s) => ({ ...s, temporada: activa ? undefined : t.id }))}
-                  className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                  className={`border-[2px] px-3.5 py-1.5 font-mono text-[10px] font-black uppercase tracking-wide transition-colors ${
                     activa
-                      ? "border-primary bg-primary text-white"
-                      : "border-border bg-surface text-fg-muted hover:border-primary hover:text-primary"
+                      ? "border-[#0a0a0a] bg-[#0a0a0a] text-white"
+                      : "border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#e1352e] hover:border-[#e1352e] hover:text-white"
                   }`}
                 >
                   {t.etiqueta}
@@ -169,7 +169,7 @@ export function PackingChecklist({
                   const isChecked = !!checked[k];
                   return (
                     <li key={k}>
-                      <label className="flex cursor-pointer items-start gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-muted">
+                      <label className="flex cursor-pointer items-start gap-2.5 px-2 py-1.5 text-sm transition-colors hover:bg-[#f5f5f5]">
                         <input
                           type="checkbox"
                           checked={isChecked}
@@ -187,7 +187,7 @@ export function PackingChecklist({
         })}
       </div>
 
-      <p className="border-t border-border px-5 py-3 text-xs text-fg-muted print:hidden">
+      <p className="border-t-[2px] border-[#0a0a0a] px-5 py-3 font-mono text-[10px] text-[#999] print:hidden">
         El progreso se guarda solo en tu navegador. Nadie más lo ve, y se borra si limpias los datos del navegador.
       </p>
     </div>

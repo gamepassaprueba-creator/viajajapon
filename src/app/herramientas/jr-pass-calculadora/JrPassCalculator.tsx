@@ -45,8 +45,8 @@ export function JrPassCalculator({
   const toggleSegment = (id: string) =>
     setSegmentIds((prev) => (prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]));
 
-  const labelCls = "block text-sm font-medium text-fg";
-  const fieldCls = "rounded-lg border border-border bg-surface p-4";
+  const labelCls = "block text-sm font-medium text-[#0a0a0a]";
+  const fieldCls = "border-[2px] border-[#0a0a0a] bg-white p-4";
 
   return (
     <div className="mt-8 grid gap-5 lg:grid-cols-2">
@@ -74,13 +74,13 @@ export function JrPassCalculator({
                 <label htmlFor="adults" className={labelCls}>Adultos</label>
                 <input id="adults" type="number" inputMode="numeric" min={1} max={9} value={adults}
                   onChange={(e) => setAdults(Math.max(1, Number(e.target.value)))}
-                  className="nums mt-1 w-full rounded-sm border border-border bg-bg px-3 py-2 text-base" />
+                  className="nums mt-1 w-full border-[2px] border-[#0a0a0a] bg-white px-3 py-2 text-base outline-none focus:border-[#e1352e]" />
               </div>
               <div>
                 <label htmlFor="children" className={labelCls}>Niños (6–11)</label>
                 <input id="children" type="number" inputMode="numeric" min={0} max={9} value={children}
                   onChange={(e) => setChildren(Math.max(0, Number(e.target.value)))}
-                  className="nums mt-1 w-full rounded-sm border border-border bg-bg px-3 py-2 text-base" />
+                  className="nums mt-1 w-full border-[2px] border-[#0a0a0a] bg-white px-3 py-2 text-base outline-none focus:border-[#e1352e]" />
               </div>
             </div>
           </div>
@@ -114,8 +114,10 @@ export function JrPassCalculator({
           <div className="mt-3 flex flex-wrap gap-2">
             {(Object.keys(PROFILE_LABEL) as Profile[]).map((p) => (
               <label key={p}
-                className={`cursor-pointer rounded-sm border px-3 py-2 text-sm transition-colors focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-ring ${
-                  profile === p ? "border-primary bg-primary text-white" : "border-border text-fg-muted hover:border-primary"
+                className={`cursor-pointer border-[2px] px-3 py-2 font-mono text-xs font-black uppercase tracking-wide transition-colors ${
+                  profile === p
+                    ? "border-[#0a0a0a] bg-[#0a0a0a] text-white"
+                    : "border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#e1352e] hover:border-[#e1352e] hover:text-white"
                 }`}>
                 <input type="radio" name="profile" value={p} checked={profile === p}
                   onChange={() => setProfile(p)} className="sr-only" />
@@ -130,7 +132,7 @@ export function JrPassCalculator({
       <div className="grid content-start gap-4">
         {/* Solo los resultados que cambian se anuncian; el formulario de email queda fuera del live region. */}
         <div className="grid gap-4" aria-live="polite">
-        <div className={`rounded-lg border p-5 ${r.verdictWorthIt ? "border-success/40 bg-success/5" : "border-danger/40 bg-danger/5"}`}>
+        <div className={`border-[3px] p-5 ${r.verdictWorthIt ? "border-[#15803d] bg-[#f0fdf4]" : "border-[#e1352e] bg-[#fff5f5]"}`} style={{boxShadow: r.verdictWorthIt ? "4px 4px 0 #15803d" : "4px 4px 0 #e1352e"}}>
           <div className="flex items-start gap-3">
             <span aria-hidden="true" className={`mt-0.5 ${r.verdictWorthIt ? "text-success" : "text-danger"}`}>
               {r.verdictWorthIt ? (
@@ -139,7 +141,7 @@ export function JrPassCalculator({
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
               )}
             </span>
-            <p className="font-serif text-lg leading-snug text-fg">
+            <p className="text-lg font-black leading-snug text-[#0a0a0a]">
               {r.verdictWorthIt
                 ? `Sí te compensa un pase: ahorras ${eur(r.savingsEur)} frente a la opción más cara.`
                 : `El JR Pass NO te compensa: ahorras ${eur(r.savingsEur)} comprando billetes sueltos.`}
@@ -147,10 +149,10 @@ export function JrPassCalculator({
           </div>
         </div>
 
-        <table className="w-full overflow-hidden rounded-lg border border-border bg-surface text-sm">
+        <table className="w-full overflow-hidden border-[2px] border-[#0a0a0a] bg-white text-sm">
           <caption className="sr-only">Comparativa de coste por opción de transporte</caption>
           <thead>
-            <tr className="border-b border-border bg-muted text-left">
+            <tr className="border-b-[2px] border-[#0a0a0a] bg-[#f5f5f5] text-left">
               <th scope="col" className="px-4 py-2 font-medium">Opción</th>
               <th scope="col" className="px-4 py-2 text-right font-medium">Coste (grupo)</th>
             </tr>
@@ -164,15 +166,15 @@ export function JrPassCalculator({
           </tbody>
         </table>
 
-        <div className="rounded-lg border border-border bg-surface p-5">
-          <p className="kicker text-fg-muted">Presupuesto estimado del viaje</p>
-          <p className="mt-2 nums font-serif text-2xl text-fg">{eur(r.budgetPerPersonEur)} <span className="text-base font-normal text-fg-muted">/ persona</span></p>
+        <div className="border-[2px] border-[#0a0a0a] bg-white p-5">
+          <p className="kicker text-[#555]">Presupuesto estimado del viaje</p>
+          <p className="mt-2 nums text-2xl font-black text-[#0a0a0a]">{eur(r.budgetPerPersonEur)} <span className="text-base font-normal text-[#555]">/ persona</span></p>
           <p className="nums mt-1 text-sm text-fg-muted">{eur(r.budgetGroupEur)} en total · transporte + alojamiento + comida + extras</p>
         </div>
 
         {/* Siguiente paso: acciones recomendadas según el veredicto */}
-        <div className="rounded-lg border border-border bg-surface p-5">
-          <p className="kicker text-fg-muted">Tu siguiente paso</p>
+        <div className="border-[2px] border-[#0a0a0a] bg-white p-5">
+          <p className="kicker text-[#555]">Tu siguiente paso</p>
           <p className="mt-2 text-sm leading-relaxed text-fg-muted">
             {r.verdictWorthIt
               ? "Te compensa un pase. Antes de comprarlo, verifica el precio del día y compáralo también con los pases regionales."
@@ -195,8 +197,8 @@ export function JrPassCalculator({
         </div>{/* fin del live region de resultados */}
 
         {/* Captura de email: checklist de presupuesto + avisos de precios */}
-        <div className="rounded-lg border border-secondary/30 bg-secondary/5 p-5">
-          <p className="font-semibold text-fg">¿Te guardamos este cálculo?</p>
+        <div className="panel-manga-red bg-white p-5">
+          <p className="font-black text-[#0a0a0a]">¿Te guardamos este cálculo?</p>
           <p className="mt-1 text-sm text-fg-muted">
             Te enviamos el checklist de presupuesto para Japón (en euros) y un aviso cuando cambien precios clave como el del JR Pass.
           </p>
@@ -230,14 +232,14 @@ function AffLink({
 }) {
   const cls =
     variant === "solid"
-      ? "bg-primary text-white hover:bg-primary-strong"
-      : "border border-border text-fg hover:border-primary";
+      ? "border-[2px] border-[#0a0a0a] bg-[#e1352e] text-white hover:bg-[#b8271f]"
+      : "border-[2px] border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-white";
   return (
     <a
       href={href}
       target="_blank"
       rel="sponsored nofollow noopener noreferrer"
-      className={`inline-flex items-center justify-between gap-1.5 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors ${cls}`}
+      className={`inline-flex items-center justify-between gap-1.5 px-4 py-2.5 font-mono text-xs font-black uppercase tracking-wide transition-colors ${cls}`}
     >
       <span>{children}</span>
       <span aria-hidden="true">→</span>
@@ -247,10 +249,10 @@ function AffLink({
 
 function Row({ label, value, best }: { label: string; value: string; best: boolean }) {
   return (
-    <tr className={`border-b border-border last:border-0 ${best ? "bg-success/5 font-semibold" : ""}`}>
+    <tr className={`border-b-[2px] border-[#0a0a0a] last:border-0 ${best ? "bg-[#f0fdf4] font-black" : ""}`}>
       <td className="px-4 py-2">
         {label}
-        {best && <span className="ml-2 rounded-sm bg-success px-1.5 py-0.5 text-xs font-medium text-white">más barata</span>}
+        {best && <span className="ml-2 border border-[#15803d] bg-[#15803d] px-1.5 py-0.5 font-mono text-[9px] font-black uppercase tracking-wide text-white">más barata</span>}
       </td>
       <td className="px-4 py-2 text-right">{value}</td>
     </tr>

@@ -25,10 +25,10 @@ export function CurrencyConverter({ rate }: { rate: number }) {
   }
 
   const field =
-    "nums mt-1 w-full rounded-md border border-border bg-bg px-4 py-3 text-2xl font-bold text-fg outline-none focus:border-primary focus:ring-2 focus:ring-ring/40";
+    "nums mt-1 w-full border-[2px] border-[#0a0a0a] bg-white px-4 py-3 text-2xl font-black text-[#0a0a0a] outline-none focus:border-[#e1352e]";
 
   return (
-    <div className="mt-8 rounded-lg border border-border bg-surface p-6 shadow-sm">
+    <div className="panel-manga-dark mt-8 bg-white p-6">
       <p className="kicker text-fg-muted">Conversor</p>
       <div className="mt-3 grid items-end gap-3 sm:grid-cols-[1fr_auto_1fr]">
         <label className="block">

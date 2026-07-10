@@ -27,8 +27,8 @@ export function ItinerariosFiltro({ items }: { items: ItinItem[] }) {
   return (
     <div>
       {/* Barra de filtro */}
-      <div className="mb-8 rounded-xl border border-border bg-surface p-4 shadow-sm">
-        <p className="mb-3 text-sm font-medium text-fg-muted">Filtrar por duración:</p>
+      <div className="mb-8 border-[2px] border-[#0a0a0a] bg-white p-4">
+        <p className="mb-3 font-mono text-[10px] font-black uppercase tracking-widest text-[#555]">Filtrar por duración:</p>
         <div className="flex flex-wrap gap-2">
           {filtros.map((f) => (
             <button
@@ -36,8 +36,10 @@ export function ItinerariosFiltro({ items }: { items: ItinItem[] }) {
               type="button"
               onClick={() => setActivo(f)}
               aria-pressed={activo === f}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                activo === f ? "bg-primary text-white" : "bg-muted text-fg-muted hover:bg-border hover:text-fg"
+              className={`border-[2px] px-4 py-2 font-mono text-[10px] font-black uppercase tracking-wide transition-colors ${
+                activo === f
+                  ? "border-[#0a0a0a] bg-[#0a0a0a] text-white"
+                  : "border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#e1352e] hover:border-[#e1352e] hover:text-white"
               }`}
             >
               {f}
@@ -53,9 +55,9 @@ export function ItinerariosFiltro({ items }: { items: ItinItem[] }) {
             <Link
               key={it.badge}
               href={it.href}
-              className="group overflow-hidden rounded-lg border border-border bg-surface shadow-md transition-all hover:-translate-y-1 hover:shadow-xl"
+              className="panel-manga-dark group flex flex-col overflow-hidden bg-white transition-all hover:translate-x-0.5 hover:translate-y-0.5"
             >
-              <div className="relative h-48">
+              <div className="relative h-44 overflow-hidden border-b-[3px] border-[#0a0a0a]">
                 <Image
                   src={it.img}
                   alt={it.alt}
@@ -63,44 +65,40 @@ export function ItinerariosFiltro({ items }: { items: ItinItem[] }) {
                   sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-white shadow">
-                  {it.badge}
-                </span>
+                <span className="tag-manga absolute left-0 top-0">{it.badge}</span>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold">{it.title}</h3>
-                <p className="mt-2 flex items-start gap-2 text-sm text-fg-muted">
-                  <MapPin size={16} className="mt-0.5 shrink-0" aria-hidden="true" /> {it.ruta}
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="display-md text-lg text-[#0a0a0a]">{it.title}</h3>
+                <p className="mt-1.5 flex items-center gap-1.5 font-mono text-[10px] text-[#777]">
+                  <MapPin size={10} aria-hidden="true" /> {it.ruta}
                 </p>
-                <p className="mt-2 text-sm text-fg-muted">{it.desc}</p>
-                <span className="mt-4 inline-flex items-center gap-1 font-medium text-primary">
-                  Ver itinerario <ArrowRight size={16} aria-hidden="true" />
+                <p className="mt-2 text-sm text-[#555]">{it.desc}</p>
+                <span className="mt-auto pt-3 font-mono text-[10px] font-black uppercase tracking-wide text-[#e1352e]">
+                  Ver itinerario <ArrowRight size={12} className="inline" aria-hidden="true" />
                 </span>
               </div>
             </Link>
           ) : (
             <div
               key={it.badge}
-              className="overflow-hidden rounded-lg border border-border bg-surface opacity-70 shadow-md"
+              className="flex flex-col overflow-hidden border-[2px] border-[#ccc] bg-white opacity-60"
             >
-              <div className="relative h-48">
+              <div className="relative h-44 overflow-hidden border-b-[2px] border-[#ccc]">
                 <Image
                   src={it.img}
                   alt={it.alt}
                   fill
                   sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
-                  className="object-cover"
+                  className="object-cover grayscale"
                 />
-                <span className="absolute left-3 top-3 rounded-full bg-muted px-3 py-1 text-xs font-semibold text-fg-muted shadow">
-                  En preparación
-                </span>
+                <span className="tag-dark absolute left-0 top-0 opacity-70">En preparación</span>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold">{it.title}</h3>
-                <p className="mt-2 flex items-start gap-2 text-sm text-fg-muted">
-                  <MapPin size={16} className="mt-0.5 shrink-0" aria-hidden="true" /> {it.ruta}
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="display-md text-lg text-[#0a0a0a]">{it.title}</h3>
+                <p className="mt-1.5 flex items-center gap-1.5 font-mono text-[10px] text-[#999]">
+                  <MapPin size={10} aria-hidden="true" /> {it.ruta}
                 </p>
-                <p className="mt-2 text-sm text-fg-muted">{it.desc}</p>
+                <p className="mt-2 text-sm text-[#999]">{it.desc}</p>
               </div>
             </div>
           ),
