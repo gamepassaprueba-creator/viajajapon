@@ -35,8 +35,8 @@ export function RelatedArticles({ articles, title = "Artículos relacionados" }:
   if (validArticles.length === 0) return null;
 
   return (
-    <section className="not-prose my-12 border-t border-border pt-12">
-      <h2 className="mb-6 text-2xl font-black text-fg">{title}</h2>
+    <section className="not-prose my-12 border-t-[3px] border-[#0a0a0a] pt-8">
+      <h2 className="mb-6 text-2xl font-black text-[#0a0a0a]">{title}</h2>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {validArticles.map(({ pillar, slug, meta }) => (
           <ArticleCard
