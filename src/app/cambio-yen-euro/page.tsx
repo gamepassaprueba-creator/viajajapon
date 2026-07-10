@@ -25,17 +25,16 @@ export default async function Page() {
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
       <p className="kicker text-primary">Datos · Dato vivo</p>
-      <h1 className="mt-2 text-4xl font-bold sm:text-5xl">¿A cuánto está el yen hoy?</h1>
+      <h1 className="mt-2 text-4xl font-black text-[#0a0a0a] sm:text-5xl">¿A cuánto está el yen hoy?</h1>
 
-      <div className="mt-8 rounded-lg border border-border bg-surface p-8 text-center">
-        <p className="kicker text-fg-muted">Cambio de referencia</p>
-        <p className="nums mt-3 font-serif text-5xl font-bold text-fg sm:text-6xl">
+      <div className="panel-manga mt-8 bg-white p-8 text-center">
+        <p className="kicker text-[#555]">Cambio de referencia</p>
+        <p className="nums mt-3 text-5xl font-black text-[#0a0a0a] sm:text-6xl">
           1€ = ¥{rate}
         </p>
-        <p className="nums mt-3 text-fg-muted">¥100 ≈ {per100}€</p>
-        <p className="mt-4 text-xs text-fg-muted">
+        <p className="nums mt-3 text-[#555]">¥100 ≈ {per100}€</p>
+        <p className="mt-4 font-mono text-[10px] text-[#999]">
           Actualizado: {updated} · fuente: referencia BCE (Frankfurter){live ? "" : " · valor estimado (sin conexión)"}.
-          Es un tipo de referencia, no incluye comisiones de cambio de tu banco o tarjeta.
         </p>
       </div>
 
@@ -56,13 +55,13 @@ export default async function Page() {
         </p>
       </div>
 
-      <section className="mt-12 rounded-lg border border-border bg-muted p-6">
-        <h2 className="text-xl font-bold">Pon este conversor en tu web</h2>
-        <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+      <section className="mt-12 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-6">
+        <h2 className="text-xl font-black text-[#0a0a0a]">Pon este conversor en tu web</h2>
+        <p className="mt-2 text-sm leading-relaxed text-[#555]">
           ¿Tienes un blog o una web de viajes? Puedes incrustar este conversor del yen gratis. Copia y pega este
           código donde quieras que aparezca:
         </p>
-        <pre className="mt-4 overflow-x-auto rounded-md border border-border bg-surface p-4 text-xs leading-relaxed text-fg">
+        <pre className="mt-4 overflow-x-auto border-[2px] border-[#0a0a0a] bg-white p-4 font-mono text-xs leading-relaxed text-[#0a0a0a]">
           <code>{EMBED_CODE}</code>
         </pre>
         <p className="mt-2 text-xs text-fg-muted">

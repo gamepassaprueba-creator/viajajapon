@@ -43,28 +43,28 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ q
     : [];
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
-      <h1 className="text-3xl font-bold">Buscar{query ? `: “${q}”` : ""}</h1>
-      <form action="/buscar" className="mt-4 flex max-w-xl items-center gap-2 rounded-lg border border-border bg-surface p-2 focus-within:ring-2 focus-within:ring-primary">
+    <div className="mx-auto max-w-3xl px-4 py-10">
+      <h1 className="text-3xl font-black text-[#0a0a0a]">Buscar{query ? `: "${q}"` : ""}</h1>
+      <form action="/buscar" className="mt-4 flex max-w-xl items-center gap-0 border-[2px] border-[#0a0a0a] focus-within:border-[#e1352e]">
         <label htmlFor="q" className="sr-only">Buscar</label>
-        <input id="q" name="q" type="search" defaultValue={q} placeholder="Busca en la guía…" className="flex-1 border-none bg-transparent px-2 py-2 outline-none" />
-        <button type="submit" className="rounded-md bg-primary px-5 py-2 font-medium text-white hover:bg-primary-strong">Buscar</button>
+        <input id="q" name="q" type="search" defaultValue={q} placeholder="Busca en la guía…" className="flex-1 border-none bg-white px-4 py-3 text-[#0a0a0a] outline-none placeholder:text-[#999]" />
+        <button type="submit" className="border-l-[2px] border-[#0a0a0a] bg-[#e1352e] px-5 py-3 font-mono text-xs font-black uppercase tracking-wide text-white transition-colors hover:bg-[#b8271f]">Buscar</button>
       </form>
 
       {query && (
-        <p className="mt-6 text-sm text-fg-muted">{results.length} resultado{results.length === 1 ? "" : "s"}.</p>
+        <p className="mt-5 font-mono text-xs text-[#999]">{results.length} resultado{results.length === 1 ? "" : "s"}.</p>
       )}
       <ul className="mt-4 space-y-3">
         {results.map((r) => (
           <li key={r.href}>
-            <Link href={r.href} className="block rounded-lg border border-border bg-surface p-4 transition-colors hover:border-primary">
-              <span className="font-semibold text-fg">{r.title}</span>
-              <span className="mt-1 block text-sm text-fg-muted">{r.desc}</span>
+            <Link href={r.href} className="panel-manga-dark block bg-white p-4 transition-all hover:translate-x-0.5 hover:translate-y-0.5">
+              <span className="font-black text-[#0a0a0a]">{r.title}</span>
+              <span className="mt-1 block text-sm text-[#555]">{r.desc}</span>
             </Link>
           </li>
         ))}
         {query && results.length === 0 && (
-          <li className="text-fg-muted">No se encontraron resultados. Prueba con “JR Pass”, “yen” o “itinerario”.</li>
+          <li className="font-mono text-xs text-[#999]">Sin resultados. Prueba con "JR Pass", "yen" o "itinerario".</li>
         )}
       </ul>
     </div>

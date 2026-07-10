@@ -40,30 +40,22 @@ export default function Page() {
   return (
     <div>
       {/* Hero contenido con buscador */}
-      <section className="border-b border-border bg-gradient-to-b from-surface to-bg">
-        <div className="mx-auto max-w-5xl px-4 py-16 text-center sm:py-20">
+      <section className="border-b-[3px] border-[#0a0a0a] bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-12 text-center sm:py-16">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Blog", href: "/blog" }]} className="mb-4 justify-center" />
-          <p className="kicker text-primary">Blog</p>
-          <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Blog de viajes a Japón</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-fg-muted">
-            Todo nuestro contenido en un sitio: guías de destinos, gastronomía, cultura, itinerarios y consejos
-            prácticos, más las novedades de 2026. Con datos verificados y la experiencia de un viaje real.
+          <p className="kicker text-[#e1352e]">Blog</p>
+          <h1 className="display-md mt-2 text-3xl text-[#0a0a0a] sm:text-5xl">Blog de viajes a Japón</h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#555] sm:text-lg">
+            Guías de destinos, gastronomía, cultura, itinerarios y consejos. Con datos verificados y experiencia real.
           </p>
-          <form action="/buscar" method="get" className="mx-auto mt-8 flex max-w-xl gap-2">
-            <label htmlFor="q" className="sr-only">
-              Buscar en el blog
-            </label>
+          <form action="/buscar" method="get" className="mx-auto mt-6 flex max-w-xl border-[2px] border-[#0a0a0a] focus-within:border-[#e1352e]">
+            <label htmlFor="q" className="sr-only">Buscar en el blog</label>
             <input
-              id="q"
-              name="q"
-              type="search"
+              id="q" name="q" type="search"
               placeholder="Busca: Kioto, JR Pass, ramen, sakura…"
-              className="flex-1 rounded-lg border border-border bg-surface px-4 py-3 text-fg placeholder:text-fg-muted/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="flex-1 border-none bg-white px-4 py-3 text-[#0a0a0a] placeholder:text-[#999] outline-none"
             />
-            <button
-              type="submit"
-              className="rounded-lg bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-strong"
-            >
+            <button type="submit" className="border-l-[2px] border-[#0a0a0a] bg-[#e1352e] px-5 py-3 font-mono text-xs font-black uppercase tracking-wide text-white hover:bg-[#b8271f]">
               Buscar
             </button>
           </form>
@@ -113,25 +105,25 @@ export default function Page() {
         )}
 
         {/* Categorías con conteo real */}
-        <h2 className="text-xl font-bold">Explora por categoría</h2>
+        <h2 className="display-md text-xl text-[#0a0a0a]">Explora por categoría</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {CATEGORIAS.filter((c) => counts[c.pillar] > 0).map((c) => (
             <Link
               key={c.pillar}
               href={c.basePath}
-              className="flex items-center justify-between rounded-xl border border-border bg-surface p-4 transition-colors hover:border-primary"
+              className="panel-manga-dark flex items-center justify-between bg-white p-4 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
             >
               <span>
-                <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${c.badge}`}>{c.label}</span>
-                <span className="mt-2 block text-sm text-fg-muted">{c.desc}</span>
+                <span className="tag-manga">{c.label}</span>
+                <span className="mt-2 block text-sm text-[#555]">{c.desc}</span>
               </span>
-              <span className="nums shrink-0 pl-3 text-2xl font-bold text-fg-muted/40">{counts[c.pillar]}</span>
+              <span className="nums shrink-0 pl-3 font-mono text-2xl font-black text-[#ccc]">{counts[c.pillar]}</span>
             </Link>
           ))}
         </div>
 
         {/* Grid filtrable con todo el contenido */}
-        <h2 className="mt-12 text-xl font-bold">Todos los artículos</h2>
+        <h2 className="display-md mt-12 text-xl text-[#0a0a0a]">Todos los artículos</h2>
         <p className="mt-1 text-sm text-fg-muted">{items.length} guías y noticias, filtra por lo que te interese.</p>
         <div className="mt-6">
           <BlogHub items={items} />

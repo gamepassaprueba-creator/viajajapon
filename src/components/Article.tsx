@@ -174,7 +174,7 @@ export function Article({
 
       <div className="mx-auto max-w-3xl px-4 py-10">
       {meta.draft && (
-        <p className="mb-6 rounded-md bg-muted px-3 py-2 text-xs font-medium text-fg-muted">
+        <p className="mb-6 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] px-3 py-2 font-mono text-xs font-bold text-[#555]">
           Borrador · no indexado. Revisa los datos y añade tu experiencia antes de publicar (draft: false).
         </p>
       )}
