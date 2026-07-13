@@ -43,6 +43,7 @@ import {
 import { AffiliateBox } from "./AffiliateBox";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
+import { BudgetCalculator } from "./BudgetCalculator";
 import { JsonLd } from "./JsonLd";
 import { RelatedArticles } from "./RelatedArticles";
 import { faqLd } from "@/lib/jsonld";
@@ -680,6 +681,7 @@ export const mdxComponents = {
   RouteStops,
   ItineraryDay,
   PackingChecklist,
+  BudgetCalculator,
   Foto,
   Charla,
   StatCards,

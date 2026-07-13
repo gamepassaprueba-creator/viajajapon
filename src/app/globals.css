@@ -73,7 +73,7 @@ h1, h2, h3 { text-wrap: balance; }
   border: 3px solid #0a0a0a;
   box-shadow: 5px 5px 0 #e1352e;
   overflow: hidden;
-  transition: box-shadow 0.12s, transform 0.12s;
+  transition: box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .panel-manga-red:hover {
   transform: translate(2px, 2px);
@@ -85,11 +85,27 @@ h1, h2, h3 { text-wrap: balance; }
   border: 3px solid #0a0a0a;
   box-shadow: 4px 4px 0 #0a0a0a;
   overflow: hidden;
-  transition: box-shadow 0.12s, transform 0.12s;
+  transition: box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .panel-manga-dark:hover {
   transform: translate(2px, 2px);
   box-shadow: 2px 2px 0 #0a0a0a;
+}
+
+/* Viñeta con sombra offset negra más pequeña — para ArticleCards */
+.panel-manga-sm {
+  border: 3px solid #0a0a0a;
+  box-shadow: 4px 4px 0 #0a0a0a;
+  overflow: hidden;
+  transition: box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.panel-manga-sm:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #0a0a0a;
+}
+.panel-manga-sm:hover.hover\:shadow-none {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 transparent;
 }
 
 /* ── Globo de texto manga ── */
@@ -187,7 +203,7 @@ h1, h2, h3 { text-wrap: balance; }
   padding: 0.8rem 1.5rem;
   border: 2.5px solid #0a0a0a;
   box-shadow: 4px 4px 0 #0a0a0a;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .btn-primary:hover {
   transform: translate(2px, 2px);
@@ -207,7 +223,7 @@ h1, h2, h3 { text-wrap: balance; }
   padding: 0.8rem 1.5rem;
   border: 2.5px solid #0a0a0a;
   box-shadow: 4px 4px 0 #e1352e;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .btn-outline:hover {
   transform: translate(2px, 2px);
