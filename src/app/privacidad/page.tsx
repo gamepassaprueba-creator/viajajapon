@@ -13,11 +13,32 @@ export default function Page() {
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Política de privacidad</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-fg-muted">
         <p>
-          [TODO con gestor — RGPD arts. 13-14]: responsable del tratamiento, datos recogidos (p. ej. email para la
-          newsletter), finalidad y base legal (consentimiento), encargado del tratamiento (proveedor de email),
-          conservación, y tus derechos (acceso, rectificación, supresión, etc.) y cómo ejercerlos.
+          En ViajaJapón nos tomamos muy en serio tu privacidad. En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo (RGPD), te informamos sobre cómo tratamos tus datos personales.
         </p>
-        <p>El alta a la newsletter es con doble opt-in y puedes darte de baja en cualquier email.</p>
+        
+        <h2 className="text-2xl font-bold text-fg mt-8">Responsable del tratamiento</h2>
+        <p>
+          <strong>Titular:</strong> Sergio Morillo<br />
+          <strong>Email:</strong> info@viajajapon.com
+        </p>
+        
+        <h2 className="text-2xl font-bold text-fg mt-8">Finalidad y base legal</h2>
+        <p>
+          Recogemos tu dirección de correo electrónico única y exclusivamente si decides suscribirte voluntariamente a nuestra newsletter. La base legal es tu <strong>consentimiento expreso</strong> mediante doble confirmación (doble opt-in).
+        </p>
+        <p>
+          Los correos se utilizarán únicamente para enviarte novedades de la web. No venderemos, alquilaremos ni cederemos tu correo a terceros.
+        </p>
+        
+        <h2 className="text-2xl font-bold text-fg mt-8">Conservación de los datos</h2>
+        <p>
+          Tus datos se conservarán hasta que solicites la baja. Puedes darte de baja en cualquier momento haciendo clic en el enlace que aparece al final de cada correo que recibas de nosotros.
+        </p>
+        
+        <h2 className="text-2xl font-bold text-fg mt-8">Tus derechos</h2>
+        <p>
+          Tienes derecho a acceder, rectificar o suprimir tus datos en cualquier momento. Para ejercer tus derechos, escríbenos a <strong>info@viajajapon.com</strong> indicando "Protección de Datos" en el asunto.
+        </p>
       </div>
     </article>
   );

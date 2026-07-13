@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { M_PLUS_1p, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { Navbar } from "@/components/Navbar";
 import { MobileTabBar } from "@/components/MobileTabBar";
 import { Footer } from "@/components/Footer";
+import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
 
@@ -21,6 +23,7 @@ export const metadata: Metadata = {
     canonical: "/",
     types: { "application/rss+xml": "/feed.xml" },
   },
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -49,12 +52,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es" className={`${mplus.variable} ${jetbrains.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <JsonLd data={[organizationLd(), websiteLd()]} />
+        {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
+          <Script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN}"}`} />
+        )}
         <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">
           Saltar al contenido
         </a>
         <Navbar />
         <main id="contenido" className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
         <MobileTabBar />
       </body>
     </html>

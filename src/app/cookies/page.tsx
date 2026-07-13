@@ -13,11 +13,25 @@ export default function Page() {
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Política de cookies</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-fg-muted">
         <p>
-          [TODO: integrar un CMP conforme a la guía de la AEPD/LSSI art. 22.2 — rechazar tan fácil como aceptar,
-          granular por categoría, sin casillas premarcadas. Bloquear cookies no esenciales (analítica, afiliados,
-          anuncios) hasta el consentimiento.]
+          En ViajaJapón utilizamos cookies para facilitar el uso y navegación a través del sitio web y para medir las estadísticas de uso.
         </p>
-        <p>De base usamos analítica sin cookies; el resto se carga solo con tu consentimiento.</p>
+        <p>
+          Una cookie es un pequeño fichero de texto que los sitios web instalan en tu ordenador o dispositivo móvil cuando los visitas.
+        </p>
+        
+        <h2 className="text-2xl font-bold text-fg mt-8">¿Qué tipos de cookies usamos?</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li><strong>Cookies técnicas (esenciales):</strong> Son aquellas estrictamente necesarias para el correcto funcionamiento de la página web (por ejemplo, para recordar si ya has aceptado o rechazado el banner de cookies). Estas cookies no requieren consentimiento y se instalan automáticamente.</li>
+          <li><strong>Cookies analíticas:</strong> Nos permiten medir y analizar la navegación de los usuarios de forma anónima para mejorar la web. Utilizamos herramientas respetuosas con la privacidad (como Cloudflare Web Analytics, que no usa cookies de seguimiento personal). Si en el futuro integramos analítica con cookies, solo se activarán si nos das tu consentimiento expreso en el aviso inicial.</li>
+        </ul>
+
+        <h2 className="text-2xl font-bold text-fg mt-8">Gestión de tus preferencias</h2>
+        <p>
+          Puedes modificar tus preferencias sobre las cookies en cualquier momento borrando el historial o los datos de navegación de tu navegador. Esto hará que el banner de aviso de cookies vuelva a aparecer en tu próxima visita, permitiéndote configurar de nuevo tu elección.
+        </p>
+        <p>
+          Además, puedes restringir, bloquear o borrar las cookies de cualquier sitio web utilizando la configuración general de tu navegador. Ten en cuenta que si bloqueas las cookies técnicas esenciales, es posible que algunas funciones de la web no operen correctamente.
+        </p>
       </div>
     </article>
   );

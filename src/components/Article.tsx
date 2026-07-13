@@ -11,6 +11,7 @@ import { articleLd } from "@/lib/jsonld";
 import { formatDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CrossPillarLinks } from "@/components/CrossPillarLinks";
 
 interface PillarConfig {
   basePath: string; // "/blog" | "/logistica"
@@ -208,6 +209,8 @@ export function Article({
           </ul>
         </section>
       )}
+
+      <CrossPillarLinks currentPillar={pillar} currentSlug={slug} />
 
       <JsonLd
         data={[
