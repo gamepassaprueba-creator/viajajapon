@@ -11,12 +11,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  return articleMetadata(PILLAR, slug);
+  return await articleMetadata(PILLAR, slug);
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = getArticle(PILLAR, slug);
+  const article = await getArticle(PILLAR, slug);
   const steps = article ? extractItinerarySteps(article.content) : [];
   const extraJsonLd = article
     ? [

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroFuji from "../../public/images/hero-fuji.jpg";
-import { Search, MapPin, ArrowRight, Check, Train, Wifi, Coins, Plug, Luggage, CalendarDays, Route, Landmark, Utensils } from "lucide-react";
+import { Search, MapPin, ArrowRight, Train, Wifi, Coins, Plug, Luggage, CalendarDays, Route, Landmark, Utensils } from "lucide-react";
 import { Charla } from "@/components/Charla";
 import type { Metadata } from "next";
 import { getYenRate } from "@/lib/fx";
@@ -90,7 +90,7 @@ export default async function Home() {
           {/* ── MÓVIL: foto arriba, texto abajo ─────────────────────
               En móvil la foto va primero (impacto inmediato),
               el texto debajo. En desktop: grid lado a lado. */}
-          <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
+          <div className="relative grid grid-cols-1 lg:grid-cols-[55fr_45fr]">
 
             {/* Foto — móvil primera, desktop segunda columna */}
             <div className="relative order-first h-[58vw] min-h-[240px] border-b-[3px] border-[#0a0a0a] lg:order-last lg:border-b-0 lg:border-l-[3px] lg:h-auto">
@@ -101,14 +101,7 @@ export default async function Home() {
                 sizes="(max-width:1024px) 100vw, 45vw"
                 className="object-cover object-center"
               />
-              {/* Título superpuesto sobre la foto solo en móvil */}
-              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 lg:hidden">
-                <h1 className="display-xl text-white" style={{ fontSize: "clamp(2.8rem, 12vw, 4.5rem)" }}>
-                  <span className="block">La guía de</span>
-                  <span className="block text-[#ff5b4e]">Japón</span>
-                  <span className="block">en español.</span>
-                </h1>
-              </div>
+              {/* El H1 visible ahora se ubica en el flujo del grid pero se superpone aquí en móvil usando absolute */}
               <span className="absolute bottom-2 right-2 border border-white/40 bg-black/50 px-1.5 py-0.5 font-mono text-[9px] text-white/70">
                 © Wikimedia Commons
               </span>
@@ -117,14 +110,14 @@ export default async function Home() {
             {/* Columna texto — desktop: izquierda; móvil: debajo de la foto */}
             <div className="order-last flex flex-col justify-between border-b-[3px] border-[#0a0a0a] p-5 lg:order-first lg:border-b-0 lg:border-r-[3px] lg:p-10 xl:p-14">
               <div>
-                {/* H1 solo visible en desktop (en móvil va sobre la foto) */}
+                {/* Título visual (único en el DOM) */}
                 <h1
-                  className="display-xl hidden text-[#0a0a0a] lg:block"
+                  className="display-xl absolute left-0 top-0 z-10 flex h-[58vw] min-h-[240px] w-full flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 text-white lg:static lg:h-auto lg:w-auto lg:bg-none lg:p-0 lg:text-[#0a0a0a]"
                   style={{ fontSize: "clamp(3.2rem, 7.5vw, 6.5rem)" }}
                 >
-                  <span className="block">La guía de</span>
-                  <span className="block text-[#e1352e]">Japón</span>
-                  <span className="block">en español.</span>
+                  <span className="block" style={{ fontSize: "clamp(2.8rem, 12vw, 4.5rem)" }}>La guía de</span>
+                  <span className="block text-[#ff5b4e] lg:text-[#e1352e]" style={{ fontSize: "clamp(2.8rem, 12vw, 4.5rem)" }}>Japón</span>
+                  <span className="block" style={{ fontSize: "clamp(2.8rem, 12vw, 4.5rem)" }}>en español.</span>
                 </h1>
 
                 <p className="mt-4 text-sm leading-relaxed text-[#555] lg:mt-6 lg:max-w-sm lg:text-base">

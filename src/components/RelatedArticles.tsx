@@ -24,13 +24,14 @@ export interface RelatedArticlesProps {
  *   ]}
  * />
  */
-export function RelatedArticles({ articles, title = "Artículos relacionados" }: RelatedArticlesProps) {
-  const validArticles = articles
-    .map(({ pillar, slug }) => {
-      const article = getArticle(pillar, slug);
-      return article ? { ...article, pillar, slug } : null;
-    })
-    .filter((a): a is NonNullable<typeof a> => a !== null);
+export async function RelatedArticles({ articles, title = "Artículos relacionados" }: RelatedArticlesProps) {
+  const articlesPromises = articles.map(async ({ pillar, slug }) => {
+    const article = await getArticle(pillar, slug);
+    return article ? { ...article, pillar, slug } : null;
+  });
+  
+  const resolved = await Promise.all(articlesPromises);
+  const validArticles = resolved.filter((a): a is NonNullable<typeof a> => a !== null);
 
   if (validArticles.length === 0) return null;
 

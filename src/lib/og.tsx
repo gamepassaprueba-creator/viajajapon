@@ -10,8 +10,8 @@ export const OG_CONTENT_TYPE = "image/png";
  * Se genera en build (SSG) con la fuente por defecto de next/og, sin leer
  * archivos en runtime — compatible con el deploy en Cloudflare Workers.
  */
-export function articleOgImage(pillar: string, slug: string) {
-  const article = getArticle(pillar, slug);
+export async function articleOgImage(pillar: string, slug: string) {
+  const article = await getArticle(pillar, slug);
   const title = article?.meta.title ?? `${SITE.name} — ${SITE.tagline}`;
   const kicker = article?.meta.kicker ?? "Japón";
   // Títulos largos bajan de cuerpo para no desbordar el lienzo.
