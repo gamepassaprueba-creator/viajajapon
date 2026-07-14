@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { getArticleSlugs } from "@/lib/content";
+import { getArticle, getArticleSlugs } from "@/lib/content";
+import { breadcrumbLd } from "@/lib/jsonld";
 import { Article, articleMetadata } from "@/components/Article";
 
 const PILLAR = "destinos";
@@ -10,10 +11,20 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  return articleMetadata(PILLAR, slug);
+  return await articleMetadata(PILLAR, slug);
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return <Article pillar={PILLAR} slug={slug} />;
+  const article = await getArticle(PILLAR, slug);
+  const extraJsonLd = article
+    ? [
+        breadcrumbLd([
+          { name: "Inicio", url: "/" },
+          { name: "Destinos", url: "/destinos" },
+          { name: article.meta.title, url: `/${PILLAR}/${slug}` },
+        ]),
+      ]
+    : [];
+  return <Article pillar={PILLAR} slug={slug} extraJsonLd={extraJsonLd} />;
 }

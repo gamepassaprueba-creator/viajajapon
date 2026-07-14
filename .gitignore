@@ -47,3 +47,6 @@ cloudflare-env.d.ts
 *.tsbuildinfo
 next-env.d.ts
 /tmp-images/
+
+# generated files
+/src/generated/

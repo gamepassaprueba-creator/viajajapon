@@ -1,8 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
-
-const CONTENT_DIR = path.join(process.cwd(), "content");
+import { allArticlesMeta } from "@/generated/content-manifest";
 
 export interface ArticleMeta {
   title: string;
@@ -13,66 +9,51 @@ export interface ArticleMeta {
   datePublished: string;
   dateModified: string;
   excerpt: string;
-  /** Imagen de cabecera opcional (ruta bajo /public, p. ej. "/images/kioto.jpg"). */
   hero?: string;
-  /** Crédito del hero (obligatorio si la imagen es CC BY / CC BY-SA; se pinta sobre la foto). */
   heroCredito?: string;
-  /** Alt del hero (describe la foto para lectores de pantalla y SEO de imágenes); si falta, se usa el título. */
   heroAlt?: string;
   draft?: boolean;
   readingMinutes?: number;
 }
 
 export function getArticleSlugs(pillar: string): string[] {
-  const dir = path.join(CONTENT_DIR, pillar);
-  if (!fs.existsSync(dir)) return [];
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""));
+  return allArticlesMeta
+    .filter((a) => a.pillar === pillar)
+    .map((a) => a.slug);
 }
 
-export function getArticle(pillar: string, slug: string): { meta: ArticleMeta; content: string } | null {
-  const file = path.join(CONTENT_DIR, pillar, `${slug}.mdx`);
-  if (!fs.existsSync(file)) return null;
-  const { data, content } = matter(fs.readFileSync(file, "utf8"));
-  return { meta: { pillar, slug, ...(data as Omit<ArticleMeta, "pillar" | "slug">) }, content };
-}
-
-/** Minutos de lectura estimados (≈200 palabras/min). */
-export function readingMinutes(content: string): number {
-  const words = content.split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.round(words / 200));
+export async function getArticle(pillar: string, slug: string): Promise<{ meta: ArticleMeta; content: string } | null> {
+  const meta = allArticlesMeta.find((a) => a.pillar === pillar && a.slug === slug);
+  if (!meta) return null;
+  
+  try {
+    const mod = await import(`@/generated/content/${pillar}/${slug}.ts`);
+    return { meta, content: mod.content };
+  } catch (e) {
+    console.error(`Error loading content for ${pillar}/${slug}:`, e);
+    return null;
+  }
 }
 
 export function getArticles(pillar: string): ArticleMeta[] {
-  const out: ArticleMeta[] = [];
-  for (const slug of getArticleSlugs(pillar)) {
-    const a = getArticle(pillar, slug);
-    if (!a || a.meta.draft) continue;
-    out.push({ ...a.meta, readingMinutes: readingMinutes(a.content) });
-  }
-  return out.sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
+  return allArticlesMeta
+    .filter((a) => a.pillar === pillar && !a.draft)
+    .sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
 }
 
 /** Todos los artículos publicados de todos los pilares, de más reciente a más antiguo.
  *  Para el hub editorial (/blog), el feed y la búsqueda. */
 export function getAllArticles(): ArticleMeta[] {
-  if (!fs.existsSync(CONTENT_DIR)) return [];
-  const pillars = fs
-    .readdirSync(CONTENT_DIR, { withFileTypes: true })
-    .filter((e) => e.isDirectory())
-    .map((e) => e.name);
-  const out = pillars.flatMap((p) => getArticles(p));
-  return out.sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
+  return allArticlesMeta
+    .filter((a) => !a.draft)
+    .sort((a, b) => (a.dateModified < b.dateModified ? 1 : -1));
 }
 
 /** Slugs publicados (excluye borradores). Para generateStaticParams + feed. */
 export function getPublishedSlugs(pillar: string): string[] {
-  return getArticleSlugs(pillar).filter((slug) => {
-    const a = getArticle(pillar, slug);
-    return !!a && !a.meta.draft;
-  });
+  return allArticlesMeta
+    .filter((a) => a.pillar === pillar && !a.draft)
+    .map((a) => a.slug);
 }
 
 export interface ItineraryStep {
@@ -105,3 +86,4 @@ export function extractItinerarySteps(content: string): ItineraryStep[] {
   }
   return steps.sort((a, b) => a.day - b.day);
 }
+

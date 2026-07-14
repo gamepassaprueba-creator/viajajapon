@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { mdxComponents } from "@/components/mdx";
-import { getArticle, getArticles, readingMinutes } from "@/lib/content";
+import { getArticle, getArticles } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { articleLd } from "@/lib/jsonld";
 import { formatDate } from "@/lib/format";
@@ -55,9 +55,9 @@ const PILLARS: Record<string, PillarConfig> = {
 };
 
 /** Metadata compartida para una página de artículo (incluye noindex si es borrador). */
-export function articleMetadata(pillar: string, slug: string): Metadata {
+export async function articleMetadata(pillar: string, slug: string): Promise<Metadata> {
   const cfg = PILLARS[pillar];
-  const article = getArticle(pillar, slug);
+  const article = await getArticle(pillar, slug);
   if (!article || !cfg) return {};
   const { meta } = article;
   const url = `${cfg.basePath}/${slug}`;
@@ -88,7 +88,7 @@ export function articleMetadata(pillar: string, slug: string): Metadata {
 }
 
 /** Renderiza un artículo completo (cabecera + MDX + JSON-LD Article/Breadcrumb). */
-export function Article({
+export async function Article({
   pillar,
   slug,
   extraJsonLd = [],
@@ -99,7 +99,7 @@ export function Article({
   extraJsonLd?: object[];
 }) {
   const cfg = PILLARS[pillar];
-  const article = getArticle(pillar, slug);
+  const article = await getArticle(pillar, slug);
   if (!article || !cfg) notFound();
   const { meta, content } = article;
   const url = `${cfg.basePath}/${slug}`;
@@ -116,7 +116,7 @@ export function Article({
   const dateLine =
     cfg.dateMode === "updated"
       ? `Última actualización: ${formatDate(meta.dateModified)}`
-      : `${formatDate(meta.dateModified)} · ${readingMinutes(content)} min de lectura`;
+      : `${formatDate(meta.dateModified)} · ${meta.readingMinutes} min de lectura`;
 
   return (
     <article>
