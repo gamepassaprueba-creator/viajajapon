@@ -238,7 +238,7 @@ function AffLink({
     <a
       href={href}
       target="_blank"
-      rel="sponsored nofollow noopener noreferrer"
+      rel="sponsored nofollow noopener"
       className={`inline-flex items-center justify-between gap-1.5 px-4 py-2.5 font-mono text-xs font-black uppercase tracking-wide transition-colors ${cls}`}
     >
       <span>{children}</span>
