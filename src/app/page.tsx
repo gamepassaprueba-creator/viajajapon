@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroFuji from "../../public/images/hero-fuji.jpg";
-import { Search, MapPin, ArrowRight, Check, Train, Wifi, Coins, Plug, Luggage, CalendarDays, Route, Landmark, Utensils } from "lucide-react";
+import { Search, MapPin, ArrowRight, Train, Wifi, Coins, Plug, Luggage, CalendarDays, Route, Landmark, Utensils } from "lucide-react";
 import { Charla } from "@/components/Charla";
 import type { Metadata } from "next";
 import { getYenRate } from "@/lib/fx";

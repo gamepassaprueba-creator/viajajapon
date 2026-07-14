@@ -1,0 +1,129 @@
+name: Validation OpenNext Build
+
+on:
+  push:
+    branches:
+      - fix/auditoria-p0-p1-fase-1
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate content manifest
+        run: npm run prebuild
+
+      - name: Prepare TypeScript environment
+        run: |
+          echo '/// <reference types="next" />' > next-env.d.ts
+          echo '/// <reference types="next/image-types/global" />' >> next-env.d.ts
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Lint full repository
+        continue-on-error: true
+        run: npm run lint
+
+      - name: Lint changed TypeScript files
+        shell: bash
+        run: |
+          FILES=$(git diff --name-only origin/master...HEAD -- '*.ts' '*.tsx')
+          if [ -n "$FILES" ]; then
+            echo "$FILES"
+            npx eslint $FILES
+          else
+            echo "No changed TypeScript files."
+          fi
+
+      - name: Next build
+        run: npm run build
+
+      - name: OpenNext Cloudflare build
+        run: npx opennextjs-cloudflare build
+
+      - name: Preview and verify Cloudflare runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          npx opennextjs-cloudflare preview --port 8787 > preview.log 2>&1 &
+          PREVIEW_PID=$!
+
+          cleanup() {
+            kill "$PREVIEW_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          READY=0
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8787/ > /dev/null; then
+              READY=1
+              break
+            fi
+            sleep 2
+          done
+
+          if [ "$READY" -ne 1 ]; then
+            echo "Preview did not start."
+            cat preview.log
+            exit 1
+          fi
+
+          URLS=(
+            "/blog"
+            "/destinos"
+            "/destinos/donde-dormir-en-tokio"
+            "/destinos/donde-dormir-en-kioto"
+            "/destinos/que-ver-en-osaka"
+          )
+
+          for URL in "${URLS[@]}"; do
+            STATUS=$(curl --silent --output response.html --write-out "%{http_code}" \
+              "http://127.0.0.1:8787${URL}")
+
+            echo "${URL} -> ${STATUS}"
+
+            if [ "$STATUS" != "200" ]; then
+              cat preview.log
+              exit 1
+            fi
+          done
+
+          curl --fail --silent http://127.0.0.1:8787/blog > blog.html
+          curl --fail --silent http://127.0.0.1:8787/destinos > destinos.html
+
+          if grep -q "Vaya, parece que no hay nada por aquí" blog.html; then
+            echo "Blog still renders its empty state."
+            exit 1
+          fi
+
+          if grep -q "Estamos publicando estas guías" destinos.html; then
+            echo "Destinos still renders its incorrect empty state."
+            exit 1
+          fi
+
+          grep -q "Dónde dormir en Tokio" destinos.html
+          grep -q "Dónde dormir en Kioto" destinos.html
+          grep -q "Qué ver en Osaka" destinos.html
+
+          echo "Cloudflare runtime validation completed successfully."
