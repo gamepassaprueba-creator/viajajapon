@@ -13,25 +13,46 @@ export default function Page() {
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Política de cookies</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-fg-muted">
         <p>
-          En ViajaJapón utilizamos cookies para facilitar el uso y navegación a través del sitio web y para medir las estadísticas de uso.
+          Una cookie es un pequeño fichero de texto que los sitios web instalan en tu ordenador o
+          dispositivo móvil cuando los visitas. Esta política describe qué cookies utiliza ViajaJapón
+          y cuáles podrían activarse en el futuro.
         </p>
-        <p>
-          Una cookie es un pequeño fichero de texto que los sitios web instalan en tu ordenador o dispositivo móvil cuando los visitas.
-        </p>
-        
-        <h2 className="text-2xl font-bold text-fg mt-8">¿Qué tipos de cookies usamos?</h2>
+
+        <h2 className="text-2xl font-bold text-fg mt-8">Cookies actualmente en uso</h2>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>Cookies técnicas (esenciales):</strong> Son aquellas estrictamente necesarias para el correcto funcionamiento de la página web (por ejemplo, para recordar si ya has aceptado o rechazado el banner de cookies). Estas cookies no requieren consentimiento y se instalan automáticamente.</li>
-          <li><strong>Cookies analíticas:</strong> Nos permiten medir y analizar la navegación de los usuarios de forma anónima para mejorar la web. Utilizamos herramientas respetuosas con la privacidad (como Cloudflare Web Analytics, que no usa cookies de seguimiento personal). Si en el futuro integramos analítica con cookies, solo se activarán si nos das tu consentimiento expreso en el aviso inicial.</li>
+          <li>
+            <strong>Almacenamiento técnico:</strong> la web puede utilizar almacenamiento local
+            estrictamente necesario para recordar estados o preferencias funcionales. No se
+            utiliza con fines publicitarios ni para rastrear usuarios entre sitios.
+          </li>
+          <li>
+            <strong>Medición de rendimiento (Cloudflare Web Analytics):</strong> ViajaJapón utiliza
+            Cloudflare Web Analytics para medir el tráfico de forma agregada. Este servicio{" "}
+            <strong>no instala cookies</strong> ni rastrea a los usuarios entre sitios.
+          </li>
         </ul>
 
-        <h2 className="text-2xl font-bold text-fg mt-8">Gestión de tus preferencias</h2>
+        <h2 className="text-2xl font-bold text-fg mt-8">Cookies publicitarias (previstas)</h2>
         <p>
-          Puedes modificar tus preferencias sobre las cookies en cualquier momento borrando el historial o los datos de navegación de tu navegador. Esto hará que el banner de aviso de cookies vuelva a aparecer en tu próxima visita, permitiéndote configurar de nuevo tu elección.
+          ViajaJapón tiene previsto incorporar Google AdSense para mostrar publicidad. Cuando esa
+          integración se active, Google y sus socios tecnológicos certificados podrán instalar cookies
+          para mostrar anuncios, medir su rendimiento y limitar frecuencias. Antes de que eso ocurra
+          se mostrará un aviso de consentimiento mediante una plataforma de gestión del consentimiento
+          (CMP) certificada por Google. <strong>Actualmente no hay cookies publicitarias activas.</strong>
+        </p>
+
+        <h2 className="text-2xl font-bold text-fg mt-8">Gestión de preferencias</h2>
+        <p>
+          Cuando la CMP esté activa podrás retirar o modificar tu consentimiento en cualquier momento
+          desde el panel de preferencias de privacidad, accesible desde el pie de página.
         </p>
         <p>
-          Además, puedes restringir, bloquear o borrar las cookies de cualquier sitio web utilizando la configuración general de tu navegador. Ten en cuenta que si bloqueas las cookies técnicas esenciales, es posible que algunas funciones de la web no operen correctamente.
+          También puedes restringir o eliminar cookies directamente desde la configuración de tu
+          navegador. Bloquear las cookies técnicas esenciales puede impedir el correcto funcionamiento
+          de algunas partes de la web.
         </p>
+
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 15 de julio de 2026.</p>
       </div>
     </article>
   );

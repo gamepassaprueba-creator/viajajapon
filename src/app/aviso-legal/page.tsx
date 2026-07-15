@@ -13,25 +13,40 @@ export default function Page() {
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Aviso legal</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-fg-muted">
         <p>
-          En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSICE), se informa que este sitio web es un proyecto personal divulgativo, sin actividad comercial formal.
+          En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002,
+          de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico
+          (LSSICE), se informa que este sitio web es un proyecto divulgativo que podrá financiarse
+          mediante enlaces de afiliación y publicidad.
         </p>
         <p>
-          <strong>Titular:</strong> Sergio Morillo<br />
+          <strong>Titular:</strong> Sergio Morillo
+          <br />
           <strong>Email de contacto:</strong> info@viajajapon.com
         </p>
-        
+
         <h2 className="text-2xl font-bold text-fg mt-8">Condiciones de uso</h2>
         <p>
-          El acceso y uso de ViajaJapón atribuye la condición de usuario e implica la aceptación de las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los contenidos y a no emplearlos para actividades contrarias a la ley o a la buena fe.
+          El acceso y uso de ViajaJapón atribuye la condición de usuario e implica la aceptación de
+          las presentes condiciones. El usuario se compromete a hacer un uso adecuado de los
+          contenidos y a no emplearlos para actividades contrarias a la ley o a la buena fe.
         </p>
         <p>
-          La información sobre viajes (precios, pases, visados, etc.) es orientativa, basada en experiencias propias y datos públicos en el momento de su publicación, y puede cambiar sin previo aviso. Verifica siempre la información en fuentes oficiales antes de viajar. El titular no se hace responsable de posibles perjuicios derivados del uso de la información contenida en esta web.
+          La información sobre viajes (precios, pases, visados, etc.) es orientativa, basada en
+          experiencias propias y datos públicos en el momento de su publicación, y puede cambiar sin
+          previo aviso. Verifica siempre la información en fuentes oficiales antes de viajar. El
+          titular no se hace responsable de posibles perjuicios derivados del uso de la información
+          contenida en esta web.
         </p>
 
         <h2 className="text-2xl font-bold text-fg mt-8">Propiedad intelectual</h2>
         <p>
-          Los textos, estructura y diseño de la web pertenecen a Sergio Morillo. Las imágenes utilizadas son propias o cuentan con las licencias/créditos correspondientes. Queda prohibida la reproducción total o parcial de los contenidos de la web sin autorización expresa, salvo cita que incluya enlace a la fuente original (ViajaJapón).
+          Los textos, estructura y diseño de la web pertenecen a Sergio Morillo. Las imágenes
+          utilizadas son propias o cuentan con las licencias/créditos correspondientes. Queda
+          prohibida la reproducción total o parcial de los contenidos de la web sin autorización
+          expresa, salvo cita que incluya enlace a la fuente original (ViajaJapón).
         </p>
+
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 15 de julio de 2026.</p>
       </div>
     </article>
   );

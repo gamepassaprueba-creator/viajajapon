@@ -6,7 +6,6 @@ import { SITE } from "@/lib/site";
 import { Navbar } from "@/components/Navbar";
 import { MobileTabBar } from "@/components/MobileTabBar";
 import { Footer } from "@/components/Footer";
-import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
 
@@ -40,6 +39,12 @@ export const metadata: Metadata = {
     images: ["/images/hero-fuji.jpg"],
   },
   robots: { index: true, follow: true },
+  // Metaetiqueta de verificación de cuenta Google AdSense.
+  // No carga ningún script ni activa anuncios; es solo para que Google
+  // pueda verificar la propiedad del dominio durante la solicitud de AdSense.
+  other: {
+    "google-adsense-account": "ca-pub-7277317479691987",
+  },
 };
 
 export const viewport: Viewport = {
@@ -61,7 +66,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <main id="contenido" className="flex-1">{children}</main>
         <Footer />
-        <CookieBanner />
+        {/* La integración publicitaria y la CMP se realizarán en una segunda fase,
+            después de la aprobación de AdSense y de validar el consentimiento. */}
         <MobileTabBar />
       </body>
     </html>
