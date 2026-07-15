@@ -67,7 +67,8 @@ export function useYenRate() {
           .then((json: Record<string, unknown>) => {
             const rate = (json?.rates as Record<string, unknown>)?.JPY;
             if (!isValidRate(rate)) throw new Error("Formato inválido o tasa fuera de rango");
-            const newRate = Math.round(rate * 100) / 100;
+            const validRate = rate as number;
+            const newRate = Math.round(validRate * 100) / 100;
             const result = { rate: newRate, date: typeof json.date === "string" ? json.date : "—", live: true, isLoading: false };
             
             try {
