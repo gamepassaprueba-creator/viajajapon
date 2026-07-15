@@ -5,7 +5,7 @@ import staticAssetsIncrementalCache from "@opennextjs/cloudflare/overrides/incre
 
 export default defineCloudflareConfig({
   incrementalCache: staticAssetsIncrementalCache,
-  // @ts-ignore
+  // @ts-expect-error
   edgeProxy: {
     enableCacheInterception: true,
   },

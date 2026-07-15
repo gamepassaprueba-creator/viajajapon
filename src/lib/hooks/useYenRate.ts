@@ -19,7 +19,7 @@ let activeSubscribers = 0;
 let globalController: AbortController | null = null;
 
 // Validación robusta del rate
-function isValidRate(r: any): boolean {
+function isValidRate(r: unknown): boolean {
   return typeof r === "number" && Number.isFinite(r) && r > 50 && r < 500;
 }
 
@@ -50,7 +50,7 @@ export function useYenRate() {
             }
           }
         }
-      } catch (e) {
+      } catch {
         // Ignorar JSON corrupto o errores de localStorage
       }
 
@@ -64,8 +64,8 @@ export function useYenRate() {
             if (!res.ok) throw new Error("API error");
             return res.json();
           })
-          .then((json: any) => {
-            const rate = json?.rates?.JPY;
+          .then((json: Record<string, unknown>) => {
+            const rate = (json?.rates as Record<string, unknown>)?.JPY;
             if (!isValidRate(rate)) throw new Error("Formato inválido o tasa fuera de rango");
             const newRate = Math.round(rate * 100) / 100;
             const result = { rate: newRate, date: typeof json.date === "string" ? json.date : "—", live: true, isLoading: false };
@@ -75,7 +75,7 @@ export function useYenRate() {
                 CACHE_KEY,
                 JSON.stringify({ rate: newRate, date: result.date, timestamp: Date.now() })
               );
-            } catch (e) {
+            } catch {
               // Ignore quota exceeded etc
             }
             return result;
@@ -96,7 +96,7 @@ export function useYenRate() {
         if (mounted && result) {
           setData(result);
         }
-      } catch (e) {
+      } catch {
         // Si fue abortada o falló, usar fallback
         if (mounted) {
           setData({ rate: DEFAULT_FX, date: "—", live: false, isLoading: false });
