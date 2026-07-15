@@ -2,6 +2,7 @@ import { allArticlesMeta } from "@/generated/content-manifest";
 
 export interface ArticleMeta {
   title: string;
+  seoTitle?: string;
   description: string;
   kicker: string;
   pillar: string;
