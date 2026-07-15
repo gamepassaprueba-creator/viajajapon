@@ -64,13 +64,13 @@ export async function articleMetadata(pillar: string, slug: string): Promise<Met
   // Imagen social: el hero del artículo si lo tiene, si no la portada por defecto.
   const ogImage = meta.hero ?? "/images/hero-fuji.jpg";
   return {
-    title: meta.title,
+    title: meta.seoTitle || meta.title,
     description: meta.description,
     alternates: { canonical: url },
     openGraph: {
       type: "article",
       url,
-      title: meta.title,
+      title: meta.seoTitle || meta.title,
       description: meta.description,
       images: [{ url: ogImage, alt: meta.title }],
       publishedTime: meta.datePublished,
@@ -78,7 +78,7 @@ export async function articleMetadata(pillar: string, slug: string): Promise<Met
     },
     twitter: {
       card: "summary_large_image",
-      title: meta.title,
+      title: meta.seoTitle || meta.title,
       description: meta.description,
       images: [ogImage],
     },
