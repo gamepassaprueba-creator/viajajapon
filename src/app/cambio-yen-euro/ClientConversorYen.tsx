@@ -6,7 +6,7 @@ import { CurrencyConverter } from "@/components/CurrencyConverter";
 export function ClientConversorYen() {
   const { rate, date, live, isLoading } = useYenRate();
   const per100 = (100 / rate).toFixed(2);
-  const updated = live && date !== "—" ? date : "2026-06-02";
+  const updated = live && date !== "—" ? date : "";
 
   return (
     <>
@@ -19,12 +19,10 @@ export function ClientConversorYen() {
         <p className="mt-4 font-mono text-[10px] text-[#999]">
           {isLoading ? (
             "Actualizando cambio..."
+          ) : live ? (
+            <>Actualizado: {updated} · fuente: referencia BCE (Frankfurter).</>
           ) : (
-            {live ? (
-              <>Actualizado: {updated} · fuente: referencia BCE (Frankfurter).</>
-            ) : (
-              <>Valor estimado de referencia · sin conexión.</>
-            )}
+            <>Valor estimado de referencia · sin conexión.</>
           )}
         </p>
       </div>
