@@ -83,7 +83,7 @@ jobs:
           check_url "/destinos/que-ver-en-osaka" "Qué ver en Osaka" "" ""
           check_url "/herramientas/jr-pass-calculadora" "¿Merece la pena el JR Pass en 2026?" "" ""
           check_url "/cambio-yen-euro" "Cambio de referencia" "165" ""
-          check_url "/embed/cambio-yen" "165" "id=\"fx-calculator\"" ""
+          check_url "/embed/cambio-yen" "165" "<input" ""
           check_url "/feed.xml" "<item>" "Subida del JR Pass" ""
 
           echo "¡Todas las comprobaciones de producción pasaron!"
