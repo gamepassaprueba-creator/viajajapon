@@ -53,6 +53,52 @@ jobs:
             echo "No changed TypeScript files."
           fi
 
+      - name: Architecture checks (AdSense / SSG)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "── Verificando que ads.txt/route.ts fue eliminado ──"
+          if [ -f "src/app/ads.txt/route.ts" ]; then
+            echo "❌ src/app/ads.txt/route.ts existe; debe ser un archivo estático en public/ads.txt"
+            exit 1
+          fi
+          echo "✅ src/app/ads.txt/route.ts no existe"
+
+          echo "── Verificando que public/ads.txt existe ──"
+          if [ ! -f "public/ads.txt" ]; then
+            echo "❌ public/ads.txt no encontrado"
+            exit 1
+          fi
+          echo "✅ public/ads.txt existe"
+
+          echo "── Verificando que <AdSense no está montado en ningún layout o página ──"
+          if grep -rq '<AdSense' src/app/; then
+            echo "❌ Componente <AdSense> encontrado en src/app/ — no debe estar activo todavía"
+            grep -rn '<AdSense' src/app/
+            exit 1
+          fi
+          echo "✅ Sin instancias activas de <AdSense> en src/app/"
+
+          echo "── Verificando ausencia de revalidate ISR nuevo ──"
+          # Solo buscamos en archivos modificados respecto a origin/master
+          NEW_ISR=$(git diff origin/master...HEAD -- '*.ts' '*.tsx' | grep '^+' | grep -v '^+++' | grep 'export const revalidate' || true)
+          if [ -n "$NEW_ISR" ]; then
+            echo "❌ Se ha introducido export const revalidate en un archivo nuevo/modificado:"
+            echo "$NEW_ISR"
+            exit 1
+          fi
+          echo "✅ Sin nuevas declaraciones revalidate ISR"
+
+          echo "── Verificando que adsbygoogle no está hardcoded en layout.tsx ──"
+          if grep -q 'pagead2.googlesyndication.com' src/app/layout.tsx; then
+            echo "❌ pagead2.googlesyndication.com encontrado en layout.tsx"
+            exit 1
+          fi
+          echo "✅ Sin script adsbygoogle en layout.tsx"
+
+          echo "Architecture checks passed."
+
       - name: Next build
         run: npm run build
 
@@ -124,7 +170,7 @@ jobs:
 
           echo "Starting rigorous GET assertions..."
           check_url "/" "La guía de" "" ""
-          check_url "/blog" "Subida del JR Pass" "" "0 guías y noticias"
+          check_url "/blog" "Noticias y guías" "" "0 guías y noticias"
           check_url "/destinos" "Dónde dormir en Tokio" "Qué ver en Osaka" "Estamos publicando estas guías; vuelve pronto"
           check_url "/destinos/donde-dormir-en-tokio" "Dónde dormir en Tokio" "" ""
           check_url "/destinos/donde-dormir-en-kioto" "Dónde dormir en Kioto" "" ""
@@ -138,7 +184,93 @@ jobs:
           grep -Fq "api.frankfurter.dev" temp_body.html || { echo "❌ Missing 'api.frankfurter.dev'"; exit 1; }
           grep -Fq "Valor estimado de referencia" temp_body.html || { echo "❌ Missing 'Valor estimado de referencia'"; exit 1; }
 
-          # feed.xml verifica algo básico
+          # feed.xml
           check_url "/feed.xml" "<item>" "ViajaJapón" ""
+
+          # ── Páginas legales ──────────────────────────────────────────────────────
+          echo "Checking legal pages..."
+          check_url "/aviso-legal"            "Aviso legal"               "" ""
+          check_url "/privacidad"             "Política de privacidad"    "" ""
+          check_url "/cookies"                "Política de cookies"       "" ""
+          check_url "/afiliados-divulgacion"  "Divulgación de afiliados"  "" ""
+
+          # ── ads.txt ──────────────────────────────────────────────────────────────
+          echo "Checking ads.txt..."
+          ADS_STATUS=$(curl -sS -o ads_body.txt -w "%{http_code}" "${URL}/ads.txt")
+          if [ "$ADS_STATUS" != "200" ]; then
+            echo "❌ ERROR: /ads.txt returned HTTP $ADS_STATUS"
+            exit 1
+          fi
+
+          EXPECTED_ADS_LINE="google.com, pub-7277317479691987, DIRECT, f08c47fec0942fa0"
+
+          # Contenido exacto (una línea + posible salto al final)
+          ACTUAL_ADS=$(cat ads_body.txt | tr -d '\r')
+          ACTUAL_LINES=$(echo "$ACTUAL_ADS" | grep -v '^$' | wc -l)
+          if [ "$ACTUAL_LINES" -ne 1 ]; then
+            echo "❌ ads.txt must contain exactly 1 non-empty line, found $ACTUAL_LINES"
+            cat ads_body.txt
+            exit 1
+          fi
+
+          if ! grep -Fq "$EXPECTED_ADS_LINE" ads_body.txt; then
+            echo "❌ ads.txt content does not match expected line"
+            echo "Expected: $EXPECTED_ADS_LINE"
+            echo "Got:"; cat ads_body.txt
+            exit 1
+          fi
+
+          # Sin comentarios
+          if grep -q '^#' ads_body.txt; then
+            echo "❌ ads.txt contains comment lines"
+            exit 1
+          fi
+
+          # Sin HTML
+          if grep -qi '<html' ads_body.txt; then
+            echo "❌ ads.txt contains HTML"
+            exit 1
+          fi
+
+          # Sin placeholder ca-pub-XXXX
+          if grep -q 'ca-pub-XXXX' ads_body.txt; then
+            echo "❌ ads.txt contains placeholder ca-pub-XXXX"
+            exit 1
+          fi
+
+          echo "✅ ads.txt OK"
+
+          # ── Metaetiqueta google-adsense-account ──────────────────────────────────
+          echo "Checking google-adsense-account meta tag on /..."
+          curl -sS -o home_body.html "${URL}/"
+
+          if ! grep -Fq 'name="google-adsense-account"' home_body.html; then
+            echo "❌ Missing meta name=google-adsense-account in /"
+            exit 1
+          fi
+
+          if ! grep -Fq 'content="ca-pub-7277317479691987"' home_body.html; then
+            echo "❌ Missing content=ca-pub-7277317479691987 in /"
+            exit 1
+          fi
+
+          # No debe aparecer duplicada
+          COUNT=$(grep -c 'google-adsense-account' home_body.html || true)
+          if [ "$COUNT" -ne 1 ]; then
+            echo "❌ google-adsense-account appears $COUNT times in /, expected 1"
+            exit 1
+          fi
+          echo "✅ google-adsense-account meta tag OK"
+
+          # ── Ausencia del script publicitario de AdSense ──────────────────────────
+          echo "Checking absence of AdSense script in main routes..."
+          for ROUTE in "/" "/blog" "/destinos" "/cambio-yen-euro" "/herramientas/jr-pass-calculadora"; do
+            curl -sS -o route_body.html "${URL}${ROUTE}"
+            if grep -q "pagead2.googlesyndication.com" route_body.html; then
+              echo "❌ pagead2.googlesyndication.com found in ${ROUTE} — AdSense script must not be loaded"
+              exit 1
+            fi
+            echo "✅ ${ROUTE}: no AdSense script"
+          done
 
           echo "Cloudflare runtime validation passed."
