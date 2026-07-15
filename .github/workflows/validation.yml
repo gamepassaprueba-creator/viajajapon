@@ -170,7 +170,7 @@ jobs:
 
           echo "Starting rigorous GET assertions..."
           check_url "/" "La guía de" "" ""
-          check_url "/blog" "Noticias y guías" "" "0 guías y noticias"
+          check_url "/blog" "Blog de viajes a Japón" "Todos los artículos" "0 guías y noticias"
           check_url "/destinos" "Dónde dormir en Tokio" "Qué ver en Osaka" "Estamos publicando estas guías; vuelve pronto"
           check_url "/destinos/donde-dormir-en-tokio" "Dónde dormir en Tokio" "" ""
           check_url "/destinos/donde-dormir-en-kioto" "Dónde dormir en Kioto" "" ""
