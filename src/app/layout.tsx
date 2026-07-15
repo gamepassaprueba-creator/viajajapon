@@ -6,7 +6,6 @@ import { SITE } from "@/lib/site";
 import { Navbar } from "@/components/Navbar";
 import { MobileTabBar } from "@/components/MobileTabBar";
 import { Footer } from "@/components/Footer";
-import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
 
@@ -61,7 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <main id="contenido" className="flex-1">{children}</main>
         <Footer />
-        <CookieBanner />
+        {/* CMP y AdSense se inyectarán vía Google Auto Ads o AdSenseComponent cuando NEXT_PUBLIC_ADSENSE_CLIENT exista */}
         <MobileTabBar />
       </body>
     </html>
