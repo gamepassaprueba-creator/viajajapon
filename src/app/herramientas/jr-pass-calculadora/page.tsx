@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getYenRate } from "@/lib/fx";
 import { JrPassCalculator } from "./JrPassCalculator";
 import { JsonLd } from "@/components/JsonLd";
 import { faqLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SITE } from "@/lib/site";
 import { affiliateUrl } from "@/lib/affiliates";
-
-export const revalidate = 21600; // 6 h (refresca el cambio del yen en sitio)
 
 export const metadata: Metadata = {
   title: "Calculadora JR Pass 2026: ¿te compensa? (en euros)",
@@ -32,9 +29,7 @@ const FAQS = [
   },
 ];
 
-export default async function Page() {
-  const { rate, date, live } = await getYenRate();
-
+export default function Page() {
   // Enlaces de afiliado resueltos en el servidor (las AFF_* son server-only, no NEXT_PUBLIC).
   const aff = {
     jrpass: affiliateUrl("jrpass"),
@@ -54,7 +49,7 @@ export default async function Page() {
         precios de 2026.
       </p>
 
-      <JrPassCalculator fx={rate} fxDate={date} fxLive={live} aff={aff} />
+      <JrPassCalculator aff={aff} />
 
       <section className="mt-12">
         <h2 className="text-2xl font-bold">Preguntas frecuentes</h2>

@@ -4,12 +4,10 @@ import heroFuji from "../../public/images/hero-fuji.jpg";
 import { Search, MapPin, ArrowRight, Train, Wifi, Coins, Plug, Luggage, CalendarDays, Route, Landmark, Utensils } from "lucide-react";
 import { Charla } from "@/components/Charla";
 import type { Metadata } from "next";
-import { getYenRate } from "@/lib/fx";
 import { getArticles } from "@/lib/content";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { SITE } from "@/lib/site";
-
-export const revalidate = 21600;
+import { HomeYenChip, HomeYenBullet, JrPassPriceBullet } from "./HomeYenComponents";
 
 export const metadata: Metadata = {
   title: { absolute: "ViajaJapón — Guía para viajar a Japón en 2026 (JR Pass, presupuesto y consejos)" },
@@ -40,7 +38,6 @@ const ACCESOS = [
 ];
 
 export default async function Home() {
-  const { rate } = await getYenRate();
   const month = new Date().getMonth();
   const season =
     month >= 2 && month <= 4 ? "Primavera · sakura" :
@@ -51,9 +48,9 @@ export default async function Home() {
   const featured = news[0];
 
   const PRACT = [
-    { Icon: Train,       color: "text-primary",    title: "JR Pass",             desc: "Tren ilimitado incluyendo el Shinkansen.",  bullets: ["Para 7, 14 o 21 días", "Cómpralo antes de salir", `Desde ¥50.000 (~${Math.round(50000/rate)}€)`], href: "/herramientas/jr-pass-calculadora", link: "Calcular" },
+    { Icon: Train,       color: "text-primary",    title: "JR Pass",             desc: "Tren ilimitado incluyendo el Shinkansen.",  bullets: ["Para 7, 14 o 21 días", "Cómpralo antes de salir", <JrPassPriceBullet key="jrpass-price" />], href: "/herramientas/jr-pass-calculadora", link: "Calcular" },
     { Icon: Wifi,        color: "text-[#2d4fe0]",  title: "Internet",            desc: "Conectado desde que aterrizas.",            bullets: ["eSIM Holafly o Airalo", "Pocket WiFi", "WiFi gratis en muchos sitios"], href: "/logistica/esim-japon", link: "Comparar eSIM" },
-    { Icon: Coins,       color: "text-[#15803d]",  title: "Dinero",              desc: "Euros a yenes y cómo pagar bien.",          bullets: [`1€ ≈ ¥${rate} ahora`, "Tarjeta sin comisiones (Revolut)", "Tax-free compras"], href: "/cambio-yen-euro", link: "Ver cambio" },
+    { Icon: Coins,       color: "text-[#15803d]",  title: "Dinero",              desc: "Euros a yenes y cómo pagar bien.",          bullets: [<HomeYenBullet key="home-yen" />, "Tarjeta sin comisiones (Revolut)", "Tax-free compras"], href: "/cambio-yen-euro", link: "Ver cambio" },
     { Icon: Luggage,     color: "text-[#c07c00]",  title: "Maleta",              desc: "Lo que no puede faltarte.",                bullets: ["Checklist interactiva", "Ropa por temporada", "Qué no pasa la aduana"], href: "/logistica/que-llevar-maleta-japon", link: "Ver lista" },
     { Icon: CalendarDays,color: "text-[#7c3aed]",  title: "Cuándo ir",           desc: "La mejor época para cada plan.",            bullets: ["Sakura: mar–abr", "Otoño momiji: nov", "Evitar Golden Week"], href: "/logistica/mejor-epoca-viajar-japon", link: "Ver guía" },
     { Icon: Plug,        color: "text-[#0a0a0a]",  title: "Enchufes",            desc: "Tipo A, dos clavijas planas, 100V.",         bullets: ["Compatible con España", "Sin adaptador si es solo carga", "Voltaje 100V — verifica"], href: "/logistica", link: "Más info" },
@@ -152,7 +149,7 @@ export default async function Home() {
               <div className="mt-6 grid grid-cols-3 divide-x-[2px] divide-[#0a0a0a] border-[2px] border-[#0a0a0a] lg:mt-10">
                 <div className="px-3 py-2.5 lg:px-4 lg:py-3">
                   <p className="font-mono text-[8px] font-black uppercase tracking-widest text-[#999]">Yen hoy</p>
-                  <p className="nums mt-0.5 font-mono text-base font-black text-[#0a0a0a] lg:text-xl">¥{rate}</p>
+                  <HomeYenChip />
                   <p className="font-mono text-[8px] text-[#999]">por euro</p>
                 </div>
                 <div className="px-3 py-2.5 lg:px-4 lg:py-3">
@@ -379,8 +376,8 @@ export default async function Home() {
                 <h3 className="mt-3 text-lg font-black text-[#0a0a0a]">{c.title}</h3>
                 <p className="mt-1 text-sm text-[#555]">{c.desc}</p>
                 <ul className="mt-3 space-y-1">
-                  {c.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-1.5 font-mono text-[10px] text-[#777]">
+                  {c.bullets.map((b, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 font-mono text-[10px] text-[#777]">
                       <span className="mt-0.5 text-[#e1352e] leading-none">▸</span>
                       <span className="nums">{b}</span>
                     </li>

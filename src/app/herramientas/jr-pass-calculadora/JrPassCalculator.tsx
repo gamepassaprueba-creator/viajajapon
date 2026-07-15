@@ -13,6 +13,8 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 
 const eur = (n: number) => `${n.toLocaleString("es-ES")}€`;
 
+import { useYenRate } from "@/lib/hooks/useYenRate";
+
 export interface CalcAffLinks {
   jrpass: string;
   civitatis: string;
@@ -21,16 +23,11 @@ export interface CalcAffLinks {
 }
 
 export function JrPassCalculator({
-  fx,
-  fxDate,
-  fxLive,
   aff,
 }: {
-  fx: number;
-  fxDate: string;
-  fxLive: boolean;
   aff: CalcAffLinks;
 }) {
+  const { rate: fx, date: fxDate, live: fxLive, isLoading } = useYenRate();
   const [days, setDays] = useState(7);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -213,7 +210,7 @@ export function JrPassCalculator({
         </div>
 
         <p className="text-xs text-fg-muted">
-          Datos actualizados: {DATA_UPDATED} · cambio {fxLive ? `1€ = ¥${fx} (ref. BCE${fxDate !== "—" ? `, ${fxDate}` : ""})` : `1€ = ¥${fx} (estimado)`}.
+          Datos actualizados: {DATA_UPDATED} · cambio {isLoading ? "..." : (fxLive ? `1€ = ¥${fx} (ref. BCE${fxDate !== "—" ? `, ${fxDate}` : ""})` : `1€ = ¥${fx} (estimado)`)}.
           Tipo de referencia, no incluye comisiones de cambio.
         </p>
       </div>
