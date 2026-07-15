@@ -255,7 +255,7 @@ jobs:
           fi
 
           # No debe aparecer duplicada
-          COUNT=$(grep -o 'google-adsense-account' home_body.html | wc -l)
+          COUNT=$(grep -o '<meta name="google-adsense-account"' home_body.html | wc -l)
           if [ "$COUNT" -ne 1 ]; then
             echo "❌ google-adsense-account appears $COUNT times in /, expected 1"
             exit 1
