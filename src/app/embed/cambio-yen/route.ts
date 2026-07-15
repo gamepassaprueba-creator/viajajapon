@@ -32,7 +32,7 @@ input:focus{outline:2px solid #e53e3e;outline-offset:1px}
   <p class="rate" id="r-disp">1 € = ¥${rate}</p>
   <div class="row"><label for="e">Euros (€)</label><input id="e" type="number" inputmode="decimal" value="100" min="0"></div>
   <div class="row"><label for="y">Yenes (¥)</label><input id="y" type="number" inputmode="decimal" min="0"></div>
-  <p class="f" id="d-disp">Actualizado estimado · ref. BCE. Fuente: <a href="https://viajajapon.com/cambio-yen-euro" target="_blank" rel="noopener">ViajaJapón</a></p>
+  <p class="f" id="d-disp">Valor estimado de referencia &middot; sin conexión. Fuente: <a href="https://viajajapon.com/cambio-yen-euro" target="_blank" rel="noopener">ViajaJapón</a></p>
 </div>
 <script>
 (function(){
