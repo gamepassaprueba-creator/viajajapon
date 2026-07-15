@@ -9,6 +9,10 @@ export function CookieBanner() {
   useEffect(() => {
     const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
+      // Leer localStorage en el efecto de montaje y setear estado es el patrón canónico
+      // para banners client-only. La alternativa lazy useState causaría ReferenceError en
+      // SSR porque Next.js pre-renderiza componentes "use client" en el servidor.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShow(true);
     }
   }, []);
@@ -36,12 +40,14 @@ export function CookieBanner() {
         <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row shrink-0">
           <button
             onClick={reject}
+            type="button"
             className="border-[2px] border-[#0a0a0a] bg-[#f5f5f5] px-5 py-2.5 font-mono text-xs font-black uppercase tracking-wide text-[#0a0a0a] transition-colors hover:bg-[#e0e0e0]"
           >
             Rechazar
           </button>
           <button
             onClick={accept}
+            type="button"
             className="border-[2px] border-[#0a0a0a] bg-[#e1352e] px-5 py-2.5 font-mono text-xs font-black uppercase tracking-wide text-white transition-colors hover:bg-[#b8271f]"
           >
             Aceptar
