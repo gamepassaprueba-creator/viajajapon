@@ -26,7 +26,7 @@ export function useYenRate() {
     rate: DEFAULT_FX,
     date: "—", // En fallback o primera carga no garantizamos la fecha
     live: false,
-    isLoading: true,
+    isLoading: false,
   });
 
   useEffect(() => {

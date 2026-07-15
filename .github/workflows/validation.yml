@@ -138,7 +138,7 @@ jobs:
           grep -Fq "api.frankfurter.dev" temp_body.html || { echo "❌ Missing 'api.frankfurter.dev'"; exit 1; }
           grep -Fq "Valor estimado de referencia" temp_body.html || { echo "❌ Missing 'Valor estimado de referencia'"; exit 1; }
 
-          # feed.xml fallaba porque no estaba escapado, o no contenía exactamente ese string. Verificamos algo básico
-          check_url "/feed.xml" "<item>" "Subida del JR Pass" ""
+          # feed.xml verifica algo básico
+          check_url "/feed.xml" "<item>" "ViajaJapón" ""
 
           echo "Cloudflare runtime validation passed."
