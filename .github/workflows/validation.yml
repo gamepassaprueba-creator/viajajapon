@@ -100,21 +100,22 @@ jobs:
               local TARGET="${URL}${PATHNAME}${SUFFIX}"
               echo "Checking: $TARGET"
               
-              HTTP_STATUS=$(curl -fsS -w "%{http_code}" -o temp_body.html "$TARGET" || echo "FAIL")
+              HTTP_STATUS=$(curl -sS -o temp_body.html -w "%{http_code}" "$TARGET")
               
               if [ "$HTTP_STATUS" != "200" ]; then
                 echo "❌ ERROR: Status $HTTP_STATUS for $TARGET"
+                cat temp_body.html
                 exit 1
               fi
 
               if [ -n "$EXPECTED_1" ]; then
-                if ! grep -q "$EXPECTED_1" temp_body.html; then echo "❌ Missing '$EXPECTED_1'"; exit 1; fi
+                if ! grep -Fq "$EXPECTED_1" temp_body.html; then echo "❌ Missing '$EXPECTED_1'"; exit 1; fi
               fi
               if [ -n "$EXPECTED_2" ]; then
-                if ! grep -q "$EXPECTED_2" temp_body.html; then echo "❌ Missing '$EXPECTED_2'"; exit 1; fi
+                if ! grep -Fq "$EXPECTED_2" temp_body.html; then echo "❌ Missing '$EXPECTED_2'"; exit 1; fi
               fi
               if [ -n "$NOT_EXPECTED" ]; then
-                if grep -q "$NOT_EXPECTED" temp_body.html; then echo "❌ Found forbidden '$NOT_EXPECTED'"; exit 1; fi
+                if grep -Fq "$NOT_EXPECTED" temp_body.html; then echo "❌ Found forbidden '$NOT_EXPECTED'"; exit 1; fi
               fi
 
               echo "✅ 200 OK - Passed assertions"
@@ -129,8 +130,15 @@ jobs:
           check_url "/destinos/donde-dormir-en-kioto" "Dónde dormir en Kioto" "" ""
           check_url "/destinos/que-ver-en-osaka" "Qué ver en Osaka" "" ""
           check_url "/herramientas/jr-pass-calculadora" "¿Merece la pena el JR Pass en 2026?" "" ""
-          check_url "/cambio-yen-euro" "Cambio de referencia" "185" ""
-          check_url "/embed/cambio-yen" "185" "<input" ""
+          check_url "/cambio-yen-euro" "Cambio de referencia" "Valor estimado de referencia" ""
+          grep -Fq "1€ = ¥" temp_body.html || { echo "❌ Missing '1€ = ¥'"; exit 1; }
+          
+          check_url "/embed/cambio-yen" 'id="r-disp"' 'id="e"' ""
+          grep -Fq 'id="y"' temp_body.html || { echo "❌ Missing 'id=\"y\"'"; exit 1; }
+          grep -Fq "api.frankfurter.dev" temp_body.html || { echo "❌ Missing 'api.frankfurter.dev'"; exit 1; }
+          grep -Fq "Valor estimado de referencia" temp_body.html || { echo "❌ Missing 'Valor estimado de referencia'"; exit 1; }
+
+          # feed.xml fallaba porque no estaba escapado, o no contenía exactamente ese string. Verificamos algo básico
           check_url "/feed.xml" "<item>" "Subida del JR Pass" ""
 
           echo "Cloudflare runtime validation passed."
