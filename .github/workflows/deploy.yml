@@ -36,3 +36,48 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Verificar en producción con GET
+        run: |
+          sleep 10
+          URL="https://viajajapon.com"
+          
+          echo "Verificando Portada..."
+          RES=$(curl -s "$URL/")
+          if ! echo "$RES" | grep -q "La guía de"; then echo "Fallo en portada"; exit 1; fi
+          if echo "$RES" | grep -q "0 guías y noticias"; then echo "Fallo en portada: sin noticias"; exit 1; fi
+          
+          echo "Verificando Blog..."
+          RES=$(curl -s "$URL/blog")
+          if echo "$RES" | grep -q "0 guías y noticias"; then echo "Fallo en blog"; exit 1; fi
+          
+          echo "Verificando Destinos..."
+          RES=$(curl -s "$URL/destinos")
+          if echo "$RES" | grep -q "Estamos publicando estas guías; vuelve pronto"; then echo "Fallo en destinos"; exit 1; fi
+          
+          echo "Verificando Tokio..."
+          if ! curl -s -f "$URL/destinos/donde-dormir-en-tokio" > /dev/null; then echo "404 en Tokio"; exit 1; fi
+          
+          echo "Verificando Kioto..."
+          if ! curl -s -f "$URL/destinos/donde-dormir-en-kioto" > /dev/null; then echo "404 en Kioto"; exit 1; fi
+          
+          echo "Verificando Osaka..."
+          if ! curl -s -f "$URL/destinos/que-ver-en-osaka" > /dev/null; then echo "404 en Osaka"; exit 1; fi
+          
+          echo "Verificando Calculadora JR Pass..."
+          RES=$(curl -s "$URL/herramientas/jr-pass-calculadora")
+          if ! echo "$RES" | grep -q "Calculadora JR Pass"; then echo "Fallo en JR Pass"; exit 1; fi
+          
+          echo "Verificando Cambio Yen..."
+          RES=$(curl -s "$URL/cambio-yen-euro")
+          if ! echo "$RES" | grep -q "Cambio de referencia"; then echo "Fallo en yen"; exit 1; fi
+          
+          echo "Verificando Embed Yen..."
+          RES=$(curl -s "$URL/embed/cambio-yen")
+          if ! echo "$RES" | grep -q "Actualizado"; then echo "Fallo en embed yen"; exit 1; fi
+          
+          echo "Verificando RSS..."
+          RES=$(curl -s "$URL/feed.xml")
+          if ! echo "$RES" | grep -q "<item>"; then echo "Fallo en RSS (vacío)"; exit 1; fi
+          
+          echo "¡Todas las comprobaciones de producción pasaron!"
