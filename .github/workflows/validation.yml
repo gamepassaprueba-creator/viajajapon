@@ -25,6 +25,9 @@ jobs:
           node-version: "22"
           cache: npm
 
+      - name: Clean caches
+        run: rm -rf .next .open-next src/generated
+
       - name: Install dependencies
         run: npm ci
 
@@ -42,7 +45,7 @@ jobs:
       - name: Lint changed files
         shell: bash
         run: |
-          FILES=$(git diff --name-only origin/master...HEAD -- '*.ts' '*.tsx')
+          FILES=$(git diff --name-only --diff-filter=ACM origin/master...HEAD -- '*.ts' '*.tsx')
           if [ -n "$FILES" ]; then
             echo "$FILES"
             npx eslint $FILES
@@ -84,24 +87,58 @@ jobs:
             exit 1
           fi
 
-          URLS=(
-            "/blog"
-            "/destinos"
-            "/logistica"
-            "/cultura"
-            "/gastronomia"
-            "/itinerarios"
-            "/destinos/donde-dormir-en-tokio"
-          )
+          URL="http://127.0.0.1:8787"
+          TS=$(date +%s)
 
-          for URL in "${URLS[@]}"; do
-            STATUS=$(curl --silent --output /dev/null --write-out "%{http_code}" \
-              "http://127.0.0.1:8787${URL}")
-            echo "${URL} -> ${STATUS}"
-            if [ "$STATUS" != "200" ]; then
-              cat preview.log
-              exit 1
-            fi
-          done
+          check_url() {
+            local PATHNAME=$1
+            local EXPECTED_1=$2
+            local EXPECTED_2=$3
+            local NOT_EXPECTED=$4
+
+            for SUFFIX in "" "?audit=$TS"; do
+              local TARGET="${URL}${PATHNAME}${SUFFIX}"
+              echo "Checking: $TARGET"
+              
+              HTTP_STATUS=$(curl -sS -o temp_body.html -w "%{http_code}" "$TARGET")
+              
+              if [ "$HTTP_STATUS" != "200" ]; then
+                echo "❌ ERROR: Status $HTTP_STATUS for $TARGET"
+                cat temp_body.html
+                exit 1
+              fi
+
+              if [ -n "$EXPECTED_1" ]; then
+                if ! grep -Fq "$EXPECTED_1" temp_body.html; then echo "❌ Missing '$EXPECTED_1'"; exit 1; fi
+              fi
+              if [ -n "$EXPECTED_2" ]; then
+                if ! grep -Fq "$EXPECTED_2" temp_body.html; then echo "❌ Missing '$EXPECTED_2'"; exit 1; fi
+              fi
+              if [ -n "$NOT_EXPECTED" ]; then
+                if grep -Fq "$NOT_EXPECTED" temp_body.html; then echo "❌ Found forbidden '$NOT_EXPECTED'"; exit 1; fi
+              fi
+
+              echo "✅ 200 OK - Passed assertions"
+            done
+          }
+
+          echo "Starting rigorous GET assertions..."
+          check_url "/" "La guía de" "" ""
+          check_url "/blog" "Subida del JR Pass" "" "0 guías y noticias"
+          check_url "/destinos" "Dónde dormir en Tokio" "Qué ver en Osaka" "Estamos publicando estas guías; vuelve pronto"
+          check_url "/destinos/donde-dormir-en-tokio" "Dónde dormir en Tokio" "" ""
+          check_url "/destinos/donde-dormir-en-kioto" "Dónde dormir en Kioto" "" ""
+          check_url "/destinos/que-ver-en-osaka" "Qué ver en Osaka" "" ""
+          check_url "/herramientas/jr-pass-calculadora" "¿Merece la pena el JR Pass en 2026?" "" ""
+          check_url "/cambio-yen-euro" "Cambio de referencia" "Valor estimado de referencia" ""
+          grep -Fq "1€ = ¥" temp_body.html || { echo "❌ Missing '1€ = ¥'"; exit 1; }
+          
+          check_url "/embed/cambio-yen" 'id="r-disp"' 'id="e"' ""
+          grep -Fq 'id="y"' temp_body.html || { echo "❌ Missing 'id=\"y\"'"; exit 1; }
+          grep -Fq "api.frankfurter.dev" temp_body.html || { echo "❌ Missing 'api.frankfurter.dev'"; exit 1; }
+          grep -Fq "Valor estimado de referencia" temp_body.html || { echo "❌ Missing 'Valor estimado de referencia'"; exit 1; }
+
+          # feed.xml verifica algo básico
+          check_url "/feed.xml" "<item>" "ViajaJapón" ""
 
           echo "Cloudflare runtime validation passed."

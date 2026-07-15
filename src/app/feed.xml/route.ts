@@ -1,8 +1,9 @@
 import { SITE } from "@/lib/site";
 import { getAllArticles } from "@/lib/content";
 
+export const dynamic = "force-static";
+
 // Feed RSS completo (todos los pilares, los 20 más recientes). Antes solo cubría blog+logística.
-export const revalidate = 21600;
 
 const esc = (s: string) =>
   s

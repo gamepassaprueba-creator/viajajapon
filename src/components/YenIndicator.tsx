@@ -1,8 +1,10 @@
-import Link from "next/link";
-import { getYenRate } from "@/lib/fx";
+"use client";
 
-export async function YenIndicator() {
-  const { rate } = await getYenRate();
+import Link from "next/link";
+import { useYenRate } from "@/lib/hooks/useYenRate";
+
+export function YenIndicator() {
+  const { rate, isLoading } = useYenRate();
   return (
     <Link
       href="/cambio-yen-euro"
@@ -12,7 +14,7 @@ export async function YenIndicator() {
       <span aria-hidden="true">¥</span>
       <span className="nums text-fg">{rate}</span>
       <span aria-hidden="true">/€</span>
-      <span className="sr-only">Ver el cambio yen a euro de hoy</span>
+      <span className="sr-only">{isLoading ? "Cargando cambio yen a euro de hoy" : "Ver el cambio yen a euro de hoy"}</span>
     </Link>
   );
 }
