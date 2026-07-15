@@ -21,16 +21,17 @@ export default function Page() {
         
         <h2 className="text-2xl font-bold text-fg mt-8">¿Qué tipos de cookies usamos?</h2>
         <ul className="list-disc pl-6 space-y-2">
-          <li><strong>Cookies técnicas (esenciales):</strong> Son aquellas estrictamente necesarias para el correcto funcionamiento de la página web (por ejemplo, para recordar si ya has aceptado o rechazado el banner de cookies). Estas cookies no requieren consentimiento y se instalan automáticamente.</li>
-          <li><strong>Cookies analíticas:</strong> Nos permiten medir y analizar la navegación de los usuarios de forma anónima para mejorar la web. Utilizamos herramientas respetuosas con la privacidad (como Cloudflare Web Analytics, que no usa cookies de seguimiento personal). Si en el futuro integramos analítica con cookies, solo se activarán si nos das tu consentimiento expreso en el aviso inicial.</li>
+          <li><strong>Cookies técnicas (esenciales):</strong> Son aquellas estrictamente necesarias para el correcto funcionamiento de la página web (por ejemplo, para recordar tus preferencias de privacidad). Estas cookies no requieren consentimiento y se instalan automáticamente.</li>
+          <li><strong>Cookies analíticas:</strong> Utilizamos herramientas respetuosas con la privacidad (como Cloudflare Web Analytics, que no usa cookies de seguimiento cruzado) para medir de forma anónima el rendimiento de la web.</li>
+          <li><strong>Cookies publicitarias (AdSense):</strong> Si nos das tu consentimiento expreso mediante la plataforma de gestión del consentimiento (CMP), Google y sus socios tecnológicos certifcados instalarán cookies para mostrarte anuncios personalizados, medir su rendimiento y limitar el número de veces que ves un mismo anuncio.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold text-fg mt-8">Gestión de tus preferencias</h2>
+        <h2 className="text-2xl font-bold text-fg mt-8">Gestión de tus preferencias y retirada del consentimiento</h2>
         <p>
-          Puedes modificar tus preferencias sobre las cookies en cualquier momento borrando el historial o los datos de navegación de tu navegador. Esto hará que el banner de aviso de cookies vuelva a aparecer en tu próxima visita, permitiéndote configurar de nuevo tu elección.
+          Si has aceptado el uso de cookies publicitarias y deseas cambiar de opinión, puedes retirar o modificar tu consentimiento en cualquier momento abriendo nuevamente el panel de preferencias de privacidad (el botón para gestionar el consentimiento suele encontrarse fijo en el pie de página o en una esquina de la pantalla).
         </p>
         <p>
-          Además, puedes restringir, bloquear o borrar las cookies de cualquier sitio web utilizando la configuración general de tu navegador. Ten en cuenta que si bloqueas las cookies técnicas esenciales, es posible que algunas funciones de la web no operen correctamente.
+          Adicionalmente, puedes restringir, bloquear o borrar las cookies de cualquier sitio web utilizando la configuración general de tu navegador. Ten en cuenta que si bloqueas las cookies técnicas esenciales, es posible que algunas funciones de la web no operen correctamente.
         </p>
       </div>
     </article>

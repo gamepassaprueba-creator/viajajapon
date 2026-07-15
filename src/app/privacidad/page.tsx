@@ -24,10 +24,15 @@ export default function Page() {
         
         <h2 className="text-2xl font-bold text-fg mt-8">Finalidad y base legal</h2>
         <p>
-          Recogemos tu dirección de correo electrónico única y exclusivamente si decides suscribirte voluntariamente a nuestra newsletter. La base legal es tu <strong>consentimiento expreso</strong> mediante doble confirmación (doble opt-in).
+          Recogemos tu dirección de correo electrónico única y exclusivamente si decides suscribirte voluntariamente a nuestra newsletter. La base legal es tu <strong>consentimiento expreso</strong> mediante doble confirmación (doble opt-in). Los correos se utilizarán únicamente para enviarte novedades de la web. No venderemos, alquilaremos ni cederemos tu correo a terceros.
         </p>
         <p>
-          Los correos se utilizarán únicamente para enviarte novedades de la web. No venderemos, alquilaremos ni cederemos tu correo a terceros.
+          Adicionalmente, si otorgas tu consentimiento en nuestro aviso de cookies, utilizamos servicios de terceros como <strong>Google AdSense</strong> para mostrar publicidad. Google y sus proveedores tecnológicos certificados pueden utilizar datos personales (como tu dirección IP) y cookies para personalizar los anuncios y analizar el tráfico. Puedes encontrar más información sobre cómo utiliza Google la información de sitios web en sus <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary">políticas de privacidad</a>.
+        </p>
+
+        <h2 className="text-2xl font-bold text-fg mt-8">Terceros y transferencias internacionales</h2>
+        <p>
+          Al utilizar los servicios publicitarios de Google LLC, algunos datos de navegación e identificadores pueden ser transferidos a servidores situados fuera del Espacio Económico Europeo (ej. Estados Unidos). Estas transferencias están amparadas bajo los mecanismos y cláusulas contractuales tipo aprobados por la Comisión Europea.
         </p>
         
         <h2 className="text-2xl font-bold text-fg mt-8">Conservación de los datos</h2>

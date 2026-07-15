@@ -13,7 +13,7 @@ export default function Page() {
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Aviso legal</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-fg-muted">
         <p>
-          En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSICE), se informa que este sitio web es un proyecto personal divulgativo, sin actividad comercial formal.
+          En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSICE), se informa que este sitio web es un proyecto divulgativo que se financia mediante enlaces de afiliación y publicidad.
         </p>
         <p>
           <strong>Titular:</strong> Sergio Morillo<br />

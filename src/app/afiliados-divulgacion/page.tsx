@@ -13,9 +13,10 @@ export default function Page() {
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">Divulgación de afiliados y uso de IA</h1>
       <div className="mt-6 space-y-4 leading-relaxed text-fg-muted">
         <p>
-          Algunos enlaces de esta web son <strong>enlaces de afiliado</strong>: si compras a través de ellos
-          (seguros de viaje, eSIM, JR Pass, actividades), podemos recibir una comisión sin coste adicional para ti.
-          Nunca afecta al precio que pagas ni a nuestras recomendaciones: solo enlazamos lo que usaríamos nosotros.
+          Este proyecto se financia mediante publicidad y afiliación. Algunos enlaces de esta web son <strong>enlaces de afiliado</strong>: si compras a través de ellos (seguros de viaje, eSIM, JR Pass, actividades), podemos recibir una comisión sin coste adicional para ti. Nunca afecta al precio que pagas ni a nuestras recomendaciones: solo enlazamos lo que usaríamos nosotros.
+        </p>
+        <p>
+          Adicionalmente, mostramos <strong>anuncios gráficos</strong> a través de redes publicitarias como Google AdSense. El contenido editorial es independiente de los anuncios mostrados.
         </p>
         <p>
           <strong>Uso de IA (Reglamento europeo de IA, art. 50):</strong> usamos herramientas de IA para acelerar
