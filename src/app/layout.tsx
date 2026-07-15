@@ -39,6 +39,12 @@ export const metadata: Metadata = {
     images: ["/images/hero-fuji.jpg"],
   },
   robots: { index: true, follow: true },
+  // Metaetiqueta de verificación de cuenta Google AdSense.
+  // No carga ningún script ni activa anuncios; es solo para que Google
+  // pueda verificar la propiedad del dominio durante la solicitud de AdSense.
+  other: {
+    "google-adsense-account": "ca-pub-7277317479691987",
+  },
 };
 
 export const viewport: Viewport = {
