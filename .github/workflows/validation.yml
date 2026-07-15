@@ -45,7 +45,7 @@ jobs:
       - name: Lint changed files
         shell: bash
         run: |
-          FILES=$(git diff --name-only origin/master...HEAD -- '*.ts' '*.tsx')
+          FILES=$(git diff --name-only --diff-filter=ACM origin/master...HEAD -- '*.ts' '*.tsx')
           if [ -n "$FILES" ]; then
             echo "$FILES"
             npx eslint $FILES
