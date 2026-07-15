@@ -66,7 +66,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <main id="contenido" className="flex-1">{children}</main>
         <Footer />
-        {/* CMP y AdSense se inyectarán vía Google Auto Ads o AdSenseComponent cuando NEXT_PUBLIC_ADSENSE_CLIENT exista */}
+        {/* La integración publicitaria y la CMP se realizarán en una segunda fase,
+            después de la aprobación de AdSense y de validar el consentimiento. */}
         <MobileTabBar />
       </body>
     </html>

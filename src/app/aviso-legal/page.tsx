@@ -46,7 +46,7 @@ export default function Page() {
           expresa, salvo cita que incluya enlace a la fuente original (ViajaJapón).
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: julio de 2025.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 15 de julio de 2026.</p>
       </div>
     </article>
   );

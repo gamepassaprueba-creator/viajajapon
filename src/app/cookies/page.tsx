@@ -21,9 +21,9 @@ export default function Page() {
         <h2 className="text-2xl font-bold text-fg mt-8">Cookies actualmente en uso</h2>
         <ul className="list-disc pl-6 space-y-2">
           <li>
-            <strong>Cookies técnicas (esenciales):</strong> Necesarias para el funcionamiento básico
-            de la web, por ejemplo para recordar tus preferencias de privacidad. No requieren
-            consentimiento.
+            <strong>Almacenamiento técnico:</strong> la web puede utilizar almacenamiento local
+            estrictamente necesario para recordar estados o preferencias funcionales. No se
+            utiliza con fines publicitarios ni para rastrear usuarios entre sitios.
           </li>
           <li>
             <strong>Medición de rendimiento (Cloudflare Web Analytics):</strong> ViajaJapón utiliza
@@ -52,7 +52,7 @@ export default function Page() {
           de algunas partes de la web.
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: julio de 2025.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 15 de julio de 2026.</p>
       </div>
     </article>
   );
