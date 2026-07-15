@@ -1,12 +1,9 @@
-import { getYenRate } from "@/lib/fx";
+import { DEFAULT_FX } from "@/data/jrpass";
 
-// Widget embebible (iframe) del cambio yen-euro. HTML autónomo, sin el chrome del sitio.
-// Incluye un enlace de vuelta a ViajaJapón (imán de backlinks, modelo Wanderlog).
-export const revalidate = 21600;
+export const dynamic = "force-static";
 
 export async function GET() {
-  const { rate, date, live } = await getYenRate();
-  const updated = live && date !== "—" ? date : "2026-06-02";
+  const rate = DEFAULT_FX;
 
   const html = `<!doctype html>
 <html lang="es">
@@ -32,19 +29,31 @@ input:focus{outline:2px solid #e53e3e;outline-offset:1px}
 <body>
 <div class="w">
   <p class="k">Cambio de referencia</p>
-  <p class="rate">1 € = ¥${rate}</p>
+  <p class="rate" id="r-disp">1 € = ¥${rate}</p>
   <div class="row"><label for="e">Euros (€)</label><input id="e" type="number" inputmode="decimal" value="100" min="0"></div>
   <div class="row"><label for="y">Yenes (¥)</label><input id="y" type="number" inputmode="decimal" min="0"></div>
-  <p class="f">Actualizado ${updated} · ref. BCE. Fuente: <a href="https://viajajapon.com/cambio-yen-euro" target="_blank" rel="noopener">ViajaJapón</a></p>
+  <p class="f" id="d-disp">Actualizado estimado · ref. BCE. Fuente: <a href="https://viajajapon.com/cambio-yen-euro" target="_blank" rel="noopener">ViajaJapón</a></p>
 </div>
 <script>
 (function(){
   var R=${rate},e=document.getElementById('e'),y=document.getElementById('y');
+  var rd=document.getElementById('r-disp'), dd=document.getElementById('d-disp');
   function fromE(){var v=parseFloat(e.value);y.value=isFinite(v)?Math.round(v*R):'';}
   function fromY(){var v=parseFloat(y.value);e.value=isFinite(v)?Math.round(v/R*100)/100:'';}
   e.addEventListener('input',fromE);
   y.addEventListener('input',fromY);
   fromE();
+  
+  fetch('https://api.frankfurter.dev/v1/latest?base=EUR&symbols=JPY')
+    .then(r => r.json())
+    .then(data => {
+       if (data && data.rates && data.rates.JPY) {
+         R = Math.round(data.rates.JPY * 100) / 100;
+         rd.innerText = '1 € = ¥' + R;
+         dd.innerHTML = 'Actualizado ' + data.date + ' · ref. BCE. Fuente: <a href="https://viajajapon.com/cambio-yen-euro" target="_blank" rel="noopener">ViajaJapón</a>';
+         fromE();
+       }
+    }).catch(function(){});
 })();
 </script>
 </body>
