@@ -37,7 +37,7 @@ export default function Page() {
         
         <h2 className="text-2xl font-bold text-fg mt-8">Tus derechos</h2>
         <p>
-          Tienes derecho a acceder, rectificar o suprimir tus datos en cualquier momento. Para ejercer tus derechos, escríbenos a <strong>info@viajajapon.com</strong> indicando "Protección de Datos" en el asunto.
+          Tienes derecho a acceder, rectificar o suprimir tus datos en cualquier momento. Para ejercer tus derechos, escríbenos a <strong>info@viajajapon.com</strong> indicando &quot;Protección de Datos&quot; en el asunto.
         </p>
       </div>
     </article>

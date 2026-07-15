@@ -290,14 +290,7 @@ function Icono({ nombre, className }: { nombre?: string; className?: string }) {
   return <I size={18} className={className} aria-hidden="true" />;
 }
 
-const TAG_STYLES = [
-  "bg-red-100 text-red-800",
-  "bg-blue-100 text-blue-800",
-  "bg-green-100 text-green-800",
-  "bg-purple-100 text-purple-800",
-  "bg-amber-100 text-amber-800",
-  "bg-pink-100 text-pink-800",
-] as const;
+
 
 /** Fila de tarjetas de datos clave con icono (cabeceras tipo mockup). */
 export function StatCards({ items }: { items: { icon?: string; label: string; value: string; sub?: string }[] }) {
@@ -423,12 +416,7 @@ export function VsCards({ items }: { items: { title: string; badge?: string; pre
   );
 }
 
-const COMPARATIVA_COLORS = {
-  secondary: "bg-secondary/10 text-secondary",
-  success: "bg-success/10 text-success",
-  amber: "bg-amber-100 text-amber-700",
-  primary: "bg-primary/10 text-primary",
-} as const;
+type ComparativaColor = "secondary" | "success" | "amber" | "primary";
 
 /**
  * Matriz comparativa tipo mockup: cabeceras con icono en círculo de color, filas
@@ -444,7 +432,7 @@ export function Comparativa({
   inconvenientes,
 }: {
   caption?: string;
-  columnas: { title: string; icon?: string; color?: keyof typeof COMPARATIVA_COLORS }[];
+  columnas: { title: string; icon?: string; color?: ComparativaColor }[];
   filas: { label: string; valores: { value: string; sub?: string }[] }[];
   ventajas?: string[][];
   inconvenientes?: string[][];
@@ -592,7 +580,7 @@ export function Acordeon({ items }: { items: AcordeonItem[] }) {
   return (
     <div className={`my-8 space-y-3 ${BLEED}`}>
       {items.map((it, i) => {
-        const tint = i % 2 === 0 ? "bg-primary/10 text-primary" : "bg-secondary/10 text-secondary";
+
         return (
           <details key={it.title} open={it.abierto || undefined} className="group overflow-hidden border-[2px] border-[#0a0a0a] bg-white">
             <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">

@@ -22,7 +22,7 @@ export default function Page() {
           la redacción y la estructura. Todo contenido se revisa, verifica y completa con experiencia real antes de
           publicarse. Los datos sensibles (precios, tasas, normas) se contrastan con fuentes oficiales.
         </p>
-        <p>[TODO: ajustar con tu gestor según la entrada en vigor (ago-2026) y listar los programas de afiliados concretos.]</p>
+
       </div>
     </article>
   );

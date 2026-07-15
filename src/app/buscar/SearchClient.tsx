@@ -68,7 +68,7 @@ export function SearchClient({ articles }: { articles: ArticleMeta[] }) {
 
       {query.trim() && filtered.length === 0 && (
         <div className="panel-manga-dark mt-8 p-8 text-center bg-white">
-          <p className="text-xl font-black text-[#0a0a0a]">No hemos encontrado nada para "{query}"</p>
+          <p className="text-xl font-black text-[#0a0a0a]">No hemos encontrado nada para {'"'}{query}{'"'}</p>
           <p className="mt-2 text-[#555]">Prueba con otra palabra clave o navega por las categorías.</p>
         </div>
       )}
