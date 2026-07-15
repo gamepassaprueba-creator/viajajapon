@@ -15,8 +15,6 @@ const TTL = 6 * 60 * 60 * 1000; // 6 horas
 
 // Controladores globales para deduplicación
 let fetchPromise: Promise<YenRate> | null = null;
-let activeSubscribers = 0;
-let globalController: AbortController | null = null;
 
 // Validación robusta del rate
 function isValidRate(r: unknown): boolean {
@@ -33,7 +31,6 @@ export function useYenRate() {
 
   useEffect(() => {
     let mounted = true;
-    activeSubscribers++;
 
     async function loadRate() {
       // 1. Intentar leer caché válido
@@ -56,10 +53,7 @@ export function useYenRate() {
 
       // 2. Si no hay petición en curso, iniciar una
       if (!fetchPromise) {
-        globalController = new AbortController();
-        fetchPromise = fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=JPY", {
-          signal: globalController.signal,
-        })
+        fetchPromise = fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=JPY")
           .then((res) => {
             if (!res.ok) throw new Error("API error");
             return res.json();
@@ -81,13 +75,11 @@ export function useYenRate() {
             }
             return result;
           })
-          .catch((err) => {
-            if (err.name === "AbortError") throw err; // Propagar aborto a la promesa
+          .catch(() => {
             return { rate: DEFAULT_FX, date: "—", live: false, isLoading: false };
           })
           .finally(() => {
             fetchPromise = null;
-            globalController = null;
           });
       }
 
@@ -98,7 +90,7 @@ export function useYenRate() {
           setData(result);
         }
       } catch {
-        // Si fue abortada o falló, usar fallback
+        // Fallback genérico por si falla el await (no debería por el catch interno)
         if (mounted) {
           setData({ rate: DEFAULT_FX, date: "—", live: false, isLoading: false });
         }
@@ -109,11 +101,6 @@ export function useYenRate() {
 
     return () => {
       mounted = false;
-      activeSubscribers--;
-      // Solo abortar si es el último componente que desmonta y hay petición en curso
-      if (activeSubscribers === 0 && globalController) {
-        globalController.abort();
-      }
     };
   }, []);
 

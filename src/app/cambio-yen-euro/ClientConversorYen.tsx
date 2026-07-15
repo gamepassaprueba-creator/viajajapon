@@ -20,7 +20,11 @@ export function ClientConversorYen() {
           {isLoading ? (
             "Actualizando cambio..."
           ) : (
-            <>Actualizado: {updated} · fuente: referencia BCE (Frankfurter){live ? "" : " · valor estimado (sin conexión)"}.</>
+            {live ? (
+              <>Actualizado: {updated} · fuente: referencia BCE (Frankfurter).</>
+            ) : (
+              <>Valor estimado de referencia · sin conexión.</>
+            )}
           )}
         </p>
       </div>

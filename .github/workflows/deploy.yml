@@ -41,43 +41,49 @@ jobs:
         run: |
           sleep 10
           URL="https://viajajapon.com"
-          
-          echo "Verificando Portada..."
-          RES=$(curl -s "$URL/")
-          if ! echo "$RES" | grep -q "La guía de"; then echo "Fallo en portada"; exit 1; fi
-          if echo "$RES" | grep -q "0 guías y noticias"; then echo "Fallo en portada: sin noticias"; exit 1; fi
-          
-          echo "Verificando Blog..."
-          RES=$(curl -s "$URL/blog")
-          if echo "$RES" | grep -q "0 guías y noticias"; then echo "Fallo en blog"; exit 1; fi
-          
-          echo "Verificando Destinos..."
-          RES=$(curl -s "$URL/destinos")
-          if echo "$RES" | grep -q "Estamos publicando estas guías; vuelve pronto"; then echo "Fallo en destinos"; exit 1; fi
-          
-          echo "Verificando Tokio..."
-          if ! curl -s -f "$URL/destinos/donde-dormir-en-tokio" > /dev/null; then echo "404 en Tokio"; exit 1; fi
-          
-          echo "Verificando Kioto..."
-          if ! curl -s -f "$URL/destinos/donde-dormir-en-kioto" > /dev/null; then echo "404 en Kioto"; exit 1; fi
-          
-          echo "Verificando Osaka..."
-          if ! curl -s -f "$URL/destinos/que-ver-en-osaka" > /dev/null; then echo "404 en Osaka"; exit 1; fi
-          
-          echo "Verificando Calculadora JR Pass..."
-          RES=$(curl -s "$URL/herramientas/jr-pass-calculadora")
-          if ! echo "$RES" | grep -q "Calculadora JR Pass"; then echo "Fallo en JR Pass"; exit 1; fi
-          
-          echo "Verificando Cambio Yen..."
-          RES=$(curl -s "$URL/cambio-yen-euro")
-          if ! echo "$RES" | grep -q "Cambio de referencia"; then echo "Fallo en yen"; exit 1; fi
-          
-          echo "Verificando Embed Yen..."
-          RES=$(curl -s "$URL/embed/cambio-yen")
-          if ! echo "$RES" | grep -q "Actualizado"; then echo "Fallo en embed yen"; exit 1; fi
-          
-          echo "Verificando RSS..."
-          RES=$(curl -s "$URL/feed.xml")
-          if ! echo "$RES" | grep -q "<item>"; then echo "Fallo en RSS (vacío)"; exit 1; fi
-          
+          TS=$(date +%s)
+
+          check_url() {
+            local PATHNAME=$1
+            local EXPECTED_1=$2
+            local EXPECTED_2=$3
+            local NOT_EXPECTED=$4
+
+            for SUFFIX in "" "?audit=$TS"; do
+              local TARGET="${URL}${PATHNAME}${SUFFIX}"
+              echo "Checking: $TARGET"
+              
+              HTTP_STATUS=$(curl -fsS -w "%{http_code}" -o temp_body.html "$TARGET" || echo "FAIL")
+              
+              if [ "$HTTP_STATUS" != "200" ]; then
+                echo "❌ ERROR: Status $HTTP_STATUS for $TARGET"
+                exit 1
+              fi
+
+              if [ -n "$EXPECTED_1" ]; then
+                if ! grep -q "$EXPECTED_1" temp_body.html; then echo "❌ Missing '$EXPECTED_1'"; exit 1; fi
+              fi
+              if [ -n "$EXPECTED_2" ]; then
+                if ! grep -q "$EXPECTED_2" temp_body.html; then echo "❌ Missing '$EXPECTED_2'"; exit 1; fi
+              fi
+              if [ -n "$NOT_EXPECTED" ]; then
+                if grep -q "$NOT_EXPECTED" temp_body.html; then echo "❌ Found forbidden '$NOT_EXPECTED'"; exit 1; fi
+              fi
+
+              echo "✅ 200 OK - Passed assertions"
+            done
+          }
+
+          echo "Starting rigorous GET assertions..."
+          check_url "/" "La guía de" "" ""
+          check_url "/blog" "Subida del JR Pass" "" "0 guías y noticias"
+          check_url "/destinos" "Dónde dormir en Tokio" "Qué ver en Osaka" "Estamos publicando estas guías; vuelve pronto"
+          check_url "/destinos/donde-dormir-en-tokio" "Dónde dormir en Tokio" "" ""
+          check_url "/destinos/donde-dormir-en-kioto" "Dónde dormir en Kioto" "" ""
+          check_url "/destinos/que-ver-en-osaka" "Qué ver en Osaka" "" ""
+          check_url "/herramientas/jr-pass-calculadora" "¿Merece la pena el JR Pass en 2026?" "" ""
+          check_url "/cambio-yen-euro" "Cambio de referencia" "165" ""
+          check_url "/embed/cambio-yen" "165" "id=\"fx-calculator\"" ""
+          check_url "/feed.xml" "<item>" "Subida del JR Pass" ""
+
           echo "¡Todas las comprobaciones de producción pasaron!"
