@@ -3,6 +3,11 @@
 # falla al trazar node_modules. Secrets necesarios en el repo:
 #   CLOUDFLARE_API_TOKEN  — token con permisos de Workers + KV
 #   CLOUDFLARE_ACCOUNT_ID — Account ID de la cuenta de Cloudflare
+#
+# Afiliados: las páginas son SSG y src/lib/affiliates.ts lee process.env durante
+# el build. Por eso los AFF_* deben inyectarse explícitamente en el paso de build.
+# Si un secret no existe, GitHub lo resuelve como cadena vacía y el código conserva
+# la URL fallback sin romper el despliegue.
 name: Deploy a Cloudflare Workers
 
 on:
@@ -28,8 +33,45 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
 
+      - name: Comprobar configuración de afiliados
+        env:
+          AFF_CIVITATIS: ${{ secrets.AFF_CIVITATIS }}
+          AFF_KLOOK: ${{ secrets.AFF_KLOOK }}
+          AFF_IATI: ${{ secrets.AFF_IATI }}
+          AFF_HEYMONDO: ${{ secrets.AFF_HEYMONDO }}
+          AFF_HOLAFLY: ${{ secrets.AFF_HOLAFLY }}
+          AFF_AIRALO: ${{ secrets.AFF_AIRALO }}
+          AFF_SKYSCANNER: ${{ secrets.AFF_SKYSCANNER }}
+          AFF_JRPASS: ${{ secrets.AFF_JRPASS }}
+          AFF_REVOLUT: ${{ secrets.AFF_REVOLUT }}
+          AFF_BOOKING: ${{ secrets.AFF_BOOKING }}
+          AFF_GETYOURGUIDE: ${{ secrets.AFF_GETYOURGUIDE }}
+        run: |
+          configured=0
+          for name in AFF_CIVITATIS AFF_KLOOK AFF_IATI AFF_HEYMONDO AFF_HOLAFLY AFF_AIRALO AFF_SKYSCANNER AFF_JRPASS AFF_REVOLUT AFF_BOOKING AFF_GETYOURGUIDE; do
+            if [ -n "${!name:-}" ]; then
+              echo "${name}: configured"
+              configured=$((configured + 1))
+            else
+              echo "${name}: missing"
+            fi
+          done
+          echo "Affiliate programs configured: ${configured}/11"
+
       - name: Build OpenNext (incluye next build)
         run: npx opennextjs-cloudflare build
+        env:
+          AFF_CIVITATIS: ${{ secrets.AFF_CIVITATIS }}
+          AFF_KLOOK: ${{ secrets.AFF_KLOOK }}
+          AFF_IATI: ${{ secrets.AFF_IATI }}
+          AFF_HEYMONDO: ${{ secrets.AFF_HEYMONDO }}
+          AFF_HOLAFLY: ${{ secrets.AFF_HOLAFLY }}
+          AFF_AIRALO: ${{ secrets.AFF_AIRALO }}
+          AFF_SKYSCANNER: ${{ secrets.AFF_SKYSCANNER }}
+          AFF_JRPASS: ${{ secrets.AFF_JRPASS }}
+          AFF_REVOLUT: ${{ secrets.AFF_REVOLUT }}
+          AFF_BOOKING: ${{ secrets.AFF_BOOKING }}
+          AFF_GETYOURGUIDE: ${{ secrets.AFF_GETYOURGUIDE }}
 
       - name: Deploy a Cloudflare
         run: npx opennextjs-cloudflare deploy
