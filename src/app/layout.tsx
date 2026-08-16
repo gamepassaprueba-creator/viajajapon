@@ -7,6 +7,8 @@ import { Navbar } from "@/components/Navbar";
 import { MobileTabBar } from "@/components/MobileTabBar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { CookieBanner } from "@/components/CookieBanner";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
 
 // M PLUS 1p: sans japonesa contemporánea (dirección "moderno anime/manga"). 900 para
@@ -57,6 +59,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es" className={`${mplus.variable} ${jetbrains.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <JsonLd data={[organizationLd(), websiteLd()]} />
+        <GoogleAnalytics />
         {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
           <Script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN}"}`} />
         )}
@@ -66,8 +69,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <main id="contenido" className="flex-1">{children}</main>
         <Footer />
-        {/* La integración publicitaria y la CMP se realizarán en una segunda fase,
-            después de la aprobación de AdSense y de validar el consentimiento. */}
+        {/* GA4 usa consentimiento propio y no se carga antes de aceptar analítica.
+            La integración publicitaria de AdSense seguirá requiriendo su CMP certificada. */}
+        <CookieBanner />
         <MobileTabBar />
       </body>
     </html>
