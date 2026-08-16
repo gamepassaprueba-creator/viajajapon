@@ -10,16 +10,23 @@ import {
   type CalcInput,
 } from "@/data/jrpass";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { trackEvent } from "@/lib/analytics";
 
 const eur = (n: number) => `${n.toLocaleString("es-ES")}€`;
 
 import { useYenRate } from "@/lib/hooks/useYenRate";
 
+export interface CalcAffLink {
+  href: string;
+  partner: string;
+  monetized: boolean;
+}
+
 export interface CalcAffLinks {
-  jrpass: string;
-  civitatis: string;
-  iati: string;
-  holafly: string;
+  jrpass: CalcAffLink;
+  civitatis: CalcAffLink;
+  iati: CalcAffLink;
+  holafly: CalcAffLink;
 }
 
 export function JrPassCalculator({
@@ -44,6 +51,7 @@ export function JrPassCalculator({
 
   const labelCls = "block text-sm font-medium text-[#0a0a0a]";
   const fieldCls = "border-[2px] border-[#0a0a0a] bg-white p-4";
+  const anyMonetized = Object.values(aff).some((link) => link.monetized);
 
   return (
     <div className="mt-8 grid gap-5 lg:grid-cols-2">
@@ -179,15 +187,17 @@ export function JrPassCalculator({
           </p>
           <div className="mt-3 flex flex-col gap-2">
             {r.verdictWorthIt ? (
-              <AffLink href={aff.jrpass}>Ver precios del JR Pass</AffLink>
+              <AffLink link={aff.jrpass}>Ver precios del JR Pass</AffLink>
             ) : (
-              <AffLink href={aff.civitatis}>Reservar actividades y traslados</AffLink>
+              <AffLink link={aff.civitatis}>Reservar actividades y traslados</AffLink>
             )}
-            <AffLink href={aff.iati} variant="ghost">Comparar seguro de viaje</AffLink>
-            <AffLink href={aff.holafly} variant="ghost">eSIM con datos para Japón</AffLink>
+            <AffLink link={aff.iati} variant="ghost">Comparar seguro de viaje</AffLink>
+            <AffLink link={aff.holafly} variant="ghost">eSIM con datos para Japón</AffLink>
           </div>
           <p className="mt-3 text-xs text-fg-muted">
-            Enlaces de afiliado: si compras a través de ellos podemos llevarnos una pequeña comisión, sin coste extra para ti.
+            {anyMonetized
+              ? "Algunos enlaces son de afiliado: si compras a través de ellos podemos recibir una comisión, sin coste extra para ti."
+              : "Enlaces a proveedores externos. Actualmente estos enlaces no llevan comisión para ViajaJapón."}
           </p>
         </div>
 
@@ -219,11 +229,11 @@ export function JrPassCalculator({
 }
 
 function AffLink({
-  href,
+  link,
   variant = "solid",
   children,
 }: {
-  href: string;
+  link: CalcAffLink;
   variant?: "solid" | "ghost";
   children: React.ReactNode;
 }) {
@@ -231,11 +241,24 @@ function AffLink({
     variant === "solid"
       ? "border-[2px] border-[#0a0a0a] bg-[#e1352e] text-white hover:bg-[#b8271f]"
       : "border-[2px] border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-white";
+
+  const onClick = () => {
+    trackEvent("affiliate_click", {
+      provider: link.partner,
+      link_url: link.href,
+      link_text: typeof children === "string" ? children : "calculator_cta",
+      page_path: `${window.location.pathname}${window.location.search}`,
+      source: "jrpass_calculator",
+      monetized: link.monetized ? 1 : 0,
+    });
+  };
+
   return (
     <a
-      href={href}
+      href={link.href}
       target="_blank"
-      rel="sponsored nofollow noopener"
+      rel="sponsored nofollow noopener noreferrer"
+      onClick={onClick}
       className={`inline-flex items-center justify-between gap-1.5 px-4 py-2.5 font-mono text-xs font-black uppercase tracking-wide transition-colors ${cls}`}
     >
       <span>{children}</span>
