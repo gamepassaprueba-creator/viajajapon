@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookiePreferencesButton } from "@/components/CookiePreferencesButton";
 import { Logo } from "@/components/Logo";
 
 const COLS = [
@@ -72,10 +73,11 @@ export function Footer() {
         <div className="border-t-2 border-white/10 px-4 py-4 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="font-mono text-[9px] text-white/30">© 2026 ViajaJapón.com · Algunos enlaces son de afiliado.</p>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <Link href="/aviso-legal" className="font-mono text-[9px] text-white/30 hover:text-white">Legal</Link>
               <Link href="/privacidad" className="font-mono text-[9px] text-white/30 hover:text-white">Privacidad</Link>
               <Link href="/cookies" className="font-mono text-[9px] text-white/30 hover:text-white">Cookies</Link>
+              <CookiePreferencesButton />
             </div>
           </div>
         </div>

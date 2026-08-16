@@ -33,12 +33,17 @@ export default function Page() {
           correos se utilizarán únicamente para enviarte novedades de la web. No venderemos,
           alquilaremos ni cederemos tu correo a terceros.
         </p>
+        <p>
+          Para la medición con <strong>Google Analytics 4</strong>, la base legal es igualmente tu
+          consentimiento. La etiqueta de Google Analytics solo se carga después de que aceptes la
+          analítica desde el aviso de privacidad. Si la rechazas, esa medición no se activa.
+        </p>
 
         <h2 className="text-2xl font-bold text-fg mt-8">Servicios de terceros actualmente activos</h2>
         <p>
           Utilizamos <strong>Cloudflare Web Analytics</strong> para medir el tráfico de forma
-          agregada y anónima. Este servicio no instala cookies ni rastrea a los usuarios entre sitios.
-          Más información en la{" "}
+          agregada. Este servicio no instala cookies para esa medición ni se utiliza para rastrear
+          usuarios entre sitios. Más información en la{" "}
           <a
             href="https://www.cloudflare.com/privacypolicy/"
             target="_blank"
@@ -48,6 +53,21 @@ export default function Page() {
             política de privacidad de Cloudflare
           </a>
           .
+        </p>
+        <p>
+          Si aceptas la analítica, utilizamos <strong>Google Analytics 4</strong> para conocer el uso
+          del sitio, las páginas visitadas, fuentes de tráfico y eventos de interacción como clics en
+          recomendaciones. Puedes retirar ese consentimiento en cualquier momento desde{" "}
+          <strong>Preferencias de cookies</strong> en el pie de página. Consulta las{" "}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-primary"
+          >
+            políticas de privacidad de Google
+          </a>{" "}
+          para más información sobre su tratamiento de datos.
         </p>
 
         <h2 className="text-2xl font-bold text-fg mt-8">
@@ -61,29 +81,18 @@ export default function Page() {
           anuncios, medir su eficacia y limitar su frecuencia.
         </p>
         <p>
-          <strong>Actualmente no hay anuncios activos</strong> y no se tratan datos con esa
-          finalidad. Antes de activar cualquier servicio publicitario se solicitará consentimiento
-          mediante una plataforma de gestión del consentimiento (CMP) certificada por Google.
-        </p>
-        <p>
-          Cuando Google AdSense esté activo, algunos datos podrán ser tratados en servidores fuera
-          del Espacio Económico Europeo. En ese caso, dichas transferencias estarán amparadas en los
-          mecanismos legales aplicables según la normativa europea vigente. Puedes consultar las{" "}
-          <a
-            href="https://policies.google.com/technologies/partner-sites"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-primary"
-          >
-            políticas de privacidad de Google
-          </a>{" "}
-          para más información.
+          <strong>Actualmente no hay anuncios activos</strong> y el consentimiento para Google
+          Analytics no activa publicidad ni almacenamiento publicitario. Antes de activar cualquier
+          servicio publicitario se solicitará el consentimiento correspondiente mediante una
+          plataforma de gestión del consentimiento (CMP) certificada por Google.
         </p>
 
         <h2 className="text-2xl font-bold text-fg mt-8">Conservación de los datos</h2>
         <p>
           Tus datos de suscripción se conservarán hasta que solicites la baja. Puedes darte de baja
-          en cualquier momento haciendo clic en el enlace que aparece al final de cada correo.
+          en cualquier momento haciendo clic en el enlace que aparece al final de cada correo. Las
+          preferencias de analítica se conservan localmente en tu navegador hasta que las cambies o
+          elimines los datos del sitio.
         </p>
 
         <h2 className="text-2xl font-bold text-fg mt-8">Tus derechos</h2>
@@ -93,7 +102,7 @@ export default function Page() {
           &quot;Protección de Datos&quot; en el asunto.
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: 15 de julio de 2026.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 16 de agosto de 2026.</p>
       </div>
     </article>
   );
