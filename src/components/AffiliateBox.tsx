@@ -1,3 +1,4 @@
+import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, type PartnerKey } from "@/lib/affiliates";
 
 export interface AffiliateBoxProps {
@@ -21,15 +22,13 @@ export function AffiliateBox({ partner, title, cta, children }: AffiliateBoxProp
       <p className="kicker text-[#e1352e]">{monetized ? "Recomendación · enlace de afiliado" : "Recomendación"}</p>
       <h3 className="mt-1 text-lg font-black text-[#0a0a0a]">{title}</h3>
       <div className="mt-1 text-sm leading-relaxed text-[#555]">{children}</div>
-      <a
+      <TrackedAffiliateLink
         href={href}
-        rel="sponsored nofollow noopener noreferrer"
-        target="_blank"
+        partner={partner}
+        label={cta}
+        monetized={monetized}
         className="btn-primary mt-4"
-      >
-        {cta}
-        <span aria-hidden="true">→</span>
-      </a>
+      />
     </aside>
   );
 }
