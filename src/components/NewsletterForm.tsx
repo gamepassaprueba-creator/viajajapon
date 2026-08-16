@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "ok" | "error";
 
@@ -32,7 +33,7 @@ export function NewsletterForm({
     e.preventDefault();
     if (status === "loading") return;
     if (hp) {
-      // Bot rellenó el honeypot: fingir éxito sin enviar.
+      // Bot rellenó el honeypot: fingir éxito sin enviar ni contaminar Analytics.
       setStatus("ok");
       setMsg("¡Listo! Revisa tu correo para confirmar la suscripción.");
       return;
@@ -53,6 +54,16 @@ export function NewsletterForm({
             ? "Ya estabas suscrito. ¡Gracias!"
             : "¡Listo! Revisa tu correo para confirmar la suscripción.",
         );
+
+        // KPI de captación: solo cuenta como nueva conversión cuando MailerLite
+        // confirma un alta nueva. Nunca enviamos el email a Analytics.
+        if (!data.already) {
+          trackEvent("newsletter_signup", {
+            source,
+            page_path: `${window.location.pathname}${window.location.search}`,
+          });
+        }
+
         setEmail("");
       } else {
         setStatus("error");
