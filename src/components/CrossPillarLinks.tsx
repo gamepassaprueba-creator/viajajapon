@@ -1,32 +1,93 @@
 import Link from "next/link";
-import { getAllArticles } from "@/lib/content";
+import { getAllArticles, type ArticleMeta } from "@/lib/content";
 import { categoriaDe } from "@/lib/categorias";
+
+/**
+ * Enlaces editoriales dirigidos para páginas con demanda demostrada en Search Console.
+ * El valor usa `pillar/slug`; si un artículo desaparece o pasa a borrador, simplemente
+ * se ignora y entra el fallback automático.
+ */
+const TOPICAL_LINKS: Record<string, string[]> = {
+  "cultura/geishas-y-maiko-japon": [
+    "destinos/que-ver-en-kioto",
+    "destinos/donde-dormir-en-kioto",
+    "cultura/kimono",
+  ],
+  "destinos/que-ver-en-kioto": [
+    "cultura/geishas-y-maiko-japon",
+    "destinos/donde-dormir-en-kioto",
+    "cultura/festivales-de-japon",
+  ],
+  "destinos/donde-dormir-en-kioto": [
+    "destinos/que-ver-en-kioto",
+    "cultura/geishas-y-maiko-japon",
+    "itinerarios/itinerario-japon-15-dias",
+  ],
+  "cultura/festivales-de-japon": [
+    "logistica/mejor-epoca-viajar-japon",
+    "itinerarios/itinerario-japon-1-mes",
+    "destinos/que-ver-en-kioto",
+  ],
+  "logistica/compras-y-tax-free-japon": [
+    "logistica/como-pagar-en-japon",
+    "logistica/cuanto-cuesta-viajar-japon",
+    "itinerarios/itinerario-japon-1-mes",
+  ],
+  "logistica/como-pagar-en-japon": [
+    "logistica/compras-y-tax-free-japon",
+    "logistica/cuanto-cuesta-viajar-japon",
+    "logistica/suica-iphone",
+  ],
+  "itinerarios/itinerario-japon-1-mes": [
+    "cultura/geishas-y-maiko-japon",
+    "logistica/compras-y-tax-free-japon",
+    "destinos/donde-dormir-en-kioto",
+  ],
+  "itinerarios/itinerario-japon-15-dias": [
+    "destinos/donde-dormir-en-kioto",
+    "logistica/compras-y-tax-free-japon",
+    "logistica/jr-pass-2026",
+  ],
+};
+
+function articleKey(a: ArticleMeta) {
+  return `${a.pillar}/${a.slug}`;
+}
 
 export function CrossPillarLinks({ currentPillar, currentSlug }: { currentPillar: string; currentSlug: string }) {
   const all = getAllArticles();
-  
-  // Filtrar artículos que NO sean del pilar actual
-  const otherPillars = all.filter(a => a.pillar !== currentPillar && a.slug !== currentSlug);
-  
-  // Seleccionar hasta 3 artículos, preferiblemente de pilares distintos
-  const selected = [];
-  const seenPillars = new Set();
-  
-  for (const a of otherPillars) {
-    if (!seenPillars.has(a.pillar)) {
-      selected.push(a);
-      seenPillars.add(a.pillar);
+  const currentKey = `${currentPillar}/${currentSlug}`;
+  const byKey = new Map(all.map((a) => [articleKey(a), a]));
+  const selected: ArticleMeta[] = [];
+
+  // 1) Enlaces editoriales explícitos cuando tenemos una relación semántica fuerte.
+  for (const key of TOPICAL_LINKS[currentKey] ?? []) {
+    const article = byKey.get(key);
+    if (article && articleKey(article) !== currentKey && !selected.some((s) => articleKey(s) === key)) {
+      selected.push(article);
     }
     if (selected.length === 3) break;
   }
-  
-  // Si no llegamos a 3 con pilares distintos, rellenamos con otros
+
+  // 2) Fallback: completar con contenido reciente, intentando diversificar pilares.
+  const seenPillars = new Set(selected.map((a) => a.pillar));
+  for (const article of all) {
+    const key = articleKey(article);
+    if (key === currentKey || selected.some((s) => articleKey(s) === key)) continue;
+    if (!seenPillars.has(article.pillar)) {
+      selected.push(article);
+      seenPillars.add(article.pillar);
+    }
+    if (selected.length === 3) break;
+  }
+
+  // 3) Si aún faltan enlaces, rellenar sin exigir pilar distinto.
   if (selected.length < 3) {
-    for (const a of otherPillars) {
-      if (!selected.some(s => s.slug === a.slug)) {
-        selected.push(a);
-        if (selected.length === 3) break;
-      }
+    for (const article of all) {
+      const key = articleKey(article);
+      if (key === currentKey || selected.some((s) => articleKey(s) === key)) continue;
+      selected.push(article);
+      if (selected.length === 3) break;
     }
   }
 
@@ -39,7 +100,7 @@ export function CrossPillarLinks({ currentPillar, currentSlug }: { currentPillar
         {selected.map((a) => {
           const cat = categoriaDe(a.pillar);
           return (
-            <li key={a.slug}>
+            <li key={`${a.pillar}/${a.slug}`}>
               <Link
                 href={`${cat.basePath}/${a.slug}`}
                 className="panel-manga-red flex h-full flex-col bg-white p-4 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
