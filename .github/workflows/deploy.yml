@@ -113,10 +113,15 @@ jobs:
             STATUS=$(curl -sS --max-redirs 0 -D temp_redirect_headers.txt -o /dev/null -w "%{http_code}" "${ORIGIN}${PATHNAME}") || return 1
             LOCATION=$(tr -d '\r' < temp_redirect_headers.txt | awk 'tolower($1) == "location:" {print $2; exit}')
 
-            if [ "$STATUS" != "308" ]; then
-              echo "❌ Expected 308 from ${ORIGIN}${PATHNAME}, got ${STATUS}"
-              return 1
-            fi
+            # 301 y 308 son redirecciones permanentes válidas. Next usa 308,
+            # pero un alias puede resolverse antes mediante Cloudflare/registrador con 301.
+            case "$STATUS" in
+              301|308) ;;
+              *)
+                echo "❌ Expected permanent redirect (301/308) from ${ORIGIN}${PATHNAME}, got ${STATUS}"
+                return 1
+                ;;
+            esac
             if [ "$LOCATION" != "$EXPECTED" ]; then
               echo "❌ Wrong Location from ${ORIGIN}${PATHNAME}: ${LOCATION} (expected ${EXPECTED})"
               return 1
