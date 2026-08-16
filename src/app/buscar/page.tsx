@@ -5,6 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Buscar artículos | ViajaJapón",
   description: "Busca guías, itinerarios y consejos para tu viaje a Japón.",
+  robots: { index: false, follow: true },
 };
 
 export default function BuscarPage() {
