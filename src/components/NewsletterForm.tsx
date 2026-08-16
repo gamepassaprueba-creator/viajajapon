@@ -1,18 +1,16 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "ok" | "error";
+type Availability = "checking" | "available" | "unavailable";
 
 export interface NewsletterFormProps {
-  /** De dónde viene el alta (se guarda como campo en MailerLite para atribución). */
   source: string;
-  /** "row" = email + botón en línea (home). "stack" = apilado (barras laterales). */
   layout?: "row" | "stack";
   buttonLabel?: string;
   placeholder?: string;
-  /** Texto bajo el formulario (privacidad/lead magnet). */
   note?: string;
 }
 
@@ -25,19 +23,41 @@ export function NewsletterForm({
 }: NewsletterFormProps) {
   const id = useId();
   const [email, setEmail] = useState("");
-  const [hp, setHp] = useState(""); // honeypot anti-bots
+  const [hp, setHp] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [msg, setMsg] = useState("");
+  const [availability, setAvailability] = useState<Availability>("checking");
+
+  useEffect(() => {
+    let active = true;
+
+    fetch("/api/suscribir", { cache: "no-store" })
+      .then(async (res) => {
+        if (!res.ok) return false;
+        const data = (await res.json().catch(() => ({}))) as { available?: boolean };
+        return data.available === true;
+      })
+      .then((available) => {
+        if (active) setAvailability(available ? "available" : "unavailable");
+      })
+      .catch(() => {
+        if (active) setAvailability("unavailable");
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (status === "loading") return;
+    if (availability !== "available" || status === "loading") return;
     if (hp) {
-      // Bot rellenó el honeypot: fingir éxito sin enviar ni contaminar Analytics.
       setStatus("ok");
       setMsg("¡Listo! Revisa tu correo para confirmar la suscripción.");
       return;
     }
+
     setStatus("loading");
     setMsg("");
     try {
@@ -47,6 +67,7 @@ export function NewsletterForm({
         body: JSON.stringify({ email, source }),
       });
       const data = await res.json().catch(() => ({}));
+
       if (res.ok && data.ok) {
         setStatus("ok");
         setMsg(
@@ -55,8 +76,6 @@ export function NewsletterForm({
             : "¡Listo! Revisa tu correo para confirmar la suscripción.",
         );
 
-        // KPI de captación: solo cuenta como nueva conversión cuando MailerLite
-        // confirma un alta nueva. Nunca enviamos el email a Analytics.
         if (!data.already) {
           trackEvent("newsletter_signup", {
             source,
@@ -65,18 +84,37 @@ export function NewsletterForm({
         }
 
         setEmail("");
-      } else {
-        setStatus("error");
-        setMsg(
-          data.error === "email"
-            ? "Revisa el correo: no parece válido."
-            : "No hemos podido suscribirte ahora mismo. Inténtalo en un momento.",
-        );
+        return;
       }
+
+      if (data.error === "config") {
+        setAvailability("unavailable");
+        setStatus("idle");
+        return;
+      }
+
+      setStatus("error");
+      setMsg(
+        data.error === "email"
+          ? "Revisa el correo: no parece válido."
+          : "No hemos podido suscribirte ahora mismo. Inténtalo en un momento.",
+      );
     } catch {
       setStatus("error");
       setMsg("Problema de conexión. Inténtalo de nuevo.");
     }
+  }
+
+  if (availability === "checking") {
+    return <div className="h-12" aria-hidden="true" />;
+  }
+
+  if (availability === "unavailable") {
+    return (
+      <p className="border-[2px] border-[#0a0a0a] bg-[#f5f5f5] px-4 py-3 text-center text-sm text-fg-muted">
+        La newsletter estará disponible próximamente.
+      </p>
+    );
   }
 
   if (status === "ok") {
@@ -114,7 +152,6 @@ export function NewsletterForm({
           disabled={status === "loading"}
           className="flex-1 border-[2px] border-[#0a0a0a] bg-white px-4 py-3 text-[#0a0a0a] placeholder:text-[#999] outline-none focus:border-[#e1352e] disabled:opacity-60"
         />
-        {/* Honeypot: oculto a humanos, los bots lo rellenan. */}
         <input
           type="text"
           name="website"
