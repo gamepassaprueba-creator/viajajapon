@@ -9,6 +9,12 @@ export function organizationLd() {
     url: SITE.url,
     logo: `${SITE.url}/logo.png`,
     description: SITE.description,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "editorial corrections and general enquiries",
+      email: "info@viajajapon.com",
+      availableLanguage: ["es"],
+    },
   };
 }
 
