@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { faqLd } from "@/lib/jsonld";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SITE } from "@/lib/site";
-import { affiliateUrl } from "@/lib/affiliates";
+import { affiliateUrl, isMonetized, type PartnerKey } from "@/lib/affiliates";
 
 export const metadata: Metadata = {
   title: "Calculadora JR Pass 2026: ¿te compensa? (en euros)",
@@ -29,13 +29,22 @@ const FAQS = [
   },
 ];
 
+function calcAffiliate(partner: PartnerKey) {
+  return {
+    href: affiliateUrl(partner),
+    partner,
+    monetized: isMonetized(partner),
+  };
+}
+
 export default function Page() {
-  // Enlaces de afiliado resueltos en el servidor (las AFF_* son server-only, no NEXT_PUBLIC).
+  // Resolución server-side: el navegador recibe URL + estado de monetización,
+  // nunca nombres de variables ni secretos.
   const aff = {
-    jrpass: affiliateUrl("jrpass"),
-    civitatis: affiliateUrl("civitatis"),
-    iati: affiliateUrl("iati"),
-    holafly: affiliateUrl("holafly"),
+    jrpass: calcAffiliate("jrpass"),
+    civitatis: calcAffiliate("civitatis"),
+    iati: calcAffiliate("iati"),
+    holafly: calcAffiliate("holafly"),
   };
 
   return (
