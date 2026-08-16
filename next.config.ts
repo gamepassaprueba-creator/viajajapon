@@ -5,7 +5,8 @@ const nextConfig: NextConfig = {
     // Sirve AVIF (mejor compresión) con fallback a WebP. Mejora LCP del hero.
     formats: ["image/avif", "image/webp"],
   },
-  // viajajapon.es y www → 301 al dominio canónico .com (mismo worker sirve ambos).
+  // viajajapon.es y www → redirección permanente 308 al dominio canónico .com.
+  // Next.js usa 308 (no 301) cuando permanent=true para conservar el método HTTP.
   // Regla explícita para la raíz ANTES del catch-all: en el adaptador de Cloudflare,
   // "/:path*" deja el token ":path*" sin interpolar cuando el path va vacío (raíz).
   // Con "/" exacto + "/:path+" (uno o más segmentos) cada caso interpola bien.

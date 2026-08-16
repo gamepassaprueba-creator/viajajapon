@@ -103,6 +103,27 @@ jobs:
           URL="https://viajajapon.com"
           TS=$(date +%s)
 
+          check_redirect() {
+            local ORIGIN=$1
+            local PATHNAME=$2
+            local EXPECTED=$3
+            local STATUS
+            local LOCATION
+
+            STATUS=$(curl -sS --max-redirs 0 -D temp_redirect_headers.txt -o /dev/null -w "%{http_code}" "${ORIGIN}${PATHNAME}") || return 1
+            LOCATION=$(tr -d '\r' < temp_redirect_headers.txt | awk 'tolower($1) == "location:" {print $2; exit}')
+
+            if [ "$STATUS" != "308" ]; then
+              echo "❌ Expected 308 from ${ORIGIN}${PATHNAME}, got ${STATUS}"
+              return 1
+            fi
+            if [ "$LOCATION" != "$EXPECTED" ]; then
+              echo "❌ Wrong Location from ${ORIGIN}${PATHNAME}: ${LOCATION} (expected ${EXPECTED})"
+              return 1
+            fi
+            echo "✅ ${ORIGIN}${PATHNAME} -> ${LOCATION} (${STATUS})"
+          }
+
           run_all_checks() {
             check_url() {
               local PATHNAME=$1
@@ -113,9 +134,9 @@ jobs:
               for SUFFIX in "" "?audit=$TS"; do
                 local TARGET="${URL}${PATHNAME}${SUFFIX}"
                 echo "Checking: $TARGET"
-                
+
                 HTTP_STATUS=$(curl -sS -o temp_body.html -w "%{http_code}" "$TARGET")
-                
+
                 if [ "$HTTP_STATUS" != "200" ]; then
                   echo "❌ ERROR: Status $HTTP_STATUS for $TARGET"
                   cat temp_body.html
@@ -147,15 +168,17 @@ jobs:
             check_url "/cultura/festivales-de-japon" "Festivales de Japón 2026" "Kagematsuri" "" || return 1
             check_url "/gastronomia/tipos-restaurantes-japon" "Tipos de restaurantes" "" "" || return 1
             check_url "/herramientas/jr-pass-calculadora" "¿Merece la pena el JR Pass en 2026?" "" "" || return 1
-            
+            check_url "/contacto" "Contacto" "info@viajajapon.com" "" || return 1
+            check_url "/politica-editorial" "Política editorial" "Uso de herramientas de IA" "" || return 1
+
             check_url "/cambio-yen-euro" "Cambio de referencia" "Valor estimado de referencia" "" || return 1
             grep -Fq "1€ = ¥" temp_body.html || { echo "❌ Missing '1€ = ¥'"; return 1; }
-            
+
             check_url "/embed/cambio-yen" 'id="r-disp"' 'id="e"' "" || return 1
             grep -Fq 'id="y"' temp_body.html || { echo "❌ Missing 'id=\"y\"'"; return 1; }
             grep -Fq "api.frankfurter.dev" temp_body.html || { echo "❌ Missing 'api.frankfurter.dev'"; return 1; }
             grep -Fq "Valor estimado de referencia" temp_body.html || { echo "❌ Missing 'Valor estimado de referencia'"; return 1; }
-            
+
             check_url "/feed.xml" "<item>" "ViajaJapón" "" || return 1
             check_url "/ads.txt" "google.com, pub-7277317479691987" "" "" || return 1
 
@@ -165,6 +188,24 @@ jobs:
 
             curl -sS "${URL}/buscar?audit=$TS" -o temp_search.html || return 1
             grep -Fq "noindex" temp_search.html || { echo "❌ /buscar missing noindex"; return 1; }
+
+            curl -sS "${URL}/api/suscribir" -o temp_newsletter.json || return 1
+            jq -e 'has("available") and (.available | type == "boolean")' temp_newsletter.json >/dev/null || {
+              echo "❌ Newsletter availability endpoint returned an invalid shape"
+              cat temp_newsletter.json
+              return 1
+            }
+
+            curl -sS -D temp_security_headers.txt -o /dev/null "$URL/" || return 1
+            tr -d '\r' < temp_security_headers.txt | grep -qi '^x-content-type-options: nosniff$' || { echo "❌ Missing nosniff header"; return 1; }
+            tr -d '\r' < temp_security_headers.txt | grep -qi '^x-frame-options: DENY$' || { echo "❌ Missing X-Frame-Options DENY"; return 1; }
+            tr -d '\r' < temp_security_headers.txt | grep -qi '^referrer-policy: strict-origin-when-cross-origin$' || { echo "❌ Missing Referrer-Policy"; return 1; }
+
+            echo "Checking alternate domains and www canonicalization..."
+            check_redirect "https://viajajapon.es" "/" "https://viajajapon.com/" || return 1
+            check_redirect "https://viajajapon.es" "/logistica/jr-pass-2026" "https://viajajapon.com/logistica/jr-pass-2026" || return 1
+            check_redirect "https://www.viajajapon.es" "/" "https://viajajapon.com/" || return 1
+            check_redirect "https://www.viajajapon.com" "/" "https://viajajapon.com/" || return 1
 
             return 0
           }
