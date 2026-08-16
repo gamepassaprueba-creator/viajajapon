@@ -62,7 +62,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN && (
           <Script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_ANALYTICS_TOKEN}"}`} />
         )}
-        <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm font-semibold text-white">
+        <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white">
           Saltar al contenido
         </a>
         <Navbar />
