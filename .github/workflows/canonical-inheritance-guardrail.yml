@@ -1,0 +1,78 @@
+name: Canonical Inheritance Guardrail
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canonical-ownership:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify canonical ownership
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Checking that RootLayout cannot leak a home canonical..."
+          if grep -Eq 'canonical[[:space:]]*:' src/app/layout.tsx; then
+            echo "RootLayout must not define a canonical: metadata is inherited by child routes."
+            grep -nE 'canonical[[:space:]]*:' src/app/layout.tsx
+            exit 1
+          fi
+
+          echo "Checking homepage canonical..."
+          grep -Fq 'alternates: { canonical: "/" }' src/app/page.tsx || {
+            echo "Homepage must keep its explicit self-canonical."
+            exit 1
+          }
+
+          echo "Checking fixed/indexable route canonicals..."
+          FILES=(
+            src/app/herramientas/jr-pass-calculadora/page.tsx
+            src/app/cambio-yen-euro/page.tsx
+            src/app/blog/page.tsx
+            src/app/logistica/page.tsx
+            src/app/itinerarios/page.tsx
+            src/app/destinos/page.tsx
+            src/app/gastronomia/page.tsx
+            src/app/cultura/page.tsx
+            src/app/sobre-nosotros/page.tsx
+            src/app/contacto/page.tsx
+            src/app/politica-editorial/page.tsx
+            src/app/afiliados-divulgacion/page.tsx
+            src/app/aviso-legal/page.tsx
+            src/app/privacidad/page.tsx
+            src/app/cookies/page.tsx
+          )
+
+          for file in "${FILES[@]}"; do
+            if ! grep -Fq 'alternates: { canonical:' "$file"; then
+              echo "Missing explicit canonical in $file"
+              exit 1
+            fi
+          done
+
+          echo "Checking article canonical template..."
+          grep -Fq 'alternates: { canonical: url }' src/components/Article.tsx || {
+            echo "Article metadata must keep an explicit per-URL canonical."
+            exit 1
+          }
+
+          echo "Checking internal search remains noindex without a canonical..."
+          grep -Fq 'robots: { index: false, follow: true }' src/app/buscar/page.tsx || {
+            echo "/buscar must remain noindex,follow."
+            exit 1
+          }
+          if grep -Eq 'canonical[[:space:]]*:' src/app/buscar/page.tsx; then
+            echo "/buscar must not declare a canonical; query variants are noindex."
+            exit 1
+          fi
+
+          echo "Canonical ownership guardrail passed."
