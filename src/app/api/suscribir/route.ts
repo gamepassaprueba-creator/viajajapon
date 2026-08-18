@@ -2,9 +2,13 @@ import { NextResponse } from "next/server";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function isConfigured() {
+  return Boolean(process.env.MAILERLITE_API_KEY && process.env.MAILERLITE_GROUP_ID);
+}
+
 export async function GET() {
   return NextResponse.json(
-    { available: Boolean(process.env.MAILERLITE_API_KEY) },
+    { available: isConfigured() },
     { headers: { "Cache-Control": "no-store, max-age=0" } },
   );
 }
@@ -24,8 +28,8 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.MAILERLITE_API_KEY;
   const groupId = process.env.MAILERLITE_GROUP_ID;
-  if (!apiKey) {
-    console.warn("[suscribir] MailerLite no configurado");
+  if (!apiKey || !groupId) {
+    console.warn("[suscribir] MailerLite no configurado completamente");
     return NextResponse.json({ ok: false, error: "config" }, { status: 503 });
   }
 
@@ -39,7 +43,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         email,
-        ...(groupId ? { groups: [groupId] } : {}),
+        groups: [groupId],
       }),
     });
 

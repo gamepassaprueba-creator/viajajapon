@@ -19,7 +19,7 @@ export function NewsletterForm({
   layout = "row",
   buttonLabel = "Suscribirme",
   placeholder = "tu@email.com",
-  note = "Doble opt-in. Puedes darte de baja en cualquier momento.",
+  note = "Puedes darte de baja en cualquier momento.",
 }: NewsletterFormProps) {
   const id = useId();
   const [email, setEmail] = useState("");
@@ -54,7 +54,7 @@ export function NewsletterForm({
     if (availability !== "available" || status === "loading") return;
     if (hp) {
       setStatus("ok");
-      setMsg("¡Listo! Revisa tu correo para confirmar la suscripción.");
+      setMsg("¡Listo! Hemos registrado tu suscripción. Revisa tu correo por si necesitas confirmarla.");
       return;
     }
 
@@ -73,7 +73,7 @@ export function NewsletterForm({
         setMsg(
           data.already
             ? "Ya estabas suscrito. ¡Gracias!"
-            : "¡Listo! Revisa tu correo para confirmar la suscripción.",
+            : "¡Listo! Hemos registrado tu suscripción. Revisa tu correo por si necesitas confirmarla.",
         );
 
         if (!data.already) {
