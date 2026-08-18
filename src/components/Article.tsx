@@ -12,6 +12,7 @@ import { formatDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CrossPillarLinks } from "@/components/CrossPillarLinks";
+import { RELATED_CONTENT, contentKey } from "@/lib/related-content";
 
 interface PillarConfig {
   basePath: string; // "/blog" | "/logistica"
@@ -108,10 +109,33 @@ export async function Article({
     { name: cfg.crumbName, href: cfg.basePath },
     { name: meta.title, href: url },
   ];
-  // Hermanos publicados del mismo pilar (excluye borradores y el actual) para interlinking.
-  const related = getArticles(pillar)
-    .filter((a) => a.slug !== slug)
-    .slice(0, 3);
+
+  // "Sigue leyendo" prioriza relaciones editoriales del mismo pilar. Si no hay
+  // suficientes relaciones explícitas, completa con hermanos recientes para no
+  // dejar huecos. Así evitamos que dateModified decida por sí sola el interlinking.
+  const siblings = getArticles(pillar).filter((a) => a.slug !== slug);
+  const currentKey = contentKey(pillar, slug);
+  const siblingsByKey = new Map(
+    siblings.map((a) => [contentKey(a.pillar, a.slug), a]),
+  );
+  const related = [];
+
+  for (const key of RELATED_CONTENT[currentKey] ?? []) {
+    const candidate = siblingsByKey.get(key);
+    if (candidate && !related.some((a) => a.slug === candidate.slug)) {
+      related.push(candidate);
+    }
+    if (related.length === 3) break;
+  }
+
+  if (related.length < 3) {
+    for (const candidate of siblings) {
+      if (!related.some((a) => a.slug === candidate.slug)) {
+        related.push(candidate);
+      }
+      if (related.length === 3) break;
+    }
+  }
 
   const dateLine =
     cfg.dateMode === "updated"
