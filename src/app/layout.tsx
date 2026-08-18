@@ -20,8 +20,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: `${SITE.name} — ${SITE.tagline}`, template: `%s · ${SITE.name}` },
   description: SITE.description,
+  // No definir un canonical global aquí: Metadata se hereda entre segmentos y una
+  // ruta que olvide sobrescribirlo podría terminar señalando por error a la home.
+  // La home, hubs, páginas estáticas y artículos indexables declaran el suyo.
   alternates: {
-    canonical: "/",
     types: { "application/rss+xml": "/feed.xml" },
   },
   manifest: "/manifest.json",
