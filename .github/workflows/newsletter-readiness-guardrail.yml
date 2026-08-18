@@ -1,0 +1,55 @@
+name: Newsletter Readiness Guardrail
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  newsletter-readiness:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify MailerLite readiness and copy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ROUTE="src/app/api/suscribir/route.ts"
+          FORM="src/components/NewsletterForm.tsx"
+
+          echo "Checking that newsletter availability requires API key + group..."
+          grep -Fq 'process.env.MAILERLITE_API_KEY && process.env.MAILERLITE_GROUP_ID' "$ROUTE" || {
+            echo "Newsletter availability must require both MailerLite secrets."
+            exit 1
+          }
+
+          echo "Checking that subscribers always enter the configured group..."
+          grep -Fq 'groups: [groupId]' "$ROUTE" || {
+            echo "Subscriber creation must include the configured MailerLite group."
+            exit 1
+          }
+
+          echo "Checking that incomplete configuration fails closed..."
+          grep -Fq 'if (!apiKey || !groupId)' "$ROUTE" || {
+            echo "POST /api/suscribir must reject incomplete MailerLite configuration."
+            exit 1
+          }
+
+          echo "Checking evidence-safe consent copy..."
+          if grep -Fqi 'Doble opt-in' "$FORM"; then
+            echo "Do not claim double opt-in in product copy without independently verified account configuration."
+            exit 1
+          fi
+
+          if grep -Fqi 'Revisa tu correo para confirmar la suscripción' "$FORM"; then
+            echo "Do not guarantee a confirmation email unless that flow is verified."
+            exit 1
+          fi
+
+          echo "Newsletter readiness guardrail passed."
