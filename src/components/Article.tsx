@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { mdxComponents } from "@/components/mdx";
-import { getArticle, getArticles } from "@/lib/content";
+import { getArticle, getArticles, type ArticleMeta } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { articleLd } from "@/lib/jsonld";
 import { formatDate } from "@/lib/format";
@@ -118,7 +118,7 @@ export async function Article({
   const siblingsByKey = new Map(
     siblings.map((a) => [contentKey(a.pillar, a.slug), a]),
   );
-  const related = [];
+  const related: ArticleMeta[] = [];
 
   for (const key of RELATED_CONTENT[currentKey] ?? []) {
     const candidate = siblingsByKey.get(key);
