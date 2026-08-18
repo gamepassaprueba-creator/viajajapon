@@ -1,0 +1,48 @@
+name: Affiliate Truth Guardrail
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  affiliate-truth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Reject blanket affiliate disclosures in content
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if grep -RIn --include='*.mdx' 'Este artículo incluye enlaces de afiliado' content/; then
+            echo '❌ No hardcodees una divulgación global de afiliación en MDX.'
+            echo 'La divulgación debe depender del estado real de monetización del partner mediante AffiliateBox.'
+            exit 1
+          fi
+
+          echo '✅ No hay divulgaciones globales de afiliación hardcodeadas.'
+
+      - name: Verify conditional sponsored relation
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          grep -Fq 'rel={monetized ? "sponsored nofollow noopener noreferrer" : "noopener noreferrer"}' src/components/TrackedAffiliateLink.tsx || {
+            echo '❌ TrackedAffiliateLink debe marcar sponsored solo cuando monetized=true.'
+            exit 1
+          }
+
+          grep -Fq 'const effectiveCta = monetized ? cta : "Visitar web oficial";' src/components/AffiliateBox.tsx || {
+            echo '❌ AffiliateBox debe usar un CTA neutral cuando no existe monetización.'
+            exit 1
+          }
+
+          echo '✅ Estado de monetización, rel y CTA están alineados.'
