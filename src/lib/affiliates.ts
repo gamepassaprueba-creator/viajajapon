@@ -4,11 +4,13 @@
  * Cómo funciona:
  *  - Cada partner tiene un `fallback`: la URL canónica (página de Japón cuando existe).
  *    Si AÚN no tienes enlace de afiliado, el enlace funciona pero NO paga.
- *  - En cuanto pegues tu enlace de tracking COMPLETO en la variable de entorno
- *    correspondiente (ver `.env.example`), TODAS las cajas de ese partner en toda la web
- *    pasan a monetizar de golpe. No hay que tocar el contenido.
- *  - Las páginas son estáticas (SSG): el valor de la env se "hornea" en el build, así que
- *    tras editar `.env.local` hay que reconstruir/redesplegar para que el enlace cambie.
+ *  - Si un partner tiene un enlace público de afiliado ya validado, puede declararse como
+ *    `trackedDefault`. Una variable de entorno AFF_* sigue teniendo prioridad para permitir
+ *    rotar/cambiar el tracking sin tocar contenido.
+ *  - En cuanto haya un enlace de tracking real (env o `trackedDefault`), TODAS las cajas de
+ *    ese partner en toda la web pasan a monetizar de golpe. No hay que tocar el contenido.
+ *  - Las páginas son estáticas (SSG): los valores se "hornean" en el build, así que tras
+ *    cambiar una env hay que reconstruir/redesplegar para que el enlace cambie.
  *
  * IMPORTANTE (JR Pass): el partner `jrpass` apunta a un REVENDEDOR con programa de afiliados,
  * NO a japanrailpass.net (la web oficial paga 0€ en comisión).
@@ -34,6 +36,8 @@ interface Partner {
   network: string;
   /** URL canónica de respaldo (funciona aunque no haya tracking; idealmente página de Japón). */
   fallback: string;
+  /** Enlace público de tracking validado para usar por defecto si existe. */
+  trackedDefault?: string;
   /** Nombre de la variable de entorno con el enlace de tracking COMPLETO. */
   env: string;
 }
@@ -55,6 +59,7 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     name: "IATI Seguros",
     network: "IATI Afiliados",
     fallback: "https://www.iatiseguros.com/",
+    trackedDefault: "https://www.iatiseguros.com?r=68646352149966",
     env: "AFF_IATI",
   },
   heymondo: {
@@ -111,18 +116,19 @@ const PARTNERS: Record<PartnerKey, Partner> = {
   },
 };
 
-/** Devuelve el enlace de afiliado real si está configurado en la env; si no, la URL canónica. */
+/** Devuelve el enlace de afiliado real si está configurado; si no, la URL canónica. */
 export function affiliateUrl(partner: PartnerKey): string {
   const p = PARTNERS[partner];
   if (!p) return "https://viajajapon.com"; // partner desconocido: nunca romper el render
-  const tracked = process.env[p.env];
-  return tracked && tracked.trim().length > 0 ? tracked.trim() : p.fallback;
+  const tracked = process.env[p.env]?.trim();
+  return tracked && tracked.length > 0 ? tracked : p.trackedDefault ?? p.fallback;
 }
 
-/** ¿Hay enlace de tracking real configurado para este partner? (útil para avisos en dev). */
+/** ¿Hay enlace de tracking real configurado para este partner? (útil para avisos en dev/GA4). */
 export function isMonetized(partner: PartnerKey): boolean {
-  const v = process.env[PARTNERS[partner].env];
-  return !!(v && v.trim().length > 0);
+  const p = PARTNERS[partner];
+  const tracked = process.env[p.env]?.trim();
+  return !!((tracked && tracked.length > 0) || p.trackedDefault);
 }
 
 export function partnerName(partner: PartnerKey): string {
