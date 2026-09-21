@@ -5,10 +5,7 @@ function authorized(request: Request): boolean {
   if (!expected) return false;
 
   const auth = request.headers.get("authorization")?.trim();
-  if (auth === `Bearer ${expected}`) return true;
-
-  const token = new URL(request.url).searchParams.get("token");
-  return token === expected;
+  return auth === `Bearer ${expected}`;
 }
 
 export async function GET(request: Request) {
