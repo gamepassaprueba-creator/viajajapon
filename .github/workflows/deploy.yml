@@ -66,7 +66,7 @@ jobs:
           # `wrangler secret list` devuelve solo nombres/tipos, nunca valores.
           # Es diagnóstico: una integración opcional ausente no debe bloquear el sitio.
           if secret_json=$(npx wrangler secret list --format json 2>/dev/null); then
-            for name in MAILERLITE_API_KEY MAILERLITE_GROUP_ID; do
+            for name in MAILERLITE_API_KEY MAILERLITE_GROUP_ID GOOGLE_SERVICE_ACCOUNT_JSON GA4_PROPERTY_ID SEO_REPORT_SECRET; do
               if printf '%s' "$secret_json" | jq -e --arg name "$name" 'any(.[]; .name == $name)' >/dev/null; then
                 echo "${name}: configured"
               else
@@ -200,6 +200,20 @@ jobs:
               cat temp_newsletter.json
               return 1
             }
+
+            echo "Checking protected SEO report endpoint..."
+            SEO_STATUS=$(curl -sS -o temp_seo_report.json -w "%{http_code}" "${URL}/api/seo/report")
+            if [ "$SEO_STATUS" != "401" ]; then
+              echo "❌ /api/seo/report must reject unauthenticated requests with 401, got ${SEO_STATUS}"
+              cat temp_seo_report.json
+              return 1
+            fi
+            jq -e '.ok == false and .error == "unauthorized"' temp_seo_report.json >/dev/null || {
+              echo "❌ /api/seo/report returned an unexpected unauthenticated response"
+              cat temp_seo_report.json
+              return 1
+            }
+            echo "✅ /api/seo/report is live and protected"
 
             curl -sS -D temp_security_headers.txt -o /dev/null "$URL/" || return 1
             tr -d '\r' < temp_security_headers.txt | grep -qi '^x-content-type-options: nosniff$' || { echo "❌ Missing nosniff header"; return 1; }
