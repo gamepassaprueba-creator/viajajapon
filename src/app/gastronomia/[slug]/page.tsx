@@ -6,12 +6,13 @@ import { Article, articleMetadata } from "@/components/Article";
 const PILLAR = "gastronomia";
 
 const SERP_OVERRIDES: Record<string, Pick<Metadata, "title" | "description">> = {
-  // Search Console: ~posición 7 con impresiones y prácticamente sin clics.
-  // Mantiene el H1/contenido estable para aislar el experimento de CTR.
+  // Experimento CTR v2 (2026-09-22).
+  // V1 desde 2026-08-16: 67 -> 97 impresiones en ventanas limpias, posición ~6,6 estable y 0 clics.
+  // Cambiamos solo el snippet; H1, URL y contenido permanecen estables para aislar el efecto.
   "tipos-restaurantes-japon": {
-    title: "Restaurantes en Japón: tipos, precios y cómo pedir (2026)",
+    title: "Tipos de restaurantes en Japón: izakaya, ramen, sushi y más",
     description:
-      "Izakaya, ramen, sushi en cinta, yakiniku, kaiseki y más: qué restaurante elegir en Japón, cuánto cuesta y cómo pedir sin hablar japonés.",
+      "Desde restaurantes tradicionales e izakayas hasta ramen-ya, sushi en cinta, yakiniku y kaiseki: qué tipo elegir, precios y cómo pedir en Japón.",
   },
 };
 
