@@ -148,7 +148,7 @@ export function JrPassCalculator({
             </span>
             <p className="text-lg font-black leading-snug text-[#0a0a0a]">
               {r.verdictWorthIt
-                ? `Sí te compensa un pase: ahorras ${eur(r.savingsEur)} frente a la opción más cara.`
+                ? `Sí te compensa un pase: ahorras ${eur(r.savingsEur)} frente a la siguiente opción más barata.`
                 : `El JR Pass NO te compensa: ahorras ${eur(r.savingsEur)} comprando billetes sueltos.`}
             </p>
           </div>
