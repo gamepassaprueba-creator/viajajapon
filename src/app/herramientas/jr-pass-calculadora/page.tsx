@@ -10,18 +10,18 @@ import { affiliateUrl, isMonetized, type PartnerKey } from "@/lib/affiliates";
 export const metadata: Metadata = {
   title: "Calculadora JR Pass 2026: ¿te compensa? (en euros)",
   description:
-    "Calcula en 30 segundos si el JR Pass te sale a cuenta según TU ruta, en euros y con precios 2026. Compara billetes sueltos, pase nacional y Kansai Wide.",
+    "Calcula en 30 segundos si el JR Pass te sale a cuenta según TU ruta, en euros y con precios 2026. Compara billetes sueltos, pase nacional y pases regionales.",
   alternates: { canonical: "/herramientas/jr-pass-calculadora" },
 };
 
 const FAQS = [
   {
     q: "¿Cuánto cuesta el JR Pass en 2026?",
-    a: "El pase nacional ordinario cuesta ¥50.000 (7 días), ¥80.000 (14 días) y ¥100.000 (21 días). Está previsto que suba a ¥53.000/84.000/105.000 en octubre de 2026.",
+    a: "La compra online oficial mantiene ¥50.000 (7 días), ¥80.000 (14 días) y ¥100.000 (21 días). Desde el 1 de octubre de 2026, los Exchange Orders comprados en agencias extranjeras pasan a ¥53.000/84.000/105.000; JR Group mantiene temporalmente sin cambios el precio online oficial.",
   },
   {
     q: "¿Merece la pena el JR Pass tras la subida de precio?",
-    a: "Depende de tu ruta. Para un viaje corto centrado en Tokio-Kioto-Osaka casi nunca compensa el pase nacional; suele salir más barato comprar billetes sueltos o un pase regional como el Kansai Wide. La calculadora lo resuelve con tu itinerario concreto.",
+    a: "Depende de tu ruta. Para un viaje corto centrado en Tokio-Kioto-Osaka casi nunca compensa el pase nacional; suele salir más barato comprar billetes sueltos o un pase regional. La calculadora compara también el Kansai-Hiroshima Area Pass cuando todos tus trayectos seleccionados están cubiertos.",
   },
   {
     q: "¿El JR Pass cubre el Nozomi y el Mizuho?",
