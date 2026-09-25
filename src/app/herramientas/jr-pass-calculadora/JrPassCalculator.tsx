@@ -110,7 +110,7 @@ export function JrPassCalculator({
           <label className="mt-2 flex cursor-pointer items-center gap-2 text-sm">
             <input type="checkbox" checked={kansai} onChange={(e) => setKansai(e.target.checked)}
               className="size-4 accent-[var(--color-primary)]" />
-            <span>Mi viaje se concentra en Kansai (Osaka/Kioto/Nara/Hiroshima)</span>
+            <span>Comparar también el Kansai-Hiroshima Area Pass (5 días)</span>
           </label>
         </fieldset>
 
@@ -166,7 +166,7 @@ export function JrPassCalculator({
             <Row label="Billetes sueltos" value={eur(r.segmentsTotalEur)} best={r.cheapest === "billetes"} />
             <Row label={r.nationalPassLabel} value={eur(r.nationalPassEur)} best={r.cheapest === "nacional"} />
             {r.kansaiEur !== null && (
-              <Row label="Kansai Wide Pass" value={eur(r.kansaiEur)} best={r.cheapest === "kansai"} />
+              <Row label="Kansai-Hiroshima Area Pass" value={eur(r.kansaiEur)} best={r.cheapest === "kansai"} />
             )}
           </tbody>
         </table>
