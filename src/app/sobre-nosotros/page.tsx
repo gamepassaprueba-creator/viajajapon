@@ -59,8 +59,8 @@ export default function Page() {
         <p className="font-mono text-[10px] font-black uppercase tracking-widest text-primary">Proyecto editorial vivo</p>
         <p className="mt-2 text-lg leading-relaxed text-fg-muted">
           Hoy ViajaJapón reúne <strong className="text-fg">{publishedGuides} guías y artículos publicados</strong>.
-          No nacieron de una base de datos comprada ni de contenido republicado: el punto de partida fue nuestro viaje y,
-          a partir de ahí, documentación, actualización y revisión editorial. Si quieres ver la parte que sí vivimos
+          El proyecto no republica artículos de terceros: el punto de partida fue nuestro viaje y, a partir de ahí,
+          documentación, actualización y revisión editorial. Si quieres ver la parte que sí vivimos
           personalmente, hemos dejado el recorrido y sus aprendizajes en{" "}
           <Link href="/nuestro-viaje-japon" className="text-primary underline-offset-2 hover:underline">
             nuestro viaje a Japón
