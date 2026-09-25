@@ -37,6 +37,7 @@ const COLS = [
     title: "ViajaJapón",
     links: [
       { label: "Sobre nosotros", href: "/sobre-nosotros" },
+      { label: "Nuestro viaje a Japón", href: "/nuestro-viaje-japon" },
       { label: "Contacto y correcciones", href: "/contacto" },
       { label: "Política editorial", href: "/politica-editorial" },
       { label: "Divulgación de afiliados", href: "/afiliados-divulgacion" },
