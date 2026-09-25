@@ -65,7 +65,17 @@ jobs:
             exit 1
           }
 
-          echo "✅ Trust and editorial accountability pages are present"
+          grep -Fq 'Actualmente ViajaJapón no muestra anuncios ni carga tecnologías publicitarias.' src/app/privacidad/page.tsx || {
+            echo "❌ Privacy policy no longer reflects the current no-ads state"
+            exit 1
+          }
+
+          grep -Fq 'Actualmente no hay cookies ni tecnologías publicitarias activas.' src/app/cookies/page.tsx || {
+            echo "❌ Cookie policy no longer reflects the current no-ad-tech state"
+            exit 1
+          }
+
+          echo "✅ Trust, legal-state and editorial accountability pages are present"
 
       - name: Verify crawl and low-value exclusions
         shell: bash

@@ -43,12 +43,12 @@ export default function Page() {
           <strong>Preferencias de cookies</strong> situado en el pie de página.
         </p>
 
-        <h2 className="text-2xl font-bold text-fg mt-8">Cookies publicitarias (previstas)</h2>
+        <h2 className="text-2xl font-bold text-fg mt-8">Cookies publicitarias</h2>
         <p>
-          ViajaJapón tiene previsto incorporar Google AdSense para mostrar publicidad. Esa integración
-          está separada del consentimiento de Google Analytics y no se activa con el botón de analítica.
-          Antes de activar publicidad se implantará la plataforma de gestión del consentimiento (CMP)
-          necesaria para ese uso. <strong>Actualmente no hay cookies publicitarias activas.</strong>
+          <strong>Actualmente no hay cookies ni tecnologías publicitarias activas.</strong> La decisión
+          sobre Google Analytics solo controla medición analítica y no concede consentimiento para
+          publicidad. Si incorporamos publicidad en el futuro, actualizaremos esta política antes de
+          activarla y añadiremos los controles de consentimiento que correspondan.
         </p>
 
         <p>
@@ -57,7 +57,7 @@ export default function Page() {
           funcionamiento de algunas partes de la web.
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: 16 de agosto de 2026.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 25 de septiembre de 2026.</p>
       </div>
     </article>
   );
