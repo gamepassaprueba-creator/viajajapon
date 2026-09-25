@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
+import { getAllArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Sobre nosotros: la historia detrás de ViajaJapón",
@@ -11,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const publishedGuides = getAllArticles().length;
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
       <p className="kicker text-primary">Sobre nosotros</p>
@@ -51,6 +54,20 @@ export default function Page() {
           como salió el nuestro.
         </p>
       </div>
+
+      <section className="mt-10 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-6">
+        <p className="font-mono text-[10px] font-black uppercase tracking-widest text-primary">Proyecto editorial vivo</p>
+        <p className="mt-2 text-lg leading-relaxed text-fg-muted">
+          Hoy ViajaJapón reúne <strong className="text-fg">{publishedGuides} guías y artículos publicados</strong>.
+          El proyecto no republica artículos de terceros: el punto de partida fue nuestro viaje y, a partir de ahí,
+          documentación, actualización y revisión editorial. Si quieres ver la parte que sí vivimos
+          personalmente, hemos dejado el recorrido y sus aprendizajes en{" "}
+          <Link href="/nuestro-viaje-japon" className="text-primary underline-offset-2 hover:underline">
+            nuestro viaje a Japón
+          </Link>
+          .
+        </p>
+      </section>
 
       <h2 className="mt-10 text-2xl font-bold">Por qué puedes fiarte de lo que lees aquí</h2>
       <ul className="mt-4 list-disc space-y-2 pl-5 text-lg leading-relaxed text-fg-muted">

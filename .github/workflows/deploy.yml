@@ -170,6 +170,7 @@ jobs:
             check_url "/destinos/donde-dormir-en-kioto" "Dónde dormir en Kioto" "" "" || return 1
             check_url "/destinos/que-ver-en-osaka" "Qué ver en Osaka" "" "" || return 1
             check_url "/cultura/geishas-y-maiko-japon" "Geiko, geisha y maiko" "Sin acoso ni fotos" "" || return 1
+            check_url "/nuestro-viaje-japon" "El viaje de 15 días" "Experiencia real" "" || return 1
             check_url "/cultura/festivales-de-japon" "Festivales de Japón 2026" "Kagematsuri" "" || return 1
             check_url "/gastronomia/tipos-restaurantes-japon" "Tipos de restaurantes" "" "" || return 1
             check_url "/herramientas/jr-pass-calculadora" "¿Merece la pena el JR Pass en 2026?" "" "" || return 1

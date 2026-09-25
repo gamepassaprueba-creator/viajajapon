@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: `${SITE.name} — ${SITE.tagline}`, template: `%s · ${SITE.name}` },
   description: SITE.description,
+  authors: [{ name: SITE.author.name, url: SITE.author.url }],
+  creator: SITE.author.name,
+  publisher: SITE.name,
   // No definir un canonical global aquí: Metadata se hereda entre segmentos y una
   // ruta que olvide sobrescribirlo podría terminar señalando por error a la home.
   // La home, hubs, páginas estáticas y artículos indexables declaran el suyo.

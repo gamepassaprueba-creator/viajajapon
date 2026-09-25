@@ -1,0 +1,119 @@
+name: AdSense Readiness Guardrail
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adsense-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify editorial inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ARTICLE_COUNT=$(find content -type f -name '*.mdx' | wc -l)
+          echo "Published content files: $ARTICLE_COUNT"
+          if [ "$ARTICLE_COUNT" -lt 50 ]; then
+            echo "❌ Editorial inventory unexpectedly fell below 50 content files"
+            exit 1
+          fi
+
+          if grep -Rni --include='*.mdx' '^draft: true' content; then
+            echo "❌ Published content tree contains draft: true"
+            exit 1
+          fi
+
+          echo "✅ Editorial inventory is present and has no drafts"
+
+      - name: Verify trust pages
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          REQUIRED=(
+            "src/app/sobre-nosotros/page.tsx"
+            "src/app/nuestro-viaje-japon/page.tsx"
+            "src/app/contacto/page.tsx"
+            "src/app/politica-editorial/page.tsx"
+            "src/app/afiliados-divulgacion/page.tsx"
+            "src/app/privacidad/page.tsx"
+            "src/app/cookies/page.tsx"
+          )
+
+          for file in "${REQUIRED[@]}"; do
+            test -f "$file" || { echo "❌ Missing trust page: $file"; exit 1; }
+          done
+
+          grep -Fq 'info@viajajapon.com' src/app/contacto/page.tsx || {
+            echo "❌ Editorial contact address missing"
+            exit 1
+          }
+
+          grep -Fq '/politica-editorial' src/components/Article.tsx || {
+            echo "❌ Articles no longer expose editorial methodology"
+            exit 1
+          }
+
+          echo "✅ Trust and editorial accountability pages are present"
+
+      - name: Verify crawl and low-value exclusions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          grep -Fq 'robots: { index: false, follow: true }' src/app/buscar/page.tsx || {
+            echo "❌ Internal search must remain noindex"
+            exit 1
+          }
+
+          grep -Fq 'disallow: ["/embed"]' src/app/robots.ts || {
+            echo "❌ Embed utility must remain excluded from crawling"
+            exit 1
+          }
+
+          if grep -RniE --include='*.tsx' --include='*.mdx' 'coming soon|under construction' src/app content; then
+            echo "❌ Public-facing placeholder language detected"
+            exit 1
+          fi
+
+          echo "✅ Search/embed/placeholder checks passed"
+
+      - name: Verify AdSense ownership without premature ads
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          EXPECTED='google.com, pub-7277317479691987, DIRECT, f08c47fec0942fa0'
+          ACTUAL=$(tr -d '\r' < public/ads.txt | sed '/^$/d')
+          test "$ACTUAL" = "$EXPECTED" || {
+            echo "❌ ads.txt does not match the authorized publisher line"
+            exit 1
+          }
+
+          grep -Fq 'google-adsense-account' src/app/layout.tsx || {
+            echo "❌ AdSense ownership meta is missing"
+            exit 1
+          }
+
+          if grep -Rq '<AdSense' src/app; then
+            echo "❌ AdSense ad component is active before site approval"
+            exit 1
+          fi
+
+          if grep -Fq 'pagead2.googlesyndication.com' src/app/layout.tsx; then
+            echo "❌ AdSense serving script is active before approval"
+            exit 1
+          fi
+
+          echo "✅ Ownership signals are present and ad serving remains disabled"

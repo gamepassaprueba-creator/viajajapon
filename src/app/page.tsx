@@ -123,8 +123,8 @@ export default async function Home() {
 
                 {/* CTAs — en móvil apilados, en desktop en fila */}
                 <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:mt-8">
-                  <Link href="/herramientas/jr-pass-calculadora" className="btn-primary justify-center sm:justify-start">
-                    Calculadora JR Pass <ArrowRight size={14} aria-hidden="true" />
+                  <Link href="/logistica/japon-por-libre-primer-viaje" className="btn-primary justify-center sm:justify-start">
+                    Empieza por aquí <ArrowRight size={14} aria-hidden="true" />
                   </Link>
                   <Link href="/itinerarios" className="btn-outline justify-center sm:justify-start">
                     Ver itinerarios
@@ -255,8 +255,8 @@ export default async function Home() {
 
           {/* CTA hacia sobre-nosotros */}
           <div className="mt-8 text-center">
-            <Link href="/sobre-nosotros" className="btn-outline">
-              Conoce nuestra historia <ArrowRight size={14} aria-hidden="true" />
+            <Link href="/nuestro-viaje-japon" className="btn-outline">
+              Lee el viaje que originó la web <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
         </div>
