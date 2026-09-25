@@ -77,6 +77,29 @@ jobs:
             echo "Runtime secrets: unable to inspect (non-blocking)"
           fi
 
+      - name: Sincronizar secrets SEO runtime (si existen en GitHub)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          SEO_REPORT_SECRET: ${{ secrets.SEO_REPORT_SECRET }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          synced=0
+          for name in GOOGLE_SERVICE_ACCOUNT_JSON SEO_REPORT_SECRET GA4_PROPERTY_ID; do
+            value="${!name:-}"
+            if [ -n "$value" ]; then
+              printf '%s' "$value" | npx wrangler secret put "$name" >/dev/null
+              echo "${name}: synced to Cloudflare"
+              synced=$((synced + 1))
+            else
+              echo "${name}: not present in GitHub secrets; leaving Cloudflare unchanged"
+            fi
+          done
+          echo "SEO runtime secrets synced: ${synced}/3"
+
       - name: Build OpenNext (incluye next build)
         run: npx opennextjs-cloudflare build
         env:
