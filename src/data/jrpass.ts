@@ -1,10 +1,13 @@
 // Datos del JR Pass y lógica de cálculo (en euros).
-// ⚠️ VERIFICAR antes de publicar y actualizar (ver design-system / plan):
-//  - JR Pass nacional sube a ¥53.000/84.000/105.000 en oct-2026.
-//  - JR East se reestructuró en mar-2026.
-// Fuente: japanrailpass.net (oficial), jrpass.com/farecalculator. Última revisión manual: 2026-06-02.
+// Verificación editorial:
+//  - JR Pass nacional online: ¥50.000/80.000/100.000 en la web oficial a 2026-09-25.
+//  - Desde 2026-10-01, los Exchange Orders de agencias extranjeras pasan a ¥53.000/84.000/105.000;
+//    JR Group mantiene temporalmente sin cambios la compra online oficial.
+//  - El pase regional usado por esta calculadora es Kansai-Hiroshima Area Pass (5 días, ¥17.000),
+//    no Kansai WIDE, porque incluye el tramo Shin-Osaka ↔ Hiroshima.
+// Fuentes primarias: japanrailpass.net y JR-WEST. Última revisión manual: 2026-09-25.
 
-export const DATA_UPDATED = "2026-06-02";
+export const DATA_UPDATED = "2026-09-25";
 export const DEFAULT_FX = 185; // ¥ por € (referencia BCE; el valor real lo da la página viva del yen)
 
 /** Pase nacional ordinario, precio en yen por tramo de días. */
@@ -19,7 +22,7 @@ export interface Segment {
   id: string;
   label: string;
   fareYen: number;
-  /** ¿lo cubre el Kansai Wide Area Pass? */
+  /** ¿lo cubre el Kansai-Hiroshima Area Pass? */
   kansaiWide?: boolean;
 }
 
@@ -34,8 +37,8 @@ export const SEGMENTS: Segment[] = [
   { id: "kioto-kanazawa", label: "Kioto → Kanazawa", fareYen: 6930 },
 ];
 
-/** Pase regional alternativo (MVP: solo Kansai Wide). */
-export const KANSAI_WIDE = { priceYen: 12000, days: 5, label: "Kansai Wide Area Pass (5 días)" };
+/** Pase regional alternativo: Kansai-Hiroshima Area Pass oficial de JR-WEST. */
+export const KANSAI_WIDE = { priceYen: 17000, days: 5, label: "Kansai-Hiroshima Area Pass (5 días)" };
 
 export type Profile = "mochilero" | "medio" | "comodo";
 
@@ -92,7 +95,7 @@ export function computeJrPass(input: CalcInput, fx: number = DEFAULT_FX): CalcRe
   const pass = NATIONAL_PASS.find((p) => input.days <= p.maxDays) ?? NATIONAL_PASS[NATIONAL_PASS.length - 1];
   const nationalPassYen = pass.priceYen * pax;
 
-  // Kansai Wide: solo si el viaje es de Kansai, dura <=5 días y todos los tramos están cubiertos.
+  // Pase Kansai-Hiroshima: solo si dura <=5 días y todos los tramos seleccionados están cubiertos.
   const allKansai = selected.length > 0 && selected.every((s) => s.kansaiWide);
   const kansaiApplies = input.kansai && input.days <= KANSAI_WIDE.days && allKansai;
   const kansaiYen = kansaiApplies ? KANSAI_WIDE.priceYen * pax : null;
