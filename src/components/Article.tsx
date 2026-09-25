@@ -165,6 +165,10 @@ export async function Article({
               </span>
               <span aria-hidden="true">·</span>
               <span className="nums">{dateLine}</span>
+              <span aria-hidden="true">·</span>
+              <Link href="/politica-editorial" className="text-white/90 underline-offset-2 hover:underline">
+                cómo verificamos esta guía
+              </Link>
             </div>
           </div>
           {meta.heroCredito && (
@@ -193,6 +197,10 @@ export async function Article({
             </span>
             <span aria-hidden="true">·</span>
             <span className="nums">{dateLine}</span>
+            <span aria-hidden="true">·</span>
+            <Link href="/politica-editorial" className="font-medium text-fg underline-offset-2 hover:underline">
+              cómo verificamos esta guía
+            </Link>
           </div>
         </header>
       )}
@@ -214,6 +222,28 @@ export async function Article({
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
         />
       </div>
+
+      <aside className="mx-auto mb-10 max-w-3xl px-4" aria-label="Transparencia editorial">
+        <div className="border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-5">
+          <p className="font-mono text-[10px] font-black uppercase tracking-widest text-primary">Transparencia editorial</p>
+          <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+            Esta guía está escrita y revisada por{" "}
+            <Link href="/sobre-nosotros" className="font-bold text-fg underline-offset-2 hover:underline">
+              {SITE.author.name}
+            </Link>
+            . Cuando hablamos de algo que vivimos en nuestro viaje lo señalamos como experiencia propia; los datos que
+            pueden cambiar se contrastan antes de actualizar la guía. Consulta nuestra{" "}
+            <Link href="/politica-editorial" className="text-primary underline-offset-2 hover:underline">
+              política editorial
+            </Link>{" "}
+            o avísanos de un error en{" "}
+            <Link href="/contacto" className="text-primary underline-offset-2 hover:underline">
+              Contacto y correcciones
+            </Link>
+            .
+          </p>
+        </div>
+      </aside>
 
       {related.length > 0 && (
         <section className="mt-12 border-t-[3px] border-[#0a0a0a] pt-8">
