@@ -57,6 +57,40 @@ export default function Page() {
         </section>
 
         <section>
+          <h2 className="text-2xl font-bold text-fg">Fuentes primarias que consultamos</h2>
+          <p className="mt-3">
+            No usamos una única fuente para todo. Según el tema, contrastamos con organismos y operadores que publican
+            la información original. Entre las referencias habituales están:
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-5">
+            <li>
+              <a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" className="text-primary underline-offset-2 hover:underline">
+                Ministerio de Asuntos Exteriores de Japón (MOFA)
+              </a>{" "}
+              para exenciones de visado y requisitos de entrada.
+            </li>
+            <li>
+              <a href="https://www.digital.go.jp/en/policies/visit_japan_web" className="text-primary underline-offset-2 hover:underline">
+                Digital Agency de Japón
+              </a>{" "}
+              para Visit Japan Web y trámites digitales de llegada.
+            </li>
+            <li>
+              <a href="https://japanrailpass.net/en/" className="text-primary underline-offset-2 hover:underline">
+                JR Group / JAPAN RAIL PASS
+              </a>{" "}
+              y los operadores regionales para precios, cobertura y condiciones ferroviarias.
+            </li>
+            <li>
+              <a href="https://www.jma.go.jp/jma/kokusai/multi.html" className="text-primary underline-offset-2 hover:underline">
+                Japan Meteorological Agency (JMA)
+              </a>{" "}
+              para meteorología, terremotos, tsunamis y avisos de riesgo.
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2 className="text-2xl font-bold text-fg">Uso de herramientas de IA</h2>
           <p className="mt-3">
             Podemos utilizar herramientas de inteligencia artificial como apoyo para investigación, organización,
@@ -96,7 +130,7 @@ export default function Page() {
         </section>
       </div>
 
-      <p className="mt-10 text-xs text-fg-muted">Última actualización: 16 de agosto de 2026.</p>
+      <p className="mt-10 text-xs text-fg-muted">Última actualización: 25 de septiembre de 2026.</p>
 
       <JsonLd
         data={{
