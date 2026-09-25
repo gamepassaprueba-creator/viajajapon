@@ -70,21 +70,16 @@ export default function Page() {
           para más información sobre su tratamiento de datos.
         </p>
 
-        <h2 className="text-2xl font-bold text-fg mt-8">
-          Publicidad (Google AdSense — pendiente de activación)
-        </h2>
+        <h2 className="text-2xl font-bold text-fg mt-8">Publicidad</h2>
         <p>
-          ViajaJapón tiene previsto mostrar publicidad a través de <strong>Google AdSense</strong>{" "}
-          cuando la integración esté habilitada y se haya obtenido el consentimiento necesario.
-          Cuando eso ocurra, Google LLC y sus proveedores tecnológicos certificados podrán tratar
-          datos de navegación (como identificadores de dispositivo o dirección IP) para personalizar
-          anuncios, medir su eficacia y limitar su frecuencia.
+          <strong>Actualmente ViajaJapón no muestra anuncios ni carga tecnologías publicitarias.</strong>{" "}
+          El consentimiento para Google Analytics no activa publicidad, almacenamiento publicitario,
+          personalización de anuncios ni medición publicitaria.
         </p>
         <p>
-          <strong>Actualmente no hay anuncios activos</strong> y el consentimiento para Google
-          Analytics no activa publicidad ni almacenamiento publicitario. Antes de activar cualquier
-          servicio publicitario se solicitará el consentimiento correspondiente mediante una
-          plataforma de gestión del consentimiento (CMP) certificada por Google.
+          Si en el futuro incorporamos publicidad, actualizaremos esta política antes de activarla y
+          solicitaremos el consentimiento que corresponda mediante una plataforma de gestión del
+          consentimiento adecuada.
         </p>
 
         <h2 className="text-2xl font-bold text-fg mt-8">Conservación de los datos</h2>
@@ -102,7 +97,7 @@ export default function Page() {
           &quot;Protección de Datos&quot; en el asunto.
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: 16 de agosto de 2026.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 25 de septiembre de 2026.</p>
       </div>
     </article>
   );
