@@ -110,6 +110,13 @@ en este proyecto).
 | daruma.jpg | Muñecos daruma rojos en un puesto de mercado | masaki ikeda | CC BY-SA 3.0 | Daruma doll sai2011.jpg |
 | daruma-ojos.jpg | Daruma rojo con un ojo sin pintar (recorte) | Crisco 1492 | Dominio público | Daruma doll, cut out, 02.jpg |
 | kintsugi.jpg | Cuenco de cerámica reparado con oro (kintsugi), Museo Etnológico de Berlín | Daderot | CC0 | Tea bowl, Korea, Joseon dynasty... gold lacquer - Ethnological Museum, Berlin - DSC02061.JPG |
+| hiroshima-cupula-genbaku.jpg | Cúpula Genbaku (A-Bomb Dome) con árboles otoñales | Balon Greyjoy | CC0 | 20181111 Atomic Bomb Dome-5.jpg (recorte 2:1) |
+| hiroshima-museo-paz.jpg | Museo Conmemorativo de la Paz de Hiroshima con fuente y parterres | Naokijp | CC BY-SA 4.0 | Hiroshima Peace Memorial Museum, G7 Hiroshima 001.jpg |
+| hiroshima-cenotafio.jpg | Cúpula Genbaku vista a través del arco del Cenotafio | Jody McIntyre | CC BY-SA 2.0 | Cenotaph for the A-bomb Victims in Hiroshima.jpg |
+| hiroshima-shukkeien.jpg | Estanque y puente Kokoukyo del jardín Shukkeien | Jakub Hałun | CC BY 4.0 | Shukkei-en, Hiroshima, Japan, 20240817 1249 4271.jpg |
+| miyajima-santuario-itsukushima.jpg | Pabellones del santuario de Itsukushima sobre el agua (marea alta) | Jakub Hałun | CC BY-SA 4.0 | 20100723 Miyajima Itsukushima 5189.jpg |
+| miyajima-monte-misen.jpg | Vista desde el monte Misen sobre las islas del Mar Interior de Seto | dconvertini | CC BY-SA 2.0 | View from Misen (Hiroshima) - Japan.jpg |
+| miyajima-ciervos.jpg | Ciervo sika en la orilla de Miyajima con el torii al fondo | Panzer VI-II | CC BY-SA 4.0 | Deer-miyajima-torii-Feb2018.jpg |
 
 ### Sustituciones (junio 2026): imágenes base antes sin crédito, ahora fotos verificadas de Commons
 
