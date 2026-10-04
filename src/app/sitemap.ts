@@ -10,13 +10,17 @@ const EMERGENT_PILLARS = new Set(["itinerarios", "destinos", "gastronomia", "cul
 export default function sitemap(): MetadataRoute.Sitemap {
   const fixed = new Date("2026-06-02");
   const trustUpdated = new Date("2026-08-16");
+  // Fechas reales de la última edición de cada página fija (actualizar al tocarlas).
+  const calculatorUpdated = new Date("2026-09-25");
+  const legalUpdated = new Date("2026-07-15");
+  const privacyUpdated = new Date("2026-10-04");
   const allMod = CONTENT_PILLARS.flatMap((p) => getArticles(p).map((a) => a.dateModified)).sort();
   const latest = allMod.length ? new Date(allMod[allMod.length - 1]) : fixed;
   const entries: MetadataRoute.Sitemap = [];
 
   const staticRoutes: { path: string; cf: CF; p: number; mod: Date }[] = [
     { path: "/", cf: "daily", p: 1, mod: latest },
-    { path: "/herramientas/jr-pass-calculadora", cf: "monthly", p: 0.9, mod: fixed },
+    { path: "/herramientas/jr-pass-calculadora", cf: "monthly", p: 0.9, mod: calculatorUpdated },
     { path: "/cambio-yen-euro", cf: "daily", p: 0.8, mod: latest },
     { path: "/blog", cf: "daily", p: 0.7, mod: latest },
     { path: "/logistica", cf: "weekly", p: 0.7, mod: latest },
@@ -24,10 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/sobre-nosotros", cf: "yearly", p: 0.3, mod: new Date("2026-09-25") },
     { path: "/contacto", cf: "yearly", p: 0.3, mod: trustUpdated },
     { path: "/politica-editorial", cf: "yearly", p: 0.3, mod: trustUpdated },
-    { path: "/afiliados-divulgacion", cf: "yearly", p: 0.2, mod: fixed },
-    { path: "/aviso-legal", cf: "yearly", p: 0.1, mod: fixed },
-    { path: "/privacidad", cf: "yearly", p: 0.1, mod: fixed },
-    { path: "/cookies", cf: "yearly", p: 0.1, mod: fixed },
+    { path: "/afiliados-divulgacion", cf: "yearly", p: 0.2, mod: legalUpdated },
+    { path: "/aviso-legal", cf: "yearly", p: 0.1, mod: legalUpdated },
+    { path: "/privacidad", cf: "yearly", p: 0.1, mod: privacyUpdated },
+    { path: "/cookies", cf: "yearly", p: 0.1, mod: privacyUpdated },
   ];
   for (const r of staticRoutes) {
     entries.push({ url: `${SITE.url}${r.path}`, lastModified: r.mod, changeFrequency: r.cf, priority: r.p });

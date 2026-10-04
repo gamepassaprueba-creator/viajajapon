@@ -53,13 +53,13 @@ const TEMAS: Tema[] = [
     cta: "Tanabata 2026",
   },
   {
-    img: "/images/kimono.jpg",
-    alt: "Mujer con kimono tradicional japonés",
+    img: "/images/geiko-maiko-gion.jpg",
+    alt: "Mujeres con kimono caminando por una calle de Kioto",
     title: "Kimono y tradición",
-    desc: "Pasear con kimono por los barrios históricos es una de las experiencias más fotogénicas del viaje. Estamos preparando la guía completa.",
-    bullets: ["Por horas o día completo", "Incluye peinado y accesorios", "Sesión fotográfica opcional"],
-    href: null,
-    badge: "Guía en preparación",
+    desc: "Pasear con kimono por los barrios históricos es una de las experiencias más fotogénicas del viaje. Tipos, cómo ponértelo y dónde alquilarlo.",
+    bullets: ["Alquiler en Kioto: ¥3.000-5.000 el día", "Regla de oro: izquierda sobre derecha", "Yukata, furisode y demás tipos"],
+    href: "/cultura/kimono",
+    cta: "Guía del kimono",
   },
 ];
 

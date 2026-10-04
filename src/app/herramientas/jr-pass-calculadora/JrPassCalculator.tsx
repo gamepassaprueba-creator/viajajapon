@@ -9,7 +9,7 @@ import {
   type Profile,
   type CalcInput,
 } from "@/data/jrpass";
-import { NewsletterForm } from "@/components/NewsletterForm";
+import { NewsletterForm, NewsletterGate } from "@/components/NewsletterForm";
 import { trackEvent } from "@/lib/analytics";
 
 const eur = (n: number) => `${n.toLocaleString("es-ES")}€`;
@@ -204,20 +204,22 @@ export function JrPassCalculator({
         </div>{/* fin del live region de resultados */}
 
         {/* Captura de email: checklist de presupuesto + avisos de precios */}
-        <div className="panel-manga-red bg-white p-5">
-          <p className="font-black text-[#0a0a0a]">¿Te guardamos este cálculo?</p>
-          <p className="mt-1 text-sm text-fg-muted">
-            Te enviamos el checklist de presupuesto para Japón (en euros) y un aviso cuando cambien precios clave como el del JR Pass.
-          </p>
-          <div className="mt-3">
-            <NewsletterForm
-              source="calculadora"
-              layout="stack"
-              buttonLabel="Enviarme el checklist"
-              note="Doble opt-in. Sin spam; te das de baja cuando quieras."
-            />
+        <NewsletterGate>
+          <div className="panel-manga-red bg-white p-5">
+            <p className="font-black text-[#0a0a0a]">¿Te guardamos este cálculo?</p>
+            <p className="mt-1 text-sm text-fg-muted">
+              Te enviamos el checklist de presupuesto para Japón (en euros) y un aviso cuando cambien precios clave como el del JR Pass.
+            </p>
+            <div className="mt-3">
+              <NewsletterForm
+                source="calculadora"
+                layout="stack"
+                buttonLabel="Enviarme el checklist"
+                note="Sin spam; te das de baja cuando quieras."
+              />
+            </div>
           </div>
-        </div>
+        </NewsletterGate>
 
         <p className="text-xs text-fg-muted">
           Datos actualizados: {DATA_UPDATED} · cambio {isLoading ? "..." : (fxLive ? `1€ = ¥${fx} (ref. BCE${fxDate !== "—" ? `, ${fxDate}` : ""})` : `1€ = ¥${fx} (estimado)`)}.
@@ -247,7 +249,7 @@ function AffLink({
       provider: link.partner,
       link_url: link.href,
       link_text: typeof children === "string" ? children : "calculator_cta",
-      page_path: `${window.location.pathname}${window.location.search}`,
+      page_path: window.location.pathname,
       source: "jrpass_calculator",
       monetized: link.monetized ? 1 : 0,
     });

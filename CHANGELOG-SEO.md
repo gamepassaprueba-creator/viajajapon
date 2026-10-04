@@ -1,3 +1,5 @@
+> ⚠️ **Documento histórico (julio de 2026).** Describe un despliegue por Cloudflare Pages y una estrategia ya sustituidos. Lo vigente está en [DEPLOY.md](DEPLOY.md) y [SEO-STRATEGY.md](SEO-STRATEGY.md).
+
 # Changelog SEO - viajajapon.com
 
 Registro cronológico de cambios SEO implementados.

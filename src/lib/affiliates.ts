@@ -12,8 +12,9 @@
  *  - Las páginas son estáticas (SSG): los valores se "hornean" en el build, así que tras
  *    cambiar una env hay que reconstruir/redesplegar para que el enlace cambie.
  *
- * IMPORTANTE (JR Pass): el partner `jrpass` apunta a un REVENDEDOR con programa de afiliados,
- * NO a japanrailpass.net (la web oficial paga 0€ en comisión).
+ * IMPORTANTE (JR Pass): el tracking de `jrpass` (AFF_JRPASS) es de un REVENDEDOR con programa
+ * de afiliados. Mientras no haya tracking, el fallback es la web OFICIAL japanrailpass.net:
+ * es la opción más barata para el lector y la única que se puede etiquetar como "oficial".
  */
 
 export type PartnerKey =
@@ -87,10 +88,11 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     env: "AFF_SKYSCANNER",
   },
   jrpass: {
-    // Revendedor con programa de afiliados (NO la web oficial japanrailpass.net, que paga 0€).
+    // Con AFF_JRPASS → revendedor con afiliación. Sin él → web oficial (no paga, pero es
+    // la más barata desde la subida de oct-2026 de los Exchange Orders y es "oficial" de verdad).
     name: "JRPass.com",
     network: "JRPass.com Affiliate",
-    fallback: "https://www.jrpass.com/",
+    fallback: "https://japanrailpass.net/es/",
     env: "AFF_JRPASS",
   },
   revolut: {
@@ -127,12 +129,26 @@ export function affiliateUrl(partner: PartnerKey): string {
 /** ¿Hay enlace de tracking real configurado para este partner? (útil para avisos en dev/GA4). */
 export function isMonetized(partner: PartnerKey): boolean {
   const p = PARTNERS[partner];
+  if (!p) return false; // partner desconocido (errata en MDX): nunca romper el build
   const tracked = process.env[p.env]?.trim();
   return !!((tracked && tracked.length > 0) || p.trackedDefault);
 }
 
+/**
+ * ¿Este href es un enlace de tracking de afiliado configurado? Lo usan los enlaces sueltos
+ * del MDX para decidir si van con rel="sponsored": solo los que pagan, no las fuentes
+ * oficiales ni las webs comerciales sin tracking.
+ */
+export function isTrackedAffiliateHref(href: string): boolean {
+  return (Object.keys(PARTNERS) as PartnerKey[]).some((key) => {
+    if (!isMonetized(key)) return false;
+    const tracked = affiliateUrl(key);
+    return href === tracked || href.startsWith(tracked);
+  });
+}
+
 export function partnerName(partner: PartnerKey): string {
-  return PARTNERS[partner].name;
+  return PARTNERS[partner]?.name ?? partner;
 }
 
 export function partnerNetwork(partner: PartnerKey): string {

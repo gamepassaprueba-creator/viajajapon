@@ -29,7 +29,7 @@ export function TrackedAffiliateLink({
       provider: partner,
       link_url: href,
       link_text: label,
-      page_path: `${pathname}${window.location.search}`,
+      page_path: pathname,
       content_slug: contentSlug,
       placement,
       cta_variant: ctaVariant,

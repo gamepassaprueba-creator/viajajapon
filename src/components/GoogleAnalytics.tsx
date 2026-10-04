@@ -6,6 +6,7 @@ import {
   ANALYTICS_CONSENT_EVENT,
   GA4_MEASUREMENT_ID,
   type AnalyticsConsent,
+  clearAnalyticsCookies,
   readAnalyticsConsent,
 } from "@/lib/analytics";
 
@@ -47,7 +48,7 @@ export function GoogleAnalytics() {
           if (fromUserAction) {
             analyticsWindow.gtag("config", GA4_MEASUREMENT_ID, {
               page_location: window.location.href,
-              page_path: `${window.location.pathname}${window.location.search}`,
+              page_path: window.location.pathname,
             });
           }
         }
@@ -60,6 +61,7 @@ export function GoogleAnalytics() {
         analyticsWindow.gtag("consent", "update", CONSENT_DENIED);
       }
       Reflect.set(window, disableKey, true);
+      if (fromUserAction) clearAnalyticsCookies();
       setEnabled(false);
     };
 

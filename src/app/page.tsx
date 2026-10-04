@@ -5,7 +5,7 @@ import { Search, MapPin, ArrowRight, Train, Wifi, Coins, Plug, Luggage, Calendar
 import { Charla } from "@/components/Charla";
 import type { Metadata } from "next";
 import { getArticles } from "@/lib/content";
-import { NewsletterForm } from "@/components/NewsletterForm";
+import { NewsletterForm, NewsletterGate } from "@/components/NewsletterForm";
 import { SITE } from "@/lib/site";
 import { HomeYenChip, HomeYenBullet, JrPassPriceBullet } from "./HomeYenComponents";
 
@@ -424,20 +424,22 @@ export default async function Home() {
       {/* ══════════════════════════════════════════
           NEWSLETTER — bloque de cierre
           ══════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] py-8 sm:py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-5">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
-            <div>
-              <span className="tag-manga">Newsletter</span>
-              <h2 className="display-md mt-4 text-2xl text-white sm:text-3xl lg:text-4xl">¿Planificando tu viaje?</h2>
-              <p className="mt-2 text-sm text-white/50">Checklist, consejos y novedades. Sin spam.</p>
-            </div>
-            <div className="flex items-center">
-              <NewsletterForm source="home" />
+      <NewsletterGate>
+        <section className="bg-[#0a0a0a] py-8 sm:py-12">
+          <div className="mx-auto max-w-7xl px-4 sm:px-5">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
+              <div>
+                <span className="tag-manga">Newsletter</span>
+                <h2 className="display-md mt-4 text-2xl text-white sm:text-3xl lg:text-4xl">¿Planificando tu viaje?</h2>
+                <p className="mt-2 text-sm text-white/50">Checklist, consejos y novedades. Sin spam.</p>
+              </div>
+              <div className="flex items-center">
+                <NewsletterForm source="home" />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </NewsletterGate>
 
     </main>
   );
