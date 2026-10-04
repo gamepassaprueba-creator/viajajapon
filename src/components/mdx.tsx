@@ -51,7 +51,7 @@ import { RelatedArticles } from "./RelatedArticles";
 import { faqLd } from "@/lib/jsonld";
 
 /** Id de ancla a partir del texto del encabezado (sin tildes, kebab-case). */
-function slugify(text: string): string {
+export function slugify(text: string): string {
   return text
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
@@ -88,7 +88,7 @@ export function AuthorNote({ children }: { children: React.ReactNode }) {
 /** Índice de la guía: enlaces de ancla a los h2 (los ids se generan solos del texto). */
 export function Toc({ items }: { items: { href: string; label: string }[] }) {
   return (
-    <nav aria-label="En esta guía" className="my-6 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-5">
+    <nav aria-label="En esta guía" className="my-6 border-[2px] border-[#0a0a0a] bg-[#f5f5f5] p-5 xl:hidden">
       <p className="kicker text-fg-muted">En esta guía</p>
       <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
         {items.map((i) => (
@@ -285,7 +285,9 @@ export function FAQ({ items }: { items: { q: string; a: string }[] }) {
  * artículo respire como una landing y no como un documento.
  * ========================================================================== */
 
-const BLEED = "lg:-mx-24 xl:-mx-44";
+// Bloques que "sangran" más anchos que la columna de texto. En xl la columna
+// convive con la barra lateral del artículo, así que solo sangran hacia la izquierda.
+const BLEED = "lg:-mx-24 xl:mx-0 xl:-ml-12";
 
 /** Iconos disponibles en los componentes MDX por nombre (clave en español). */
 const ICONOS: Record<string, LucideIcon> = {

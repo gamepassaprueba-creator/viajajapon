@@ -13,6 +13,8 @@ export interface ArticleMeta {
   hero?: string;
   heroCredito?: string;
   heroAlt?: string;
+  /** "En 30 segundos": 2-4 frases de respuesta rápida bajo el título (CTR, AEO y asistentes de IA). */
+  resumen?: string[];
   draft?: boolean;
   readingMinutes?: number;
 }
