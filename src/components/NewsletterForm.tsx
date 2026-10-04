@@ -1,10 +1,58 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { createContext, useContext, useEffect, useId, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "ok" | "error";
 type Availability = "checking" | "available" | "unavailable";
+
+// Si un <NewsletterGate> envuelve el formulario, comparte la disponibilidad ya
+// consultada (evita una segunda petición y permite ocultar la sección entera).
+const NewsletterAvailabilityContext = createContext<Availability | null>(null);
+
+function useNewsletterAvailability(): Availability {
+  const gated = useContext(NewsletterAvailabilityContext);
+  const [availability, setAvailability] = useState<Availability>(gated ?? "checking");
+
+  useEffect(() => {
+    if (gated !== null) return;
+    let active = true;
+
+    fetch("/api/suscribir", { cache: "no-store" })
+      .then(async (res) => {
+        if (!res.ok) return false;
+        const data = (await res.json().catch(() => ({}))) as { available?: boolean };
+        return data.available === true;
+      })
+      .then((available) => {
+        if (active) setAvailability(available ? "available" : "unavailable");
+      })
+      .catch(() => {
+        if (active) setAvailability("unavailable");
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [gated]);
+
+  return gated ?? availability;
+}
+
+/**
+ * Renderiza `children` (la sección de newsletter con su copy comercial) solo si
+ * MailerLite está configurado. Sin proveedor no se muestra nada: ni formulario ni
+ * promesas de "te enviamos el checklist".
+ */
+export function NewsletterGate({ children }: { children: React.ReactNode }) {
+  const availability = useNewsletterAvailability();
+  if (availability !== "available") return null;
+  return (
+    <NewsletterAvailabilityContext.Provider value={availability}>
+      {children}
+    </NewsletterAvailabilityContext.Provider>
+  );
+}
 
 export interface NewsletterFormProps {
   source: string;
@@ -26,28 +74,9 @@ export function NewsletterForm({
   const [hp, setHp] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [msg, setMsg] = useState("");
-  const [availability, setAvailability] = useState<Availability>("checking");
-
-  useEffect(() => {
-    let active = true;
-
-    fetch("/api/suscribir", { cache: "no-store" })
-      .then(async (res) => {
-        if (!res.ok) return false;
-        const data = (await res.json().catch(() => ({}))) as { available?: boolean };
-        return data.available === true;
-      })
-      .then((available) => {
-        if (active) setAvailability(available ? "available" : "unavailable");
-      })
-      .catch(() => {
-        if (active) setAvailability("unavailable");
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
+  const fetchedAvailability = useNewsletterAvailability();
+  const [configMissing, setConfigMissing] = useState(false);
+  const availability: Availability = configMissing ? "unavailable" : fetchedAvailability;
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -64,7 +93,7 @@ export function NewsletterForm({
       const res = await fetch("/api/suscribir", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source }),
+        body: JSON.stringify({ email, source, website: hp }),
       });
       const data = await res.json().catch(() => ({}));
 
@@ -79,7 +108,7 @@ export function NewsletterForm({
         if (!data.already) {
           trackEvent("newsletter_signup", {
             source,
-            page_path: `${window.location.pathname}${window.location.search}`,
+            page_path: window.location.pathname,
           });
         }
 
@@ -88,7 +117,7 @@ export function NewsletterForm({
       }
 
       if (data.error === "config") {
-        setAvailability("unavailable");
+        setConfigMissing(true);
         setStatus("idle");
         return;
       }
@@ -175,6 +204,15 @@ export function NewsletterForm({
         className={`mt-3 text-center text-xs ${status === "error" ? "text-danger" : "text-fg-muted"}`}
       >
         {status === "error" ? msg : note}
+      </p>
+      <p className="mt-1 text-center text-[11px] leading-snug text-fg-muted">
+        Responsable: Sergio Morillo (ViajaJapón). Usamos tu email solo para enviarte la
+        newsletter, a través de MailerLite. Puedes ejercer tus derechos escribiendo a
+        info@viajajapon.com. Más info en la{" "}
+        <a href="/privacidad" className="underline">
+          política de privacidad
+        </a>
+        .
       </p>
     </div>
   );
