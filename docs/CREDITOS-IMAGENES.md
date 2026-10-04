@@ -137,3 +137,37 @@ en este proyecto).
 | sumo-combate.jpg | Combate de sumo con el gyoji (árbitro) en el dohyo | amanderson2 | CC BY 2.0 | Amateur sumo tournament 2014-08-06 3.jpg |
 | geiko-maiko-gion.jpg | Geiko y maiko en una calle de Kioto | Franklin Heijnen | CC BY-SA 2.0 | Geisha and maiko in Kyoto - 20150620 - 01.jpg |
 | hanami-yoyogi.jpg | Hanami bajo los cerezos del parque Yoyogi (Tokio) | Guilhem Vellut | CC BY 2.0 | Picnic @ White cherry blossoms @ Yoyogi Park (13607382754).jpg |
+
+
+## Fotos propias (public/images/propias/)
+
+Fotos del viaje del autor y su madre a Japón (diciembre de 2025). Propiedad del autor: no
+requieren atribución. Antes de publicarlas se eliminan los metadatos (EXIF/GPS), se recortan o
+difuminan las caras de desconocidos en primer plano y las etiquetas de equipaje. No se publican
+fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta de Meiji Jingu).
+
+| Archivo | Tema | Lugar |
+| --- | --- | --- |
+| asakusa-pagoda-sensoji.jpg | Pagoda de cinco pisos de Senso-ji con ginkgo | Asakusa, Tokio |
+| asakusa-omikuji.jpg | La madre del autor atando un omikuji de mala fortuna | Asakusa, Tokio |
+| asakusa-kerokichi.jpg | Mascota Kero-kichi a la puerta de una tienda | Asakusa, Tokio |
+| asakusa-matcha-juseian.jpg | Fachada de la tienda de matcha Jusei-an (recorte) | Asakusa, Tokio |
+| meiji-temizuya-madre.jpg | La madre del autor en el temizuya (cara de un tercero difuminada) | Meiji Jingu, Tokio |
+| meiji-portones-torii.jpg | El torii visto a través de los portones | Meiji Jingu, Tokio |
+| meiji-puerta-romon.jpg | Puerta principal del santuario | Meiji Jingu, Tokio |
+| meiji-barriles-sake.jpg | Muro de barriles de sake (recorte) | Meiji Jingu, Tokio |
+| nintendo-tienda-animal-crossing.jpg | Figuras de Animal Crossing en Nintendo TOKYO | Shibuya, Tokio |
+| cartas-pokemon-precios.jpg | Vitrina de cartas Pokémon con precios | Akihabara, Tokio |
+| shibuya-alcantarilla-hachiko.jpg | Tapa de alcantarilla con Hachiko | Shibuya, Tokio |
+| tokio-noche-iluminacion.jpg | Avenida con iluminación de invierno | Tokio |
+| tokio-hotel-habitacion-tatami.jpg | Habitación de hotel con tarima de tatami (etiquetas difuminadas) | Tokio |
+| tokio-sendagaya-calle.jpg | Calle de Sendagaya con paso a nivel (recorte) | Sendagaya, Tokio |
+| tokio-callejon-sendagaya.jpg | Callejón residencial | Sendagaya, Tokio |
+| tokio-taxi-meiji.jpg | Taxi verde clásico | Meiji Jingu, Tokio |
+| tokio-rana-calle.jpg | Rana de un restaurante en una esquina | Tokio |
+| kaitenzushi-maguro.jpg, kaitenzushi-negitoro.jpg, kaitenzushi-salmon-aburi.jpg, kaitenzushi-kani.jpg | Platos de un kaiten-zushi (recortes sin personas) | Osaka |
+| gyukatsu-teishoku.jpg | Teishoku de gyukatsu con piedra caliente | Japón |
+| katsu-teishoku.jpg, katsudon.jpg, sopa-miso-wakame.jpg | Comida de un restaurante de katsu | Japón |
+| ramen-tonkotsu.jpg | Ramen tonkotsu (recorte) | Japón |
+| pasteles-patisserie.jpg | Dos pasteles de pastelería | Japón |
+| dulce-fresas-nata.jpg | Dulce de fresas y nata de un puesto callejero | Japón |
