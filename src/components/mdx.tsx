@@ -171,16 +171,27 @@ export function Foto({
   alt,
   caption,
   credito,
+  vertical,
 }: {
   src: string;
   alt: string;
   caption?: string;
   credito?: string;
+  /** Fotos de móvil en vertical: formato 4:5 centrado en vez de recortarlas a 16:9. */
+  vertical?: boolean;
 }) {
   return (
-    <figure className="my-6">
-      <div className="relative aspect-video overflow-hidden border-[2px] border-[#0a0a0a] bg-[#f5f5f5]">
-        <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
+    <figure className={vertical ? "mx-auto my-6 max-w-[480px]" : "my-6"}>
+      <div
+        className={`relative overflow-hidden border-[2px] border-[#0a0a0a] bg-[#f5f5f5] ${vertical ? "aspect-[4/5]" : "aspect-video"}`}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={vertical ? "(max-width: 768px) 100vw, 480px" : "(max-width: 768px) 100vw, 768px"}
+          className="object-cover"
+        />
       </div>
       {(caption || credito) && (
         <figcaption className="mt-2 text-xs text-fg-muted">
