@@ -96,11 +96,12 @@ export function buildComparisonRanges(now = new Date()): {
   current: DateRange;
   previous: DateRange;
 } {
-  // Search Console puede tardar varios días en cerrar datos. Terminamos hace 3 días
-  // para comparar ventanas completas y evitar decisiones por datos parciales.
+  // Search Console tarda 3-4 días en cerrar datos "final" y sus días van en hora del
+  // Pacífico (UTC-7/-8), no en UTC. Terminamos hace 4 días para que la ventana actual
+  // no lleve días vacíos que la hagan parecer más pequeña (falsas caídas).
   const currentEnd = addDays(
     new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())),
-    -3,
+    -4,
   );
   const currentStart = addDays(currentEnd, -27);
   const previousEnd = addDays(currentStart, -1);
