@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps } from "react";
+import { isTrackedAffiliateHref } from "@/lib/affiliates";
 import {
   ArrowRight,
   Baby,
@@ -639,12 +640,15 @@ export const mdxComponents = {
     if (isInternal) {
       return <Link href={h} className="text-primary underline-offset-2 hover:underline" {...p} />;
     }
-    // Enlaces externos → nueva pestaña + rel sponsored/nofollow (cumple Google y disclosure de afiliados).
+    // Enlaces externos → nueva pestaña. Solo los de tracking de afiliado llevan
+    // rel="sponsored nofollow"; las fuentes oficiales y webs sin tracking son citas
+    // editoriales normales (marcarlas como pagadas confunde a Google y al lector).
+    const sponsored = isTrackedAffiliateHref(h);
     return (
       <a
         href={h}
         target="_blank"
-        rel="sponsored nofollow noopener noreferrer"
+        rel={sponsored ? "sponsored nofollow noopener" : "noopener noreferrer"}
         className="text-primary underline-offset-2 hover:underline"
         {...p}
       />
