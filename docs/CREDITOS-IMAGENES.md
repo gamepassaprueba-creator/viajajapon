@@ -191,3 +191,16 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | nishiki-erizos-pulpo.jpg | Erizos y brochetas de pulpo y atún | Mercado Nishiki, Kioto |
 | fushimi-takoyaki.jpg | Takoyaki (recorte sin manos) | Fushimi Inari, Kioto |
 | fushimi-inari-toriis-madre.jpg | La madre del autor en el túnel de toriis | Fushimi Inari, Kioto |
+| fushimi-altar-velas.jpg, fushimi-mini-torii-caligrafia.jpg | Altar con mini toriis; mini torii personalizado (recorte sin la cara del artesano) | Fushimi Inari, Kioto |
+| udon-tekkamaki-soba.jpg | Udon, soba y makis (recorte sin personas) | Japón |
+| denden-videojuegos-retro.jpg, denden-apple-watch-segunda-mano.jpg | Juegos retro; etiqueta de electrónica de segunda mano | Den Den Town, Osaka |
+| kiyomizu-yaki-pez-ceramica.jpg | Pez de cerámica kiyomizu-yaki | Kioto |
+| nara-ciervos-madre.jpg | La madre del autor con los ciervos (recorte sin el sello de fecha) | Nara |
+| osaka-castillo-noche.jpg, osaka-castillo-puerta-noche.jpg, osaka-castillo-desde-abajo.jpg | Castillo de Osaka iluminado | Osaka |
+| osaka-alcantarilla-castillo.jpg, osaka-alcantarilla-expo2025.jpg | Tapas de alcantarilla ilustradas | Osaka |
+| osaka-dotonbori-glico-madre.jpg | La madre del autor frente al cartel de Glico | Dotonbori, Osaka |
+| osaka-takoyaki-gigante.jpg | Takoyaki gigante de un puesto | Dotonbori, Osaka |
+| pokemon-center-osaka.jpg | Entrada del Pokémon Center Osaka | Osaka |
+| sampuru-udon-escaparate.jpg | Réplicas de plástico de un local de udon | Japón |
+| asakusa-omikuji-autor.jpg | El autor sacando su omikuji | Senso-ji, Tokio |
+| yokohama-minatomirai-autor.jpg | El autor ante Minato Mirai al atardecer | Yokohama |
