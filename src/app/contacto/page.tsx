@@ -18,7 +18,7 @@ export default function Page() {
       <p className="kicker text-primary">Contacto</p>
       <h1 className="mt-2 text-balance text-4xl font-bold sm:text-5xl">Escríbenos</h1>
       <p className="mt-5 text-lg leading-relaxed text-fg-muted">
-        ViajaJapón lo escribe y mantiene Sergio Morillo. Si has encontrado un precio desactualizado, un enlace roto,
+        ViajaJapón lo escribe y mantiene Sergio. Si has encontrado un precio desactualizado, un enlace roto,
         una norma que ha cambiado o cualquier error factual, nos interesa saberlo: corregir una guía es más útil que
         fingir que nunca se queda antigua.
       </p>

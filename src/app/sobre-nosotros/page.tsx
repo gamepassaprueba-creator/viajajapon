@@ -7,7 +7,7 @@ import { getAllArticles } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Sobre nosotros: la historia detrás de ViajaJapón",
   description:
-    "ViajaJapón nació de un viaje real: 15 días por Japón con mi madre por su 70 cumpleaños. Soy Sergio Morillo (Madrid); quién escribe esto y por qué fiarte.",
+    "ViajaJapón nació de un viaje real: 15 días por Japón con mi madre por su 70 cumpleaños. Soy Sergio (Madrid); quién escribe esto y por qué fiarte.",
   alternates: { canonical: "/sobre-nosotros" },
 };
 
@@ -46,7 +46,7 @@ export default function Page() {
           repartido por las guías de esta web.
         </p>
         <p>
-          Soy <strong className="text-fg">Sergio Morillo</strong>, tengo 35 años y vivo en Madrid.
+          Soy <strong className="text-fg">Sergio</strong>, tengo 35 años y vivo en Madrid.
           Aunque la vida no siempre me ha tratado de la mejor manera, siempre he intentado mirar al
           futuro con ilusión. Aquel viaje fue mi forma de devolverle a mi madre un
           poco de todo lo que ella me ha dado desde que nací. Esta web es la continuación: ayudar a que
