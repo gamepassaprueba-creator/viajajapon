@@ -180,3 +180,9 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | nishiki-cangrejo-plancha.jpg | Puesto de cangrejo (recorte sin la dependienta) | Mercado Nishiki, Kioto |
 | nishiki-cuchillo-damasco.jpg, nishiki-cuchillo-gyuto.jpg | Cuchillos de acero damasco con precio | Mercado Nishiki, Kioto |
 | kioto-higashiyama-noche.jpg | La madre del autor en Higashiyama de noche, pagoda Yasaka al fondo | Kioto |
+| kioto-kiyomizu-pagoda-noche.jpg, kioto-kiyomizu-pagoda-horizontal.jpg | Pagoda de Kiyomizu-dera iluminada | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-momiji-vistas.jpg | Momiji iluminado con Kioto al fondo | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-haz-luz.jpg | Haz de luz azul y luna llena | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-panoramica.jpg | Pagoda, escenario y momiji con el haz de luz | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-escenario-ciudad.jpg | Escenario y Kioto iluminada (recorte sin el público) | Kiyomizu-dera, Kioto |
+| kioto-yasaka-pagoda-noche.jpg | Pagoda Yasaka (Hokan-ji) iluminada | Higashiyama, Kioto |
