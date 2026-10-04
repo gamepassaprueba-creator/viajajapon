@@ -142,7 +142,8 @@ en este proyecto).
 ## Fotos propias (public/images/propias/)
 
 Fotos del viaje del autor y su madre a Japón (diciembre de 2025). Propiedad del autor: no
-requieren atribución. Antes de publicarlas se eliminan los metadatos (EXIF/GPS), se recortan o
+requieren atribución. Todas llevan una marca de agua discreta "viajajapon.com" y copyright en EXIF; se procesan con
+`node scripts/foto-propia.mjs <origen> <nombre> [recorte]`. Antes de publicarlas se eliminan los metadatos de ubicación (GPS), se recortan o
 difuminan las caras de desconocidos en primer plano y las etiquetas de equipaje. No se publican
 fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta de Meiji Jingu).
 
@@ -171,3 +172,35 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | ramen-tonkotsu.jpg | Ramen tonkotsu (recorte) | Japón |
 | pasteles-patisserie.jpg | Dos pasteles de pastelería | Japón |
 | dulce-fresas-nata.jpg | Dulce de fresas y nata de un puesto callejero | Japón |
+| odaiba-gundam-unicorn-noche.jpg, odaiba-gundam-unicorn-frente.jpg | Unicorn Gundam iluminado de noche | Odaiba, Tokio |
+| odaiba-fuji-tv.jpg | Edificio de Fuji TV al atardecer | Odaiba, Tokio |
+| tokio-torre-noche.jpg | Torre de Tokio iluminada | Tokio |
+| tokio-karts-noche.jpg | Karts turísticos con disfraces en un semáforo | Tokio |
+| yakiniku-wagyu-bandeja.jpg, yakiniku-nigiri-wagyu.jpg | Wagyu en un yakiniku (recorte sin personas) | Japón |
+| nishiki-cangrejo-plancha.jpg | Puesto de cangrejo (recorte sin la dependienta) | Mercado Nishiki, Kioto |
+| nishiki-cuchillo-damasco.jpg, nishiki-cuchillo-gyuto.jpg | Cuchillos de acero damasco con precio | Mercado Nishiki, Kioto |
+| kioto-higashiyama-noche.jpg | La madre del autor en Higashiyama de noche, pagoda Yasaka al fondo | Kioto |
+| kioto-kiyomizu-pagoda-noche.jpg, kioto-kiyomizu-pagoda-horizontal.jpg | Pagoda de Kiyomizu-dera iluminada | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-momiji-vistas.jpg | Momiji iluminado con Kioto al fondo | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-haz-luz.jpg | Haz de luz azul y luna llena | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-panoramica.jpg | Pagoda, escenario y momiji con el haz de luz | Kiyomizu-dera, Kioto |
+| kioto-kiyomizu-escenario-ciudad.jpg | Escenario y Kioto iluminada (recorte sin el público) | Kiyomizu-dera, Kioto |
+| kioto-yasaka-pagoda-noche.jpg | Pagoda Yasaka (Hokan-ji) iluminada | Higashiyama, Kioto |
+| kioto-ryokan-kagihei-autor.jpg | El autor con yukata en el ryokan (recorte sin el sello de fecha del filtro) | Kyonoyado Kagihei, Kioto |
+| kioto-ryokan-kagihei-futones.jpg | Futones de la habitación | Kyonoyado Kagihei, Kioto |
+| nishiki-erizos-pulpo.jpg | Erizos y brochetas de pulpo y atún | Mercado Nishiki, Kioto |
+| fushimi-takoyaki.jpg | Takoyaki (recorte sin manos) | Fushimi Inari, Kioto |
+| fushimi-inari-toriis-madre.jpg | La madre del autor en el túnel de toriis | Fushimi Inari, Kioto |
+| fushimi-altar-velas.jpg, fushimi-mini-torii-caligrafia.jpg | Altar con mini toriis; mini torii personalizado (recorte sin la cara del artesano) | Fushimi Inari, Kioto |
+| udon-tekkamaki-soba.jpg | Udon, soba y makis (recorte sin personas) | Japón |
+| denden-videojuegos-retro.jpg, denden-apple-watch-segunda-mano.jpg | Juegos retro; etiqueta de electrónica de segunda mano | Den Den Town, Osaka |
+| kiyomizu-yaki-pez-ceramica.jpg | Pez de cerámica kiyomizu-yaki | Kioto |
+| nara-ciervos-madre.jpg | La madre del autor con los ciervos (recorte sin el sello de fecha) | Nara |
+| osaka-castillo-noche.jpg, osaka-castillo-puerta-noche.jpg, osaka-castillo-desde-abajo.jpg | Castillo de Osaka iluminado | Osaka |
+| osaka-alcantarilla-castillo.jpg, osaka-alcantarilla-expo2025.jpg | Tapas de alcantarilla ilustradas | Osaka |
+| osaka-dotonbori-glico-madre.jpg | La madre del autor frente al cartel de Glico | Dotonbori, Osaka |
+| osaka-takoyaki-gigante.jpg | Takoyaki gigante de un puesto | Dotonbori, Osaka |
+| pokemon-center-osaka.jpg | Entrada del Pokémon Center Osaka | Osaka |
+| sampuru-udon-escaparate.jpg | Réplicas de plástico de un local de udon | Japón |
+| asakusa-omikuji-autor.jpg | El autor sacando su omikuji | Senso-ji, Tokio |
+| yokohama-minatomirai-autor.jpg | El autor ante Minato Mirai al atardecer | Yokohama |
