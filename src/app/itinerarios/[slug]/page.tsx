@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getArticle, getArticleSlugs, extractItinerarySteps } from "@/lib/content";
 import { Article, articleMetadata } from "@/components/Article";
-import { howToLd, breadcrumbLd } from "@/lib/jsonld";
+import { howToLd } from "@/lib/jsonld";
 
 const PILLAR = "itinerarios";
 
@@ -20,11 +20,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const steps = article ? extractItinerarySteps(article.content) : [];
   const extraJsonLd = article
     ? [
-        breadcrumbLd([
-          { name: "Inicio", url: "/" },
-          { name: "Itinerarios", url: "/itinerarios" },
-          { name: article.meta.title, url: `/${PILLAR}/${slug}` },
-        ]),
         ...(steps.length > 0
           ? [
               howToLd({
