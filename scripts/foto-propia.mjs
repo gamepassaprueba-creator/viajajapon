@@ -33,7 +33,7 @@ const svg = Buffer.from(
 const out = `public/images/propias/${name}.jpg`;
 const info = await sharp(buf)
   .composite([{ input: svg, left: 0, top: 0 }])
-  .withExif({ IFD0: { Copyright: "(c) Sergio Morillo - viajajapon.com", Artist: "Sergio Morillo" } })
+  .withExif({ IFD0: { Copyright: "(c) viajajapon.com", Artist: "Sergio (viajajapon.com)" } })
   .jpeg({ quality: 80, mozjpeg: true })
   .toFile(out);
 console.log(`${out} ${info.width}x${info.height} ${Math.round(info.size / 1024)}KB`);

@@ -25,7 +25,7 @@ export default function Page() {
         <section>
           <h2 className="text-2xl font-bold text-fg">Quién escribe</h2>
           <p className="mt-3">
-            El responsable editorial es <strong className="text-fg">Sergio Morillo</strong>. Puedes conocer el viaje
+            El responsable editorial es <strong className="text-fg">Sergio</strong>. Puedes conocer el viaje
             que dio origen al proyecto, qué partes fueron experiencia propia y qué criterios seguimos en{" "}
             <Link href="/sobre-nosotros" className="text-primary underline-offset-2 hover:underline">
               Sobre nosotros

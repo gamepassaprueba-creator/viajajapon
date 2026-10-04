@@ -142,7 +142,7 @@ en este proyecto).
 ## Fotos propias (public/images/propias/)
 
 Fotos del viaje del autor y su madre a Japón (diciembre de 2025). Propiedad del autor: no
-requieren atribución. Todas llevan una marca de agua discreta "viajajapon.com" y copyright en EXIF; se procesan con
+requieren atribución. Todas llevan una marca de agua discreta "viajajapon.com" y copyright de viajajapon.com en EXIF; se procesan con
 `node scripts/foto-propia.mjs <origen> <nombre> [recorte]`. Antes de publicarlas se eliminan los metadatos de ubicación (GPS), se recortan o
 difuminan las caras de desconocidos en primer plano y las etiquetas de equipaje. No se publican
 fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta de Meiji Jingu).
