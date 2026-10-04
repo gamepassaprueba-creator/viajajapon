@@ -4,8 +4,18 @@ function authorized(request: Request): boolean {
   const expected = process.env.SEO_REPORT_SECRET?.trim();
   if (!expected) return false;
 
-  const auth = request.headers.get("authorization")?.trim();
-  return auth === `Bearer ${expected}`;
+  const auth = request.headers.get("authorization")?.trim() ?? "";
+  return constantTimeEqual(auth, `Bearer ${expected}`);
+}
+
+// Comparación en tiempo constante (no revela por timing cuántos caracteres acertó).
+function constantTimeEqual(a: string, b: string): boolean {
+  const enc = new TextEncoder();
+  const x = enc.encode(a);
+  const y = enc.encode(b);
+  let diff = x.length ^ y.length;
+  for (let i = 0; i < y.length; i++) diff |= (x[i] ?? 0) ^ y[i];
+  return diff === 0;
 }
 
 export async function GET(request: Request) {

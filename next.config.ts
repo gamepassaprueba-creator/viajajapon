@@ -28,16 +28,25 @@ const nextConfig: NextConfig = {
   },
   // Cabeceras de seguridad básicas (no rompen nada, suman en auditorías).
   async headers() {
+    const base = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "X-DNS-Prefetch-Control", value: "on" },
+      { key: "Strict-Transport-Security", value: "max-age=31536000" },
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+    ];
     return [
+      // Todo el sitio salvo /embed: prohibido incrustarlo en iframes ajenos.
       {
-        source: "/:path*",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "X-DNS-Prefetch-Control", value: "on" },
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
-        ],
+        source: "/:path((?!embed/).*)",
+        headers: [...base, { key: "X-Frame-Options", value: "DENY" }],
+      },
+      // /embed/* es el widget para webs de terceros: DEBE poder ir en un iframe.
+      // OpenNext aplica estas cabeceras por encima de las del route handler, así
+      // que el permiso tiene que declararse aquí (frame-ancestors, no X-Frame-Options).
+      {
+        source: "/embed/:path*",
+        headers: [...base, { key: "Content-Security-Policy", value: "frame-ancestors *" }],
       },
     ];
   },

@@ -62,7 +62,6 @@ input:focus{outline:2px solid #e53e3e;outline-offset:1px}
   return new Response(html, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
-      "X-Frame-Options": "ALLOWALL",
     },
   });
 }
