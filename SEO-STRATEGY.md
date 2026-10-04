@@ -80,7 +80,7 @@ GA4 se instaló y validó el **16 de agosto de 2026**. No existe histórico ante
 El código soporta:
 `CIVITATIS`, `KLOOK`, `IATI`, `HEYMONDO`, `HOLAFLY`, `AIRALO`, `SKYSCANNER`, `JRPASS`, `REVOLUT`, `BOOKING`, `GETYOURGUIDE`.
 
-El pipeline ya inyecta `AFF_*` en build y muestra diagnóstico seguro. **Actualmente 0/11 están configurados** porque las altas siguen pendientes. Nunca inventar IDs ni convertir una URL normal en «afiliada».
+El pipeline ya inyecta `AFF_*` en build (desde GitHub secrets, no desde el Worker) y muestra diagnóstico seguro. **Estado a 2026-10-04: 1/11 monetiza** (IATI, con enlace fijo en `src/lib/affiliates.ts`); los otros 10 siguen pendientes de alta. Nunca inventar IDs ni convertir una URL normal en «afiliada».
 
 ### AdSense
 Publisher: `pub-7277317479691987`.
@@ -92,7 +92,10 @@ Google rechazó `viajajapon.com` el 9/08/2026 con un email genérico. El motivo 
 - corregir el motivo concreto que muestre el panel.
 
 ### Newsletter
-La UI existe pero **MailerLite no está configurado en el Worker**. Mientras falte `MAILERLITE_API_KEY`, el formulario operativo no se muestra. No captar emails hasta tener proveedor, doble opt-in y configuración legal real.
+La UI existe pero **MailerLite no está configurado en el Worker** (confirmado en el log del deploy del 25/09/2026). Mientras falte `MAILERLITE_API_KEY` o `MAILERLITE_GROUP_ID`, las secciones de newsletter no se muestran.
+
+### Bridge SEO (`/api/seo/report`)
+El código está desplegado, pero **a 2026-10-04 ninguno de sus secrets existe en el Worker** (`SEO_REPORT_SECRET`, `GOOGLE_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID`), así que hoy solo responde 401. Activación: DEPLOY.md §2. No captar emails hasta tener proveedor, doble opt-in y configuración legal real.
 
 ## 6. Regla de priorización SEO
 

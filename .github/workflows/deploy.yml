@@ -15,9 +15,13 @@ on:
     branches: [master]
   workflow_dispatch:
 
+# Un deploy a producción nunca se corta a medias: el siguiente espera en cola.
 concurrency:
   group: deploy-produccion
-  cancel-in-progress: true
+  cancel-in-progress: false
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
@@ -71,6 +75,7 @@ jobs:
                 echo "${name}: configured"
               else
                 echo "${name}: missing"
+                echo "::warning title=Secret runtime ausente::${name} no existe en el Worker; la integración que depende de él está desactivada."
               fi
             done
           else
@@ -243,6 +248,12 @@ jobs:
             tr -d '\r' < temp_security_headers.txt | grep -qi '^x-content-type-options: nosniff$' || { echo "❌ Missing nosniff header"; return 1; }
             tr -d '\r' < temp_security_headers.txt | grep -qi '^x-frame-options: DENY$' || { echo "❌ Missing X-Frame-Options DENY"; return 1; }
             tr -d '\r' < temp_security_headers.txt | grep -qi '^referrer-policy: strict-origin-when-cross-origin$' || { echo "❌ Missing Referrer-Policy"; return 1; }
+            tr -d '\r' < temp_security_headers.txt | grep -qi '^strict-transport-security: max-age=' || { echo "❌ Missing HSTS"; return 1; }
+
+            # El widget embebible DEBE poder ir en iframes de terceros.
+            curl -sS -D temp_embed_headers.txt -o /dev/null "$URL/embed/cambio-yen?audit=$TS" || return 1
+            if tr -d '\r' < temp_embed_headers.txt | grep -qi '^x-frame-options:'; then echo "❌ /embed must not send X-Frame-Options"; return 1; fi
+            tr -d '\r' < temp_embed_headers.txt | grep -qi '^content-security-policy: frame-ancestors \*$' || { echo "❌ /embed must allow framing (frame-ancestors *)"; return 1; }
 
             echo "Checking alternate domains and www canonicalization..."
             check_redirect "https://viajajapon.es" "/" "https://viajajapon.com/" || return 1

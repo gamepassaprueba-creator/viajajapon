@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ViajaJapón
 
-## Getting Started
+Web editorial en español para viajar a Japón por libre: guías en MDX, herramientas propias
+(calculadora del JR Pass, cambio yen-euro, presupuesto, checklist) y afiliación medida con GA4.
 
-First, run the development server:
+- Producción: https://viajajapon.com
+- Stack: Next.js 16 (App Router, SSG) + React 19 + Tailwind v4 + MDX, en Cloudflare Workers vía OpenNext.
+
+## Desarrollo
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # genera el manifest de contenido y arranca en http://localhost:3000
+npm run lint
+npm run build    # build de Next en local (el build de Cloudflare se hace en CI)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contenido
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Artículos: `content/<pilar>/<slug>.mdx` (pilares: logistica, itinerarios, destinos,
+  gastronomia, cultura, blog). Al publicar uno, aparece solo en su pilar, el sitemap y el RSS.
+- Componentes MDX disponibles: `src/components/mdx.tsx`.
+- Créditos de imágenes: `docs/CREDITOS-IMAGENES.md` (obligatorio para fotos CC BY / CC BY-SA).
+- Afiliados: siempre vía `<AffiliateBox partner="...">`, nunca enlaces de tracking a mano.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Despliegue
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Push a `master` → GitHub Actions → Cloudflare Workers. Variables, secrets e integraciones:
+ver [DEPLOY.md](DEPLOY.md). Estrategia SEO vigente: [SEO-STRATEGY.md](SEO-STRATEGY.md).
