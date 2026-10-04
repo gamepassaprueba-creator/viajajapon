@@ -186,3 +186,8 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | kioto-kiyomizu-panoramica.jpg | Pagoda, escenario y momiji con el haz de luz | Kiyomizu-dera, Kioto |
 | kioto-kiyomizu-escenario-ciudad.jpg | Escenario y Kioto iluminada (recorte sin el público) | Kiyomizu-dera, Kioto |
 | kioto-yasaka-pagoda-noche.jpg | Pagoda Yasaka (Hokan-ji) iluminada | Higashiyama, Kioto |
+| kioto-ryokan-kagihei-autor.jpg | El autor con yukata en el ryokan (recorte sin el sello de fecha del filtro) | Kyonoyado Kagihei, Kioto |
+| kioto-ryokan-kagihei-futones.jpg | Futones de la habitación | Kyonoyado Kagihei, Kioto |
+| nishiki-erizos-pulpo.jpg | Erizos y brochetas de pulpo y atún | Mercado Nishiki, Kioto |
+| fushimi-takoyaki.jpg | Takoyaki (recorte sin manos) | Fushimi Inari, Kioto |
+| fushimi-inari-toriis-madre.jpg | La madre del autor en el túnel de toriis | Fushimi Inari, Kioto |
