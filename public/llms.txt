@@ -1,0 +1,28 @@
+# ViajaJapón
+
+> Guía en español para viajar a Japón por libre: itinerarios día a día, presupuesto en euros, alojamiento, transporte, cultura y gastronomía, escrita a partir de un viaje real (diciembre de 2025) y con datos revisados contra fuentes oficiales. Herramientas propias: calculadora del JR Pass y cambio yen-euro.
+
+## Planificación
+- [Cuánto cuesta viajar a Japón](https://viajajapon.com/logistica/cuanto-cuesta-viajar-japon): presupuesto por día y por duración.
+- [Japón por libre: primer viaje](https://viajajapon.com/logistica/japon-por-libre-primer-viaje): guía paraguas.
+- [Mejor época para viajar a Japón](https://viajajapon.com/logistica/mejor-epoca-viajar-japon) y [Japón en diciembre](https://viajajapon.com/logistica/japon-en-diciembre).
+- [Visado para Japón 2026](https://viajajapon.com/logistica/visado-japon-2026) y [desde México y Latinoamérica](https://viajajapon.com/logistica/japon-desde-mexico-y-latinoamerica).
+- [Cómo pagar en Japón](https://viajajapon.com/logistica/como-pagar-en-japon), [Tax Free](https://viajajapon.com/logistica/compras-y-tax-free-japon), [eSIM](https://viajajapon.com/logistica/esim-japon), [qué llevar en la maleta](https://viajajapon.com/logistica/que-llevar-maleta-japon).
+
+## Transporte
+- [JR Pass 2026](https://viajajapon.com/logistica/jr-pass-2026) y [calculadora: ¿me compensa?](https://viajajapon.com/herramientas/jr-pass-calculadora)
+- [Suica en iPhone](https://viajajapon.com/logistica/suica-iphone)
+
+## Itinerarios
+- [7 días](https://viajajapon.com/itinerarios/itinerario-japon-7-dias), [10 días](https://viajajapon.com/itinerarios/itinerario-japon-10-dias), [15 días](https://viajajapon.com/itinerarios/itinerario-japon-15-dias), [1 mes](https://viajajapon.com/itinerarios/itinerario-japon-1-mes)
+
+## Destinos y alojamiento
+- [Qué ver en Tokio](https://viajajapon.com/destinos/que-ver-en-tokio), [Kioto](https://viajajapon.com/destinos/que-ver-en-kioto), [Osaka](https://viajajapon.com/destinos/que-ver-en-osaka)
+- [Dónde alojarse en Tokio](https://viajajapon.com/destinos/donde-dormir-en-tokio) y [en Kioto](https://viajajapon.com/destinos/donde-dormir-en-kioto)
+
+## Cultura y gastronomía
+- [Etiqueta y costumbres](https://viajajapon.com/cultura/etiqueta-y-costumbres-japon), [onsen](https://viajajapon.com/cultura/onsen-guia-practica), [geiko y maiko](https://viajajapon.com/cultura/geishas-y-maiko-japon)
+- [Qué comer en Japón](https://viajajapon.com/gastronomia/que-comer-en-japon) y [tipos de restaurantes](https://viajajapon.com/gastronomia/tipos-restaurantes-japon)
+
+## Sobre el sitio
+- [Quiénes somos](https://viajajapon.com/sobre-nosotros) · [Política editorial](https://viajajapon.com/politica-editorial) · [Contacto](https://viajajapon.com/contacto)
