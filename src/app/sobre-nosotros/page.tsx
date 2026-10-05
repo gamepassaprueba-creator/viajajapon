@@ -45,8 +45,8 @@ export default function Page() {
           diciembre por <strong className="text-fg">690 € cada uno, ida y vuelta</strong>, cuando los
           avisos que recibía rara vez bajaban de 1.000 €. Salté de la cama, me fui al ordenador y
           compré los dos billetes. Unas horas después llamé a mi madre: ya teníamos los vuelos a
-          Japón. Reservamos con al menos seis meses de antelación y salimos el 1 de diciembre de 2025,
-          con aterrizaje en Narita.
+          Japón. Reservamos con al menos seis meses de antelación y salimos el 30 de noviembre de 2025
+          y aterrizamos en Narita el 1 de diciembre.
         </p>
         <p>
           Los hoteles los reservé en Booking, con la opción de reserva sin pago por adelantado, para
