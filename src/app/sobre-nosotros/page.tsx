@@ -29,6 +29,32 @@ export default function Page() {
           trenes, reservas — y de esa planificación (y de sus aciertos y errores) nace esta web.
         </p>
         <p>
+          Mi madre siempre decía que su sueño era viajar a Japón. Durante el covid hubo momentos en los
+          que me asusté de verdad y pensé que quizá ya sería tarde para hacer ese viaje con ella. Me
+          prometí que, si salíamos de aquello, lo prepararía por todos los medios. Tras unos años
+          ahorrando lo suficiente, me metí en Canva y le hice un folleto con una foto de los dos en la
+          portada y un título: «Nuestro viaje soñado a Japón». Dentro iban tips del viaje, lo típico de
+          allí y cuánto dura el vuelo desde Madrid. Cuando lo abrió no se lo creía: tuvo que leerlo
+          varias veces y se emocionó.
+        </p>
+        <p>
+          Nos dimos un año de margen para encontrar la fecha ideal a buen precio. Durante meses, Google
+          Flights me mandó cada día los precios. Yo quería la máxima comodidad para mi madre, así que
+          solo vuelos directos, y esperaba una buena oferta de Iberia desde Madrid. Una noche, a las 4
+          o 5 de la madrugada, sin poder dormir, me llegó el aviso: vuelo directo de Iberia para
+          diciembre por <strong className="text-fg">690 € cada uno, ida y vuelta</strong>, cuando los
+          avisos que recibía rara vez bajaban de 1.000 €. Salté de la cama, me fui al ordenador y
+          compré los dos billetes. Unas horas después llamé a mi madre: ya teníamos los vuelos a
+          Japón. Reservamos con al menos seis meses de antelación y salimos el 1 de diciembre de 2025,
+          con aterrizaje en Narita.
+        </p>
+        <p>
+          Los hoteles los reservé en Booking, con la opción de reserva sin pago por adelantado, para
+          poder ajustar el plan si hacía falta. Las maletas nos las prestó la familia. Durante meses mi
+          madre y yo nos mandamos mensajes de WhatsApp: «ya quedan 5 meses», «un día menos para estar
+          en Japón», «3 meses y nos vamos». Cada vez que nos veíamos, los nervios y los preparativos.
+        </p>
+        <p>
           Empezamos por Tokio, seguimos a Kioto, Osaka y Yokohama, y cerramos de nuevo en Tokio.
           Recorrimos Akihabara, Ueno, Shibuya y Shinjuku; subimos a la Torre de Tokio, al Skytree y al
           Shibuya Sky; comimos ramen literalmente todos los días — nos metíamos en cualquier sitio,
