@@ -60,6 +60,15 @@ const ITINERARIOS: Itinerario[] = [
     href: "/itinerarios/itinerario-japon-15-dias",
   },
   {
+    img: "/images/propias/kioto-kiyomizu-escenario-ciudad.jpg",
+    alt: "El escenario de Kiyomizu-dera iluminado de noche con Kioto al fondo",
+    badge: "3 semanas",
+    title: "Japón a fondo",
+    ruta: "Tokio, Kioto, Hiroshima, Kanazawa, Takayama",
+    desc: "Tres semanas con dos grandes bases, excursiones de un día y los Alpes; la cuenta del JR Pass, hecha.",
+    href: "/itinerarios/itinerario-japon-3-semanas",
+  },
+  {
     img: "/images/hero-fuji.jpg",
     alt: "Monte Fuji con una pagoda y cerezos en flor",
     badge: "1 mes",
