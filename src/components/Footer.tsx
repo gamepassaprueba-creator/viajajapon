@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SITE } from "@/lib/site";
 import { CookiePreferencesButton } from "@/components/CookiePreferencesButton";
 import { Logo } from "@/components/Logo";
 
@@ -79,6 +80,7 @@ export function Footer() {
               © 2026 ViajaJapón.com · Algunos enlaces pueden ser de afiliado.
             </p>
             <div className="flex flex-wrap gap-3">
+              <a href={SITE.social.pinterest} target="_blank" rel="noopener noreferrer me" className="font-mono text-[9px] text-white/30 hover:text-white">Pinterest</a>
               <Link href="/aviso-legal" className="font-mono text-[9px] text-white/30 hover:text-white">Legal</Link>
               <Link href="/privacidad" className="font-mono text-[9px] text-white/30 hover:text-white">Privacidad</Link>
               <Link href="/cookies" className="font-mono text-[9px] text-white/30 hover:text-white">Cookies</Link>

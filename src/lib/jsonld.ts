@@ -8,6 +8,7 @@ export function organizationLd() {
     name: SITE.name,
     url: SITE.url,
     logo: `${SITE.url}/logo.png`,
+    sameAs: [SITE.social.pinterest],
     description: SITE.description,
     contactPoint: {
       "@type": "ContactPoint",
