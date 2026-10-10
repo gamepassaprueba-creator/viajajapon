@@ -51,6 +51,8 @@ export const metadata: Metadata = {
   // pueda verificar la propiedad del dominio durante la solicitud de AdSense.
   other: {
     "google-adsense-account": "ca-pub-7277317479691987",
+    // Verificacion de propiedad del dominio en Pinterest (etiqueta publica).
+    "p:domain_verify": "41185f2b22afdeee5ec9712d22d0fe6a",
   },
 };
 
