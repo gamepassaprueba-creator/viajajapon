@@ -9,6 +9,9 @@ export const SITE = {
     name: "Sergio",
     url: "https://viajajapon.com/sobre-nosotros",
   },
+  social: {
+    pinterest: "https://www.pinterest.com/viajajapon/",
+  },
   nav: [
     { href: "/itinerarios", label: "Planifica" },
     { href: "/destinos", label: "Destinos" },
