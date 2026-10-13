@@ -10,6 +10,7 @@ const COLS = [
       { label: "Itinerario de 7 días", href: "/itinerarios/itinerario-japon-7-dias" },
       { label: "Itinerario de 10 días", href: "/itinerarios/itinerario-japon-10-dias" },
       { label: "Calculadora del JR Pass", href: "/herramientas/jr-pass-calculadora" },
+      { label: "Todas las herramientas", href: "/herramientas" },
       { label: "Cuánto cuesta viajar a Japón", href: "/logistica/cuanto-cuesta-viajar-japon" },
       { label: "Mejor época para viajar", href: "/logistica/mejor-epoca-viajar-japon" },
     ],

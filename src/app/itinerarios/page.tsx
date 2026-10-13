@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import {
   ArrowRight,
   Calculator,
@@ -12,14 +13,14 @@ import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
 import { ItinerariosFiltro } from "@/components/ItinerariosFiltro";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/itinerarios", {
   title: "Itinerarios por Japón: 7, 10, 15 días y 1 mes",
   description:
     "Itinerarios para Japón según la duración de tu viaje, con rutas, presupuesto y enlaces a la calculadora del JR Pass.",
   alternates: { canonical: "/itinerarios" },
   // Indexar solo cuando haya contenido publicado; si está vacío, noindex (evita thin content).
   ...(pillarHasContent("itinerarios") ? {} : { robots: { index: false, follow: true } }),
-};
+});
 
 type Itinerario = {
   img: string;

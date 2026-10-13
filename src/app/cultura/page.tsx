@@ -1,17 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import { ArrowRight, Check } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/cultura", {
   title: "Cultura y costumbres de Japón",
   description:
     "Etiqueta, festivales, ryokan, onsen y alquiler de kimono: lo que necesitas saber para disfrutar la cultura japonesa con respeto.",
   alternates: { canonical: "/cultura" },
   ...(pillarHasContent("cultura") ? {} : { robots: { index: false, follow: true } }),
-};
+});
 
 type Tema = {
   img: string;

@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/politica-editorial", {
   title: "Política editorial: fuentes, actualizaciones y correcciones",
   description:
     "Cómo se crea y verifica el contenido de ViajaJapón: experiencia propia, fuentes oficiales, actualizaciones, correcciones, IA y monetización.",
   alternates: { canonical: "/politica-editorial" },
-};
+});
 
 export default function Page() {
   return (

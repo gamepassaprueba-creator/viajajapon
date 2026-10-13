@@ -57,32 +57,46 @@ const PILLARS: Record<string, PillarConfig> = {
   },
 };
 
-/** Metadata compartida para una página de artículo (incluye noindex si es borrador). */
-export async function articleMetadata(pillar: string, slug: string): Promise<Metadata> {
+/**
+ * Metadata compartida para una página de artículo (incluye noindex si es borrador).
+ * `override` permite experimentos de snippet (title/description) sin tocar el MDX; se
+ * aplica también a Open Graph y Twitter para que la tarjeta social coincida con el SERP.
+ */
+export async function articleMetadata(
+  pillar: string,
+  slug: string,
+  override?: { title?: string; description?: string },
+): Promise<Metadata> {
   const cfg = PILLARS[pillar];
   const article = await getArticle(pillar, slug);
   if (!article || !cfg) return {};
   const { meta } = article;
   const url = `${cfg.basePath}/${slug}`;
+  // Título SIN el sufijo " · ViajaJapón" del layout: Google ya muestra el nombre del sitio
+  // aparte en los resultados y el sufijo hacía que 53 de 58 títulos pasaran de 60 caracteres.
+  const title = override?.title || meta.seoTitle || meta.title;
+  const description = override?.description || meta.description;
   // Imagen social: el hero del artículo si lo tiene, si no la portada por defecto.
   const ogImage = meta.hero ?? "/images/hero-fuji.jpg";
   return {
-    title: meta.seoTitle || meta.title,
-    description: meta.description,
+    title: { absolute: title },
+    description,
     alternates: { canonical: url },
     openGraph: {
       type: "article",
+      locale: SITE.locale,
+      siteName: SITE.name,
       url,
-      title: meta.seoTitle || meta.title,
-      description: meta.description,
-      images: [{ url: ogImage, alt: meta.title }],
+      title,
+      description,
+      images: [{ url: ogImage, alt: meta.heroAlt ?? meta.title }],
       publishedTime: meta.datePublished,
       modifiedTime: meta.dateModified,
     },
     twitter: {
       card: "summary_large_image",
-      title: meta.seoTitle || meta.title,
-      description: meta.description,
+      title,
+      description,
       images: [ogImage],
     },
     // Borradores: visibles en la URL para previsualizar, pero NO indexables (puerta humana).

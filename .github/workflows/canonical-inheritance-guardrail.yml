@@ -36,6 +36,7 @@ jobs:
           echo "Checking fixed/indexable route canonicals..."
           FILES=(
             src/app/herramientas/jr-pass-calculadora/page.tsx
+            src/app/herramientas/page.tsx
             src/app/cambio-yen-euro/page.tsx
             src/app/blog/page.tsx
             src/app/logistica/page.tsx

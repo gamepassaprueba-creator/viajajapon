@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: { path: string; cf: CF; p: number; mod: Date }[] = [
     { path: "/", cf: "daily", p: 1, mod: latest },
     { path: "/herramientas/jr-pass-calculadora", cf: "monthly", p: 0.9, mod: calculatorUpdated },
+    { path: "/herramientas", cf: "monthly", p: 0.6, mod: new Date("2026-10-13") },
     { path: "/cambio-yen-euro", cf: "daily", p: 0.8, mod: latest },
     { path: "/blog", cf: "daily", p: 0.7, mod: latest },
     { path: "/logistica", cf: "weekly", p: 0.7, mod: latest },

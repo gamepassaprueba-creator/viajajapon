@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -16,13 +17,13 @@ import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import ramenHero from "../../../public/images/ramen.jpg";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/gastronomia", {
   title: "Gastronomía y vida diaria en Japón",
   description:
     "Qué comer en Japón, dónde y a qué precio: platos imprescindibles, konbini y opciones para celíacos, veganos y halal. Con fotos reales.",
   alternates: { canonical: "/gastronomia" },
   ...(pillarHasContent("gastronomia") ? {} : { robots: { index: false, follow: true } }),
-};
+});
 
 type Dish = {
   img: string;

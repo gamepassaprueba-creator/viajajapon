@@ -1,16 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Calculator, Coins, Luggage, ArrowRight } from "lucide-react";
+import { withSocial } from "@/lib/seo";
+import { ArrowRight } from "lucide-react";
+import { HERRAMIENTAS } from "@/lib/tools";
 import { NewsletterForm, NewsletterGate } from "@/components/NewsletterForm";
 import { SITE } from "@/lib/site";
 import { HomeYenBullet } from "./HomeYenComponents";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/", {
   title: { absolute: "ViajaJapón — Guía para viajar a Japón en 2026 (JR Pass, presupuesto y consejos)" },
   description: "Planifica tu viaje a Japón en 2026: calculadora del JR Pass, presupuesto en euros, reservas, transporte y gastronomía. Datos actualizados y experiencia real.",
   alternates: { canonical: "/" },
-};
+});
 
 const P = "/images/propias/";
 
@@ -29,11 +31,7 @@ const MAS_LEIDO = [
   { kicker: "Cultura", title: "Geiko, geisha y maiko: qué son y cómo verlas con respeto", href: "/cultura/geishas-y-maiko-japon" },
 ];
 
-const HERRAMIENTAS = [
-  { Icon: Calculator, title: "Calculadora JR Pass", desc: "Mete tu ruta y compara billetes sueltos contra el pase, en euros.", href: "/herramientas/jr-pass-calculadora", destacado: true },
-  { Icon: Coins, title: "Cambio yen-euro", desc: "Tipo de referencia del BCE, actualizado a diario.", href: "/cambio-yen-euro" },
-  { Icon: Luggage, title: "Checklist de maleta", desc: "Marca lo que llevas; se guarda en tu móvil y se imprime.", href: "/logistica/que-llevar-maleta-japon" },
-];
+
 
 const ITIN = [
   { img: `${P}tokio-torre-noche.jpg`, alt: "La Torre de Tokio iluminada de noche", badge: "7 días", title: "Esencia de Japón", ruta: "Tokio · Kioto · Nara", href: "/itinerarios/itinerario-japon-7-dias" },
@@ -57,7 +55,7 @@ const card = "border-[3px] border-[#0a0a0a] bg-white transition-all hover:transl
 
 export default async function Home() {
   return (
-    <main>
+    <div>
       {/* ══════════ HERO + PLANIFICADOR EN 3 PASOS ══════════ */}
       <section className="border-b-[3px] border-[#0a0a0a] bg-white">
         <div className="mx-auto grid max-w-7xl lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
@@ -277,6 +275,6 @@ export default async function Home() {
           </div>
         </section>
       </NewsletterGate>
-    </main>
+    </div>
   );
 }

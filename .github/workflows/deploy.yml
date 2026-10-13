@@ -119,6 +119,9 @@ jobs:
           AFF_REVOLUT: ${{ secrets.AFF_REVOLUT }}
           AFF_BOOKING: ${{ secrets.AFF_BOOKING }}
           AFF_GETYOURGUIDE: ${{ secrets.AFF_GETYOURGUIDE }}
+          # Variable de repositorio (no secret). Mientras no valga "1", las páginas no consultan
+          # /api/suscribir. Ponerla a 1 solo cuando existan los secrets de MailerLite en el Worker.
+          NEXT_PUBLIC_NEWSLETTER_ENABLED: ${{ vars.NEWSLETTER_ENABLED }}
 
       - name: Deploy a Cloudflare
         run: npx opennextjs-cloudflare deploy
@@ -261,6 +264,21 @@ jobs:
             check_redirect "https://www.viajajapon.es" "/" "https://viajajapon.com/" || return 1
             check_redirect "https://www.viajajapon.com" "/" "https://viajajapon.com/" || return 1
 
+            # http -> https lo hace Cloudflare ("Always Use HTTPS", SSL/TLS → Edge Certificates),
+            # antes del Worker y también para los assets. No hay regla en el repo: si falla, es el panel.
+            echo "Checking http -> https (Always Use HTTPS)..."
+            check_redirect "http://viajajapon.com" "/" "https://viajajapon.com/" || return 1
+            check_redirect "http://viajajapon.com" "/logistica/jr-pass-2026" "https://viajajapon.com/logistica/jr-pass-2026" || return 1
+
+            # public/_headers: los assets con hash deben salir cacheables e inmutables.
+            echo "Checking cache headers of static assets (public/_headers)..."
+            curl -sS -o temp_home_assets.html "$URL/?audit=$TS" || return 1
+            ASSET=$(grep -o '/_next/static/[^"]*\.css' temp_home_assets.html | head -1)
+            [ -n "$ASSET" ] || { echo "❌ No /_next/static CSS found in the home HTML"; return 1; }
+            curl -sS -D temp_asset_headers.txt -o /dev/null "$URL$ASSET" || return 1
+            tr -d '\r' < temp_asset_headers.txt | grep -qi '^cache-control: public, max-age=31536000, immutable' || { echo "❌ public/_headers not applied to $ASSET"; return 1; }
+            echo "✅ $ASSET is cacheable and immutable"
+
             return 0
           }
 
@@ -275,3 +293,19 @@ jobs:
           done
 
           exit 1
+
+      # IndexNow: avisa a Bing (y a los buscadores asociados) de las URL del sitemap tras cada
+      # deploy. Bing ya aporta un tercio del tráfico orgánico reciente. La clave es pública por
+      # diseño (public/<clave>.txt); no es un secret. Nunca debe tumbar el deploy.
+      - name: IndexNow (Bing y asociados)
+        if: success()
+        continue-on-error: true
+        run: |
+          KEY="85470f8e5560ba2d82180a1944eb8f62"
+          URLS=$(curl -sS "https://viajajapon.com/sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -R . | jq -s .)
+          COUNT=$(echo "$URLS" | jq length)
+          BODY=$(jq -n --arg host "viajajapon.com" --arg key "$KEY" --arg loc "https://viajajapon.com/$KEY.txt" --argjson urls "$URLS" \
+            '{host:$host,key:$key,keyLocation:$loc,urlList:$urls}')
+          STATUS=$(curl -sS -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" --data "$BODY")
+          echo "IndexNow: HTTP $STATUS para $COUNT URLs"

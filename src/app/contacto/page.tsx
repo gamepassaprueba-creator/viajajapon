@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/contacto", {
   title: "Contacto y correcciones",
   description:
     "Cómo contactar con ViajaJapón, proponer una corrección, avisar de un dato desactualizado o consultar una colaboración.",
   alternates: { canonical: "/contacto" },
-};
+});
 
 const EMAIL = "info@viajajapon.com";
 

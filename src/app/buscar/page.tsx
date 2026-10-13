@@ -12,8 +12,8 @@ export default function BuscarPage() {
   const articles = getAllArticles();
 
   return (
-    <main className="min-h-screen bg-[#f5f5f5]">
+    <div className="min-h-screen bg-[#f5f5f5]">
       <SearchClient articles={articles} />
-    </main>
+    </div>
   );
 }

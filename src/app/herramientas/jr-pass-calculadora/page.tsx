@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import Link from "next/link";
 import { JrPassCalculator } from "./JrPassCalculator";
 import { JsonLd } from "@/components/JsonLd";
@@ -7,12 +8,12 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SITE } from "@/lib/site";
 import { affiliateUrl, isMonetized, type PartnerKey } from "@/lib/affiliates";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/herramientas/jr-pass-calculadora", {
   title: "Calculadora JR Pass 2026: ¿te compensa? (en euros)",
   description:
     "Calcula en 30 segundos si el JR Pass te sale a cuenta según TU ruta, en euros y con precios 2026. Compara billetes sueltos, pase nacional y pases regionales.",
   alternates: { canonical: "/herramientas/jr-pass-calculadora" },
-};
+});
 
 const FAQS = [
   {
@@ -49,7 +50,7 @@ export default function Page() {
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
-      <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Calculadora JR Pass 2026", href: "/herramientas/jr-pass-calculadora" }]} />
+      <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Herramientas", href: "/herramientas" }, { name: "Calculadora JR Pass 2026", href: "/herramientas/jr-pass-calculadora" }]} />
       <p className="kicker mt-4 text-primary">Herramienta · Transporte</p>
       <h1 className="mt-2 text-4xl font-bold sm:text-5xl">¿Merece la pena el JR Pass en 2026?</h1>
       <p className="mt-4 text-lg leading-relaxed text-fg-muted">

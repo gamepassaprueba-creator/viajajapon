@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/cookies", {
   title: "Política de cookies",
   description: "Uso de cookies en ViajaJapón.",
   alternates: { canonical: "/cookies" },
-};
+});
 
 export default function Page() {
   return (
