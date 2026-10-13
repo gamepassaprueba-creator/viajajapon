@@ -17,6 +17,8 @@ export interface ArticleMeta {
   resumen?: string[];
   draft?: boolean;
   readingMinutes?: number;
+  /** Posición editorial en el listado de su pilar (1 = primero). Sin él, va después, por fecha. */
+  orden?: number;
 }
 
 export function getArticleSlugs(pillar: string): string[] {

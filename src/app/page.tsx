@@ -20,6 +20,7 @@ const DIAS = [
   { label: "7 días", href: "/itinerarios/itinerario-japon-7-dias" },
   { label: "10 días", href: "/itinerarios/itinerario-japon-10-dias" },
   { label: "15 días", href: "/itinerarios/itinerario-japon-15-dias" },
+  { label: "3 semanas", href: "/itinerarios/itinerario-japon-3-semanas" },
   { label: "1 mes · el más leído", href: "/itinerarios/itinerario-japon-1-mes", destacado: true },
 ];
 

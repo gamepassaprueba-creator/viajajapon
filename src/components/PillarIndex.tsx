@@ -21,7 +21,11 @@ export function PillarArticles({
   heading?: string;
   emptyMessage?: string;
 }) {
-  const posts = getArticles(pillar);
+  // Orden editorial (frontmatter `orden`) y, a igualdad, la más reciente. getArticles no cambia:
+  // lo usan el sitemap, el feed y /blog, que sí deben ir por fecha.
+  const posts = [...getArticles(pillar)].sort(
+    (a, b) => (a.orden ?? 999) - (b.orden ?? 999) || (a.dateModified < b.dateModified ? 1 : -1),
+  );
   return (
     <section className="mx-auto max-w-7xl px-4 py-12">
       <h2 className="text-balance text-3xl font-bold">{heading}</h2>

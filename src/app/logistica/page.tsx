@@ -66,7 +66,7 @@ const TEMAS: Tema[] = [
     desc: "Del Shinkansen al metro de Tokio: muévete por Japón sin perderte ni pagar de más.",
     links: [
       { href: "/logistica/jr-pass-2026", label: "JR Pass: la guía completa" },
-      { href: "/logistica/como-comprar-jr-pass", label: "Cómo comprar el JR Pass" },
+      { href: "/logistica/jr-pass-2026#como-se-compra-y-se-canjea", label: "Cómo comprar y canjear el JR Pass" },
       { href: "/logistica/suica-iphone", label: "Suica en el iPhone" },
     ],
   },

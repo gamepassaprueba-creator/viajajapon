@@ -9,6 +9,9 @@ const COLS = [
     links: [
       { label: "Itinerario de 7 días", href: "/itinerarios/itinerario-japon-7-dias" },
       { label: "Itinerario de 10 días", href: "/itinerarios/itinerario-japon-10-dias" },
+      { label: "Itinerario de 15 días", href: "/itinerarios/itinerario-japon-15-dias" },
+      { label: "Itinerario de 3 semanas", href: "/itinerarios/itinerario-japon-3-semanas" },
+      { label: "Itinerario de 1 mes", href: "/itinerarios/itinerario-japon-1-mes" },
       { label: "Calculadora del JR Pass", href: "/herramientas/jr-pass-calculadora" },
       { label: "Todas las herramientas", href: "/herramientas" },
       { label: "Cuánto cuesta viajar a Japón", href: "/logistica/cuanto-cuesta-viajar-japon" },

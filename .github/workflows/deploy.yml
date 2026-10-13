@@ -270,6 +270,10 @@ jobs:
             check_redirect "http://viajajapon.com" "/" "https://viajajapon.com/" || return 1
             check_redirect "http://viajajapon.com" "/logistica/jr-pass-2026" "https://viajajapon.com/logistica/jr-pass-2026" || return 1
 
+            echo "Checking 308 of merged guides..."
+            check_redirect "$URL" "/logistica/como-comprar-jr-pass" "https://viajajapon.com/logistica/jr-pass-2026" || return 1
+            check_redirect "$URL" "/logistica/guia-completa-japon-2026" "https://viajajapon.com/logistica/japon-por-libre-primer-viaje" || return 1
+
             # public/_headers: los assets con hash deben salir cacheables e inmutables.
             echo "Checking cache headers of static assets (public/_headers)..."
             curl -sS -o temp_home_assets.html "$URL/?audit=$TS" || return 1

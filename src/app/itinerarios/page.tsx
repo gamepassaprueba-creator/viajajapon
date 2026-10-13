@@ -14,7 +14,7 @@ import { ItinerariosFiltro } from "@/components/ItinerariosFiltro";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = withSocial("/itinerarios", {
-  title: "Itinerarios por Japón: 7, 10, 15 días y 1 mes",
+  title: "Itinerarios por Japón: rutas de 7, 10, 15 días, 3 semanas y 1 mes",
   description:
     "Itinerarios para Japón según la duración de tu viaje, con rutas, presupuesto y enlaces a la calculadora del JR Pass.",
   alternates: { canonical: "/itinerarios" },
@@ -196,7 +196,7 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-4">
           <SectionHead
             title="Elige según tus días"
-            sub="Cuatro plantillas según el tiempo que tengas. Empieza por la que más se acerque y ajústala a tu viaje."
+            sub="Cinco plantillas según el tiempo que tengas. Empieza por la que más se acerque y ajústala a tu viaje."
           />
           <ItinerariosFiltro items={ITINERARIOS} />
         </div>

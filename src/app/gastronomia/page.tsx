@@ -30,6 +30,8 @@ type Dish = {
   title: string;
   desc: string;
   lugar: string;
+  /** Guía a la que lleva la tarjeta (cada plato, a la suya; antes las tres iban a qué comer). */
+  href: string;
 };
 
 const DISHES: Dish[] = [
@@ -38,18 +40,21 @@ const DISHES: Dish[] = [
     title: "Sushi",
     desc: "El clásico, en su país de origen: arroz avinagrado y pescado fresquísimo, del nigiri al maki. Pruébalo en una barra de sushi o en un kaiten (cinta giratoria), donde eliges los platos al vuelo.",
     lugar: "Barras de sushi y kaiten, en todo Japón",
+    href: "/gastronomia/tipos-restaurantes-japon",
   },
   {
     img: "/images/ramen.jpg",
     title: "Ramen",
     desc: "Sopa de fideos con caldo que cada región interpreta a su manera: shoyu, miso, tonkotsu... Se come en locales pequeños y rápidos, muchas veces pidiendo en una máquina de tickets en la entrada.",
     lugar: "Locales de ramen, por todo el país",
+    href: "/gastronomia/que-comer-en-japon",
   },
   {
     img: "/images/yatai.jpg",
     title: "Comida callejera",
     desc: "Takoyaki, okonomiyaki, yakitori... Los puestos (yatai) y los mercados son la forma más divertida de picar de todo mientras paseas, sobre todo al caer la tarde.",
     lugar: "Puestos yatai y mercados, como Dotonbori en Osaka",
+    href: "/destinos/que-ver-en-osaka",
   },
 ];
 
@@ -176,7 +181,7 @@ export default function Page() {
             {DISHES.map((p) => (
               <Link
                 key={p.title}
-                href="/gastronomia/que-comer-en-japon"
+                href={p.href}
                 className="group overflow-hidden panel-manga-dark bg-surface"
               >
                 <div className="relative h-48">

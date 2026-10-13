@@ -50,8 +50,8 @@ const TEMAS: Tema[] = [
     title: "Festivales (matsuri)",
     desc: "Si tu viaje coincide con un matsuri, cámbialo todo para verlo: calles tomadas, carrozas, yukata y puestos de comida. Es el Japón más vivo.",
     bullets: ["Gion Matsuri (Kioto) — julio", "Tanabata — julio", "Obon — agosto"],
-    href: "/blog/tanabata-2026-festivales",
-    cta: "Tanabata 2026",
+    href: "/cultura/festivales-de-japon",
+    cta: "Festivales de Japón",
   },
   {
     img: "/images/geiko-maiko-gion.jpg",
