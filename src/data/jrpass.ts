@@ -38,7 +38,13 @@ export const SEGMENTS: Segment[] = [
 ];
 
 /** Pase regional alternativo: Kansai-Hiroshima Area Pass oficial de JR-WEST. */
-export const KANSAI_HIROSHIMA = { priceYen: 17000, days: 5, label: "Kansai-Hiroshima Area Pass (5 días)" };
+export const KANSAI_HIROSHIMA = {
+  priceYen: 17000,
+  days: 5,
+  label: "Kansai-Hiroshima Area Pass (5 días)",
+  // Página oficial en inglés de JR-WEST (comprobada el 2026-10-13; la ruta /global/ redirige aquí).
+  url: "https://www.westjr.co.jp/travel-information/en/tickets-passes/jrwest-rail-pass/kansai_hiroshima/",
+};
 
 export type Profile = "mochilero" | "medio" | "comodo";
 
@@ -70,7 +76,12 @@ export interface CalcResult {
   segmentsTotalEur: number;
   nationalPassEur: number;
   nationalPassLabel: string;
+  /** false si el viaje dura más de 21 días: el pase más largo no cubre todo el viaje. */
+  nationalPassCoversTrip: boolean;
+  /** Coste total de la opción Kansai (pase + billetes sueltos de los tramos no cubiertos). */
   kansaiEur: number | null;
+  /** Parte de kansaiEur que son billetes sueltos de tramos fuera del área del pase. */
+  kansaiUncoveredEur: number;
   cheapest: "billetes" | "nacional" | "kansai";
   savingsEur: number; // ahorro de la opción más barata frente a la siguiente
   budgetPerPersonEur: number;
@@ -92,13 +103,23 @@ export function computeJrPass(input: CalcInput, fx: number = DEFAULT_FX): CalcRe
   const segmentsYenPerPerson = selected.reduce((sum, s) => sum + s.fareYen, 0) * tripMult;
   const segmentsTotalYen = segmentsYenPerPerson * pax;
 
-  const pass = NATIONAL_PASS.find((p) => input.days <= p.maxDays) ?? NATIONAL_PASS[NATIONAL_PASS.length - 1];
+  const longestPass = NATIONAL_PASS[NATIONAL_PASS.length - 1];
+  const pass = NATIONAL_PASS.find((p) => input.days <= p.maxDays) ?? longestPass;
   const nationalPassYen = pass.priceYen * pax;
+  // El pase más largo es de 21 días. En viajes más largos, los trenes fuera de ese periodo se
+  // pagan aparte; como no sabemos cuáles caen fuera, no se inventa un "pase + resto": se avisa.
+  const nationalPassCoversTrip = input.days <= longestPass.maxDays;
 
-  // Pase Kansai-Hiroshima: solo si dura <=5 días y todos los tramos seleccionados están cubiertos.
-  const allKansai = selected.length > 0 && selected.every((s) => s.kansaiHiroshima);
-  const kansaiApplies = input.kansai && input.days <= KANSAI_HIROSHIMA.days && allKansai;
-  const kansaiYen = kansaiApplies ? KANSAI_HIROSHIMA.priceYen * pax : null;
+  // Pase Kansai-Hiroshima (5 días): se compara siempre que haya algún tramo cubierto, sumando
+  // como billetes sueltos los tramos fuera de su área (p. ej. Tokio → Kioto). Supuesto, visible
+  // en la UI: los tramos cubiertos se hacen dentro de 5 días consecutivos. Antes solo se
+  // comparaba si el viaje ENTERO duraba <=5 días, así que con los 7 días por defecto la casilla
+  // no hacía nada.
+  const covered = selected.filter((s) => s.kansaiHiroshima);
+  const uncovered = selected.filter((s) => !s.kansaiHiroshima);
+  const kansaiApplies = input.kansai && covered.length > 0;
+  const kansaiUncoveredYen = uncovered.reduce((sum, s) => sum + s.fareYen, 0) * tripMult * pax;
+  const kansaiYen = kansaiApplies ? KANSAI_HIROSHIMA.priceYen * pax + kansaiUncoveredYen : null;
 
   const options: { key: CalcResult["cheapest"]; yen: number }[] = [
     { key: "billetes", yen: segmentsTotalYen },
@@ -111,17 +132,22 @@ export function computeJrPass(input: CalcInput, fx: number = DEFAULT_FX): CalcRe
   const second = options[1];
   const savingsEur = round(yenToEur(second.yen - cheapest.yen, fx));
 
+  // Presupuesto: gasto diario + la opción de transporte MÁS BARATA (antes sumaba siempre los
+  // billetes sueltos aunque ganara un pase). Los niños cuentan como medio adulto también en
+  // alojamiento y comida: aproximación, y así se indica en la UI.
   const b = BUDGET_PER_DAY[input.profile];
   const dailyYen = b.lodging + b.food + b.local;
-  const budgetPerPersonYen = dailyYen * input.days + (selected.reduce((s, x) => s + x.fareYen, 0) * tripMult);
-  const budgetGroupYen = budgetPerPersonYen * pax;
+  const budgetGroupYen = dailyYen * input.days * pax + cheapest.yen;
+  const budgetPerPersonYen = budgetGroupYen / pax;
 
   return {
     fx,
     segmentsTotalEur: round(yenToEur(segmentsTotalYen, fx)),
     nationalPassEur: round(yenToEur(nationalPassYen, fx)),
     nationalPassLabel: pass.label,
+    nationalPassCoversTrip,
     kansaiEur: kansaiYen !== null ? round(yenToEur(kansaiYen, fx)) : null,
+    kansaiUncoveredEur: kansaiYen !== null ? round(yenToEur(kansaiUncoveredYen, fx)) : 0,
     cheapest: cheapest.key,
     savingsEur,
     budgetPerPersonEur: round(yenToEur(budgetPerPersonYen, fx)),
