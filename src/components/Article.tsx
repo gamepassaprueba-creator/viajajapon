@@ -5,8 +5,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { mdxComponents, slugify } from "@/components/mdx";
-import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
-import { affiliateUrl, isMonetized } from "@/lib/affiliates";
+import { ArticleOffers } from "@/components/ArticleOffers";
 import { getArticle, getArticles, type ArticleMeta } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { articleLd } from "@/lib/jsonld";
@@ -165,7 +164,6 @@ export async function Article({
   }
 
   const toc = tocFromContent(content);
-  const iatiMonetized = isMonetized("iati");
   const showRelatedImages = related.length > 0 && related.every((a) => a.hero);
 
   return (
@@ -254,6 +252,9 @@ export async function Article({
         )}
       </section>
 
+      {/* OFERTAS: bloque comercial visible en todos los tamaños (la sidebar solo existe en xl) */}
+      <ArticleOffers pillar={pillar} />
+
       {/* CUERPO + LATERAL (la barra lateral se muestra en xl; en móvil y tablet va todo en una columna) */}
       <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-10 xl:grid-cols-[minmax(0,1fr)_280px]">
         <div className="min-w-0 lg:mx-auto lg:max-w-3xl xl:mx-0 xl:max-w-none">
@@ -328,19 +329,6 @@ export async function Article({
               <Link href="/itinerarios" className="flex justify-between font-bold text-white hover:text-[#ffb4b0]">
                 Itinerarios día a día <span aria-hidden="true">→</span>
               </Link>
-            </div>
-            <div className="border-[3px] border-[#0a0a0a] bg-[#fff5f4] p-5">
-              <p className="kicker text-primary">{iatiMonetized ? "Seguro de viaje · enlace de afiliado" : "Seguro de viaje"}</p>
-              <p className="mt-1 font-black text-[#0a0a0a]">No viajes a Japón sin seguro médico</p>
-              <p className="mt-1 text-sm text-fg-muted">La sanidad japonesa es excelente y cara para el visitante.</p>
-              <TrackedAffiliateLink
-                href={affiliateUrl("iati")}
-                partner="iati"
-                label="Ver seguros IATI"
-                monetized={iatiMonetized}
-                placement="article_sidebar"
-                className="btn-primary mt-3 inline-block"
-              />
             </div>
           </div>
         </aside>
