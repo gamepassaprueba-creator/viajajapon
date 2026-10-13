@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { M_PLUS_1p, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { Navbar } from "@/components/Navbar";
@@ -11,9 +12,32 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { organizationLd, websiteLd } from "@/lib/jsonld";
 
-// M PLUS 1p: sans japonesa contemporánea (dirección "moderno anime/manga"). 900 para
-// titulares/logo, 400/500/700 para UI y cuerpo. JetBrains Mono para precios/kickers/fechas.
-const mplus = M_PLUS_1p({ variable: "--font-mplus", subsets: ["latin"], weight: ["400", "500", "700", "900"], display: "swap" });
+// M PLUS 1p (OFL): sans japonesa contemporánea (dirección "moderno anime/manga"). 900 para
+// titulares/logo, 400/500/700 para UI y cuerpo. Se autoaloja SOLO el subconjunto latino
+// (4 woff2 de ~18 KB en src/fonts, los mismos ficheros que sirve Google Fonts). Con
+// next/font/google el build precargaba los ~120 trozos japoneses de cada peso: 359
+// <link rel="preload"> y 377 KB de CSS bloqueante en cada página. Los glifos japoneses
+// que aparezcan en el texto caen a la pila del sistema (ver .font-jp en globals.css).
+// JetBrains Mono para precios/kickers/fechas.
+const mplus = localFont({
+  src: [
+    { path: "../fonts/mplus1p-latin-400.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/mplus1p-latin-500.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/mplus1p-latin-700.woff2", weight: "700", style: "normal" },
+    { path: "../fonts/mplus1p-latin-900.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-mplus",
+  display: "swap",
+  adjustFontFallback: "Arial",
+  // El loader exige literales (no variables): rango latino tal cual lo sirve Google Fonts.
+  declarations: [
+    {
+      prop: "unicode-range",
+      value:
+        "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD",
+    },
+  ],
+});
 const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: "variable", display: "swap" });
 
 export const metadata: Metadata = {

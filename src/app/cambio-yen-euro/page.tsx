@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 import { ClientConversorYen } from "./ClientConversorYen";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/cambio-yen-euro", {
   title: "¿A cuánto está el yen hoy? Cambio yen-euro y qué significa para tu viaje",
   description:
     "Cambio yen japonés a euro actualizado (referencia BCE) y qué supone para el presupuesto de tu viaje a Japón. Con calculadora de presupuesto.",
   alternates: { canonical: "/cambio-yen-euro" },
-};
+});
 
 const EMBED_CODE = `<iframe src="https://viajajapon.com/embed/cambio-yen" width="340" height="280" style="border:0;max-width:100%" title="Cambio yen-euro - ViajaJapon" loading="lazy"></iframe>
 <p>Conversor del yen por <a href="https://viajajapon.com">ViajaJapon</a></p>`;

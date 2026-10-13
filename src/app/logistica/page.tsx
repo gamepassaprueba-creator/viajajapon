@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import {
   ArrowRight,
   CalendarDays,
@@ -15,13 +16,13 @@ import {
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/logistica", {
   title: "Viajes prácticos: logística para tu viaje a Japón",
   description:
     "Transporte, JR Pass, eSIM, seguros, reservas y trámites: todo lo práctico y actualizado para planificar tu viaje a Japón en 2026.",
   alternates: { canonical: "/logistica" },
   ...(pillarHasContent("logistica") ? {} : { robots: { index: false, follow: true } }),
-};
+});
 
 type Tema = {
   Icon: LucideIcon;
@@ -125,6 +126,7 @@ export default function Page() {
                 src="/images/tokio.jpg"
                 alt="Cruce de Shibuya en Tokio al atardecer, lleno de gente y carteles luminosos"
                 fill
+                priority
                 sizes="(max-width:1024px) 100vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />

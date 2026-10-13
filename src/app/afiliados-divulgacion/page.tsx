@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/afiliados-divulgacion", {
   title: "Divulgación de afiliados y uso de IA",
   description:
     "Cómo se financia ViajaJapón y nuestra política de transparencia sobre enlaces de afiliado y contenido asistido por IA.",
   alternates: { canonical: "/afiliados-divulgacion" },
-};
+});
 
 export default function Page() {
   return (

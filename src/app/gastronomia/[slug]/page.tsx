@@ -4,7 +4,7 @@ import { Article, articleMetadata } from "@/components/Article";
 
 const PILLAR = "gastronomia";
 
-const SERP_OVERRIDES: Record<string, Pick<Metadata, "title" | "description">> = {
+const SERP_OVERRIDES: Record<string, { title: string; description: string }> = {
   // Experimento CTR v2 (2026-09-22).
   // V1 desde 2026-08-16: 67 -> 97 impresiones en ventanas limpias, posición ~6,6 estable y 0 clics.
   // Cambiamos solo el snippet; H1, URL y contenido permanecen estables para aislar el efecto.
@@ -21,8 +21,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const base = await articleMetadata(PILLAR, slug);
-  return { ...base, ...(SERP_OVERRIDES[slug] ?? {}) };
+  // El override entra en articleMetadata para que también cambie Open Graph/Twitter.
+  return await articleMetadata(PILLAR, slug, SERP_OVERRIDES[slug]);
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

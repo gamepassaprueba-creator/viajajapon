@@ -1,21 +1,44 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArticleCard } from "@/components/ArticleCard";
 import type { ArticleMeta } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 
+/** Minúsculas y sin diacríticos: "Kioto" encuentra "kioto" y "ramén" encuentra "ramen". */
+const fold = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
 export function SearchClient({ articles }: { articles: ArticleMeta[] }) {
   const [query, setQuery] = useState("");
 
+  // Lee ?q= al montar (el buscador de /blog y los enlaces compartidos llegan con él).
+  // No usamos useSearchParams: exigiría <Suspense> y dejaría el formulario fuera del HTML.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- estado inicial desde la URL tras hidratar
+    if (q) setQuery(q);
+  }, []);
+
+  // Refleja la búsqueda en la URL (sin recargar) para poder compartirla o volver atrás.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      const q = query.trim();
+      const search = q ? `?q=${encodeURIComponent(q)}` : "";
+      if (window.location.search !== search) {
+        window.history.replaceState(null, "", search || window.location.pathname);
+      }
+    }, 300);
+    return () => clearTimeout(t);
+  }, [query]);
+
   const filtered = useMemo(() => {
-    const q = query.toLowerCase().trim();
+    const q = fold(query).trim();
     if (!q) return [];
-    
+
     return articles.filter((a) => {
-      const matchTitle = a.title.toLowerCase().includes(q);
-      const matchDesc = (a.excerpt || a.description || "").toLowerCase().includes(q);
-      const matchPillar = a.pillar.toLowerCase().includes(q);
+      const matchTitle = fold(a.title).includes(q);
+      const matchDesc = fold(a.excerpt || a.description || "").includes(q);
+      const matchPillar = fold(a.pillar).includes(q);
       return matchTitle || matchDesc || matchPillar;
     });
   }, [query, articles]);

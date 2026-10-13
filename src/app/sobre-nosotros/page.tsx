@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 import { getAllArticles } from "@/lib/content";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/sobre-nosotros", {
   title: "Sobre nosotros: la historia detrás de ViajaJapón",
   description:
     "ViajaJapón nació de un viaje real: 15 días por Japón con mi madre por su 70 cumpleaños. Soy Sergio (Madrid); quién escribe esto y por qué fiarte.",
   alternates: { canonical: "/sobre-nosotros" },
-};
+});
 
 export default function Page() {
   const publishedGuides = getAllArticles().length;

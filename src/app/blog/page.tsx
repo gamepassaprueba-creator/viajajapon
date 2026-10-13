@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogHub, type HubItem } from "@/components/BlogHub";
@@ -7,12 +8,12 @@ import { getAllArticles } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/blog", {
   title: "Blog: guías y noticias para viajar a Japón",
   description:
     "El hub de contenido de ViajaJapón: guías de destinos, gastronomía, cultura, itinerarios y consejos prácticos, más las novedades de 2026. Filtra por categoría y empieza a planear.",
   alternates: { canonical: "/blog" },
-};
+});
 
 export default function Page() {
   const articles = getAllArticles();

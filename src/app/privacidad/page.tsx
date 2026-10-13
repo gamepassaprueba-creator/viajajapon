@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/privacidad", {
   title: "Política de privacidad",
   description: "Cómo tratamos tus datos en ViajaJapón.",
   alternates: { canonical: "/privacidad" },
-};
+});
 
 export default function Page() {
   return (

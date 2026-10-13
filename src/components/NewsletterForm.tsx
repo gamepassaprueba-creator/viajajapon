@@ -10,12 +10,20 @@ type Availability = "checking" | "available" | "unavailable";
 // consultada (evita una segunda petición y permite ocultar la sección entera).
 const NewsletterAvailabilityContext = createContext<Availability | null>(null);
 
+// Interruptor de build: sin NEXT_PUBLIC_NEWSLETTER_ENABLED=1 no se consulta /api/suscribir
+// (ahorra una invocación del Worker en cada vista de la home y la calculadora mientras
+// MailerLite no esté configurado). Con el flag, la disponibilidad real la sigue decidiendo
+// GET /api/suscribir: si faltan los secrets, el formulario no aparece (fail-closed).
+const NEWSLETTER_ENABLED = process.env.NEXT_PUBLIC_NEWSLETTER_ENABLED === "1";
+
 function useNewsletterAvailability(): Availability {
   const gated = useContext(NewsletterAvailabilityContext);
-  const [availability, setAvailability] = useState<Availability>(gated ?? "checking");
+  const [availability, setAvailability] = useState<Availability>(
+    gated ?? (NEWSLETTER_ENABLED ? "checking" : "unavailable"),
+  );
 
   useEffect(() => {
-    if (gated !== null) return;
+    if (gated !== null || !NEWSLETTER_ENABLED) return;
     let active = true;
 
     fetch("/api/suscribir", { cache: "no-store" })

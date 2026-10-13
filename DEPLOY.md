@@ -98,7 +98,16 @@ URL canónica y no paga. IATI ya monetiza con un enlace fijo en `src/lib/affilia
 - Worker `viajajapon` con custom domains `viajajapon.com` y `www.viajajapon.com`; zona
   `viajajapon.es` también en Cloudflare (las redirecciones las hace `next.config.ts`).
 - `workers_dev: false` en `wrangler.jsonc`: el sitio no se sirve por `*.workers.dev`.
-- Caché: assets estáticos de OpenNext (sin KV ni R2).
+- **http → https:** lo hace Cloudflare con **"Always Use HTTPS"** (SSL/TLS → Edge Certificates,
+  activado el 13-oct-2026 en `viajajapon.com`). Actúa antes del Worker y cubre también los assets;
+  no hay ninguna regla en el repo. El smoke test del deploy lo comprueba: si falla, es el panel.
+- Caché: assets estáticos de OpenNext (sin KV ni R2). Sus cabeceras se declaran en
+  **`public/_headers`** (chunks/fuentes inmutables un año; `/images/*` un día): sin ese fichero
+  todo salía con `max-age=0`. No afecta al HTML (lo genera el Worker) ni a `/_next/image`
+  (lo intercepta OpenNext antes de Next y hoy no lleva `Cache-Control`; pendiente de ciclo 2).
+- Newsletter: la variable de repositorio `NEWSLETTER_ENABLED` (GitHub → Settings → Variables)
+  debe valer `1` para que las páginas consulten `/api/suscribir`. Mientras no existan los secrets
+  de MailerLite en el Worker, déjala vacía: ni petición ni formulario.
 - Cabeceras de seguridad en `next.config.ts` (HSTS, nosniff, X-Frame-Options DENY salvo
   `/embed/*`, que permite iframes de terceros con `frame-ancestors *`).
 

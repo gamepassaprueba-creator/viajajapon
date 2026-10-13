@@ -1,18 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 import type { ReactNode } from "react";
 import { ArrowRight, CalendarDays, Check, MapPin, TrainFront, type LucideIcon } from "lucide-react";
 import { PillarArticles, pillarHasContent } from "@/components/PillarIndex";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/destinos", {
   title: "Destinos de Japón: guías por ciudad",
   description:
     "Guías de Tokio, Kioto, Osaka y más: qué ver, cómo moverte y dónde comer, con datos prácticos y actualizados.",
   alternates: { canonical: "/destinos" },
   ...(pillarHasContent("destinos") ? {} : { robots: { index: false, follow: true } }),
-};
+});
 
 type CityCard = {
   img: string;

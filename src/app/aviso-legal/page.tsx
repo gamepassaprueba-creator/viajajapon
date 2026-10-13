@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { withSocial } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withSocial("/aviso-legal", {
   title: "Aviso legal",
   description: "Información legal de ViajaJapón.",
   alternates: { canonical: "/aviso-legal" },
-};
+});
 
 export default function Page() {
   return (
