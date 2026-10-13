@@ -10,7 +10,7 @@ import {
   type CalcInput,
 } from "@/data/jrpass";
 import { NewsletterForm, NewsletterGate } from "@/components/NewsletterForm";
-import { trackEvent } from "@/lib/analytics";
+import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 
 const eur = (n: number) => `${n.toLocaleString("es-ES")}€`;
 
@@ -187,12 +187,12 @@ export function JrPassCalculator({
           </p>
           <div className="mt-3 flex flex-col gap-2">
             {r.verdictWorthIt ? (
-              <AffLink link={aff.jrpass}>Ver precios del JR Pass</AffLink>
+              <CalcLink link={aff.jrpass} label={aff.jrpass.monetized ? "Ver precios del JR Pass" : "Ver precios del JR Pass (web oficial)"} variant="solid" verdict={r.cheapest} />
             ) : (
-              <AffLink link={aff.civitatis}>Reservar actividades y traslados</AffLink>
+              <CalcLink link={aff.civitatis} label="Reservar actividades y traslados" variant="solid" verdict={r.cheapest} />
             )}
-            <AffLink link={aff.iati} variant="ghost">Comparar seguro de viaje</AffLink>
-            <AffLink link={aff.holafly} variant="ghost">eSIM con datos para Japón</AffLink>
+            <CalcLink link={aff.iati} label="Comparar seguro de viaje" variant="ghost" verdict={r.cheapest} />
+            <CalcLink link={aff.holafly} label="eSIM con datos para Japón" variant="ghost" verdict={r.cheapest} />
           </div>
           <p className="mt-3 text-xs text-fg-muted">
             {anyMonetized
@@ -230,42 +230,37 @@ export function JrPassCalculator({
   );
 }
 
-function AffLink({
+const CALC_LINK_BASE = "inline-flex items-center justify-between gap-1.5 px-4 py-2.5 font-mono text-xs font-black uppercase tracking-wide transition-colors";
+const CALC_LINK_SOLID = "border-[2px] border-[#0a0a0a] bg-[#e1352e] text-white hover:bg-[#b8271f]";
+const CALC_LINK_GHOST = "border-[2px] border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-white";
+
+/**
+ * Enlace comercial de la calculadora sobre el mismo TrackedAffiliateLink que el resto del
+ * sitio: `rel="sponsored"` solo si el partner paga (antes iba fijo, también hacia la web
+ * oficial del JR Pass) y el evento affiliate_click lleva el mismo esquema (placement en vez
+ * de `source`, con content_slug y cta_variant = veredicto).
+ */
+function CalcLink({
   link,
-  variant = "solid",
-  children,
+  label,
+  variant,
+  verdict,
 }: {
   link: CalcAffLink;
-  variant?: "solid" | "ghost";
-  children: React.ReactNode;
+  label: string;
+  variant: "solid" | "ghost";
+  verdict: string;
 }) {
-  const cls =
-    variant === "solid"
-      ? "border-[2px] border-[#0a0a0a] bg-[#e1352e] text-white hover:bg-[#b8271f]"
-      : "border-[2px] border-[#0a0a0a] bg-white text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-white";
-
-  const onClick = () => {
-    trackEvent("affiliate_click", {
-      provider: link.partner,
-      link_url: link.href,
-      link_text: typeof children === "string" ? children : "calculator_cta",
-      page_path: window.location.pathname,
-      source: "jrpass_calculator",
-      monetized: link.monetized ? 1 : 0,
-    });
-  };
-
   return (
-    <a
+    <TrackedAffiliateLink
       href={link.href}
-      target="_blank"
-      rel="sponsored nofollow noopener noreferrer"
-      onClick={onClick}
-      className={`inline-flex items-center justify-between gap-1.5 px-4 py-2.5 font-mono text-xs font-black uppercase tracking-wide transition-colors ${cls}`}
-    >
-      <span>{children}</span>
-      <span aria-hidden="true">→</span>
-    </a>
+      partner={link.partner}
+      label={label}
+      monetized={link.monetized}
+      placement="calculator_next_step"
+      ctaVariant={verdict}
+      className={`${CALC_LINK_BASE} ${variant === "solid" ? CALC_LINK_SOLID : CALC_LINK_GHOST}`}
+    />
   );
 }
 

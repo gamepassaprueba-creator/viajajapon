@@ -41,6 +41,11 @@ interface Partner {
   trackedDefault?: string;
   /** Nombre de la variable de entorno con el enlace de tracking COMPLETO. */
   env: string;
+  /**
+   * CTA cuando NO hay tracking. Por defecto "Ver en {name}". Solo se personaliza cuando el
+   * fallback no es la web del partner (p. ej. jrpass cae en la web oficial japanrailpass.net).
+   */
+  neutralCta?: string;
 }
 
 const PARTNERS: Record<PartnerKey, Partner> = {
@@ -94,6 +99,7 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     network: "JRPass.com Affiliate",
     fallback: "https://japanrailpass.net/es/",
     env: "AFF_JRPASS",
+    neutralCta: "Ver en la web oficial (japanrailpass.net)",
   },
   revolut: {
     name: "Revolut",
@@ -149,6 +155,15 @@ export function isTrackedAffiliateHref(href: string): boolean {
 
 export function partnerName(partner: PartnerKey): string {
   return PARTNERS[partner]?.name ?? partner;
+}
+
+/**
+ * CTA cuando el partner NO monetiza: nunca promete comisión ni llama "web oficial" a una
+ * tienda (Civitatis, Booking o Klook no lo son). "Ver en Civitatis" es verdad siempre.
+ */
+export function neutralCta(partner: PartnerKey): string {
+  const p = PARTNERS[partner];
+  return p?.neutralCta ?? `Ver en ${p?.name ?? partner}`;
 }
 
 export function partnerNetwork(partner: PartnerKey): string {

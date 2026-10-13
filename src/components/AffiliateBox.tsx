@@ -1,5 +1,5 @@
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
-import { affiliateUrl, isMonetized, type PartnerKey } from "@/lib/affiliates";
+import { affiliateUrl, isMonetized, neutralCta, type PartnerKey } from "@/lib/affiliates";
 
 export interface AffiliateBoxProps {
   /** Clave del partner en el registro central (src/lib/affiliates.ts). */
@@ -15,8 +15,8 @@ export interface AffiliateBoxProps {
 
 /**
  * Caja de recomendación. El disclosure "enlace de afiliado" solo se muestra si el
- * partner tiene tracking configurado. Si no monetiza, el CTA deja claro que se abre
- * la web oficial y el enlace no se marca como sponsored.
+ * partner tiene tracking configurado. Si no monetiza, el CTA pasa a uno neutro y honesto
+ * ("Ver en Civitatis"; "web oficial" solo cuando lo es) y el enlace no se marca sponsored.
  */
 export function AffiliateBox({
   partner,
@@ -28,7 +28,7 @@ export function AffiliateBox({
 }: AffiliateBoxProps) {
   const href = affiliateUrl(partner);
   const monetized = isMonetized(partner);
-  const effectiveCta = monetized ? cta : "Visitar web oficial";
+  const effectiveCta = monetized ? cta : neutralCta(partner);
 
   return (
     <aside className="panel-manga-red my-8 bg-white p-5">
