@@ -47,6 +47,9 @@ for (const pillar of pillars) {
     if (!data.kicker) throw new Error(`Falta 'kicker' en ${filePath}`);
     if (!data.datePublished) throw new Error(`Falta 'datePublished' en ${filePath}`);
     if (!data.dateModified) throw new Error(`Falta 'dateModified' en ${filePath}`);
+    if (data.orden !== undefined && (!Number.isInteger(data.orden) || data.orden < 1)) {
+      throw new Error(`'orden' debe ser un entero >= 1 en ${filePath}`);
+    }
 
     // Asegurar que las fechas son strings ISO si gray-matter las parseó como Date
     const datePublished = data.datePublished instanceof Date ? data.datePublished.toISOString() : String(data.datePublished);
@@ -69,7 +72,32 @@ for (const pillar of pillars) {
   }
 }
 
-// 3. Generar el manifiesto global
+// 3. Validar el mapa editorial de relacionados (src/data/related-content.json): cada clave y
+//    cada destino deben existir, sin autoenlaces. Así borrar o renombrar un MDX rompe el build
+//    en vez de dejar enlaces muertos en "Sigue leyendo".
+const relatedPath = path.join(__dirname, "../src/data/related-content.json");
+if (fs.existsSync(relatedPath)) {
+  const related = JSON.parse(fs.readFileSync(relatedPath, "utf8"));
+  const keys = new Set(allArticlesMeta.map((a) => `${a.pillar}/${a.slug}`));
+  const errors = [];
+  for (const [key, targets] of Object.entries(related)) {
+    if (!keys.has(key)) errors.push(`related-content: la clave "${key}" no existe en content/`);
+    if (!Array.isArray(targets)) {
+      errors.push(`related-content: "${key}" debe ser una lista`);
+      continue;
+    }
+    for (const target of targets) {
+      if (!keys.has(target)) errors.push(`related-content: "${key}" enlaza a "${target}", que no existe`);
+      if (target === key) errors.push(`related-content: "${key}" se enlaza a sí misma`);
+    }
+    if (targets.length < 3) console.warn(`[build] aviso: "${key}" tiene menos de 3 relacionados`);
+  }
+  const missing = [...keys].filter((k) => !related[k] && !k.startsWith("blog/"));
+  if (missing.length) console.warn(`[build] aviso: guías sin relacionados editoriales: ${missing.join(", ")}`);
+  if (errors.length) throw new Error(errors.join("\n"));
+}
+
+// 4. Generar el manifiesto global
 const manifestCode = `// Este archivo se genera automáticamente. No editar manualmente.
 import type { ArticleMeta } from "@/lib/content";
 

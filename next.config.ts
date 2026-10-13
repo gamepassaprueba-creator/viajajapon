@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   // "/:path*" deja el token ":path*" sin interpolar cuando el path va vacío (raíz).
   // Con "/" exacto + "/:path+" (uno o más segmentos) cada caso interpola bien.
   async redirects() {
-    return ["viajajapon.es", "www.viajajapon.es", "www.viajajapon.com"].flatMap((host) => [
+    const hostRules = ["viajajapon.es", "www.viajajapon.es", "www.viajajapon.com"].flatMap((host) => [
       {
         source: "/",
         has: [{ type: "host" as const, value: host }],
@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ]);
+    // Guías fusionadas (2026-10-13): su contenido único vive ahora en el destino. 308 permanente.
+    // En producción OpenNext emite la Location absoluta; el smoke test del deploy lo comprueba.
+    const merged: [string, string][] = [
+      ["/logistica/como-comprar-jr-pass", "/logistica/jr-pass-2026"],
+      ["/logistica/guia-completa-japon-2026", "/logistica/japon-por-libre-primer-viaje"],
+    ];
+    return [
+      ...hostRules,
+      ...merged.map(([source, destination]) => ({ source, destination, permanent: true })),
+    ];
   },
   // Cabeceras de seguridad básicas (no rompen nada, suman en auditorías).
   async headers() {
