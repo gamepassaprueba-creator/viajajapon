@@ -80,9 +80,27 @@ export function CalculatorCTA() {
   );
 }
 
-/** Bloque de experiencia real del autor (E-E-A-T). Rellénalo con tu vivencia + foto. */
+/**
+ * Bloque de experiencia real del autor (E-E-A-T). Solo con hechos del viaje documentado
+ * (docs/EXPERIENCIAS-DOCUMENTADAS.md): nunca inventar. Lleva avatar y etiqueta para que se
+ * distinga a simple vista de la prosa (antes era un aside en cursiva sin señal de autoría).
+ */
 export function AuthorNote({ children }: { children: React.ReactNode }) {
-  return <aside className="my-8 border-l-2 border-primary pl-4 italic text-fg-muted">{children}</aside>;
+  return (
+    <aside className="my-8 flex gap-4 border-[3px] border-[#0a0a0a] bg-[#fff5f4] p-4 shadow-[4px_4px_0_#e1352e] sm:p-5">
+      <Image
+        src="/avatares/sergio.webp"
+        alt=""
+        width={48}
+        height={48}
+        className="size-12 shrink-0 rounded-full border-[2px] border-[#0a0a0a] object-cover"
+      />
+      <div className="min-w-0">
+        <p className="kicker text-primary">Experiencia real · viaje de diciembre de 2025</p>
+        <div className="mt-1 text-[15px] leading-relaxed text-[#2b2b2b]">{children}</div>
+      </div>
+    </aside>
+  );
 }
 
 /** Índice de la guía: enlaces de ancla a los h2 (los ids se generan solos del texto). */

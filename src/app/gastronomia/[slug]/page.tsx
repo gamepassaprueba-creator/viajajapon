@@ -4,16 +4,11 @@ import { Article, articleMetadata } from "@/components/Article";
 
 const PILLAR = "gastronomia";
 
-const SERP_OVERRIDES: Record<string, { title: string; description: string }> = {
-  // Experimento CTR v2 (2026-09-22).
-  // V1 desde 2026-08-16: 67 -> 97 impresiones en ventanas limpias, posición ~6,6 estable y 0 clics.
-  // Cambiamos solo el snippet; H1, URL y contenido permanecen estables para aislar el efecto.
-  "tipos-restaurantes-japon": {
-    title: "Tipos de restaurantes en Japón: izakaya, ramen, sushi y más",
-    description:
-      "Desde restaurantes tradicionales e izakayas hasta ramen-ya, sushi en cinta, yakiniku y kaiseki: qué tipo elegir, precios y cómo pedir en Japón.",
-  },
-};
+// Overrides de snippet (title/description) para experimentos de CTR sin tocar el MDX.
+// Historial: el experimento de tipos-restaurantes (ago-sep 2026: "izakaya, ramen, sushi y más")
+// acercó su título al de que-comer-en-japon (que Google tenía sin indexar) y no trajo clics;
+// se retiró el 2026-10-13 para que cada guía tenga un título claramente distinto.
+const SERP_OVERRIDES: Record<string, { title: string; description: string }> = {};
 
 export function generateStaticParams() {
   return getArticleSlugs(PILLAR).map((slug) => ({ slug }));
