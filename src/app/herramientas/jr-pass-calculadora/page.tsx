@@ -22,7 +22,7 @@ const FAQS = [
   },
   {
     q: "¿Merece la pena el JR Pass tras la subida de precio?",
-    a: "Depende de tu ruta. Para un viaje corto centrado en Tokio-Kioto-Osaka casi nunca compensa el pase nacional; suele salir más barato comprar billetes sueltos o un pase regional. La calculadora compara también el Kansai-Hiroshima Area Pass cuando todos tus trayectos seleccionados están cubiertos.",
+    a: "Depende de tu ruta. Para un viaje corto centrado en Tokio-Kioto-Osaka casi nunca compensa el pase nacional; suele salir más barato comprar billetes sueltos o un pase regional. Si marcas la casilla, la calculadora compara también el Kansai-Hiroshima Area Pass: suma el pase para los trayectos de Kansai e Hiroshima y billetes sueltos para el resto (por ejemplo, Tokio → Kioto).",
   },
   {
     q: "¿El JR Pass cubre el Nozomi y el Mizuho?",
