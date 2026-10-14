@@ -19,6 +19,8 @@ export interface ArticleMeta {
   readingMinutes?: number;
   /** Posición editorial en el listado de su pilar (1 = primero). Sin él, va después, por fecha. */
   orden?: number;
+  /** Clave de Booking (src/data/booking-links.ts) para el bloque de ofertas: "kioto", "hakone-ryokan"… */
+  destinoBooking?: string;
 }
 
 export function getArticleSlugs(pillar: string): string[] {

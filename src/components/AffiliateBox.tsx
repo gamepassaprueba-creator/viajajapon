@@ -11,6 +11,8 @@ export interface AffiliateBoxProps {
   placement?: string;
   /** Variante visual/copy del CTA para experimentos. */
   ctaVariant?: string;
+  /** Solo Booking: clave de destino de src/data/booking-links.ts ("kioto", "hakone-ryokan"…). */
+  destino?: string;
 }
 
 /**
@@ -25,10 +27,11 @@ export function AffiliateBox({
   children,
   placement = "affiliate_box",
   ctaVariant = "default",
+  destino,
 }: AffiliateBoxProps) {
-  const href = affiliateUrl(partner);
-  const monetized = isMonetized(partner);
-  const effectiveCta = monetized ? cta : neutralCta(partner);
+  const href = affiliateUrl(partner, destino);
+  const monetized = isMonetized(partner, destino);
+  const effectiveCta = monetized ? cta : neutralCta(partner, destino);
 
   return (
     <aside className="panel-manga-red my-8 bg-white p-5">
@@ -42,6 +45,7 @@ export function AffiliateBox({
         monetized={monetized}
         placement={placement}
         ctaVariant={ctaVariant}
+        destination={destino}
         className="btn-primary mt-4"
       />
     </aside>

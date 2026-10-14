@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta, type PartnerKey } from "@/lib/affiliates";
+import { bookingQue } from "@/data/booking-links";
 
 type Offer =
   | { kind: "partner"; partner: PartnerKey; title: string; blurb: string; cta: string }
@@ -19,7 +20,7 @@ type OfferKey = keyof typeof OFFERS;
 /** Qué ofrecer según el pilar: solo lo que encaja con la intención de esa guía. */
 const BY_PILLAR: Record<string, OfferKey[]> = {
   logistica: ["iati", "holafly", "civitatis", "calculadora"],
-  itinerarios: ["iati", "holafly", "civitatis", "calculadora"],
+  itinerarios: ["booking", "iati", "civitatis", "calculadora"],
   destinos: ["booking", "civitatis", "calculadora"],
   gastronomia: ["civitatis", "calculadora"],
   cultura: ["civitatis", "calculadora"],
@@ -37,11 +38,19 @@ const COLS: Record<number, string> = {
  * zona comercial era la barra lateral `hidden xl:block`: en móvil y tablet no existía).
  * Va justo después de "En 30 segundos", cuando el lector ya sabe de qué va la guía.
  * El disclosure dice la verdad: solo habla de afiliación si alguno de los partners paga.
+ * `destino` (frontmatter `destinoBooking`) lleva la caja de Booking a la ciudad de la guía; en
+ * una guía de logística con destino, Booking entra en lugar de Civitatis.
  */
-export function ArticleOffers({ pillar }: { pillar: string }) {
-  const keys = BY_PILLAR[pillar] ?? BY_PILLAR.logistica;
-  const offers = keys.map((key) => ({ key, ...OFFERS[key] }));
-  const anyMonetized = offers.some((o) => o.kind === "partner" && isMonetized(o.partner));
+export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: string }) {
+  let keys = BY_PILLAR[pillar] ?? BY_PILLAR.logistica;
+  if (destino && !keys.includes("booking")) keys = ["booking", ...keys.filter((k) => k !== "civitatis")];
+  const offers = keys.map((key) => {
+    const o: Offer = OFFERS[key];
+    if (key !== "booking" || !destino) return { key, ...o };
+    const que = bookingQue(destino);
+    return { key, ...o, title: que.charAt(0).toUpperCase() + que.slice(1) };
+  });
+  const anyMonetized = offers.some((o) => o.kind === "partner" && isMonetized(o.partner, destino));
   const cols = COLS[offers.length] ?? COLS[4];
 
   return (
@@ -58,12 +67,13 @@ export function ArticleOffers({ pillar }: { pillar: string }) {
               <p className="mt-1 flex-1 text-sm leading-relaxed text-fg-muted">{o.blurb}</p>
               {o.kind === "partner" ? (
                 <TrackedAffiliateLink
-                  href={affiliateUrl(o.partner)}
+                  href={affiliateUrl(o.partner, destino)}
                   partner={o.partner}
-                  monetized={isMonetized(o.partner)}
-                  label={isMonetized(o.partner) ? o.cta : neutralCta(o.partner)}
+                  monetized={isMonetized(o.partner, destino)}
+                  label={isMonetized(o.partner, destino) ? o.cta : neutralCta(o.partner)}
                   placement="article_top"
                   ctaVariant={pillar}
+                  destination={o.partner === "booking" ? destino ?? "japon" : undefined}
                   className="btn-primary mt-3 inline-block text-sm"
                 />
               ) : (
