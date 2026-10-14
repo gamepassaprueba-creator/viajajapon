@@ -79,6 +79,8 @@ export const metadata: Metadata = {
     "google-adsense-account": "ca-pub-7277317479691987",
     // Verificacion de propiedad del dominio en Pinterest (etiqueta publica).
     "p:domain_verify": "41185f2b22afdeee5ec9712d22d0fe6a",
+    // Verificación de Bing Webmaster Tools (sitemap, IndexNow y URL Submission de Bing).
+    "msvalidate.01": "19B0771F4AA464314CB76CC73C175AB4",
   },
 };
 
