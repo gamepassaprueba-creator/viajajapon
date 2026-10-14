@@ -153,6 +153,11 @@ jobs:
                 return 1
                 ;;
             esac
+            # Next devuelve los 308 de next.config con Location relativa ("/logistica/..."),
+            # válida según RFC 9110: se resuelve contra el origen antes de comparar.
+            case "$LOCATION" in
+              /*) LOCATION="${ORIGIN}${LOCATION}" ;;
+            esac
             if [ "$LOCATION" != "$EXPECTED" ]; then
               echo "❌ Wrong Location from ${ORIGIN}${PATHNAME}: ${LOCATION} (expected ${EXPECTED})"
               return 1
