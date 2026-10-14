@@ -95,7 +95,8 @@ export function GoogleAnalytics() {
             ad_personalization: 'denied'
           });
           window.gtag('js', new Date());
-          window.gtag('config', '${GA4_MEASUREMENT_ID}');
+          // ?ga_debug=1 marca la sesión para GA4 DebugView (verificar affiliate_click en producción).
+          window.gtag('config', '${GA4_MEASUREMENT_ID}', /[?&]ga_debug=1(?:&|$)/.test(window.location.search) ? { debug_mode: true } : {});
         `}
       </Script>
       <Script
