@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = withSocial("/nuestro-viaje-japon", {
-  title: "Nuestro viaje a Japón: 15 días, madre e hijo (diciembre de 2025)",
+  title: "Nuestro viaje a Japón: 15 días, madre e hijo",
   description:
     "El viaje real que dio origen a ViajaJapón: 15 días por Tokio, Kioto, Osaka y Yokohama, lo que salió bien, los errores y lo que aprendimos al organizarlo por libre.",
   alternates: { canonical: "/nuestro-viaje-japon" },

@@ -38,7 +38,9 @@ const mplus = localFont({
     },
   ],
 });
-const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: "variable", display: "swap" });
+// Sin preload: solo pinta kickers y botones pequeños, y su fallback está ajustado en métricas. Era la
+// fuente más pesada (41 KB) y la primera en la cola, compitiendo con el CSS y el H1 (LCP).
+const jetbrains = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], weight: "variable", display: "swap", preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

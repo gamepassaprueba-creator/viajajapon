@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 import { ClientConversorYen } from "./ClientConversorYen";
 
 export const metadata: Metadata = withSocial("/cambio-yen-euro", {
-  title: "¿A cuánto está el yen hoy? Cambio yen-euro y qué significa para tu viaje",
+  title: "Cambio yen-euro hoy: ¿a cuánto está el yen?",
   description:
     "Cambio yen japonés a euro actualizado (referencia BCE) y qué supone para el presupuesto de tu viaje a Japón. Con calculadora de presupuesto.",
   alternates: { canonical: "/cambio-yen-euro" },

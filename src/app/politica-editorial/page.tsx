@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = withSocial("/politica-editorial", {
-  title: "Política editorial: fuentes, actualizaciones y correcciones",
+  title: "Política editorial: fuentes y correcciones",
   description:
     "Cómo se crea y verifica el contenido de ViajaJapón: experiencia propia, fuentes oficiales, actualizaciones, correcciones, IA y monetización.",
   alternates: { canonical: "/politica-editorial" },
