@@ -29,7 +29,8 @@ export interface Segment {
 export const SEGMENTS: Segment[] = [
   { id: "tokio-kioto", label: "Tokio → Kioto", fareYen: 14170 },
   { id: "tokio-osaka", label: "Tokio → Shin-Osaka", fareYen: 14400 },
-  { id: "kioto-osaka", label: "Kioto → Osaka", fareYen: 570, kansaiHiroshima: true },
+  // ¥580: tarifa especial de JR West Osaka–Kioto, sin cambios en la revisión de 1-abr-2025 (verificado 2026-10-14).
+  { id: "kioto-osaka", label: "Kioto → Osaka", fareYen: 580, kansaiHiroshima: true },
   { id: "osaka-hiroshima", label: "Shin-Osaka → Hiroshima", fareYen: 10000, kansaiHiroshima: true },
   { id: "tokio-hiroshima", label: "Tokio → Hiroshima", fareYen: 19440 },
   { id: "tokio-hakone", label: "Tokio → Odawara (Hakone)", fareYen: 3220 },
