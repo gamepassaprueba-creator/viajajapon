@@ -82,11 +82,11 @@ export function DormirEn({
               href={affiliateUrl("booking", ryokan)}
               partner="booking"
               monetized={isMonetized("booking", ryokan)}
-              label="Solo ryokan "
+              label={`Solo ryokan en ${bookingLabel(ryokan)}`}
               placement={`${placement}_ryokan`}
               ctaVariant="dormir_en"
               destination={ryokan}
-              className="inline-flex min-h-11 items-center justify-center text-sm font-bold text-primary hover:underline sm:justify-start"
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 text-sm font-bold text-primary hover:underline sm:justify-start"
             />
           )}
         </div>
@@ -106,6 +106,8 @@ interface Zona {
   y: number;
   tipo?: ZonaTipo;
   nota?: string;
+  /** Hacia dónde sale la etiqueta (escritorio). Por defecto, a la izquierda si x > 55. */
+  lado?: "izq" | "der";
 }
 
 interface Linea {
@@ -127,6 +129,8 @@ const clamp = (n: number) => Math.min(96, Math.max(4, n));
 /**
  * Mapa mental de zonas: esquema (no a escala) con puntos numerados sobre papel punteado y la
  * misma lista en texto debajo o al lado (lo que leen los lectores de pantalla y Google).
+ * En móvil el mapa solo lleva los números (las etiquetas se pisarían a 375 px); la lista
+ * de debajo da los nombres. Desde `sm` se ven también las etiquetas.
  */
 export function ZonasMapa({
   titulo,
@@ -171,21 +175,21 @@ export function ZonasMapa({
             );
           })}
           {zonas.map((z, i) => {
-            const derecha = z.x > 60;
+            const etiquetaIzq = z.lado ? z.lado === "izq" : z.x > 55;
             return (
               <div
                 key={z.nombre}
-                className={`absolute flex items-center gap-1.5 ${derecha ? "flex-row-reverse" : ""}`}
+                className={`absolute flex items-center gap-1.5 ${etiquetaIzq ? "flex-row-reverse" : ""}`}
                 style={{
                   left: `${clamp(z.x)}%`,
                   top: `${clamp(z.y)}%`,
-                  transform: derecha ? "translate(calc(-100% + 14px), -14px)" : "translate(-14px, -14px)",
+                  transform: etiquetaIzq ? "translate(calc(-100% + 14px), -14px)" : "translate(-14px, -14px)",
                 }}
               >
                 <span className={`flex size-7 shrink-0 items-center justify-center rounded-full border-[3px] text-xs font-black ${PUNTO[z.tipo ?? "matices"]}`}>
                   {i + 1}
                 </span>
-                <span className="whitespace-nowrap border-[2px] border-[#0a0a0a] bg-white px-1.5 py-px text-[11px] font-black text-[#0a0a0a] sm:text-xs">
+                <span className="hidden whitespace-nowrap border-[2px] border-[#0a0a0a] bg-white px-1.5 py-px text-xs font-black text-[#0a0a0a] sm:inline-block">
                   {z.nombre}
                 </span>
               </div>
