@@ -48,10 +48,10 @@ const CITIES: CityCard[] = [
     img: "/images/osaka.jpg",
     alt: "Ambiente nocturno de Osaka con carteles luminosos",
     title: "Osaka",
-    desc: "La ciudad del buen comer y del ambiente desenfadado: Dotonbori, el castillo y Universal Studios Japan.",
-    tags: ["Dotonbori", "Namba", "Castillo"],
-    href: "/destinos/que-ver-en-osaka",
-    cta: "Qué ver en Osaka",
+    desc: "La ciudad del buen comer y del ambiente desenfadado, y la base barata para ver Kioto en cerezos: sus hoteles apenas suben cuando los de Kioto se disparan.",
+    tags: ["Dotonbori", "Namba", "Umeda"],
+    href: "/destinos/donde-dormir-en-osaka",
+    cta: "Dónde dormir en Osaka",
   },
 ];
 
@@ -78,8 +78,8 @@ const BASE_FEATURES: BaseFeature[] = [
       "Con súper o konbini al lado",
       "Evita traslados con muchas escaleras",
     ],
-    href: "/destinos/donde-dormir-en-tokio",
-    link: "Ejemplo práctico: dormir en Tokio",
+    href: "/destinos/alojamiento-en-japon",
+    link: "Tipos, precios y zona buena en cada ciudad",
   },
   {
     Icon: TrainFront,
