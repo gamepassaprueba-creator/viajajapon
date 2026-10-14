@@ -23,6 +23,8 @@ const COLS = [
     links: [
       { label: "Dónde dormir en Tokio", href: "/destinos/donde-dormir-en-tokio" },
       { label: "Dónde dormir en Kioto", href: "/destinos/donde-dormir-en-kioto" },
+      { label: "Dónde dormir en Osaka", href: "/destinos/donde-dormir-en-osaka" },
+      { label: "Ryokan en Japón", href: "/destinos/ryokan-en-japon" },
       { label: "Japón por libre (empieza aquí)", href: "/logistica/japon-por-libre-primer-viaje" },
       { label: "Desde México y Latinoamérica", href: "/logistica/japon-desde-mexico-y-latinoamerica" },
       { label: "Todos los destinos", href: "/destinos" },

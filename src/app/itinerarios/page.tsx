@@ -14,7 +14,7 @@ import { ItinerariosFiltro } from "@/components/ItinerariosFiltro";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = withSocial("/itinerarios", {
-  title: "Itinerarios por Japón: rutas de 7, 10, 15 días, 3 semanas y 1 mes",
+  title: "Itinerarios por Japón: de 7 días a 1 mes",
   description:
     "Itinerarios para Japón según la duración de tu viaje, con rutas, presupuesto y enlaces a la calculadora del JR Pass.",
   alternates: { canonical: "/itinerarios" },

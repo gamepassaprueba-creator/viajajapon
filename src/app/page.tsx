@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
 import { HomeYenBullet } from "./HomeYenComponents";
 
 export const metadata: Metadata = withSocial("/", {
-  title: { absolute: "ViajaJapón — Guía para viajar a Japón en 2026 (JR Pass, presupuesto y consejos)" },
+  title: { absolute: "Viajar a Japón en 2026: guía, JR Pass y presupuesto · ViajaJapón" },
   description: "Planifica tu viaje a Japón en 2026: calculadora del JR Pass, presupuesto en euros, reservas, transporte y gastronomía. Datos actualizados y experiencia real.",
   alternates: { canonical: "/" },
 });
@@ -50,6 +50,8 @@ const DESTINOS = [
 const DORMIR = [
   { img: `${P}kioto-ryokan-kagihei-futones.jpg`, alt: "Futones sobre tatami en un ryokan de Kioto", kicker: "Kioto", title: "Dónde alojarse en Kioto: mejores zonas", desc: "Centro, estación, Gion o el truco de dormir en Osaka.", href: "/destinos/donde-dormir-en-kioto" },
   { img: `${P}tokio-hotel-habitacion-tatami.jpg`, alt: "Habitación de hotel en Tokio con tarima de tatami", kicker: "Tokio", title: "Dónde dormir en Tokio por barrios", desc: "La regla de oro: una estación bien conectada.", href: "/destinos/donde-dormir-en-tokio" },
+  { img: `${P}osaka-castillo-puerta-noche.jpg`, alt: "Puerta del castillo de Osaka iluminada de noche", kicker: "Osaka", title: "Dónde alojarse en Osaka por zonas", desc: "Namba, Umeda y el truco para ver Kioto en cerezos.", href: "/destinos/donde-dormir-en-osaka" },
+  { img: `${P}kioto-ryokan-kagihei-autor.jpg`, alt: "El autor con yukata en la habitación de tatami de un ryokan de Kioto", kicker: "Ryokan", title: "Ryokan en Japón: cómo elegir y cuánto cuesta", desc: "Onsen privado, cena incluida y la etiqueta, paso a paso.", href: "/destinos/ryokan-en-japon" },
 ];
 
 const card = "border-[3px] border-[#0a0a0a] bg-white transition-all hover:translate-x-0.5 hover:translate-y-0.5";
@@ -238,6 +240,9 @@ export default async function Home() {
             </Link>
           ))}
         </div>
+        <Link href="/destinos/alojamiento-en-japon" className="mt-5 inline-flex items-center gap-1.5 font-bold text-primary hover:underline">
+          Tipos de alojamiento, precios y zona buena en cada ciudad <ArrowRight size={16} aria-hidden="true" />
+        </Link>
       </section>
 
       {/* ══════════ POR QUÉ ESTA GUÍA ══════════ */}
