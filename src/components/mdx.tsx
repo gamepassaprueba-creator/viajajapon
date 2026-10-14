@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { isTrackedAffiliateHref } from "@/lib/affiliates";
+import { affiliateUrl, isMonetized, isTrackedAffiliateHref, neutralCta } from "@/lib/affiliates";
 import {
   ArrowRight,
   Baby,
@@ -42,6 +42,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { AffiliateBox } from "./AffiliateBox";
+import { DormirEn, ZonasMapa, avisoBooking } from "./Alojamiento";
+import { TrackedAffiliateLink } from "./TrackedAffiliateLink";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
 import { BudgetCalculator } from "./BudgetCalculator";
@@ -354,6 +356,8 @@ interface CardItem {
   puntos?: string[];
   href?: string;
   cta?: string;
+  /** Clave de Booking (src/data/booking-links.ts): añade el botón de alojamiento de esa zona. */
+  booking?: string;
 }
 
 /**
@@ -412,6 +416,21 @@ export function Cards({ items, cols = 2 }: { items: CardItem[]; cols?: 2 | 3 }) 
               <Link href={c.href} className="mt-4 inline-flex items-center gap-1.5 pt-1 text-sm font-semibold text-primary group-hover:underline">
                 {c.cta ?? "Ver guía"} <ArrowRight size={15} aria-hidden="true" />
               </Link>
+            )}
+            {c.booking && (
+              <div className="mt-auto flex flex-col gap-1.5 pt-5">
+                <TrackedAffiliateLink
+                  href={affiliateUrl("booking", c.booking)}
+                  partner="booking"
+                  monetized={isMonetized("booking", c.booking)}
+                  label={neutralCta("booking", c.booking)}
+                  placement="zone_card"
+                  ctaVariant="cards"
+                  destination={c.booking}
+                  className="btn-primary justify-center text-center text-sm"
+                />
+                <p className="text-center text-[11px] text-fg-muted">{avisoBooking(isMonetized("booking", c.booking))}</p>
+              </div>
             )}
           </div>
         </div>
@@ -695,6 +714,8 @@ export const mdxComponents = {
   th: (p: ComponentProps<"th">) => <th className="border-b border-border px-4 py-2 font-medium" {...p} />,
   td: (p: ComponentProps<"td">) => <td className="border-b border-border px-4 py-2" {...p} />,
   AffiliateBox,
+  DormirEn,
+  ZonasMapa,
   CalculatorCTA,
   AuthorNote,
   Toc,

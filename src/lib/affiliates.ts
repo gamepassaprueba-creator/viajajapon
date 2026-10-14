@@ -17,6 +17,8 @@
  * es la opción más barata para el lector y la única que se puede etiquetar como "oficial".
  */
 
+import { bookingHref, bookingMonetized, bookingQue, bookingTrackedPrefixes } from "@/data/booking-links";
+
 export type PartnerKey =
   | "civitatis"
   | "klook"
@@ -107,15 +109,14 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     fallback: "https://www.revolut.com/",
     env: "AFF_REVOLUT",
   },
-  // Preparados para activar en cuanto haya IDs reales (ver auditoría, sección Monetización):
-  // hoy Civitatis es el único partner de alojamiento/actividades, sin cubrir hoteles (Booking)
-  // ni el inventario más amplio de tours (GetYourGuide).
+  // Booking no usa `fallback` ni `env`: sus enlaces por destino viven en src/data/booking-links.ts.
   booking: {
     name: "Booking.com",
-    network: "Booking.com Partner Program",
-    fallback: "https://www.booking.com/country/jp.html",
-    env: "AFF_BOOKING",
+    network: "Booking.com Partner Portal (CJ) · Spain & Portugal 4347393",
+    fallback: "https://www.booking.com/country/jp.es.html",
+    env: "",
   },
+  // Preparado para activar en cuanto haya ID real: el inventario más amplio de tours.
   getyourguide: {
     name: "GetYourGuide",
     network: "GetYourGuide Affiliate",
@@ -124,8 +125,12 @@ const PARTNERS: Record<PartnerKey, Partner> = {
   },
 };
 
-/** Devuelve el enlace de afiliado real si está configurado; si no, la URL canónica. */
-export function affiliateUrl(partner: PartnerKey): string {
+/**
+ * Devuelve el enlace de afiliado real si está configurado; si no, la URL canónica.
+ * `destino` solo lo usa Booking (clave de src/data/booking-links.ts; sin él, Japón).
+ */
+export function affiliateUrl(partner: PartnerKey, destino?: string): string {
+  if (partner === "booking") return bookingHref(destino);
   const p = PARTNERS[partner];
   if (!p) return "https://viajajapon.com"; // partner desconocido: nunca romper el render
   const tracked = process.env[p.env]?.trim();
@@ -133,7 +138,8 @@ export function affiliateUrl(partner: PartnerKey): string {
 }
 
 /** ¿Hay enlace de tracking real configurado para este partner? (útil para avisos en dev/GA4). */
-export function isMonetized(partner: PartnerKey): boolean {
+export function isMonetized(partner: PartnerKey, destino?: string): boolean {
+  if (partner === "booking") return bookingMonetized(destino);
   const p = PARTNERS[partner];
   if (!p) return false; // partner desconocido (errata en MDX): nunca romper el build
   const tracked = process.env[p.env]?.trim();
@@ -146,7 +152,9 @@ export function isMonetized(partner: PartnerKey): boolean {
  * oficiales ni las webs comerciales sin tracking.
  */
 export function isTrackedAffiliateHref(href: string): boolean {
+  if (bookingTrackedPrefixes().some((prefix) => href.startsWith(prefix))) return true;
   return (Object.keys(PARTNERS) as PartnerKey[]).some((key) => {
+    if (key === "booking") return false; // ya cubierto arriba, por destino
     if (!isMonetized(key)) return false;
     const tracked = affiliateUrl(key);
     return href === tracked || href.startsWith(tracked);
@@ -160,8 +168,10 @@ export function partnerName(partner: PartnerKey): string {
 /**
  * CTA cuando el partner NO monetiza: nunca promete comisión ni llama "web oficial" a una
  * tienda (Civitatis, Booking o Klook no lo son). "Ver en Civitatis" es verdad siempre.
+ * Con Booking y un destino dice qué se va a ver: "Ver alojamiento en Gion en Booking.com".
  */
-export function neutralCta(partner: PartnerKey): string {
+export function neutralCta(partner: PartnerKey, destino?: string): string {
+  if (partner === "booking" && destino) return `Ver ${bookingQue(destino)} en Booking.com`;
   const p = PARTNERS[partner];
   return p?.neutralCta ?? `Ver en ${p?.name ?? partner}`;
 }

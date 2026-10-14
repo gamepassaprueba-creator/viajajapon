@@ -40,7 +40,7 @@ jobs:
             exit 1
           }
 
-          grep -Fq 'const effectiveCta = monetized ? cta : neutralCta(partner);' src/components/AffiliateBox.tsx || {
+          grep -Fq 'const effectiveCta = monetized ? cta : neutralCta(partner, destino);' src/components/AffiliateBox.tsx || {
             echo '❌ AffiliateBox debe usar un CTA neutral (neutralCta) cuando no existe monetización.'
             exit 1
           }
@@ -51,3 +51,29 @@ jobs:
           }
 
           echo '✅ Estado de monetización, rel y CTA están alineados.'
+
+      - name: Verify Booking destination registry
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          FILE=src/data/booking-links.ts
+          grep -Fq 'const BK = "https://www.booking.com";' "$FILE" || {
+            echo '❌ booking-links.ts debe construir las URL canónicas sobre https://www.booking.com.'
+            exit 1
+          }
+
+          # Cada destino apunta a booking.com (las URL canónicas no pagan; el tracking va aparte).
+          if grep -E '^\s+"?[a-z][a-z0-9-]*"?: \{ label:' "$FILE" | grep -v 'url: `${BK}/'; then
+            echo '❌ Hay destinos de Booking cuya URL canónica no es de booking.com.'
+            exit 1
+          fi
+
+          # La plantilla de CJ, si existe, debe llevar {url}: sin él todos los destinos irían a la misma página.
+          TEMPLATE=$(grep -E '^export const BOOKING_DEEPLINK_TEMPLATE' "$FILE")
+          if ! echo "$TEMPLATE" | grep -Fq '= null;' && ! echo "$TEMPLATE" | grep -Fq '{url}'; then
+            echo '❌ BOOKING_DEEPLINK_TEMPLATE debe ser null o contener {url}.'
+            exit 1
+          fi
+
+          echo '✅ Registro de destinos de Booking coherente.'

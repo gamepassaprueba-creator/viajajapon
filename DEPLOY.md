@@ -53,8 +53,26 @@ URL canónica y no paga. IATI ya monetiza con un enlace fijo en `src/lib/affilia
 | `AFF_SKYSCANNER` | Skyscanner Partners | Vuelos |
 | `AFF_JRPASS` | Revendedor de JR Pass con programa | Sin él, el enlace va a la web oficial japanrailpass.net |
 | `AFF_REVOLUT` | Revolut Affiliate | Tarjeta sin comisiones |
-| `AFF_BOOKING` | Booking.com Partner Program | Aún no se usa en ninguna página |
+| ~~`AFF_BOOKING`~~ | Booking.com (CJ) | **Ya no se usa**: Booking va por destino en código (ver abajo) |
 | `AFF_GETYOURGUIDE` | GetYourGuide Affiliate | Aún no se usa en ninguna página |
+
+### Booking.com (en código, no en secrets)
+Booking tiene **un enlace por destino** (ciudad, barrio, ryokan: ~40) en `src/data/booking-links.ts`,
+no un único `AFF_BOOKING`. Decisión (14-oct-2026): **en código**, porque los enlaces de CJ son
+públicos (salen en el HTML), el secret no protege nada y en cambio esconde el estado real; en código
+se revisan en el PR, quedan versionados y el build valida que cada `destino=` del MDX exista.
+
+- Programa: **Booking.com Spain & Portugal (4347393)** en https://booking.cj.com, sitio promocional
+  ViajaJapon.com **101904257**. Estado a 14-oct-2026: *solicitud pendiente* → todos los enlaces son
+  las URL canónicas de booking.com, CTA neutro ("Ver alojamiento en Kioto en Booking.com") y `rel`
+  sin `sponsored`.
+- **Activar** (un único sitio): cuando CJ apruebe, en "Create a Deep Link" genera el enlace de una URL
+  de la lista, pruébalo (debe redirigir a booking.com) y pon en `BOOKING_DEEPLINK_TEMPLATE` ese enlace
+  con la URL codificada sustituida por `{url}`. Si el panel no permite plantilla, pega en `tracked`
+  de cada destino el enlace generado para su URL. Rebuild + push: todas las cajas pasan a
+  "enlace de afiliado", `rel="sponsored nofollow"` y el evento `affiliate_click` lleva `monetized=1`.
+- Comprobación: `curl -s https://viajajapon.com/destinos/donde-dormir-en-kioto | grep -o 'href="[^"]*booking[^"]*"'`.
+- Nunca pegues un enlace de tracking que no hayas generado en el panel y probado.
 
 ### Newsletter (secrets del Worker)
 - `MAILERLITE_API_KEY` — MailerLite → Integrations → API.

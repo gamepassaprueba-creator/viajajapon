@@ -10,6 +10,8 @@ interface TrackedAffiliateLinkProps {
   className?: string;
   placement?: string;
   ctaVariant?: string;
+  /** Destino del enlace (clave de Booking: "kioto", "osaka-namba"…) para atribución en GA4. */
+  destination?: string;
 }
 
 export function TrackedAffiliateLink({
@@ -20,6 +22,7 @@ export function TrackedAffiliateLink({
   className,
   placement = "affiliate_link",
   ctaVariant = "default",
+  destination,
 }: TrackedAffiliateLinkProps) {
   const onClick = () => {
     const pathname = window.location.pathname;
@@ -33,6 +36,7 @@ export function TrackedAffiliateLink({
       content_slug: contentSlug,
       placement,
       cta_variant: ctaVariant,
+      destination: destination ?? "",
       monetized: monetized ? 1 : 0,
     });
   };

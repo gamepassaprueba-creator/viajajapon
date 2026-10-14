@@ -253,7 +253,7 @@ export async function Article({
       </section>
 
       {/* OFERTAS: bloque comercial visible en todos los tamaños (la sidebar solo existe en xl) */}
-      <ArticleOffers pillar={pillar} />
+      <ArticleOffers pillar={pillar} destino={meta.destinoBooking} />
 
       {/* CUERPO + LATERAL (la barra lateral se muestra en xl; en móvil y tablet va todo en una columna) */}
       <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-10 xl:grid-cols-[minmax(0,1fr)_280px]">

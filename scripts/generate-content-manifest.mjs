@@ -97,6 +97,28 @@ if (fs.existsSync(relatedPath)) {
   if (errors.length) throw new Error(errors.join("\n"));
 }
 
+// 3b. Validar los destinos de Booking usados en el contenido (destino="…", booking: "…",
+//     ryokan="…" y el frontmatter destinoBooking) contra src/data/booking-links.ts. Una errata
+//     no rompería el render (cae en "Japón") pero mandaría al lector a la ciudad equivocada.
+const bookingPath = path.join(__dirname, "../src/data/booking-links.ts");
+if (fs.existsSync(bookingPath)) {
+  const src = fs.readFileSync(bookingPath, "utf8");
+  const validos = new Set([...src.matchAll(/^\s+"?([a-z][a-z0-9-]*)"?: \{ label:/gm)].map((m) => m[1]));
+  const errores = [];
+  for (const meta of allArticlesMeta) {
+    const raw = fs.readFileSync(path.join(CONTENT_DIR, meta.pillar, `${meta.slug}.mdx`), "utf8");
+    const usados = [
+      ...[...raw.matchAll(/\b(?:destino|ryokan)="([^"]+)"/g)].map((m) => m[1]),
+      ...[...raw.matchAll(/\bbooking:\s*"([^"]+)"/g)].map((m) => m[1]),
+    ];
+    if (meta.destinoBooking) usados.push(meta.destinoBooking);
+    for (const k of usados) {
+      if (!validos.has(k)) errores.push(`booking: "${meta.pillar}/${meta.slug}" usa el destino "${k}", que no existe en booking-links.ts`);
+    }
+  }
+  if (errores.length) throw new Error(errores.join("\n"));
+}
+
 // 4. Generar el manifiesto global
 const manifestCode = `// Este archivo se genera automáticamente. No editar manualmente.
 import type { ArticleMeta } from "@/lib/content";
