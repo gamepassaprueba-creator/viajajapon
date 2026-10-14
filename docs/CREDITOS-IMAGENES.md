@@ -139,6 +139,18 @@ en este proyecto).
 | hanami-yoyogi.jpg | Hanami bajo los cerezos del parque Yoyogi (Tokio) | Guilhem Vellut | CC BY 2.0 | Picnic @ White cherry blossoms @ Yoyogi Park (13607382754).jpg |
 
 
+### Alojamiento (octubre 2026): guías de ryokan, Hakone, Osaka y alojamiento en Japón
+
+| Archivo | Tema | Autor | Licencia | Origen (título en Commons) |
+| --- | --- | --- | --- | --- |
+| ryokan-futones-tatami.jpg | Habitación de ryokan con futones, tatami y servicio de té (Nara) | Mx. Granger | CC0 | Ryokan Matsumae in Nara.jpg |
+| hakone-lago-ashi-barco.jpg | Barco del lago Ashi frente a Moto-Hakone, con un árbol otoñal | Guilhem Vellut | CC BY 2.0 | Lake Ashi @ Moto-Hakone (10621346704).jpg |
+| rotenburo-agua-lechosa.jpg | Baño termal exterior (rotenburo) de agua lechosa, sin personas | David Monniaux | CC BY-SA 3.0 | Japanese bath dsc05407.jpg |
+| osaka-dotonbori-canal-noche.jpg | El canal de Dotonbori de noche (Namba, Osaka) | Ray in Manila | CC BY 2.0 | Dotonbori Canal 1.jpg |
+| osaka-umeda-rascacielos.jpg | Rascacielos de Umeda (Kita, Osaka) | Marek Ślusarczyk (Tupungato) | CC BY 3.0 | Osaka, Japan - Umeda district - city view of Osaka, Japan.jpg |
+| hotel-negocios-habitacion.jpg | Habitación individual de hotel de negocios con pijama sobre la cama | J o | CC BY-SA 3.0 | Daiwa Roynet Hotels business single bedroom 20120310-001.jpg |
+| hotel-capsula-pasillo.jpg | Pasillo de un hotel cápsula en Tokio, sin personas | Trueshow111 | CC BY-SA 4.0 | Capsule hotel.jpg |
+
 ## Fotos propias (public/images/propias/)
 
 Fotos del viaje del autor y su madre a Japón (diciembre de 2025). Propiedad del autor: no
