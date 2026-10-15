@@ -10,7 +10,6 @@ type Offer =
 const OFFERS = {
   iati: { kind: "partner", partner: "iati", title: "Seguro de viaje", blurb: "La sanidad japonesa es excelente y cara para el visitante.", cta: "Ver seguros IATI" },
   holafly: { kind: "partner", partner: "holafly", title: "eSIM para Japón", blurb: "Datos desde que aterrizas, sin cambiar de SIM.", cta: "Ver eSIM Holafly" },
-  civitatis: { kind: "partner", partner: "civitatis", title: "Tours y traslados", blurb: "Actividades en español y traslados desde el aeropuerto.", cta: "Ver en Civitatis" },
   getyourguide: { kind: "partner", partner: "getyourguide", title: "Tours y excursiones", blurb: "Excursiones de un día, entradas y free tours, muchas con cancelación gratuita.", cta: "Ver tours en GetYourGuide" },
   booking: { kind: "partner", partner: "booking", title: "Alojamiento", blurb: "Hoteles, ryokan y apartamentos con cancelación gratuita.", cta: "Ver en Booking.com" },
   calculadora: { kind: "internal", href: "/herramientas/jr-pass-calculadora", title: "¿Te compensa el JR Pass?", blurb: "Compara billetes sueltos contra el pase, en euros.", cta: "Abrir la calculadora" },

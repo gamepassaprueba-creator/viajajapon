@@ -14,7 +14,7 @@ Prioridad por dinero esperado según el tráfico actual:
 | # | Programa | Dónde darse de alta | Qué enlace necesito | Dónde lo pondré |
 |---|---|---|---|---|
 | 1 | **Booking.com** | Programa de afiliados de Booking.com (si te redirige a una red como Awin o CJ, vale igual) | Enlace de búsqueda de Kioto y de Tokio, o el enlace genérico | Dónde dormir en Kioto y en Tokio (≈1.700 impresiones/mes de intención de reserva) |
-| 2 | **Civitatis** | civitatis.com → Afiliados | Enlace a `civitatis.com/es/japon/` | Las 26 cajas que ya existen (excursiones, Tokio, Kioto, Osaka) |
+| 2 | ⏳ **Civitatis** (solicitado 15-oct-2026, a la espera; hasta entonces no aparece en la web) | civitatis.com → Afiliados | Enlace a `civitatis.com/es/japon/` | Las 26 cajas que ya existen (excursiones, Tokio, Kioto, Osaka) |
 | 3 | ✅ **GetYourGuide** (activo 15-oct-2026, partner_id KGGGOIO) | partner.getyourguide.com | Enlace a la página de Japón | Excursiones (Hakone, Nara, Fuji, Kamakura, Nikko) |
 | 4 | **Klook** | Programa de afiliados de Klook | Enlace a Japón o a la home en español | Entradas y pases (alternativa a Civitatis) |
 | 5 | **Holafly** *o* **Airalo** | Programa de afiliados de cada una | Enlace a la eSIM de Japón | Guía de eSIM (351 impresiones), maleta y preparativos |

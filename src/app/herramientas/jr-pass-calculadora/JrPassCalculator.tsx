@@ -25,7 +25,7 @@ export interface CalcAffLink {
 
 export interface CalcAffLinks {
   jrpass: CalcAffLink;
-  civitatis: CalcAffLink;
+  tours: CalcAffLink;
   iati: CalcAffLink;
   holafly: CalcAffLink;
 }
@@ -303,7 +303,7 @@ export function JrPassCalculator({ aff }: { aff: CalcAffLinks }) {
               <CalcLink link={{ href: KANSAI_HIROSHIMA.url, partner: "jr-west", monetized: false }} label="Ver el Kansai-Hiroshima Area Pass (JR-West)" variant="solid" verdict={r.cheapest} />
             )}
             {r.cheapest === "billetes" && (
-              <CalcLink link={aff.civitatis} label="Reservar actividades y traslados" variant="solid" verdict={r.cheapest} />
+              <CalcLink link={aff.tours} label="Reservar actividades y traslados" variant="solid" verdict={r.cheapest} />
             )}
             <CalcLink link={aff.iati} label="Comparar seguro de viaje" variant="ghost" verdict={r.cheapest} />
             <CalcLink link={aff.holafly} label="eSIM con datos para Japón" variant="ghost" verdict={r.cheapest} />

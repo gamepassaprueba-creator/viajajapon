@@ -43,7 +43,7 @@ export default function Page() {
   // nunca nombres de variables ni secretos.
   const aff = {
     jrpass: calcAffiliate("jrpass"),
-    civitatis: calcAffiliate("civitatis"),
+    tours: calcAffiliate("getyourguide"),
     iati: calcAffiliate("iati"),
     holafly: calcAffiliate("holafly"),
   };
