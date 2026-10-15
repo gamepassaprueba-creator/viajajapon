@@ -310,7 +310,7 @@ jobs:
         if: success()
         continue-on-error: true
         run: |
-          KEY="85470f8e5560ba2d82180a1944eb8f62"
+          KEY="eecca4ac393b9428c59247684f42a136"
           URLS=$(curl -sS "https://viajajapon.com/sitemap.xml" | grep -o '<loc>[^<]*' | sed 's/<loc>//' | jq -R . | jq -s .)
           COUNT=$(echo "$URLS" | jq length)
           BODY=$(jq -n --arg host "viajajapon.com" --arg key "$KEY" --arg loc "https://viajajapon.com/$KEY.txt" --argjson urls "$URLS" \
