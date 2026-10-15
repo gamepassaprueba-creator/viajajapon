@@ -37,6 +37,23 @@ export function gygHref(key?: string): string {
   return `${urlDestino(key)}?partner_id=${GYG_PARTNER_ID}&utm_medium=online_publisher`;
 }
 
+/** Búsqueda de GYG con tracking ("alquiler de kimono Kioto"): para productos concretos. */
+export function gygSearchHref(q: string): string {
+  return `${GYG}/s/?q=${encodeURIComponent(q)}&partner_id=${GYG_PARTNER_ID}&utm_medium=online_publisher`;
+}
+
+const LABELS: Record<string, string> = {
+  japon: "Japón", tokio: "Tokio", kioto: "Kioto", osaka: "Osaka", hakone: "Hakone", nara: "Nara",
+  kamakura: "Kamakura", nikko: "Nikko", hiroshima: "Hiroshima", kanazawa: "Kanazawa",
+  takayama: "Takayama", kawaguchiko: "el Fuji",
+};
+
+/** Nombre visible del destino de tours ("hakone-ryokan" → Hakone). */
+export function gygLabel(key?: string): string {
+  if (!key) return LABELS.japon;
+  return LABELS[key] ?? LABELS[key.split("-")[0]] ?? LABELS.japon;
+}
+
 /** ¿Es un enlace de GYG con nuestro tracking? (enlaces sueltos del MDX → rel sponsored). */
 export function isGygTracked(href: string): boolean {
   return href.includes("getyourguide.") && href.includes(`partner_id=${GYG_PARTNER_ID}`);

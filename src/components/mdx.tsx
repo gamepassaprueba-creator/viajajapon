@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 import { AffiliateBox } from "./AffiliateBox";
 import { DormirEn, ZonasMapa, avisoBooking } from "./Alojamiento";
+import { Tours } from "./Tours";
 import { TrackedAffiliateLink } from "./TrackedAffiliateLink";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
@@ -716,6 +717,7 @@ export const mdxComponents = {
   AffiliateBox,
   DormirEn,
   ZonasMapa,
+  Tours,
   CalculatorCTA,
   AuthorNote,
   Toc,
