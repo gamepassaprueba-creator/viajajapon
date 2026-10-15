@@ -11,6 +11,7 @@ const OFFERS = {
   iati: { kind: "partner", partner: "iati", title: "Seguro de viaje", blurb: "La sanidad japonesa es excelente y cara para el visitante.", cta: "Ver seguros IATI" },
   holafly: { kind: "partner", partner: "holafly", title: "eSIM para Japón", blurb: "Datos desde que aterrizas, sin cambiar de SIM.", cta: "Ver eSIM Holafly" },
   civitatis: { kind: "partner", partner: "civitatis", title: "Tours y traslados", blurb: "Actividades en español y traslados desde el aeropuerto.", cta: "Ver en Civitatis" },
+  getyourguide: { kind: "partner", partner: "getyourguide", title: "Tours y excursiones", blurb: "Excursiones de un día, entradas y free tours, muchas con cancelación gratuita.", cta: "Ver tours en GetYourGuide" },
   booking: { kind: "partner", partner: "booking", title: "Alojamiento", blurb: "Hoteles, ryokan y apartamentos con cancelación gratuita.", cta: "Ver en Booking.com" },
   calculadora: { kind: "internal", href: "/herramientas/jr-pass-calculadora", title: "¿Te compensa el JR Pass?", blurb: "Compara billetes sueltos contra el pase, en euros.", cta: "Abrir la calculadora" },
 } satisfies Record<string, Offer>;
@@ -19,11 +20,11 @@ type OfferKey = keyof typeof OFFERS;
 
 /** Qué ofrecer según el pilar: solo lo que encaja con la intención de esa guía. */
 const BY_PILLAR: Record<string, OfferKey[]> = {
-  logistica: ["iati", "holafly", "civitatis", "calculadora"],
-  itinerarios: ["booking", "iati", "civitatis", "calculadora"],
-  destinos: ["booking", "civitatis", "calculadora"],
-  gastronomia: ["civitatis", "calculadora"],
-  cultura: ["civitatis", "calculadora"],
+  logistica: ["iati", "holafly", "getyourguide", "calculadora"],
+  itinerarios: ["booking", "iati", "getyourguide", "calculadora"],
+  destinos: ["booking", "getyourguide", "calculadora"],
+  gastronomia: ["getyourguide", "calculadora"],
+  cultura: ["getyourguide", "calculadora"],
   blog: ["iati", "calculadora"],
 };
 
@@ -43,7 +44,7 @@ const COLS: Record<number, string> = {
  */
 export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: string }) {
   let keys = BY_PILLAR[pillar] ?? BY_PILLAR.logistica;
-  if (destino && !keys.includes("booking")) keys = ["booking", ...keys.filter((k) => k !== "civitatis")];
+  if (destino && !keys.includes("booking")) keys = ["booking", ...keys.filter((k) => k !== "getyourguide")];
   const offers = keys.map((key) => {
     const o: Offer = OFFERS[key];
     if (key !== "booking" || !destino) return { key, ...o };
@@ -73,7 +74,7 @@ export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: s
                   label={isMonetized(o.partner, destino) ? o.cta : neutralCta(o.partner)}
                   placement="article_top"
                   ctaVariant={pillar}
-                  destination={o.partner === "booking" ? destino ?? "japon" : undefined}
+                  destination={o.partner === "booking" || o.partner === "getyourguide" ? destino ?? "japon" : undefined}
                   className="btn-primary mt-3 inline-block text-sm"
                 />
               ) : (

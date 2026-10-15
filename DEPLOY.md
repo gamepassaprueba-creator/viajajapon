@@ -54,7 +54,7 @@ URL canónica y no paga. IATI ya monetiza con un enlace fijo en `src/lib/affilia
 | `AFF_JRPASS` | Revendedor de JR Pass con programa | Sin él, el enlace va a la web oficial japanrailpass.net |
 | `AFF_REVOLUT` | Revolut Affiliate | Tarjeta sin comisiones |
 | ~~`AFF_BOOKING`~~ | Booking.com (CJ) | **Ya no se usa**: Booking va por destino en código (ver abajo) |
-| `AFF_GETYOURGUIDE` | GetYourGuide Affiliate | Aún no se usa en ninguna página |
+| `AFF_GETYOURGUIDE` | GetYourGuide Partner Program | **Opcional**: GYG ya monetiza en código (partner_id `KGGGOIO`, enlaces por destino en `src/data/getyourguide-links.ts`, activo desde el 15-oct-2026). Si se define, sustituye a todos los enlaces por uno genérico |
 
 ### Booking.com (en código, no en secrets)
 Booking tiene **un enlace por destino** (ciudad, barrio, ryokan: ~40) en `src/data/booking-links.ts`,

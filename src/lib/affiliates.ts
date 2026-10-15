@@ -18,6 +18,7 @@
  */
 
 import { bookingHref, bookingMonetized, bookingQue, bookingTrackedPrefixes } from "@/data/booking-links";
+import { gygHref, isGygTracked } from "@/data/getyourguide-links";
 
 export type PartnerKey =
   | "civitatis"
@@ -117,10 +118,12 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     env: "",
   },
   // Preparado para activar en cuanto haya ID real: el inventario más amplio de tours.
+  // Enlaces por destino en src/data/getyourguide-links.ts (partner_id KGGGOIO, activo 15-oct-2026).
   getyourguide: {
     name: "GetYourGuide",
-    network: "GetYourGuide Affiliate",
-    fallback: "https://www.getyourguide.com/japon-l117/",
+    network: "GetYourGuide Partner Program",
+    fallback: "https://www.getyourguide.com/es-es/japon-l169034/",
+    trackedDefault: gygHref("japon"),
     env: "AFF_GETYOURGUIDE",
   },
 };
@@ -131,6 +134,7 @@ const PARTNERS: Record<PartnerKey, Partner> = {
  */
 export function affiliateUrl(partner: PartnerKey, destino?: string): string {
   if (partner === "booking") return bookingHref(destino);
+  if (partner === "getyourguide" && !process.env.AFF_GETYOURGUIDE?.trim()) return gygHref(destino);
   const p = PARTNERS[partner];
   if (!p) return "https://viajajapon.com"; // partner desconocido: nunca romper el render
   const tracked = process.env[p.env]?.trim();
@@ -153,6 +157,7 @@ export function isMonetized(partner: PartnerKey, destino?: string): boolean {
  */
 export function isTrackedAffiliateHref(href: string): boolean {
   if (bookingTrackedPrefixes().some((prefix) => href.startsWith(prefix))) return true;
+  if (isGygTracked(href)) return true;
   return (Object.keys(PARTNERS) as PartnerKey[]).some((key) => {
     if (key === "booking") return false; // ya cubierto arriba, por destino
     if (!isMonetized(key)) return false;
