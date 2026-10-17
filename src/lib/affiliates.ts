@@ -100,9 +100,9 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     // la más barata desde la subida de oct-2026 de los Exchange Orders y es "oficial" de verdad).
     name: "JRPass.com",
     network: "JRPass.com Affiliate",
-    fallback: "https://japanrailpass.net/es/",
+    fallback: "https://japanrailpass.net/en/", // /es/ desapareció (404 el 17-oct-2026)
     env: "AFF_JRPASS",
-    neutralCta: "Ver en la web oficial (japanrailpass.net)",
+    neutralCta: "Ver en la web oficial (en inglés)",
   },
   revolut: {
     name: "Revolut",
