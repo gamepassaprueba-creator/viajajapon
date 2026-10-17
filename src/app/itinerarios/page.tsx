@@ -14,9 +14,9 @@ import { ItinerariosFiltro } from "@/components/ItinerariosFiltro";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = withSocial("/itinerarios", {
-  title: "Itinerarios por Japón: de 7 días a 1 mes",
+  title: "Rutas por Japón: itinerarios de 7 días a 1 mes",
   description:
-    "Itinerarios para Japón según la duración de tu viaje, con rutas, presupuesto y enlaces a la calculadora del JR Pass.",
+    "Rutas por Japón según los días que tengas: itinerarios de 7, 10 y 15 días, 3 semanas y 1 mes, con presupuesto y calculadora del JR Pass.",
   alternates: { canonical: "/itinerarios" },
   // Indexar solo cuando haya contenido publicado; si está vacío, noindex (evita thin content).
   ...(pillarHasContent("itinerarios") ? {} : { robots: { index: false, follow: true } }),
