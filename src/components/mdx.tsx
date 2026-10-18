@@ -44,6 +44,7 @@ import {
 import { AffiliateBox } from "./AffiliateBox";
 import { DormirEn, ZonasMapa, avisoBooking } from "./Alojamiento";
 import { Tours } from "./Tours";
+import { FloracionCalendario } from "./Floracion";
 import { TrackedAffiliateLink } from "./TrackedAffiliateLink";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
@@ -718,6 +719,7 @@ export const mdxComponents = {
   DormirEn,
   ZonasMapa,
   Tours,
+  FloracionCalendario,
   CalculatorCTA,
   AuthorNote,
   Toc,
