@@ -92,6 +92,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${mplus.variable} ${jetbrains.variable} h-full antialiased`}>
+      <head>
+        {/* Verificación de propiedad en impact.com (afiliados). Impact lee el atributo
+            `value`, no `content`, así que no puede ir en metadata.other. */}
+        <meta name="impact-site-verification" {...({ value: "7f237ea6-01e3-4750-9c26-9fddd2423a06" } as Record<string, string>)} />
+      </head>
       <body className="flex min-h-full flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <JsonLd data={[organizationLd(), websiteLd()]} />
         <GoogleAnalytics />
