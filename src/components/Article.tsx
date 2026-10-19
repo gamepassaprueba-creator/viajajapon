@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { mdxComponents, slugify } from "@/components/mdx";
 import { ArticleOffers } from "@/components/ArticleOffers";
+import { ArticleNewsletter } from "@/components/ArticleNewsletter";
 import { getArticle, getArticles, type ArticleMeta } from "@/lib/content";
 import { JsonLd } from "@/components/JsonLd";
 import { articleLd } from "@/lib/jsonld";
@@ -273,6 +274,8 @@ export async function Article({
             components={mdxComponents}
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] }, blockJS: false }}
           />
+
+          <ArticleNewsletter source={`guia-${pillar}`} />
 
           {/* AUTORÍA Y TRANSPARENCIA */}
           <aside className="mt-12 flex flex-wrap items-center gap-4 border-[3px] border-[#0a0a0a] bg-[#f5f5f5] p-5" aria-label="Sobre el autor">
