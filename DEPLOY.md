@@ -76,7 +76,8 @@ se revisan en el PR, quedan versionados y el build valida que cada `destino=` de
 
 ### Newsletter (secrets del Worker)
 - `MAILERLITE_API_KEY` — MailerLite → Integrations → API.
-- `MAILERLITE_GROUP_ID` — ID del grupo (en la URL del grupo).
+- `MAILERLITE_GROUP_ID` — ID del grupo (en la URL del grupo). Grupo «Web viajajapon.com»: `201760947340051982`.
+- Lo más cómodo: guárdalos como **GitHub secrets** (`gh secret set MAILERLITE_API_KEY`, que pide el valor sin mostrarlo) y el deploy los copia al Worker, igual que los del bridge SEO.
 - En MailerLite activa **double opt-in para suscripciones por API** (Settings) antes de
   anunciarlo en ningún texto.
 - Mientras falte cualquiera de las dos, las secciones de newsletter **no se muestran**.
