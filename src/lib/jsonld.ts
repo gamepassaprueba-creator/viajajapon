@@ -51,6 +51,8 @@ export function articleLd(opts: {
   datePublished: string;
   dateModified: string;
   image?: string;
+  /** Autor invitado: sustituye al autor de la web en el JSON-LD. */
+  author?: { name: string; url: string };
 }) {
   return {
     "@context": "https://schema.org",
@@ -63,8 +65,8 @@ export function articleLd(opts: {
     image: opts.image ? `${SITE.url}${opts.image}` : undefined,
     author: {
       "@type": "Person",
-      name: SITE.author.name,
-      url: SITE.author.url,
+      name: opts.author?.name ?? SITE.author.name,
+      url: opts.author?.url ?? SITE.author.url,
     },
     publisher: {
       "@type": "Organization",

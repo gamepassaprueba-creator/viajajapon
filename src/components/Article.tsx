@@ -99,6 +99,13 @@ export async function articleMetadata(
       description,
       images: [ogImage],
     },
+    // Autor invitado: sustituye la autoría por defecto del layout (meta author/creator).
+    ...(meta.autorInvitado
+      ? {
+          authors: [{ name: meta.autorInvitado.nombre, url: meta.autorInvitado.url }],
+          creator: meta.autorInvitado.nombre,
+        }
+      : {}),
     // Borradores: visibles en la URL para previsualizar, pero NO indexables (puerta humana).
     ...(meta.draft ? { robots: { index: false, follow: false } } : {}),
   };
@@ -182,6 +189,15 @@ export async function Article({
           {meta.title}
         </h1>
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-fg-muted">
+          {meta.autorInvitado ? (
+            <span>
+              Por <span className="font-bold text-[#0a0a0a]">{meta.autorInvitado.nombre}</span>, de{" "}
+              <a href={meta.autorInvitado.url} rel="nofollow noopener" target="_blank" className="font-bold text-[#0a0a0a] underline underline-offset-2">
+                {meta.autorInvitado.medio}
+              </a>{" "}
+              · Autor invitado
+            </span>
+          ) : (
           <span className="flex items-center gap-2.5">
             <Image
               src="/avatares/sergio.webp"
@@ -198,6 +214,7 @@ export async function Article({
               · {AUTHOR_TRIP}
             </span>
           </span>
+          )}
           <span className="nums">
             {cfg.dateMode === "updated" ? "Actualizado el " : ""}
             {formatDate(meta.dateModified)}
@@ -278,6 +295,28 @@ export async function Article({
           <ArticleNewsletter source={`guia-${pillar}`} />
 
           {/* AUTORÍA Y TRANSPARENCIA */}
+          {meta.autorInvitado ? (
+            <aside className="mt-12 border-[3px] border-[#0a0a0a] bg-[#f5f5f5] p-5 text-sm leading-relaxed text-fg-muted" aria-label="Sobre el autor">
+              <p className="kicker text-[#e1352e]">Autor invitado</p>
+              <p className="mt-1 text-base font-black text-[#0a0a0a]">
+                {meta.autorInvitado.nombre}, de{" "}
+                <a href={meta.autorInvitado.url} rel="nofollow noopener" target="_blank" className="underline underline-offset-2">
+                  {meta.autorInvitado.medio}
+                </a>
+              </p>
+              <p className="mt-1">
+                {meta.autorInvitado.bio} Es una colaboración sin pago ni enlaces de afiliado en el texto: la hemos editado y hemos
+                contrastado sus datos con las fuentes oficiales antes de publicarla.{" "}
+                <Link href="/politica-editorial" className="text-primary underline-offset-2 hover:underline">
+                  Política editorial
+                </Link>{" "}
+                ·{" "}
+                <Link href="/contacto" className="text-primary underline-offset-2 hover:underline">
+                  Avísanos de un error
+                </Link>
+              </p>
+            </aside>
+          ) : (
           <aside className="mt-12 flex flex-wrap items-center gap-4 border-[3px] border-[#0a0a0a] bg-[#f5f5f5] p-5" aria-label="Sobre el autor">
             <div className="flex shrink-0">
               <Image src="/avatares/sergio.webp" alt={SITE.author.name} width={64} height={64} className="size-16 rounded-full border-[2px] border-[#0a0a0a] object-cover" />
@@ -303,6 +342,7 @@ export async function Article({
               </p>
             </div>
           </aside>
+          )}
         </div>
 
         <aside className="hidden xl:block" aria-label="Herramientas de la guía">
@@ -376,6 +416,7 @@ export async function Article({
             datePublished: meta.datePublished,
             dateModified: meta.dateModified,
             image: meta.hero ?? "/images/hero-fuji.jpg",
+            author: meta.autorInvitado ? { name: meta.autorInvitado.nombre, url: meta.autorInvitado.url } : undefined,
           }),
           ...extraJsonLd,
         ]}
