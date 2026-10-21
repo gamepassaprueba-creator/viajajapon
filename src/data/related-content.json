@@ -36,6 +36,7 @@
   "destinos/kamakura": ["destinos/que-ver-en-tokio", "destinos/nikko", "destinos/hakone", "destinos/nara", "itinerarios/itinerario-japon-1-mes"],
   "destinos/nikko": ["destinos/kamakura", "destinos/hakone", "destinos/naturaleza-en-japon", "cultura/onsen-guia-practica", "itinerarios/itinerario-japon-15-dias"],
   "destinos/kanazawa": ["destinos/takayama", "destinos/hiroshima-y-miyajima", "destinos/que-ver-en-kioto", "gastronomia/que-comer-en-japon", "itinerarios/itinerario-japon-15-dias"],
+  "destinos/seki": ["destinos/takayama", "destinos/kanazawa", "logistica/compras-y-tax-free-japon", "cultura/festivales-de-japon", "itinerarios/itinerario-japon-3-semanas"],
   "destinos/takayama": ["destinos/kanazawa", "destinos/naturaleza-en-japon", "destinos/nikko", "cultura/festivales-de-japon", "itinerarios/itinerario-japon-1-mes"],
   "destinos/naturaleza-en-japon": ["destinos/monte-fuji", "destinos/takayama", "destinos/nikko", "logistica/mejor-epoca-viajar-japon", "itinerarios/itinerario-japon-3-semanas"],
   "destinos/parques-tematicos-japon": ["destinos/que-ver-en-osaka", "destinos/que-ver-en-tokio", "cultura/japon-friki-guia-otaku", "logistica/reservas-japon-2026", "cultura/cartas-pokemon-japon"],

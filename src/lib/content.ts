@@ -21,6 +21,11 @@ export interface ArticleMeta {
   orden?: number;
   /** Clave de Booking (src/data/booking-links.ts) para el bloque de ofertas: "kioto", "hakone-ryokan"… */
   destinoBooking?: string;
+  /**
+   * Autor invitado (colaboración externa). Sustituye la firma de Sergio en la cabecera, la caja de
+   * autor y el JSON-LD. El enlace va con rel="nofollow" (pauta de Google para artículos invitados).
+   */
+  autorInvitado?: { nombre: string; medio: string; url: string; bio: string };
 }
 
 export function getArticleSlugs(pillar: string): string[] {

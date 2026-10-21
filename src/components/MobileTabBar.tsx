@@ -77,7 +77,7 @@ export function MobileTabBar() {
   return (
     <nav
       aria-label="Navegación inferior"
-      className="fixed inset-x-0 bottom-0 z-50 border-t-[3px] border-[#0a0a0a] bg-white/90 backdrop-blur-md pb-[env(safe-area-inset-bottom)] md:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t-[3px] border-[#0a0a0a] bg-white/90 backdrop-blur-md pb-[env(safe-area-inset-bottom)] md:hidden print:hidden"
     >
       <ul className="grid grid-cols-5 divide-x-[3px] divide-[#0a0a0a]">
         {TABS.map(({ href, label, Icon }) => {
