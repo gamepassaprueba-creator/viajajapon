@@ -19,6 +19,7 @@
 
 import { bookingHref, bookingMonetized, bookingQue, bookingTrackedPrefixes } from "@/data/booking-links";
 import { gygHref, isGygTracked } from "@/data/getyourguide-links";
+import { tripcomHref, tripcomMonetized, tripcomTrackedPrefixes } from "@/data/tripcom-links";
 
 export type PartnerKey =
   | "civitatis"
@@ -31,6 +32,7 @@ export type PartnerKey =
   | "jrpass"
   | "revolut"
   | "booking"
+  | "tripcom"
   | "getyourguide";
 
 interface Partner {
@@ -117,6 +119,13 @@ const PARTNERS: Record<PartnerKey, Partner> = {
     fallback: "https://www.booking.com/country/jp.es.html",
     env: "",
   },
+  // Trip.com tampoco usa `env`: enlaces por ciudad en src/data/tripcom-links.ts (CJ 4368684, activo 25-oct-2026).
+  tripcom: {
+    name: "Trip.com",
+    network: "Trip.com (Global) en CJ · 4368684",
+    fallback: "https://es.trip.com/hotels/",
+    env: "",
+  },
   // Preparado para activar en cuanto haya ID real: el inventario más amplio de tours.
   // Enlaces por destino en src/data/getyourguide-links.ts (partner_id KGGGOIO, activo 15-oct-2026).
   getyourguide: {
@@ -134,6 +143,7 @@ const PARTNERS: Record<PartnerKey, Partner> = {
  */
 export function affiliateUrl(partner: PartnerKey, destino?: string): string {
   if (partner === "booking") return bookingHref(destino);
+  if (partner === "tripcom") return tripcomHref(destino) ?? PARTNERS.tripcom.fallback;
   if (partner === "getyourguide" && !process.env.AFF_GETYOURGUIDE?.trim()) return gygHref(destino);
   const p = PARTNERS[partner];
   if (!p) return "https://viajajapon.com"; // partner desconocido: nunca romper el render
@@ -144,6 +154,7 @@ export function affiliateUrl(partner: PartnerKey, destino?: string): string {
 /** ¿Hay enlace de tracking real configurado para este partner? (útil para avisos en dev/GA4). */
 export function isMonetized(partner: PartnerKey, destino?: string): boolean {
   if (partner === "booking") return bookingMonetized(destino);
+  if (partner === "tripcom") return tripcomMonetized(destino);
   const p = PARTNERS[partner];
   if (!p) return false; // partner desconocido (errata en MDX): nunca romper el build
   const tracked = process.env[p.env]?.trim();
@@ -158,8 +169,9 @@ export function isMonetized(partner: PartnerKey, destino?: string): boolean {
 export function isTrackedAffiliateHref(href: string): boolean {
   if (bookingTrackedPrefixes().some((prefix) => href.startsWith(prefix))) return true;
   if (isGygTracked(href)) return true;
+  if (tripcomTrackedPrefixes().some((prefix) => href.startsWith(prefix))) return true;
   return (Object.keys(PARTNERS) as PartnerKey[]).some((key) => {
-    if (key === "booking") return false; // ya cubierto arriba, por destino
+    if (key === "booking" || key === "tripcom") return false; // ya cubiertos arriba, por destino
     if (!isMonetized(key)) return false;
     const tracked = affiliateUrl(key);
     return href === tracked || href.startsWith(tracked);

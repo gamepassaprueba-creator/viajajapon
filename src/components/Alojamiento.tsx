@@ -2,6 +2,7 @@ import Link from "next/link";
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta } from "@/lib/affiliates";
 import { bookingLabel } from "@/data/booking-links";
+import { TRIPCOM_CIUDADES, tripcomCiudad } from "@/data/tripcom-links";
 
 /**
  * Componentes de alojamiento (diseño aprobado en el lienzo "ViajaJapón · Alojamiento y Booking").
@@ -43,6 +44,9 @@ export function DormirEn({
   const monetized = isMonetized("booking", destino);
   const ciudad = bookingLabel(destino);
   const placement = "dormir_en";
+  // Segunda opción: Trip.com, solo en ciudades con página verificada (Japón entero no la tiene).
+  const tcCiudad = tripcomCiudad(destino);
+  const tcMonetized = isMonetized("tripcom", destino);
 
   return (
     <aside className="panel-manga-red my-8 flex flex-col bg-white sm:flex-row">
@@ -89,8 +93,23 @@ export function DormirEn({
               className="inline-flex min-h-11 items-center justify-center gap-1.5 text-sm font-bold text-primary hover:underline sm:justify-start"
             />
           )}
+          {tcCiudad && (
+            <TrackedAffiliateLink
+              href={affiliateUrl("tripcom", destino)}
+              partner="tripcom"
+              monetized={tcMonetized}
+              label={`Comparar en Trip.com`}
+              placement={`${placement}_tripcom`}
+              ctaVariant="dormir_en"
+              destination={tcCiudad}
+              className="inline-flex min-h-11 items-center justify-center gap-1.5 text-sm font-bold text-primary hover:underline sm:justify-start"
+            />
+          )}
         </div>
-        <p className="text-[11px] text-fg-muted">{avisoBooking(monetized)}</p>
+        <p className="text-[11px] text-fg-muted">
+          {avisoBooking(monetized)}
+          {tcCiudad ? ` · Trip.com (hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label}) · ${tcMonetized ? "enlace de afiliado, sin coste extra para ti" : "enlace externo sin comisión"}` : ""}
+        </p>
       </div>
     </aside>
   );
