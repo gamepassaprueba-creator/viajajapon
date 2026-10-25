@@ -2,6 +2,7 @@ import Link from "next/link";
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta, type PartnerKey } from "@/lib/affiliates";
 import { bookingQue } from "@/data/booking-links";
+import { tripcomCiudad } from "@/data/tripcom-links";
 
 type Offer =
   | { kind: "partner"; partner: PartnerKey; title: string; blurb: string; cta: string }
@@ -50,7 +51,11 @@ export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: s
     const que = bookingQue(destino);
     return { key, ...o, title: que.charAt(0).toUpperCase() + que.slice(1) };
   });
-  const anyMonetized = offers.some((o) => o.kind === "partner" && isMonetized(o.partner, destino));
+  // Trip.com va como segunda opción dentro de la tarjeta de alojamiento (solo ciudades verificadas).
+  const tcCiudad = tripcomCiudad(destino);
+  const anyMonetized =
+    offers.some((o) => o.kind === "partner" && isMonetized(o.partner, destino)) ||
+    (!!tcCiudad && keys.includes("booking") && isMonetized("tripcom", destino));
   const cols = COLS[offers.length] ?? COLS[4];
 
   return (
@@ -76,7 +81,20 @@ export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: s
                   destination={o.partner === "booking" || o.partner === "getyourguide" ? destino ?? "japon" : undefined}
                   className="btn-primary mt-3 inline-block text-sm"
                 />
-              ) : (
+              ) : null}
+              {o.kind === "partner" && o.partner === "booking" && tcCiudad ? (
+                <TrackedAffiliateLink
+                  href={affiliateUrl("tripcom", destino)}
+                  partner="tripcom"
+                  monetized={isMonetized("tripcom", destino)}
+                  label="o compara en Trip.com"
+                  placement="article_top_tripcom"
+                  ctaVariant={pillar}
+                  destination={tcCiudad}
+                  className="mt-2 inline-flex min-h-11 items-center gap-1.5 text-sm font-bold text-primary hover:underline"
+                />
+              ) : null}
+              {o.kind === "partner" ? null : (
                 <Link href={o.href} className="btn-primary mt-3 inline-block text-sm">
                   {o.cta} <span aria-hidden="true">→</span>
                 </Link>
