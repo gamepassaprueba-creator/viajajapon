@@ -297,7 +297,7 @@ export async function Article({
           {/* AUTORÍA Y TRANSPARENCIA */}
           {meta.autorInvitado ? (
             <aside className="mt-12 border-[3px] border-[#0a0a0a] bg-[#f5f5f5] p-5 text-sm leading-relaxed text-fg-muted" aria-label="Sobre el autor">
-              <p className="kicker text-[#e1352e]">Autor invitado</p>
+              <p className="kicker text-[#d32f2f]">Autor invitado</p>
               <p className="mt-1 text-base font-black text-[#0a0a0a]">
                 {meta.autorInvitado.nombre}, de{" "}
                 <a href={meta.autorInvitado.url} rel="nofollow noopener" target="_blank" className="underline underline-offset-2">
@@ -394,7 +394,7 @@ export async function Article({
                       </span>
                     )}
                     <span className="flex flex-col p-4">
-                      <span className="kicker text-[#e1352e]">{a.kicker}</span>
+                      <span className="kicker text-[#d32f2f]">{a.kicker}</span>
                       <span className="mt-1 font-black text-[#0a0a0a]">{a.title}</span>
                     </span>
                   </Link>

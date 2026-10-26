@@ -29,7 +29,7 @@ const MARCAS = [
 export function KoyoCalendario({ titulo = "¿Cuándo se ponen rojos los arces en cada ciudad?" }: { titulo?: string }) {
   return (
     <aside className="panel-manga-red my-8 flex flex-col gap-3 bg-white p-4 sm:p-6">
-      <p className="kicker text-[#e1352e]">Calendario del momiji · datos JMA</p>
+      <p className="kicker text-[#d32f2f]">Calendario del momiji · datos JMA</p>
       <p className="text-lg font-black leading-snug text-[#0a0a0a] sm:text-[22px]">{titulo}</p>
 
       <div className="flex gap-3" aria-hidden="true">

@@ -73,7 +73,7 @@ export function ItinerariosFiltro({ items }: { items: ItinItem[] }) {
                   <MapPin size={10} aria-hidden="true" /> {it.ruta}
                 </p>
                 <p className="mt-2 text-sm text-[#555]">{it.desc}</p>
-                <span className="mt-auto pt-3 font-mono text-[10px] font-black uppercase tracking-wide text-[#e1352e]">
+                <span className="mt-auto pt-3 font-mono text-[10px] font-black uppercase tracking-wide text-[#d32f2f]">
                   Ver itinerario <ArrowRight size={12} className="inline" aria-hidden="true" />
                 </span>
               </div>

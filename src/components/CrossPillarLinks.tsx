@@ -72,7 +72,7 @@ export function CrossPillarLinks({ currentPillar, currentSlug }: { currentPillar
                 href={`${cat.basePath}/${a.slug}`}
                 className="panel-manga-red flex h-full flex-col bg-white p-4 transition-all hover:translate-x-0.5 hover:translate-y-0.5"
               >
-                <span className="kicker text-[#e1352e]">{cat.label}</span>
+                <span className="kicker text-[#d32f2f]">{cat.label}</span>
                 <span className="mt-1 font-black text-[#0a0a0a]">{a.title}</span>
               </Link>
             </li>

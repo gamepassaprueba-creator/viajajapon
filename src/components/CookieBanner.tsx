@@ -42,7 +42,7 @@ export function CookieBanner() {
         <div className="text-xs sm:text-sm text-[#0a0a0a] leading-relaxed">
           <p>
             Usamos almacenamiento técnico y, solo si aceptas, Google Analytics para entender cómo se usa ViajaJapón. Puedes aceptar o rechazar la analítica y cambiar tu decisión después. Tienes más información en nuestra{" "}
-            <Link href="/cookies" className="font-bold underline hover:text-[#e1352e]">
+            <Link href="/cookies" className="font-bold underline hover:text-[#d32f2f]">
               política de cookies
             </Link>
             .

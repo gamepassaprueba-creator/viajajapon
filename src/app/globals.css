@@ -13,7 +13,7 @@
   --color-surface:      #f5f5f5;
   --color-fg:           #0a0a0a;
   --color-fg-muted:     #555555;
-  --color-primary:      #e1352e;
+  --color-primary:      #d32f2f; /* rojo de texto: 4,98:1 sobre blanco (AA); #e1352e daba 4,42:1. Los fondos, bordes y sombras de marca usan #e1352e directamente */
   --color-primary-strong: #b8271f;
   --color-secondary:    #0a0a0a;
   --color-border:       #e0e0e0;

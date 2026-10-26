@@ -31,7 +31,7 @@ export function InteractiveMap() {
   return (
     <div className="panel-manga-dark relative my-8 overflow-hidden bg-[#f5f5f5] p-2 md:p-6">
       <div className="mb-4 px-4 pt-2">
-        <p className="kicker text-[#e1352e]">Mapa Interactivo</p>
+        <p className="kicker text-[#d32f2f]">Mapa Interactivo</p>
         <h3 className="mt-1 text-2xl font-black text-[#0a0a0a]">La Ruta del Dragón</h3>
         <p className="mt-1 text-sm text-[#555]">Haz clic en las paradas clave del itinerario clásico para ver la guía de cada destino.</p>
       </div>
@@ -102,11 +102,11 @@ export function InteractiveMap() {
           <div className="border-[2px] border-[#0a0a0a] bg-white p-3 shadow-[3px_3px_0_#0a0a0a] transition-all min-h-[90px]">
             {hoveredNode ? (
               <>
-                <p className="font-mono text-xs font-black uppercase text-[#e1352e]">{getNode(hoveredNode).name}</p>
+                <p className="font-mono text-xs font-black uppercase text-[#d32f2f]">{getNode(hoveredNode).name}</p>
                 <p className="mt-1 text-sm font-bold text-[#0a0a0a]">{getNode(hoveredNode).desc}</p>
                 <Link 
                   href={getNode(hoveredNode).href}
-                  className="mt-2 inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-[#555] hover:text-[#e1352e]"
+                  className="mt-2 inline-flex items-center text-[10px] font-bold uppercase tracking-wider text-[#555] hover:text-[#d32f2f]"
                 >
                   Leer guía completa &rarr;
                 </Link>

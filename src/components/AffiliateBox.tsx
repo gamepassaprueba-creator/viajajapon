@@ -35,7 +35,7 @@ export function AffiliateBox({
 
   return (
     <aside className="panel-manga-red my-8 bg-white p-5">
-      <p className="kicker text-[#e1352e]">{monetized ? "Recomendación · enlace de afiliado" : "Recomendación"}</p>
+      <p className="kicker text-[#d32f2f]">{monetized ? "Recomendación · enlace de afiliado" : "Recomendación"}</p>
       <h3 className="mt-1 text-lg font-black text-[#0a0a0a]">{title}</h3>
       <div className="mt-1 text-sm leading-relaxed text-[#555]">{children}</div>
       <TrackedAffiliateLink
