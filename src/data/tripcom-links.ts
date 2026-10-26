@@ -2,7 +2,8 @@
  * Enlaces de Trip.com POR CIUDAD (segunda opción de alojamiento, junto a Booking).
  *
  * Programa «Trip.com (Global)» 4368684 en CJ, aprobado el 20-oct-2026 para el sitio
- * ViajaJapon.com (101904257): 5,5 % de las reservas de hotel completadas.
+ * ViajaJapon.com (101904257). Comisión especial de «content publisher» confirmada por el equipo de
+ * afiliados de Trip.com el 26-oct-2026: hoteles 8 %, tours 5 %, trenes 5 %, traslados 8 %, coches 10 %.
  *
  * La plantilla sale del enlace «ES Site» (13993400) de CJ → Campañas → Enlaces y productos,
  * con la URL de destino cambiada: CJ la mete codificada en `?url=`. Generada y probada el
