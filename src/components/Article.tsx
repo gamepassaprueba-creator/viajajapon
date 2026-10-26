@@ -15,6 +15,7 @@ import { SITE } from "@/lib/site";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CrossPillarLinks } from "@/components/CrossPillarLinks";
 import { RELATED_CONTENT, contentKey } from "@/lib/related-content";
+import { PrintButton } from "@/components/PrintButton";
 
 interface PillarConfig {
   basePath: string; // "/blog" | "/logistica"
@@ -226,6 +227,7 @@ export async function Article({
             </svg>
             Cómo verificamos esta guía
           </Link>
+          {pillar === "itinerarios" && <PrintButton slug={slug} />}
         </div>
       </header>
 
