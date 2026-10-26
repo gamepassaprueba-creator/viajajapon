@@ -203,7 +203,7 @@ export default async function Home() {
       <section className="mx-auto max-w-7xl px-4 py-10">
         <h2 className="text-3xl font-black text-[#0a0a0a] sm:text-[34px]">Herramientas que no encontrarás en otras guías</h2>
         <p className="mb-5 mt-1.5 text-base text-fg-muted">Gratis y sin registro. Hacen las cuentas por ti.</p>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {HERRAMIENTAS.map(({ Icon, ...h }) => (
             <Link key={h.href} href={h.href} className={`${card} flex flex-col gap-2.5 p-6 ${h.destacado ? "bg-[#fff5f4]" : ""}`}>
               <Icon className={h.destacado ? "text-[#b71c1c]" : "text-[#0a0a0a]"} size={30} strokeWidth={2} aria-hidden="true" />
