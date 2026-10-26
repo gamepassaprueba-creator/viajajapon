@@ -55,7 +55,7 @@ export function DormirEn({
         <span className="kicker">Dormir{cuando ? <span className="sm:hidden"> · {cuando}</span> : null}</span>
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-2.5 p-4 sm:px-6 sm:py-5">
-        {cuando && <p className="kicker hidden text-[#e1352e] sm:block">{cuando}</p>}
+        {cuando && <p className="kicker hidden text-[#d32f2f] sm:block">{cuando}</p>}
         <p className="text-lg font-black leading-snug text-[#0a0a0a] sm:text-xl">{titulo ?? `Dónde dormir en ${ciudad}`}</p>
         {zonas && zonas.length > 0 && (
           <ul className="flex flex-wrap gap-2" aria-label="Zonas recomendadas">
@@ -164,7 +164,7 @@ export function ZonasMapa({
 }) {
   return (
     <figure className="my-8">
-      {titulo && <p className="kicker mb-2 text-[#e1352e]">Mapa mental · {titulo}</p>}
+      {titulo && <p className="kicker mb-2 text-[#d32f2f]">Mapa mental · {titulo}</p>}
       <div className="grid gap-5 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]">
         <div
           aria-hidden="true"
@@ -228,7 +228,7 @@ export function ZonasMapa({
             </li>
           ))}
           <li className="flex flex-wrap gap-x-3 gap-y-1 pt-1 text-[11px] text-fg-muted">
-            <span><span aria-hidden="true" className="text-[#e1352e]">●</span> recomendada</span>
+            <span><span aria-hidden="true" className="text-[#d32f2f]">●</span> recomendada</span>
             <span><span aria-hidden="true">●</span> con matices</span>
             <span><span aria-hidden="true">○</span> nicho</span>
           </li>

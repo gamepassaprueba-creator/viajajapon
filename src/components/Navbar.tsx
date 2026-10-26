@@ -13,7 +13,7 @@ export async function Navbar() {
         <div className="hidden items-center gap-6 md:flex">
           <nav aria-label="Principal" className="flex items-center gap-6">
             {SITE.nav.map((item) => (
-              <Link key={item.href} href={item.href} className="font-mono text-xs font-black uppercase tracking-wide text-[#555] transition-colors hover:text-[#e1352e]">
+              <Link key={item.href} href={item.href} className="font-mono text-xs font-black uppercase tracking-wide text-[#555] transition-colors hover:text-[#d32f2f]">
                 {item.label}
               </Link>
             ))}
@@ -25,7 +25,7 @@ export async function Navbar() {
         <div className="flex items-center gap-0.5 md:hidden">
           {/* Yen mini en móvil */}
           <Link href="/cambio-yen-euro" className="hidden min-[380px]:flex items-center gap-1 border-[2px] border-[#0a0a0a] px-2 py-1">
-            <span className="font-mono text-[9px] font-black text-[#e1352e]">¥ hoy</span>
+            <span className="font-mono text-[9px] font-black text-[#d32f2f]">¥ hoy</span>
           </Link>
           <Link href="/buscar" aria-label="Buscar" className="flex size-11 items-center justify-center text-[#0a0a0a]">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

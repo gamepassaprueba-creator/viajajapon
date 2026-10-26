@@ -71,7 +71,7 @@ export default async function Home() {
           <div className="flex flex-col gap-5 px-4 py-10 sm:py-14 lg:pr-10">
             <p className="kicker text-primary">Guía práctica · revisada en octubre de 2026</p>
             <h1 className="text-balance text-4xl font-black leading-[1.02] tracking-tight text-[#0a0a0a] sm:text-5xl lg:text-[64px]">
-              Planifica Japón <span className="text-[#e1352e]">por libre</span>, con números reales.
+              Planifica Japón <span className="text-[#d32f2f]">por libre</span>, con números reales.
             </h1>
             <p className="max-w-xl text-pretty text-base leading-relaxed text-[#3d3d3d] sm:text-lg">
               Itinerarios día a día, presupuesto en euros y la calculadora que te dice si el JR Pass te compensa.

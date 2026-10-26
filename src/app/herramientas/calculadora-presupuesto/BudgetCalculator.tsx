@@ -179,7 +179,7 @@ export function BudgetCalculator() {
 
       <section aria-label="Resultado" className="flex flex-col gap-5">
         <div className="flex flex-col gap-4 border-[3px] border-[#0a0a0a] bg-white p-4 shadow-[6px_6px_0_#e1352e] sm:p-6">
-          <p className="kicker text-[#e1352e]">
+          <p className="kicker text-[#d32f2f]">
             Tu presupuesto · {s.days} días · {s.people} {s.people === 1 ? "persona" : "personas"} · {PROFILE_LABEL[s.profile].toLowerCase()}
           </p>
           <p className="flex flex-wrap items-baseline gap-x-3">

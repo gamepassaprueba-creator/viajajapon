@@ -18,7 +18,7 @@ export function BudgetCalculator() {
   return (
     <div className="panel-manga-red my-8 bg-white p-5 md:p-8">
       <div className="mb-6 border-b-[3px] border-[#0a0a0a] pb-4">
-        <p className="kicker text-[#e1352e]">Calculadora interactiva</p>
+        <p className="kicker text-[#d32f2f]">Calculadora interactiva</p>
         <h3 className="mt-1 text-2xl font-black text-[#0a0a0a]">Presupuesto en destino</h3>
         <p className="mt-2 text-sm text-[#555] leading-relaxed">Calcula cuánto gastarás en Japón (alojamiento, comida, transporte local y ocio). <strong className="text-[#0a0a0a]">Los vuelos no están incluidos.</strong></p>
       </div>
@@ -26,7 +26,7 @@ export function BudgetCalculator() {
       <div className="space-y-6">
         <div>
           <label className="mb-3 block font-bold text-[#0a0a0a]">
-            ¿Cuántos días vas a viajar? <span className="nums text-[#e1352e]">{days} días</span>
+            ¿Cuántos días vas a viajar? <span className="nums text-[#d32f2f]">{days} días</span>
           </label>
           <input 
             type="range" 
@@ -63,7 +63,7 @@ export function BudgetCalculator() {
         <div className="mt-6 border-t-[3px] border-dashed border-[#0a0a0a] pt-6">
           <p className="text-sm font-bold text-[#0a0a0a] uppercase tracking-wide">Gasto estimado total:</p>
           <div className="mt-2 flex items-baseline gap-3">
-            <span className="nums text-4xl font-black text-[#e1352e]">
+            <span className="nums text-4xl font-black text-[#d32f2f]">
               ¥{totalYen.toLocaleString("es-ES")}
             </span>
             <span className="nums text-lg font-bold text-[#555]">

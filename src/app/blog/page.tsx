@@ -44,7 +44,7 @@ export default function Page() {
       <section className="border-b-[3px] border-[#0a0a0a] bg-white">
         <div className="mx-auto max-w-5xl px-4 py-12 text-center sm:py-16">
           <Breadcrumbs items={[{ name: "Inicio", href: "/" }, { name: "Blog", href: "/blog" }]} className="mb-4 justify-center" />
-          <p className="kicker text-[#e1352e]">Blog</p>
+          <p className="kicker text-[#d32f2f]">Blog</p>
           <h1 className="display-md mt-2 text-3xl text-[#0a0a0a] sm:text-5xl">Blog de viajes a Japón</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[#555] sm:text-lg">
             Guías de destinos, gastronomía, cultura, itinerarios y consejos. Con datos verificados y experiencia real.

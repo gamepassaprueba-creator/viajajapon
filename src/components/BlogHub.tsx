@@ -108,7 +108,7 @@ function Card({ item }: { item: HubItem }) {
         <span className="tag-manga absolute left-0 top-0">{item.category}</span>
       </div>
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="display-md text-base leading-snug text-[#0a0a0a] group-hover:text-[#e1352e]">{item.title}</h3>
+        <h3 className="display-md text-base leading-snug text-[#0a0a0a] group-hover:text-[#d32f2f]">{item.title}</h3>
         <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-[#555]">{item.excerpt}</p>
         <p className="nums mt-4 font-mono text-[10px] text-[#999]">
           {item.date}
