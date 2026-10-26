@@ -117,6 +117,19 @@ export default function Page() {
         </section>
 
         <section>
+          <h2 className="text-2xl font-bold text-fg">Artículos invitados</h2>
+          <p className="mt-3">
+            Algunas guías las firma un autor invitado, y se indica en la cabecera y en la caja de autor. Las editamos,
+            contrastamos sus datos con fuentes oficiales y el autor aprueba la versión final. No son contenido pagado y
+            el enlace a su web va marcado como nofollow. Las condiciones están en{" "}
+            <Link href="/prensa" className="text-primary underline-offset-2 hover:underline">
+              Prensa y colaboraciones
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section>
           <h2 className="text-2xl font-bold text-fg">Afiliados, publicidad e independencia</h2>
           <p className="mt-3">
             ViajaJapón puede financiarse mediante publicidad y enlaces de afiliación. Una comisión no cambia el precio
@@ -131,7 +144,7 @@ export default function Page() {
         </section>
       </div>
 
-      <p className="mt-10 text-xs text-fg-muted">Última actualización: 25 de septiembre de 2026.</p>
+      <p className="mt-10 text-xs text-fg-muted">Última actualización: 26 de octubre de 2026.</p>
 
       <JsonLd
         data={{

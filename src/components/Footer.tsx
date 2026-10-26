@@ -48,6 +48,7 @@ const COLS = [
       { label: "Contacto y correcciones", href: "/contacto" },
       { label: "Política editorial", href: "/politica-editorial" },
       { label: "Divulgación de afiliados", href: "/afiliados-divulgacion" },
+      { label: "Prensa y colaboraciones", href: "/prensa" },
     ],
   },
 ];

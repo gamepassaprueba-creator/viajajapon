@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/sobre-nosotros", cf: "yearly", p: 0.3, mod: new Date("2026-09-25") },
     { path: "/contacto", cf: "yearly", p: 0.3, mod: trustUpdated },
     { path: "/politica-editorial", cf: "yearly", p: 0.3, mod: trustUpdated },
+    { path: "/prensa", cf: "yearly", p: 0.3, mod: new Date("2026-10-26") },
     { path: "/afiliados-divulgacion", cf: "yearly", p: 0.2, mod: legalUpdated },
     { path: "/aviso-legal", cf: "yearly", p: 0.1, mod: legalUpdated },
     { path: "/privacidad", cf: "yearly", p: 0.1, mod: privacyUpdated },
