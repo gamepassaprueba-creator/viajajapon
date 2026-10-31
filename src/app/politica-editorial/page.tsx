@@ -28,7 +28,7 @@ export default function Page() {
           <p className="mt-3">
             El responsable editorial es <strong className="text-fg">Sergio</strong>. Puedes conocer el viaje
             que dio origen al proyecto, qué partes fueron experiencia propia y qué criterios seguimos en{" "}
-            <Link href="/sobre-nosotros" className="text-primary underline-offset-2 hover:underline">
+            <Link href="/sobre-nosotros" className="text-primary underline underline-offset-2">
               Sobre nosotros
             </Link>
             .
@@ -65,25 +65,25 @@ export default function Page() {
           </p>
           <ul className="mt-3 list-disc space-y-2 pl-5">
             <li>
-              <a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" className="text-primary underline-offset-2 hover:underline">
+              <a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" className="text-primary underline underline-offset-2">
                 Ministerio de Asuntos Exteriores de Japón (MOFA)
               </a>{" "}
               para exenciones de visado y requisitos de entrada.
             </li>
             <li>
-              <a href="https://www.digital.go.jp/en/policies/visit_japan_web" className="text-primary underline-offset-2 hover:underline">
+              <a href="https://www.digital.go.jp/en/policies/visit_japan_web" className="text-primary underline underline-offset-2">
                 Digital Agency de Japón
               </a>{" "}
               para Visit Japan Web y trámites digitales de llegada.
             </li>
             <li>
-              <a href="https://japanrailpass.net/en/" className="text-primary underline-offset-2 hover:underline">
+              <a href="https://japanrailpass.net/en/" className="text-primary underline underline-offset-2">
                 JR Group / JAPAN RAIL PASS
               </a>{" "}
               y los operadores regionales para precios, cobertura y condiciones ferroviarias.
             </li>
             <li>
-              <a href="https://www.jma.go.jp/jma/kokusai/multi.html" className="text-primary underline-offset-2 hover:underline">
+              <a href="https://www.jma.go.jp/jma/kokusai/multi.html" className="text-primary underline underline-offset-2">
                 Japan Meteorological Agency (JMA)
               </a>{" "}
               para meteorología, terremotos, tsunamis y avisos de riesgo.
@@ -109,7 +109,7 @@ export default function Page() {
           </p>
           <p className="mt-3">
             El canal está en{" "}
-            <Link href="/contacto" className="text-primary underline-offset-2 hover:underline">
+            <Link href="/contacto" className="text-primary underline underline-offset-2">
               Contacto y correcciones
             </Link>
             .
@@ -122,7 +122,7 @@ export default function Page() {
             Algunas guías las firma un autor invitado, y se indica en la cabecera y en la caja de autor. Las editamos,
             contrastamos sus datos con fuentes oficiales y el autor aprueba la versión final. No son contenido pagado y
             el enlace a su web va marcado como nofollow. Las condiciones están en{" "}
-            <Link href="/prensa" className="text-primary underline-offset-2 hover:underline">
+            <Link href="/prensa" className="text-primary underline underline-offset-2">
               Prensa y colaboraciones
             </Link>
             .
@@ -136,7 +136,7 @@ export default function Page() {
             para el lector y no convierte automáticamente a un proveedor en recomendado. Cuando una herramienta o una
             comparación concluye que una compra no compensa, esa conclusión debe mantenerse aunque reduzca los ingresos.
             Consulta también nuestra{" "}
-            <Link href="/afiliados-divulgacion" className="text-primary underline-offset-2 hover:underline">
+            <Link href="/afiliados-divulgacion" className="text-primary underline underline-offset-2">
               divulgación de afiliados
             </Link>
             .

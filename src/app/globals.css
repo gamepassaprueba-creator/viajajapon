@@ -193,7 +193,7 @@ h1, h2, h3 { text-wrap: balance; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #e1352e;
+  background: #d32f2f;
   color: #fff;
   font-family: var(--font-mono);
   font-size: 0.75rem;

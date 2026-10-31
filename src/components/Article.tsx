@@ -209,7 +209,7 @@ export async function Article({
             />
             <span>
               Por{" "}
-              <Link href="/sobre-nosotros" className="font-bold text-[#0a0a0a] underline-offset-2 hover:underline">
+              <Link href="/sobre-nosotros" className="font-bold text-[#0a0a0a] underline underline-offset-2">
                 {SITE.author.name}
               </Link>{" "}
               · {AUTHOR_TRIP}
@@ -221,7 +221,7 @@ export async function Article({
             {formatDate(meta.dateModified)}
           </span>
           {meta.readingMinutes ? <span className="nums">{meta.readingMinutes} min de lectura</span> : null}
-          <Link href="/politica-editorial" className="flex items-center gap-1.5 font-medium text-[#0a0a0a] underline-offset-2 hover:underline">
+          <Link href="/politica-editorial" className="flex items-center gap-1.5 font-medium text-[#0a0a0a] underline underline-offset-2">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15803d" strokeWidth="2.6" strokeLinecap="round" aria-hidden="true">
               <path d="M5 12l5 5 9-10" />
             </svg>
@@ -248,7 +248,7 @@ export async function Article({
             <p className="mt-3 text-pretty text-[15px] leading-relaxed text-[#2b2b2b] sm:text-base">{meta.excerpt}</p>
           )}
           {toc.length > 0 && (
-            <a href={toc[0].href} className="kicker mt-4 inline-block text-primary underline-offset-2 hover:underline">
+            <a href={toc[0].href} className="kicker mt-4 inline-block text-primary underline underline-offset-2">
               Empezar a leer ↓
             </a>
           )}
@@ -309,11 +309,11 @@ export async function Article({
               <p className="mt-1">
                 {meta.autorInvitado.bio} Es una colaboración sin pago ni enlaces de afiliado en el texto: la hemos editado y hemos
                 contrastado sus datos con las fuentes oficiales antes de publicarla.{" "}
-                <Link href="/politica-editorial" className="text-primary underline-offset-2 hover:underline">
+                <Link href="/politica-editorial" className="text-primary underline underline-offset-2">
                   Política editorial
                 </Link>{" "}
                 ·{" "}
-                <Link href="/contacto" className="text-primary underline-offset-2 hover:underline">
+                <Link href="/contacto" className="text-primary underline underline-offset-2">
                   Avísanos de un error
                 </Link>
               </p>
@@ -330,15 +330,15 @@ export async function Article({
                 Vive en Madrid y recorrió Japón con su madre en diciembre de 2025: Tokio, Kioto, Osaka, Nara y más.
                 Cuando contamos algo vivido lo señalamos como experiencia propia, y las fotos con la marca viajajapon.com son de ese
                 viaje; los datos que cambian se contrastan antes de actualizar.{" "}
-                <Link href="/sobre-nosotros" className="font-bold text-primary underline-offset-2 hover:underline">
+                <Link href="/sobre-nosotros" className="font-bold text-primary underline underline-offset-2">
                   Nuestro viaje
                 </Link>{" "}
                 ·{" "}
-                <Link href="/politica-editorial" className="text-primary underline-offset-2 hover:underline">
+                <Link href="/politica-editorial" className="text-primary underline underline-offset-2">
                   Política editorial
                 </Link>{" "}
                 ·{" "}
-                <Link href="/contacto" className="text-primary underline-offset-2 hover:underline">
+                <Link href="/contacto" className="text-primary underline underline-offset-2">
                   Avísanos de un error
                 </Link>
               </p>

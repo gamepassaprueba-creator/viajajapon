@@ -141,11 +141,11 @@ export default function Page() {
 
       <p className="mt-8 text-sm leading-relaxed text-fg-muted">
         Escrito por{" "}
-        <Link href="/sobre-nosotros" className="font-bold text-fg underline-offset-2 hover:underline">
+        <Link href="/sobre-nosotros" className="font-bold text-fg underline underline-offset-2">
           {SITE.author.name}
         </Link>
         . Si quieres corregir un dato o preguntarnos por cómo preparamos una guía, puedes hacerlo desde{" "}
-        <Link href="/contacto" className="text-primary underline-offset-2 hover:underline">
+        <Link href="/contacto" className="text-primary underline underline-offset-2">
           Contacto y correcciones
         </Link>
         .

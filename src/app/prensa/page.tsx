@@ -12,7 +12,7 @@ export const metadata: Metadata = withSocial("/prensa", {
 });
 
 const EMAIL = "info@viajajapon.com";
-const link = "text-primary underline-offset-2 hover:underline";
+const link = "text-primary underline underline-offset-2";
 
 export default function Page() {
   return (

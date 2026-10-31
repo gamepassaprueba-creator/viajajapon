@@ -58,7 +58,7 @@ export default function Page() {
         <h2 className="text-2xl font-bold">Cómo calculamos</h2>
         <p className="mt-3 leading-relaxed text-fg-muted">
           Partimos del gasto diario por persona de nuestra guía de{" "}
-          <Link href="/logistica/cuanto-cuesta-viajar-japon" className="text-primary underline-offset-2 hover:underline">
+          <Link href="/logistica/cuanto-cuesta-viajar-japon" className="text-primary underline underline-offset-2">
             cuánto cuesta viajar a Japón
           </Link>{" "}
           (alojamiento, comida y transporte local). En cerezos y otoño multiplicamos el alojamiento por 1,8, que es una media

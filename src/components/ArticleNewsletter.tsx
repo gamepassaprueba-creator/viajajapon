@@ -15,7 +15,7 @@ export function ArticleNewsletter({ source }: { source: string }) {
         style={{ boxShadow: "6px 6px 0 #e1352e" }}
       >
         <div className="flex flex-col gap-3">
-          <span className="self-start bg-[#e1352e] px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white">
+          <span className="self-start bg-[#d32f2f] px-1.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white">
             Gratis · en tu correo
           </span>
           <h2 id="newsletter-guia" className="text-xl font-black leading-tight text-[#0a0a0a] sm:text-2xl">
