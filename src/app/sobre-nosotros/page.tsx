@@ -89,7 +89,7 @@ export default function Page() {
           El proyecto no republica artículos de terceros: el punto de partida fue nuestro viaje y, a partir de ahí,
           documentación, actualización y revisión editorial. Si quieres ver la parte que sí vivimos
           personalmente, hemos dejado el recorrido y sus aprendizajes en{" "}
-          <Link href="/nuestro-viaje-japon" className="text-primary underline-offset-2 hover:underline">
+          <Link href="/nuestro-viaje-japon" className="text-primary underline underline-offset-2">
             nuestro viaje a Japón
           </Link>
           .
@@ -105,7 +105,7 @@ export default function Page() {
         </li>
         <li>
           <strong className="text-fg">La cuenta honesta, aunque venda menos.</strong> Nuestra{" "}
-          <a href="/herramientas/jr-pass-calculadora" className="text-primary underline-offset-2 hover:underline">
+          <a href="/herramientas/jr-pass-calculadora" className="text-primary underline underline-offset-2">
             calculadora del JR Pass
           </a>{" "}
           le dice a la mayoría de viajeros que NO compren el pase, porque es la verdad.
@@ -117,7 +117,7 @@ export default function Page() {
         <li>
           <strong className="text-fg">Transparencia.</strong> Algunas recomendaciones pueden contener
           enlaces de afiliado (
-          <a href="/afiliados-divulgacion" className="text-primary underline-offset-2 hover:underline">
+          <a href="/afiliados-divulgacion" className="text-primary underline underline-offset-2">
             aquí lo contamos
           </a>
           ); las fotos de terceros llevan siempre su crédito y licencia.
@@ -126,7 +126,7 @@ export default function Page() {
 
       <p className="mt-8 text-lg leading-relaxed text-fg-muted">
         ¿Por dónde empezar? Por donde empezamos todos:{" "}
-        <Link href="/logistica/japon-por-libre-primer-viaje" className="text-primary underline-offset-2 hover:underline">
+        <Link href="/logistica/japon-por-libre-primer-viaje" className="text-primary underline underline-offset-2">
           Japón por libre: tu primer viaje
         </Link>
         .

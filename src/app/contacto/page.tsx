@@ -27,7 +27,7 @@ export default function Page() {
       <section className="mt-8 border-[2px] border-[#0a0a0a] bg-white p-6">
         <h2 className="text-2xl font-bold text-fg">Correo</h2>
         <p className="mt-3 leading-relaxed text-fg-muted">
-          <a className="font-bold text-primary underline-offset-2 hover:underline" href={`mailto:${EMAIL}`}>
+          <a className="font-bold text-primary underline underline-offset-2" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
         </p>
@@ -46,7 +46,7 @@ export default function Page() {
         </p>
         <p>
           Puedes consultar cómo investigamos, actualizamos y monetizamos el contenido en nuestra{" "}
-          <Link href="/politica-editorial" className="text-primary underline-offset-2 hover:underline">
+          <Link href="/politica-editorial" className="text-primary underline underline-offset-2">
             política editorial
           </Link>
           .

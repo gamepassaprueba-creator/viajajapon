@@ -116,7 +116,7 @@ export function Toc({ items }: { items: { href: string; label: string }[] }) {
       <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
         {items.map((i) => (
           <li key={i.href}>
-            <a href={i.href} className="text-sm font-medium text-primary underline-offset-2 hover:underline">{i.label}</a>
+            <a href={i.href} className="text-sm font-medium text-primary underline underline-offset-2">{i.label}</a>
           </li>
         ))}
       </ul>
