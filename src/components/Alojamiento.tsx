@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta } from "@/lib/affiliates";
-import { bookingLabel } from "@/data/booking-links";
+import { bookingLabel, bookingQue } from "@/data/booking-links";
+import { TRIPCOM_CIUDADES, tripcomCiudad } from "@/data/tripcom-links";
 
 /**
  * Componentes de alojamiento (diseño aprobado en el lienzo "ViajaJapón · Alojamiento y Booking").
@@ -43,6 +44,13 @@ export function DormirEn({
   const monetized = isMonetized("booking", destino);
   const ciudad = bookingLabel(destino);
   const placement = "dormir_en";
+  // Segunda opción: Trip.com, solo en ciudades con página verificada (Japón entero no la tiene).
+  const tcCiudad = tripcomCiudad(destino);
+  const tcMonetized = isMonetized("tripcom", destino);
+  // Mientras Booking no pague (solicitud pendiente en CJ) y Trip.com sí, el botón principal va a
+  // Trip.com y Booking queda como enlace secundario. Al aprobarse Booking vuelve solo a su sitio.
+  const tripFirst = !!tcCiudad && tcMonetized && !monetized;
+  const secondary = "inline-flex min-h-11 items-center justify-center gap-1.5 text-sm font-bold text-primary hover:underline sm:justify-start";
 
   return (
     <aside className="panel-manga-red my-8 flex flex-col bg-white sm:flex-row">
@@ -51,7 +59,7 @@ export function DormirEn({
         <span className="kicker">Dormir{cuando ? <span className="sm:hidden"> · {cuando}</span> : null}</span>
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-2.5 p-4 sm:px-6 sm:py-5">
-        {cuando && <p className="kicker hidden text-[#e1352e] sm:block">{cuando}</p>}
+        {cuando && <p className="kicker hidden text-[#d32f2f] sm:block">{cuando}</p>}
         <p className="text-lg font-black leading-snug text-[#0a0a0a] sm:text-xl">{titulo ?? `Dónde dormir en ${ciudad}`}</p>
         {zonas && zonas.length > 0 && (
           <ul className="flex flex-wrap gap-2" aria-label="Zonas recomendadas">
@@ -62,16 +70,29 @@ export function DormirEn({
         )}
         {children && <div className="text-sm leading-relaxed text-fg-muted [&>p]:mt-0">{children}</div>}
         <div className="flex flex-col gap-2.5 pt-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
-          <TrackedAffiliateLink
-            href={affiliateUrl("booking", destino)}
-            partner="booking"
-            monetized={monetized}
-            label={neutralCta("booking", destino)}
-            placement={placement}
-            ctaVariant="dormir_en"
-            destination={destino}
-            className="btn-primary justify-center text-sm"
-          />
+          {tripFirst ? (
+            <TrackedAffiliateLink
+              href={affiliateUrl("tripcom", destino)}
+              partner="tripcom"
+              monetized={tcMonetized}
+              label={`Ver hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label} en Trip.com`}
+              placement={`${placement}_tripcom`}
+              ctaVariant="dormir_en_principal"
+              destination={tcCiudad}
+              className="btn-primary justify-center text-sm"
+            />
+          ) : (
+            <TrackedAffiliateLink
+              href={affiliateUrl("booking", destino)}
+              partner="booking"
+              monetized={monetized}
+              label={neutralCta("booking", destino)}
+              placement={placement}
+              ctaVariant="dormir_en"
+              destination={destino}
+              className="btn-primary justify-center text-sm"
+            />
+          )}
           {guia && (
             <Link href={guia} className="inline-flex min-h-11 items-center justify-center border-[3px] border-[#0a0a0a] px-3.5 text-sm font-bold text-[#0a0a0a] hover:bg-[#f5f5f5]">
               Guía de zonas de {ciudad}
@@ -86,11 +107,39 @@ export function DormirEn({
               placement={`${placement}_ryokan`}
               ctaVariant="dormir_en"
               destination={ryokan}
-              className="inline-flex min-h-11 items-center justify-center gap-1.5 text-sm font-bold text-primary hover:underline sm:justify-start"
+              className={secondary}
             />
           )}
+          {tripFirst ? (
+            <TrackedAffiliateLink
+              href={affiliateUrl("booking", destino)}
+              partner="booking"
+              monetized={monetized}
+              label={`O ${bookingQue(destino)} en Booking.com`}
+              placement={placement}
+              ctaVariant="dormir_en_secundario"
+              destination={destino}
+              className={secondary}
+            />
+          ) : (
+            tcCiudad && (
+              <TrackedAffiliateLink
+                href={affiliateUrl("tripcom", destino)}
+                partner="tripcom"
+                monetized={tcMonetized}
+                label="Comparar en Trip.com"
+                placement={`${placement}_tripcom`}
+                ctaVariant="dormir_en"
+                destination={tcCiudad}
+                className={secondary}
+              />
+            )
+          )}
         </div>
-        <p className="text-[11px] text-fg-muted">{avisoBooking(monetized)}</p>
+        <p className="text-[11px] text-fg-muted">
+          {avisoBooking(monetized)}
+          {tcCiudad ? ` · Trip.com (hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label}) · ${tcMonetized ? "enlace de afiliado, sin coste extra para ti" : "enlace externo sin comisión"}` : ""}
+        </p>
       </div>
     </aside>
   );
@@ -145,7 +194,7 @@ export function ZonasMapa({
 }) {
   return (
     <figure className="my-8">
-      {titulo && <p className="kicker mb-2 text-[#e1352e]">Mapa mental · {titulo}</p>}
+      {titulo && <p className="kicker mb-2 text-[#d32f2f]">Mapa mental · {titulo}</p>}
       <div className="grid gap-5 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)]">
         <div
           aria-hidden="true"
@@ -209,7 +258,7 @@ export function ZonasMapa({
             </li>
           ))}
           <li className="flex flex-wrap gap-x-3 gap-y-1 pt-1 text-[11px] text-fg-muted">
-            <span><span aria-hidden="true" className="text-[#e1352e]">●</span> recomendada</span>
+            <span><span aria-hidden="true" className="text-[#d32f2f]">●</span> recomendada</span>
             <span><span aria-hidden="true">●</span> con matices</span>
             <span><span aria-hidden="true">○</span> nicho</span>
           </li>

@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: { path: string; cf: CF; p: number; mod: Date }[] = [
     { path: "/", cf: "daily", p: 1, mod: latest },
     { path: "/herramientas/jr-pass-calculadora", cf: "monthly", p: 0.9, mod: calculatorUpdated },
+    { path: "/herramientas/calculadora-presupuesto", cf: "monthly", p: 0.9, mod: new Date("2026-10-26") },
     { path: "/herramientas", cf: "monthly", p: 0.6, mod: new Date("2026-10-13") },
     { path: "/cambio-yen-euro", cf: "daily", p: 0.8, mod: latest },
     { path: "/blog", cf: "daily", p: 0.7, mod: latest },
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/sobre-nosotros", cf: "yearly", p: 0.3, mod: new Date("2026-09-25") },
     { path: "/contacto", cf: "yearly", p: 0.3, mod: trustUpdated },
     { path: "/politica-editorial", cf: "yearly", p: 0.3, mod: trustUpdated },
+    { path: "/prensa", cf: "yearly", p: 0.3, mod: new Date("2026-10-26") },
     { path: "/afiliados-divulgacion", cf: "yearly", p: 0.2, mod: legalUpdated },
     { path: "/aviso-legal", cf: "yearly", p: 0.1, mod: legalUpdated },
     { path: "/privacidad", cf: "yearly", p: 0.1, mod: privacyUpdated },

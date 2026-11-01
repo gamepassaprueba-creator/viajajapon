@@ -10,7 +10,7 @@ import { HERRAMIENTAS } from "@/lib/tools";
 export const metadata: Metadata = withSocial("/herramientas", {
   title: "Herramientas para planificar tu viaje a Japón",
   description:
-    "Calculadora del JR Pass en euros, cambio yen-euro actualizado y checklist de maleta imprimible: herramientas gratuitas y sin registro para organizar tu viaje a Japón.",
+    "Calculadora de presupuesto y del JR Pass en euros, cambio yen-euro actualizado y checklist de maleta imprimible: herramientas gratuitas y sin registro para organizar tu viaje a Japón.",
   alternates: { canonical: "/herramientas" },
 });
 
@@ -42,7 +42,7 @@ export default function Page() {
         cuentas por ti para que decidas con números, no con intuición.
       </p>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {HERRAMIENTAS.map(({ Icon, ...h }) => (
           <Link key={h.href} href={h.href} className={`${card} flex flex-col gap-2.5 p-6 ${h.destacado ? "bg-[#fff5f4]" : ""}`}>
             <Icon className={h.destacado ? "text-[#b71c1c]" : "text-[#0a0a0a]"} size={30} strokeWidth={2} aria-hidden="true" />

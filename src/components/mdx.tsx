@@ -45,6 +45,7 @@ import { AffiliateBox } from "./AffiliateBox";
 import { DormirEn, ZonasMapa, avisoBooking } from "./Alojamiento";
 import { Tours } from "./Tours";
 import { FloracionCalendario } from "./Floracion";
+import { KoyoCalendario } from "./Koyo";
 import { TrackedAffiliateLink } from "./TrackedAffiliateLink";
 import { Charla } from "./Charla";
 import { PackingChecklist } from "./PackingChecklist";
@@ -115,7 +116,7 @@ export function Toc({ items }: { items: { href: string; label: string }[] }) {
       <ul className="mt-2 grid gap-1.5 sm:grid-cols-2">
         {items.map((i) => (
           <li key={i.href}>
-            <a href={i.href} className="text-sm font-medium text-primary underline-offset-2 hover:underline">{i.label}</a>
+            <a href={i.href} className="text-sm font-medium text-primary underline underline-offset-2">{i.label}</a>
           </li>
         ))}
       </ul>
@@ -599,7 +600,7 @@ export function CTABand({ title, texto, href, cta, href2, cta2 }: { title: strin
       <p className="display-md text-2xl text-white sm:text-3xl">{title}</p>
       {texto && <p className="mx-auto mt-3 max-w-xl text-pretty text-white/85">{texto}</p>}
       <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <Link href={href} className="btn-outline border-white text-white hover:bg-white hover:text-[#e1352e]">
+        <Link href={href} className="btn-outline border-white text-white hover:bg-white hover:text-[#d32f2f]">
           {cta}
         </Link>
         {href2 && cta2 && (
@@ -690,7 +691,7 @@ export const mdxComponents = {
     // Enlaces internos (rutas propias o anclas) → next/link para navegación SPA.
     const isInternal = h.startsWith("/") || h.startsWith("#");
     if (isInternal) {
-      return <Link href={h} className="text-primary underline-offset-2 hover:underline" {...p} />;
+      return <Link href={h} className="text-primary underline decoration-1 underline-offset-2 hover:decoration-2" {...p} />;
     }
     // Enlaces externos → nueva pestaña. Solo los de tracking de afiliado llevan
     // rel="sponsored nofollow"; las fuentes oficiales y webs sin tracking son citas
@@ -701,7 +702,7 @@ export const mdxComponents = {
         href={h}
         target="_blank"
         rel={sponsored ? "sponsored nofollow noopener" : "noopener noreferrer"}
-        className="text-primary underline-offset-2 hover:underline"
+        className="text-primary underline decoration-1 underline-offset-2 hover:decoration-2"
         {...p}
       />
     );
@@ -720,6 +721,7 @@ export const mdxComponents = {
   ZonasMapa,
   Tours,
   FloracionCalendario,
+  KoyoCalendario,
   CalculatorCTA,
   AuthorNote,
   Toc,

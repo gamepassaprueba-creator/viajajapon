@@ -31,7 +31,7 @@ export default function Page() {
         </p>
         <p>
           Para traducirlo a tu viaje real, usa la{" "}
-          <Link href="/herramientas/jr-pass-calculadora" className="text-primary underline-offset-2 hover:underline">
+          <Link href="/herramientas/jr-pass-calculadora" className="text-primary underline underline-offset-2">
             calculadora de presupuesto y JR Pass
           </Link>
           : estima el coste total en euros con el cambio de hoy.

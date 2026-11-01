@@ -7,6 +7,7 @@ import { HERRAMIENTAS } from "@/lib/tools";
 import { NewsletterForm, NewsletterGate } from "@/components/NewsletterForm";
 import { SITE } from "@/lib/site";
 import { HomeYenBullet } from "./HomeYenComponents";
+import { getAllArticles } from "@/lib/content";
 
 export const metadata: Metadata = withSocial("/", {
   title: { absolute: "Viajar a Japón en 2026: guía, JR Pass y presupuesto · ViajaJapón" },
@@ -24,15 +25,20 @@ const DIAS = [
   { label: "1 mes · el más leído", href: "/itinerarios/itinerario-japon-1-mes", destacado: true },
 ];
 
-// Páginas con más impresiones en Search Console (revisar cada trimestre).
+// Páginas con más impresiones en Search Console (revisar cada trimestre). Diseño: tablero
+// «MasLeido» del lienzo de Claude Design (ranking 02-05 con foto, gancho y minutos de lectura).
 const MAS_LEIDO = [
-  { kicker: "Nuevo sistema · 1 de noviembre", title: "Tax Free en Japón: cómo cambia el reembolso al salir del país", href: "/logistica/compras-y-tax-free-japon" },
-  { kicker: "Checklist imprimible", title: "Qué llevar a Japón en la maleta", href: "/logistica/que-llevar-maleta-japon" },
-  { kicker: "Dinero", title: "Cómo pagar en Japón: efectivo, tarjeta y Suica", href: "/logistica/como-pagar-en-japon" },
-  { kicker: "Cultura", title: "Geiko, geisha y maiko: qué son y cómo verlas con respeto", href: "/cultura/geishas-y-maiko-japon" },
+  { kicker: "Nuevo sistema · 1 nov", nuevo: true, title: "Tax Free en Japón: cómo cambia el reembolso al salir del país", corto: "Tax Free en Japón: cómo cambia el reembolso", gancho: "Qué cambia desde el 1 de noviembre y cómo recuperar el impuesto en el aeropuerto.", cat: "Compras", img: "/images/tokio-ginza.jpg", alt: "Cruce de Ginza a la hora azul con los grandes almacenes iluminados", href: "/logistica/compras-y-tax-free-japon" },
+  { kicker: "Checklist imprimible", title: "Qué llevar a Japón en la maleta", gancho: "Checklist que guarda tu progreso, ropa por temporada y lo que la aduana no deja pasar.", cat: "Preparativos", img: "/images/maleta-equipaje.jpg", alt: "Maleta abierta preparada para el viaje", href: "/logistica/que-llevar-maleta-japon" },
+  { kicker: "Dinero", title: "Cómo pagar en Japón: efectivo, tarjeta y Suica", gancho: "Dónde sacar yenes, con qué tarjeta pagar y qué errores evitar.", cat: "Dinero", img: "/images/konbini-japon.jpg", alt: "Interior de un konbini japonés", href: "/logistica/como-pagar-en-japon" },
+  { kicker: "Cultura", title: "Geiko, geisha y maiko: qué son y cómo verlas con respeto", corto: "Geiko, geisha y maiko: qué son y cómo verlas", gancho: "Qué diferencia a una geiko de una maiko y cómo verlas en Kioto sin molestar.", cat: "Cultura", img: "/images/geiko-maiko-gion.jpg", alt: "Geiko y maiko caminando por una calle de Kioto", href: "/cultura/geishas-y-maiko-japon" },
 ];
 
-
+/** Minutos de lectura de una guía a partir de su URL ("/pilar/slug"), del manifiesto de contenido. */
+function minutos(href: string) {
+  const [, pillar, slug] = href.split("/");
+  return getAllArticles().find((a) => a.pillar === pillar && a.slug === slug)?.readingMinutes;
+}
 
 const ITIN = [
   { img: `${P}tokio-torre-noche.jpg`, alt: "La Torre de Tokio iluminada de noche", badge: "7 días", title: "Esencia de Japón", ruta: "Tokio · Kioto · Nara", href: "/itinerarios/itinerario-japon-7-dias" },
@@ -65,7 +71,7 @@ export default async function Home() {
           <div className="flex flex-col gap-5 px-4 py-10 sm:py-14 lg:pr-10">
             <p className="kicker text-primary">Guía práctica · revisada en octubre de 2026</p>
             <h1 className="text-balance text-4xl font-black leading-[1.02] tracking-tight text-[#0a0a0a] sm:text-5xl lg:text-[64px]">
-              Planifica Japón <span className="text-[#e1352e]">por libre</span>, con números reales.
+              Planifica Japón <span className="text-[#d32f2f]">por libre</span>, con números reales.
             </h1>
             <p className="max-w-xl text-pretty text-base leading-relaxed text-[#3d3d3d] sm:text-lg">
               Itinerarios día a día, presupuesto en euros y la calculadora que te dice si el JR Pass te compensa.
@@ -136,34 +142,68 @@ export default async function Home() {
       {/* ══════════ LO MÁS LEÍDO ══════════ */}
       <section className="mx-auto max-w-7xl px-4 pb-6 pt-12 sm:pt-14">
         <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
-          <h2 className="text-3xl font-black text-[#0a0a0a] sm:text-[34px]">Lo que más se lee este mes</h2>
-          <Link href="/logistica" className="kicker text-primary">Todas las guías →</Link>
+          <div className="flex flex-col gap-1.5">
+            <h2 className="text-[26px] font-black leading-tight text-[#0a0a0a] sm:text-[34px]">Lo que más se lee este mes</h2>
+            <p className="hidden text-[15px] text-fg-muted sm:block">Las guías con más visitas desde Google en los últimos 28 días.</p>
+          </div>
+          <Link href="/logistica" className="kicker hidden text-primary sm:inline">Todas las guías →</Link>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Link href="/itinerarios/itinerario-japon-1-mes" className={`${card} flex flex-col sm:col-span-2 lg:col-span-1 lg:row-span-2`}>
-            <span className="relative block h-60 border-b-[3px] border-[#0a0a0a] sm:h-72 lg:h-80">
-              <Image src={`${P}kioto-higashiyama-noche.jpg`} alt="Calle de Higashiyama de noche con la pagoda Yasaka al fondo" fill sizes="(max-width: 1024px) 100vw, 420px" className="object-cover" />
-            </span>
-            <span className="flex flex-col gap-2 p-5">
-              <span className="kicker text-primary">Itinerario · 30 días</span>
-              <span className="text-2xl font-black leading-tight text-[#0a0a0a]">Un mes en Japón: el itinerario completo, semana a semana</span>
-              <span className="text-[15px] leading-relaxed text-fg-muted">Cuatro bases fijas, presupuesto del mes y por qué el JR Pass de 21 días no compensa.</span>
-            </span>
-          </Link>
-          {MAS_LEIDO.map((a) => (
-            <Link key={a.href} href={a.href} className={`${card} flex flex-col gap-2 p-5`}>
-              <span className="kicker text-primary">{a.kicker}</span>
-              <span className="text-xl font-black leading-snug text-[#0a0a0a]">{a.title}</span>
+        <ol className="grid list-none gap-3.5 p-0 sm:grid-cols-2 sm:gap-4 lg:grid-cols-[400px_minmax(0,1fr)_minmax(0,1fr)] lg:grid-rows-[300px_300px]">
+          <li className="sm:col-span-2 lg:col-span-1 lg:row-span-2">
+            <Link href="/itinerarios/itinerario-japon-1-mes" className={`${card} flex h-full flex-col shadow-[5px_5px_0_#e1352e] sm:shadow-[6px_6px_0_#e1352e]`}>
+              <span className="relative block h-[190px] shrink-0 border-b-[3px] border-[#0a0a0a] sm:h-72 lg:h-[330px]">
+                <Image src={`${P}kioto-higashiyama-noche.jpg`} alt="Calle de Higashiyama de noche con la pagoda Yasaka al fondo" fill sizes="(max-width: 1024px) 100vw, 400px" className="object-cover" />
+                <span className="nums absolute left-0 top-0 border-b-[3px] border-r-[3px] border-[#0a0a0a] bg-[#e1352e] px-3 py-1.5 font-mono text-lg font-bold text-white sm:px-3.5 sm:py-2 sm:text-[22px]">01</span>
+              </span>
+              <span className="flex flex-1 flex-col gap-1.5 p-3.5 sm:gap-2.5 sm:p-5">
+                <span className="kicker text-primary">Itinerario · 30 días<span className="hidden sm:inline"> · el más leído</span></span>
+                <span className="text-xl font-black leading-tight text-[#0a0a0a] sm:text-[25px]">Un mes en Japón: el itinerario completo, semana a semana</span>
+                <span className="hidden text-[15px] leading-relaxed text-fg-muted sm:block">Cuatro bases fijas, presupuesto del mes y por qué el JR Pass de 21 días no compensa.</span>
+                <span className="kicker mt-auto flex items-center justify-between text-[11px] text-fg-muted">
+                  <span className="nums">{minutos("/itinerarios/itinerario-japon-1-mes")} min de lectura</span>
+                  <span className="hidden text-[#0a0a0a] sm:inline">Leer →</span>
+                </span>
+              </span>
             </Link>
+          </li>
+          {MAS_LEIDO.map((a, i) => (
+            <li key={a.href}>
+              <Link href={a.href} className={`${card} grid h-full min-h-24 grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[150px_minmax(0,1fr)]`}>
+                <span className="relative block border-r-[3px] border-[#0a0a0a]">
+                  <Image src={a.img} alt={a.alt} fill sizes="150px" className="object-cover" />
+                  <span className="nums absolute left-0 top-0 bg-[#0a0a0a] px-1.5 py-0.5 font-mono text-xs font-bold text-white sm:px-2.5 sm:py-1.5 sm:text-base">{`0${i + 2}`}</span>
+                </span>
+                <span className="flex flex-col gap-1 px-3 py-2.5 sm:gap-2 sm:p-[18px]">
+                  <span
+                    className={
+                      a.nuevo
+                        ? "kicker self-start text-[10px] text-[#b8271f] sm:border-[2px] sm:border-[#e1352e] sm:bg-[#fff5f4] sm:px-[7px] sm:py-[3px]"
+                        : "kicker text-[10px] text-primary sm:text-[11px]"
+                    }
+                  >
+                    {a.kicker}
+                  </span>
+                  <span className="text-[15px] font-black leading-snug text-[#0a0a0a] sm:text-[19px]">
+                    <span className="sm:hidden">{a.corto ?? a.title}</span>
+                    <span className="hidden sm:inline">{a.title}</span>
+                  </span>
+                  <span className="hidden text-sm leading-relaxed text-fg-muted sm:block">{a.gancho}</span>
+                  <span className="kicker nums mt-auto text-[10px] text-fg-muted sm:text-[11px]">
+                    {minutos(a.href)} min<span className="hidden sm:inline"> · {a.cat}</span>
+                  </span>
+                </span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ol>
+        <Link href="/logistica" className="kicker mt-1 inline-flex min-h-11 items-center text-primary sm:hidden">Todas las guías →</Link>
       </section>
 
       {/* ══════════ HERRAMIENTAS ══════════ */}
       <section className="mx-auto max-w-7xl px-4 py-10">
         <h2 className="text-3xl font-black text-[#0a0a0a] sm:text-[34px]">Herramientas que no encontrarás en otras guías</h2>
         <p className="mb-5 mt-1.5 text-base text-fg-muted">Gratis y sin registro. Hacen las cuentas por ti.</p>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {HERRAMIENTAS.map(({ Icon, ...h }) => (
             <Link key={h.href} href={h.href} className={`${card} flex flex-col gap-2.5 p-6 ${h.destacado ? "bg-[#fff5f4]" : ""}`}>
               <Icon className={h.destacado ? "text-[#b71c1c]" : "text-[#0a0a0a]"} size={30} strokeWidth={2} aria-hidden="true" />

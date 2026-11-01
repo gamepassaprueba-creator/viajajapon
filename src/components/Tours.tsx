@@ -34,7 +34,7 @@ export function Tours({
         <span className="kicker">Tours<span className="sm:hidden"> en {lugar}</span></span>
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-2.5 p-4 sm:px-6 sm:py-5">
-        <p className="kicker hidden text-[#e1352e] sm:block">Tours y actividades en {lugar}</p>
+        <p className="kicker hidden text-[#d32f2f] sm:block">Tours y actividades en {lugar}</p>
         <p className="text-lg font-black leading-snug text-[#0a0a0a] sm:text-xl">{titulo}</p>
         {children && <div className="text-sm leading-relaxed text-fg-muted [&>p]:mt-0">{children}</div>}
         {busquedas.length > 0 && (

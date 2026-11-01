@@ -23,6 +23,10 @@ export default function Page() {
         <p>
           <strong>Titular:</strong> Sergio Morillo
           <br />
+          <strong>NIF:</strong> 50622120V
+          <br />
+          <strong>Domicilio:</strong> Calle Sanchorreja 2, 28011 Madrid (España)
+          <br />
           <strong>Email:</strong> info@viajajapon.com
         </p>
 
@@ -152,7 +156,7 @@ export default function Page() {
           .
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: 4 de octubre de 2026.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 19 de octubre de 2026.</p>
       </div>
     </article>
   );

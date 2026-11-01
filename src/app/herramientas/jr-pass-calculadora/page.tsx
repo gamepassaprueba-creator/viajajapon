@@ -75,7 +75,7 @@ export default function Page() {
 
       <p className="mt-8 text-sm text-fg-muted">
         ¿Buscas el desglose ruta por ruta?{" "}
-        <Link href="/logistica/jr-pass-2026" className="text-primary underline-offset-2 hover:underline">
+        <Link href="/logistica/jr-pass-2026" className="text-primary underline underline-offset-2">
           Lee la guía del JR Pass 2026
         </Link>
         .

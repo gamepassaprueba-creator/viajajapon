@@ -151,6 +151,17 @@ en este proyecto).
 | hotel-negocios-habitacion.jpg | Habitación individual de hotel de negocios con pijama sobre la cama | J o | CC BY-SA 3.0 | Daiwa Roynet Hotels business single bedroom 20120310-001.jpg |
 | hotel-capsula-pasillo.jpg | Pasillo de un hotel cápsula en Tokio, sin personas | Trueshow111 | CC BY-SA 4.0 | Capsule hotel.jpg |
 
+### Seki (octubre 2026): artículo invitado de Hamono Club
+
+| Archivo | Tema | Autor | Licencia | Origen (título en Commons) |
+| --- | --- | --- | --- | --- |
+| seki-forja.jpg | Mesa con las fases de la forja de una espada japonesa (demostración en Seki) | Yuya Tamai | CC BY 2.0 | 積み沸し (52949544688).jpg |
+| seki-museo-espaderos.jpg | Entrada del Seki Kaji Denshokan | Hide-sp | CC BY-SA 3.0 | Seki Sword Tradition Museum 1.JPG |
+| seki-feather-museum.jpg | Edificio del Feather Museum (Seki) | Hide-sp | CC BY-SA 3.0 | Feather Museum 1.JPG |
+| seki-terrace.jpg | Edificio de Seki Terrace | Asturio Cantabrio | CC BY-SA 4.0 | Sekiterrace ac (2).jpg |
+| seki-oze-rio-nagara.jpg | El río Nagara en Oze (Seki) | guretaro | Dominio público | Nagara river in oze seki.JPG |
+| seki-mino-udatsu.jpg | Calle de casas con udatsu en Mino (brillo ajustado) | guretaro | Dominio público | Udatsu in minomachi.JPG |
+
 ## Fotos propias (public/images/propias/)
 
 Fotos del viaje del autor y su madre a Japón (diciembre de 2025). Propiedad del autor: no
