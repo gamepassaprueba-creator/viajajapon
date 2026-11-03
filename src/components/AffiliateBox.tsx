@@ -22,20 +22,21 @@ export interface AffiliateBoxProps {
  * ("Ver en Civitatis"; "web oficial" solo cuando lo es) y el enlace no se marca sponsored.
  */
 export function AffiliateBox({
-  partner,
+  partner: requested,
   title,
-  cta,
+  cta: requestedCta,
   children,
   placement = "affiliate_box",
   ctaVariant = "default",
   destino,
 }: AffiliateBoxProps) {
   // Una caja de Booking pasa a Trip.com mientras Booking no pague (ver lodgingPartner).
-  const swap = partner === "booking" && lodgingPartner(destino) === "tripcom";
-  const p: PartnerKey = swap ? "tripcom" : partner;
-  const href = affiliateUrl(p, destino);
-  const monetized = isMonetized(p, destino);
-  const effectiveCta = swap ? tripcomHotelCta(destino) : monetized ? cta : neutralCta(p, destino);
+  const swap = requested === "booking" && lodgingPartner(destino) === "tripcom";
+  const partner: PartnerKey = swap ? "tripcom" : requested;
+  const cta = swap ? tripcomHotelCta(destino) : requestedCta;
+  const href = affiliateUrl(partner, destino);
+  const monetized = isMonetized(partner, destino);
+  const effectiveCta = monetized ? cta : neutralCta(partner, destino);
   // Solo se trabaja con quien paga (titular, 3-nov-2026): sin enlace de afiliado, la caja no se pinta.
   if (!monetized) return null;
 
@@ -46,7 +47,7 @@ export function AffiliateBox({
       <div className="mt-1 text-sm leading-relaxed text-[#555]">{children}</div>
       <TrackedAffiliateLink
         href={href}
-        partner={p}
+        partner={partner}
         label={effectiveCta}
         monetized={monetized}
         placement={placement}
