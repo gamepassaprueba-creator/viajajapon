@@ -27,7 +27,7 @@ export interface CalcAffLinks {
   jrpass: CalcAffLink;
   tours: CalcAffLink;
   iati: CalcAffLink;
-  holafly: CalcAffLink;
+  trenes: CalcAffLink;
 }
 
 const MIN_DAYS = 3;
@@ -297,16 +297,16 @@ export function JrPassCalculator({ aff }: { aff: CalcAffLinks }) {
           <p className="mt-2 text-sm leading-relaxed text-fg-muted">{nextStepText}</p>
           <div className="mt-3 flex flex-col gap-2">
             {r.cheapest === "nacional" && (
-              <CalcLink link={aff.jrpass} label={aff.jrpass.monetized ? "Ver precios del JR Pass" : "Ver precios del JR Pass (web oficial)"} variant="solid" verdict={r.cheapest} />
+              <CalcLink link={aff.jrpass} label="Ver el JR Pass en Trip.com" variant="solid" verdict={r.cheapest} />
             )}
             {r.cheapest === "kansai" && (
               <CalcLink link={{ href: KANSAI_HIROSHIMA.url, partner: "jr-west", monetized: false }} label="Ver el Kansai-Hiroshima Area Pass (JR-West)" variant="solid" verdict={r.cheapest} />
             )}
             {r.cheapest === "billetes" && (
-              <CalcLink link={aff.tours} label="Reservar actividades y traslados" variant="solid" verdict={r.cheapest} />
+              <CalcLink link={aff.trenes} label="Reservar billetes de shinkansen en Trip.com" variant="solid" verdict={r.cheapest} />
             )}
             <CalcLink link={aff.iati} label="Comparar seguro de viaje" variant="ghost" verdict={r.cheapest} />
-            <CalcLink link={aff.holafly} label="eSIM con datos para Japón" variant="ghost" verdict={r.cheapest} />
+            <CalcLink link={aff.tours} label="Ver excursiones y entradas" variant="ghost" verdict={r.cheapest} />
           </div>
           <p className="mt-3 text-xs text-fg-muted">
             {anyMonetized

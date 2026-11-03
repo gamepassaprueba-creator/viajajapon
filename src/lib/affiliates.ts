@@ -196,3 +196,12 @@ export function neutralCta(partner: PartnerKey, destino?: string): string {
 export function partnerNetwork(partner: PartnerKey): string {
   return PARTNERS[partner].network;
 }
+
+/**
+ * Booking solo se enseña si paga. Mientras no (solicitud en CJ rechazada el 30-oct-2026), su hueco
+ * lo ocupa Trip.com, que sí paga: decisión del titular del 3-nov-2026 («si Booking no nos va a dar
+ * comisión, se retira»). Al aprobarse Booking, vuelve solo, sin tocar el contenido.
+ */
+export function lodgingPartner(destino?: string): "booking" | "tripcom" {
+  return isMonetized("booking", destino) ? "booking" : "tripcom";
+}

@@ -1,5 +1,6 @@
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
-import { affiliateUrl, isMonetized, neutralCta, type PartnerKey } from "@/lib/affiliates";
+import { affiliateUrl, isMonetized, lodgingPartner, neutralCta, type PartnerKey } from "@/lib/affiliates";
+import { tripcomHotelCta } from "@/data/tripcom-links";
 
 export interface AffiliateBoxProps {
   /** Clave del partner en el registro central (src/lib/affiliates.ts). */
@@ -29,9 +30,14 @@ export function AffiliateBox({
   ctaVariant = "default",
   destino,
 }: AffiliateBoxProps) {
-  const href = affiliateUrl(partner, destino);
-  const monetized = isMonetized(partner, destino);
-  const effectiveCta = monetized ? cta : neutralCta(partner, destino);
+  // Una caja de Booking pasa a Trip.com mientras Booking no pague (ver lodgingPartner).
+  const swap = partner === "booking" && lodgingPartner(destino) === "tripcom";
+  const p: PartnerKey = swap ? "tripcom" : partner;
+  const href = affiliateUrl(p, destino);
+  const monetized = isMonetized(p, destino);
+  const effectiveCta = swap ? tripcomHotelCta(destino) : monetized ? cta : neutralCta(p, destino);
+  // Solo se trabaja con quien paga (titular, 3-nov-2026): sin enlace de afiliado, la caja no se pinta.
+  if (!monetized) return null;
 
   return (
     <aside className="panel-manga-red my-8 bg-white p-5">
@@ -40,7 +46,7 @@ export function AffiliateBox({
       <div className="mt-1 text-sm leading-relaxed text-[#555]">{children}</div>
       <TrackedAffiliateLink
         href={href}
-        partner={partner}
+        partner={p}
         label={effectiveCta}
         monetized={monetized}
         placement={placement}

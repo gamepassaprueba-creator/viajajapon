@@ -2,7 +2,7 @@ import Link from "next/link";
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta, type PartnerKey } from "@/lib/affiliates";
 import { bookingQue } from "@/data/booking-links";
-import { TRIPCOM_CIUDADES, tripcomCiudad } from "@/data/tripcom-links";
+import { tripcomCiudad, tripcomHotelCta } from "@/data/tripcom-links";
 
 type Offer =
   | { kind: "partner"; partner: PartnerKey; title: string; blurb: string; cta: string }
@@ -44,6 +44,8 @@ const COLS: Record<number, string> = {
  */
 export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: string }) {
   let keys = BY_PILLAR[pillar] ?? BY_PILLAR.logistica;
+  // Solo se trabaja con quien paga: fuera los partners sin enlace de afiliado (Booking se cambia por Trip.com más abajo).
+  keys = keys.filter((k) => { const o: Offer = OFFERS[k]; return o.kind !== "partner" || o.partner === "booking" || isMonetized(o.partner); });
   if (destino && !keys.includes("booking")) keys = ["booking", ...keys.filter((k) => k !== "getyourguide")];
   const offers = keys.map((key) => {
     const o: Offer = OFFERS[key];
@@ -53,11 +55,11 @@ export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: s
   });
   // Trip.com va como segunda opción dentro de la tarjeta de alojamiento (solo ciudades verificadas).
   const tcCiudad = tripcomCiudad(destino);
-  // Mientras Booking no pague y Trip.com sí, Trip.com es el botón principal (igual que en DormirEn).
-  const tripFirst = !!tcCiudad && isMonetized("tripcom", destino) && !isMonetized("booking", destino);
+  // Mientras Booking no pague, la tarjeta de alojamiento solo lleva Trip.com (igual que en DormirEn).
+  const tripFirst = !isMonetized("booking", destino);
   const anyMonetized =
     offers.some((o) => o.kind === "partner" && isMonetized(o.partner, destino)) ||
-    (!!tcCiudad && keys.includes("booking") && isMonetized("tripcom", destino));
+    (keys.includes("booking") && isMonetized("tripcom", destino));
   const cols = COLS[offers.length] ?? COLS[4];
 
   return (
@@ -72,27 +74,17 @@ export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: s
             <li key={o.key} className="flex flex-col border-[2px] border-[#0a0a0a] bg-white p-4">
               <p className="font-black text-[#0a0a0a]">{o.title}</p>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-fg-muted">{o.blurb}</p>
-              {o.kind === "partner" && o.partner === "booking" && tripFirst && tcCiudad ? (
+              {o.kind === "partner" && o.partner === "booking" && tripFirst ? (
                 <>
                   <TrackedAffiliateLink
                     href={affiliateUrl("tripcom", destino)}
                     partner="tripcom"
                     monetized
-                    label={`Ver hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label} en Trip.com`}
+                    label={tripcomHotelCta(destino)}
                     placement="article_top_tripcom"
                     ctaVariant={`${pillar}_principal`}
-                    destination={tcCiudad}
+                    destination={tcCiudad ?? destino ?? "japon"}
                     className="btn-primary mt-3 inline-block text-sm"
-                  />
-                  <TrackedAffiliateLink
-                    href={affiliateUrl("booking", destino)}
-                    partner="booking"
-                    monetized={false}
-                    label="o en Booking.com"
-                    placement="article_top"
-                    ctaVariant={`${pillar}_secundario`}
-                    destination={destino ?? "japon"}
-                    className="mt-2 inline-flex min-h-11 items-center gap-1.5 text-sm font-bold text-primary hover:underline"
                   />
                 </>
               ) : (
