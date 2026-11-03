@@ -30,11 +30,11 @@ const FAQS = [
   },
 ];
 
-function calcAffiliate(partner: PartnerKey) {
+function calcAffiliate(partner: PartnerKey, destino?: string) {
   return {
-    href: affiliateUrl(partner),
+    href: affiliateUrl(partner, destino),
     partner,
-    monetized: isMonetized(partner),
+    monetized: isMonetized(partner, destino),
   };
 }
 
@@ -42,10 +42,11 @@ export default function Page() {
   // Resolución server-side: el navegador recibe URL + estado de monetización,
   // nunca nombres de variables ni secretos.
   const aff = {
-    jrpass: calcAffiliate("jrpass"),
+    // Solo socios que pagan (3-nov-2026): JR Pass y billetes sueltos, en Trip.com.
+    jrpass: calcAffiliate("tripcom", "tren-jr-pass"),
+    trenes: calcAffiliate("tripcom", "tren-japon"),
     tours: calcAffiliate("getyourguide"),
     iati: calcAffiliate("iati"),
-    holafly: calcAffiliate("holafly"),
   };
 
   return (

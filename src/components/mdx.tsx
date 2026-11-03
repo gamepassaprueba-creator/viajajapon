@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { affiliateUrl, isMonetized, isTrackedAffiliateHref, neutralCta } from "@/lib/affiliates";
+import { affiliateUrl, isMonetized, isTrackedAffiliateHref, lodgingPartner, neutralCta } from "@/lib/affiliates";
+import { tripcomHotelCta } from "@/data/tripcom-links";
 import {
   ArrowRight,
   Baby,
@@ -422,17 +423,35 @@ export function Cards({ items, cols = 2 }: { items: CardItem[]; cols?: 2 | 3 }) 
             )}
             {c.booking && (
               <div className="mt-auto flex flex-col gap-1.5 pt-5">
-                <TrackedAffiliateLink
-                  href={affiliateUrl("booking", c.booking)}
-                  partner="booking"
-                  monetized={isMonetized("booking", c.booking)}
-                  label={neutralCta("booking", c.booking)}
-                  placement="zone_card"
-                  ctaVariant="cards"
-                  destination={c.booking}
-                  className="btn-primary justify-center text-center text-sm"
-                />
-                <p className="text-center text-[11px] text-fg-muted">{avisoBooking(isMonetized("booking", c.booking))}</p>
+                {lodgingPartner(c.booking) === "booking" ? (
+                  <>
+                    <TrackedAffiliateLink
+                      href={affiliateUrl("booking", c.booking)}
+                      partner="booking"
+                      monetized
+                      label={neutralCta("booking", c.booking)}
+                      placement="zone_card"
+                      ctaVariant="cards"
+                      destination={c.booking}
+                      className="btn-primary justify-center text-center text-sm"
+                    />
+                    <p className="text-center text-[11px] text-fg-muted">{avisoBooking(true)}</p>
+                  </>
+                ) : (
+                  <>
+                    <TrackedAffiliateLink
+                      href={affiliateUrl("tripcom", c.booking)}
+                      partner="tripcom"
+                      monetized={isMonetized("tripcom", c.booking)}
+                      label={tripcomHotelCta(c.booking)}
+                      placement="zone_card_tripcom"
+                      ctaVariant="cards"
+                      destination={c.booking}
+                      className="btn-primary justify-center text-center text-sm"
+                    />
+                    <p className="text-center text-[11px] text-fg-muted">Trip.com · enlace de afiliado, sin coste extra para ti</p>
+                  </>
+                )}
               </div>
             )}
           </div>

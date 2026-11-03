@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta } from "@/lib/affiliates";
-import { bookingLabel, bookingQue } from "@/data/booking-links";
-import { TRIPCOM_CIUDADES, tripcomCiudad } from "@/data/tripcom-links";
+import { bookingLabel } from "@/data/booking-links";
+import { TRIPCOM_CIUDADES, tripcomCiudad, tripcomHotelCta } from "@/data/tripcom-links";
 
 /**
  * Componentes de alojamiento (diseño aprobado en el lienzo "ViajaJapón · Alojamiento y Booking").
@@ -47,9 +47,9 @@ export function DormirEn({
   // Segunda opción: Trip.com, solo en ciudades con página verificada (Japón entero no la tiene).
   const tcCiudad = tripcomCiudad(destino);
   const tcMonetized = isMonetized("tripcom", destino);
-  // Mientras Booking no pague (solicitud pendiente en CJ) y Trip.com sí, el botón principal va a
-  // Trip.com y Booking queda como enlace secundario. Al aprobarse Booking vuelve solo a su sitio.
-  const tripFirst = !!tcCiudad && tcMonetized && !monetized;
+  // Mientras Booking no pague, no se enseña: el botón principal es Trip.com (con ciudad o, si no la
+  // tiene, su buscador general) y desaparecen los enlaces de Booking. Al aprobarse, vuelve solo.
+  const tripFirst = !monetized;
   const secondary = "inline-flex min-h-11 items-center justify-center gap-1.5 text-sm font-bold text-primary hover:underline sm:justify-start";
 
   return (
@@ -75,10 +75,10 @@ export function DormirEn({
               href={affiliateUrl("tripcom", destino)}
               partner="tripcom"
               monetized={tcMonetized}
-              label={`Ver hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label} en Trip.com`}
+              label={tripcomHotelCta(destino)}
               placement={`${placement}_tripcom`}
               ctaVariant="dormir_en_principal"
-              destination={tcCiudad}
+              destination={tcCiudad ?? destino}
               className="btn-primary justify-center text-sm"
             />
           ) : (
@@ -98,7 +98,7 @@ export function DormirEn({
               Guía de zonas de {ciudad}
             </Link>
           )}
-          {ryokan && (
+          {ryokan && !tripFirst && (
             <TrackedAffiliateLink
               href={affiliateUrl("booking", ryokan)}
               partner="booking"
@@ -110,18 +110,7 @@ export function DormirEn({
               className={secondary}
             />
           )}
-          {tripFirst ? (
-            <TrackedAffiliateLink
-              href={affiliateUrl("booking", destino)}
-              partner="booking"
-              monetized={monetized}
-              label={`O ${bookingQue(destino)} en Booking.com`}
-              placement={placement}
-              ctaVariant="dormir_en_secundario"
-              destination={destino}
-              className={secondary}
-            />
-          ) : (
+          {tripFirst ? null : (
             tcCiudad && (
               <TrackedAffiliateLink
                 href={affiliateUrl("tripcom", destino)}
@@ -137,8 +126,12 @@ export function DormirEn({
           )}
         </div>
         <p className="text-[11px] text-fg-muted">
-          {avisoBooking(monetized)}
-          {tcCiudad ? ` · Trip.com (hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label}) · ${tcMonetized ? "enlace de afiliado, sin coste extra para ti" : "enlace externo sin comisión"}` : ""}
+          {tripFirst
+            ? `Trip.com · ${tcMonetized ? "enlace de afiliado, sin coste extra para ti" : "enlace externo sin comisión"}`
+            : <>
+                {avisoBooking(monetized)}
+                {tcCiudad ? ` · Trip.com (hoteles en ${TRIPCOM_CIUDADES[tcCiudad].label}) · ${tcMonetized ? "enlace de afiliado, sin coste extra para ti" : "enlace externo sin comisión"}` : ""}
+              </>}
         </p>
       </div>
     </aside>

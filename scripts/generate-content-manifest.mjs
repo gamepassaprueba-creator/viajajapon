@@ -104,6 +104,12 @@ const bookingPath = path.join(__dirname, "../src/data/booking-links.ts");
 if (fs.existsSync(bookingPath)) {
   const src = fs.readFileSync(bookingPath, "utf8");
   const validos = new Set([...src.matchAll(/^\s+"?([a-z][a-z0-9-]*)"?: \{ label:/gm)].map((m) => m[1]));
+  // Los trayectos de shinkansen de Trip.com (destino="tren-…") viven en tripcom-links.ts.
+  const tripcomPath = path.join(__dirname, "../src/data/tripcom-links.ts");
+  if (fs.existsSync(tripcomPath)) {
+    const tc = fs.readFileSync(tripcomPath, "utf8");
+    for (const m of tc.matchAll(/^\s+"(tren-[a-z0-9-]+)": \{ label:/gm)) validos.add(m[1]);
+  }
   const errores = [];
   for (const meta of allArticlesMeta) {
     const raw = fs.readFileSync(path.join(CONTENT_DIR, meta.pillar, `${meta.slug}.mdx`), "utf8");
