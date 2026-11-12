@@ -6,11 +6,16 @@
  *
  * Antes de pulsar solo se carga la portada (next/image): el <video> no se
  * monta hasta el primer clic, así que la página no pesa más por llevar clips.
+ *
+ * Al pulsar, el MP4 se descarga entero con fetch y se reproduce desde una URL
+ * local (blob). Motivo: los archivos estáticos de Cloudflare Workers no
+ * atienden peticiones parciales (Range) y Safari las exige para reproducir un
+ * <video> servido por HTTP. Con menos de 3 MB por clip, la espera es corta.
  * Los archivos se preparan con scripts/clip-propio.py (corte, marca de agua
  * con el logo, sin audio ni metadatos, < 3 MB).
  */
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 function reloj(segundos: number) {
@@ -39,14 +44,31 @@ export function Clip({
   vertical?: boolean;
 }) {
   const video = useRef<HTMLVideoElement>(null);
-  const [iniciado, setIniciado] = useState(false);
+  const [cargando, setCargando] = useState(false);
+  /** URL que reproduce el <video>: un blob local o, si la descarga falla, el propio archivo. */
+  const [fuente, setFuente] = useState<string | null>(null);
   const [pausado, setPausado] = useState(false);
   const [segundo, setSegundo] = useState(0);
   const [total, setTotal] = useState(duracion);
 
-  const iniciar = () => {
-    setIniciado(true);
+  useEffect(() => {
+    return () => {
+      if (fuente?.startsWith("blob:")) URL.revokeObjectURL(fuente);
+    };
+  }, [fuente]);
+
+  const iniciar = async () => {
+    if (cargando) return;
+    setCargando(true);
     trackEvent("clip_play", { clip: src });
+    try {
+      const respuesta = await fetch(src);
+      if (!respuesta.ok) throw new Error(String(respuesta.status));
+      const datos = await respuesta.blob();
+      setFuente(URL.createObjectURL(new Blob([datos], { type: "video/mp4" })));
+    } catch {
+      setFuente(src);
+    }
   };
 
   const alternar = () => {
@@ -63,11 +85,11 @@ export function Clip({
       <div
         className={`relative overflow-hidden border-[3px] border-[#0a0a0a] bg-[#0a0a0a] ${vertical ? "aspect-[4/5]" : "aspect-video"}`}
       >
-        {iniciado ? (
+        {fuente ? (
           <>
             <video
               ref={video}
-              src={src}
+              src={fuente}
               poster={poster}
               autoPlay
               muted
@@ -114,17 +136,23 @@ export function Clip({
               className="object-cover"
             />
             <span className="absolute left-3 top-3 bg-[#0a0a0a] px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-white">
-              Vídeo · {Math.round(duracion)} s · sin sonido
+              {cargando ? "Cargando el vídeo…" : `Vídeo · ${Math.round(duracion)} s · sin sonido`}
             </span>
             <button
               type="button"
               onClick={iniciar}
-              aria-label="Reproducir el vídeo"
+              disabled={cargando}
+              aria-busy={cargando}
+              aria-label={cargando ? "Cargando el vídeo" : "Reproducir el vídeo"}
               className="absolute left-1/2 top-1/2 flex size-[76px] -translate-x-1/2 -translate-y-1/2 items-center justify-center border-[3px] border-[#0a0a0a] bg-[#e1352e] shadow-[5px_5px_0_#0a0a0a] transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24">
-                <path d="M7 4 L20 12 L7 20 Z" fill="#ffffff" />
-              </svg>
+              {cargando ? (
+                <span aria-hidden="true" className="size-7 animate-spin rounded-full border-[3px] border-white border-t-transparent" />
+              ) : (
+                <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24">
+                  <path d="M7 4 L20 12 L7 20 Z" fill="#ffffff" />
+                </svg>
+              )}
             </button>
           </>
         )}
