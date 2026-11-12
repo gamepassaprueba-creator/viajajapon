@@ -227,3 +227,11 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | sampuru-udon-escaparate.jpg | Réplicas de plástico de un local de udon | Japón |
 | asakusa-omikuji-autor.jpg | El autor sacando su omikuji | Senso-ji, Tokio |
 | yokohama-minatomirai-autor.jpg | El autor ante Minato Mirai al atardecer | Yokohama |
+| himeji-kokoen-momiji-arroyo.jpg | Arces rojos sobre el arroyo del jardín Koko-en (11-dic-2025) | Himeji |
+| himeji-arbol-navidad-estacion.jpg | Árbol de Navidad e iluminación en la plaza de la estación (transeúntes lejanos, no identificables) | Himeji |
+| himeji-castillo-torre-principal.jpg | Torre principal del castillo vista desde abajo | Himeji |
+| tokio-hotel-recepcion-robots-navidad.jpg | Robots de recepción de un hotel vestidos de Navidad | Tokio |
+| shinkansen-fuji-desde-ventanilla.jpg | El monte Fuji desde la ventanilla del shinkansen (12-dic-2025) | Línea Tokaido |
+| tokio-estacion-ekiben-tonkatsu.jpg | Cajas de ekiben en una tienda de la estación (recortada para quitar a clientes) | Estación de Tokio |
+| tokio-estacion-ekiben-mostrador.jpg | Mostrador de ekiben con precios (recortada para quitar al personal) | Estación de Tokio |
+| tokio-estacion-shinkansen-n700s.jpg | Shinkansen N700S en el andén (fotograma de un vídeo propio) | Estación de Tokio |
