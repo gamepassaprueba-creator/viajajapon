@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { affiliateUrl, isMonetized, isTrackedAffiliateHref, lodgingPartner, neutralCta } from "@/lib/affiliates";
 import { tripcomHotelCta } from "@/data/tripcom-links";
+import { Clip } from "@/components/Clip";
 import {
   ArrowRight,
   Baby,
@@ -754,6 +755,7 @@ export const mdxComponents = {
   BudgetCalculator,
   InteractiveMap,
   Foto,
+  Clip,
   Charla,
   StatCards,
   Cards,

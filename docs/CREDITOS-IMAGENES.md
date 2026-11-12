@@ -235,3 +235,14 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | tokio-estacion-ekiben-tonkatsu.jpg | Cajas de ekiben en una tienda de la estación (recortada para quitar a clientes) | Estación de Tokio |
 | tokio-estacion-ekiben-mostrador.jpg | Mostrador de ekiben con precios (recortada para quitar al personal) | Estación de Tokio |
 | tokio-estacion-shinkansen-n700s.jpg | Shinkansen N700S en el andén (fotograma de un vídeo propio) | Estación de Tokio |
+
+### Clips de vídeo propios (public/videos/propias/)
+
+Vídeos del mismo viaje, del autor. Se preparan con `python scripts/clip-propio.py <origen> <nombre> <inicio> <duración> [--vertical]`:
+tramo de 10-20 s, sin sonido ni metadatos, marca de agua con el logo y menos de 3 MB. Cada clip tiene su portada en
+`public/images/propias/<nombre>-clip.jpg` y se inserta con `<Clip>`. Valen las mismas reglas de privacidad que en las fotos.
+
+| Archivo | Tema | Lugar |
+| --- | --- | --- |
+| tokio-shinkansen-anden.mp4 | Shinkansen N700S en el andén (5-dic-2025), 9 s | Estación de Tokio |
+| himeji-kokoen-momiji.mp4 | Arroyo y arces rojos del jardín Koko-en (11-dic-2025), 14 s | Himeji |
