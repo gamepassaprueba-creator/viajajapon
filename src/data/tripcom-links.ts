@@ -50,6 +50,9 @@ export const TRIPCOM_TRENES: Record<string, { label: string; url: string }> = {
   "tren-kioto-hiroshima": { label: "Kioto → Hiroshima", url: `${TT}/kyoto-to-hiroshima/` },
   "tren-osaka-hiroshima": { label: "Osaka → Hiroshima", url: `${TT}/osaka-to-hiroshima/` },
   "tren-tokio-kanazawa": { label: "Tokio → Kanazawa", url: `${TT}/tokyo-to-kanazawa/` },
+  // Comprobadas el 14-nov-2026 (HTTP 200 y título «Shinkansen de Osaka/Kyoto a Himeji»).
+  "tren-osaka-himeji": { label: "Osaka → Himeji", url: `${TT}/osaka-to-himeji/` },
+  "tren-kioto-himeji": { label: "Kioto → Himeji", url: `${TT}/kyoto-to-himeji/` },
   // Trip.com es socio oficial de reservas del Japan Rail Pass (página comprobada el 3-nov-2026).
   "tren-japon": { label: "Shinkansen en Japón", url: "https://es.trip.com/trains/japan/" },
   "tren-jr-pass": { label: "JR Pass", url: "https://es.trip.com/trains/japan/jr-pass/" },

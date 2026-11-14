@@ -230,6 +230,7 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | himeji-kokoen-momiji-arroyo.jpg | Arces rojos sobre el arroyo del jardín Koko-en (11-dic-2025) | Himeji |
 | himeji-arbol-navidad-estacion.jpg | Árbol de Navidad e iluminación en la plaza de la estación (transeúntes lejanos, no identificables) | Himeji |
 | himeji-castillo-torre-principal.jpg | Torre principal del castillo vista desde abajo | Himeji |
+| himeji-castillo-portada.jpg | Recorte horizontal de la foto anterior, para la portada de la guía de Himeji | Himeji |
 | tokio-hotel-recepcion-robots-navidad.jpg | Robots de recepción de un hotel vestidos de Navidad | Tokio |
 | shinkansen-fuji-desde-ventanilla.jpg | El monte Fuji desde la ventanilla del shinkansen (12-dic-2025) | Línea Tokaido |
 | tokio-estacion-ekiben-tonkatsu.jpg | Cajas de ekiben en una tienda de la estación (recortada para quitar a clientes) | Estación de Tokio |
