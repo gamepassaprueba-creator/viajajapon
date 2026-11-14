@@ -58,6 +58,8 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 ### Himeji (día 11)
 - Castillo y jardín Koko-en. En Koko-en los arces seguían rojos y naranjas, con parte de la hoja ya caída; estuvieron hacia las 16:30, ya con poca luz.
 - Al volver, árbol de Navidad e iluminación en la plaza de la estación de Himeji.
+- Ya publicado antes (itinerario de 1 mes y Japón en diciembre): castillo y jardín casi vacíos y con la entrada gratis ese día. Comprobado el 14-nov-2026: el 11 de diciembre la entrada es gratis cada año (aniversario de Patrimonio de la Humanidad). Fueron en tren desde Osaka (anécdota de la mochila, guía de objetos perdidos). → destinos/himeji.
+- NO consta: que la madre subiera a la torre principal ni a qué hora llegaron al castillo.
 
 ### Yokohama (día 12)
 - El hotel dejó una tarjeta de felicitación por los 70 años de la madre.
