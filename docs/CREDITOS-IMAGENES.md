@@ -231,6 +231,10 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | himeji-arbol-navidad-estacion.jpg | Árbol de Navidad e iluminación en la plaza de la estación (transeúntes lejanos, no identificables) | Himeji |
 | himeji-castillo-torre-principal.jpg | Torre principal del castillo vista desde abajo | Himeji |
 | himeji-castillo-portada.jpg | Recorte horizontal de la foto anterior, para la portada de la guía de Himeji | Himeji |
+| yokohama-minatomirai-atardecer-hotel.jpg | Minato Mirai al atardecer desde la ventana del hotel: noria Cosmo Clock 21 y Landmark Tower | Yokohama |
+| yokohama-minatomirai-portada.jpg | Recorte horizontal de la foto anterior, para la portada de la guía de Yokohama | Yokohama |
+| yokohama-minatomirai-noche-noria.jpg | Minato Mirai de noche desde la orilla (recorte sin los paseantes) | Yokohama |
+| yokohama-hotel-ventana-noria-madre.jpg | La madre del autor, de espaldas, mirando la noria iluminada desde la habitación | Yokohama |
 | tokio-hotel-recepcion-robots-navidad.jpg | Robots de recepción de un hotel vestidos de Navidad | Tokio |
 | shinkansen-fuji-desde-ventanilla.jpg | El monte Fuji desde la ventanilla del shinkansen (12-dic-2025) | Línea Tokaido |
 | tokio-estacion-ekiben-tonkatsu.jpg | Cajas de ekiben en una tienda de la estación (recortada para quitar a clientes) | Estación de Tokio |
