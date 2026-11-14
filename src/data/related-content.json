@@ -62,7 +62,7 @@
   "gastronomia/sake-y-bebidas-japonesas": ["gastronomia/tipos-restaurantes-japon", "gastronomia/que-comer-en-japon", "gastronomia/donde-comer-en-tokio", "cultura/etiqueta-y-costumbres-japon", "destinos/kanazawa"],
   "itinerarios/itinerario-japon-7-dias": ["itinerarios/itinerario-japon-10-dias", "itinerarios/itinerario-japon-15-dias", "itinerarios/itinerario-japon-1-mes", "destinos/nara", "logistica/cuanto-cuesta-viajar-japon"],
   "itinerarios/itinerario-japon-10-dias": ["itinerarios/itinerario-japon-7-dias", "itinerarios/itinerario-japon-15-dias", "itinerarios/itinerario-japon-1-mes", "destinos/hakone", "destinos/donde-dormir-en-kioto"],
-  "itinerarios/itinerario-japon-15-dias": ["itinerarios/itinerario-japon-3-semanas", "itinerarios/itinerario-japon-10-dias", "logistica/shinkansen-tren-bala-japon", "destinos/hiroshima-y-miyajima", "logistica/jr-pass-2026"],
+  "itinerarios/itinerario-japon-15-dias": ["itinerarios/itinerario-japon-3-semanas", "itinerarios/itinerario-japon-10-dias", "logistica/shinkansen-tren-bala-japon", "destinos/himeji", "logistica/jr-pass-2026"],
   "itinerarios/itinerario-japon-3-semanas": ["itinerarios/itinerario-japon-15-dias", "itinerarios/itinerario-japon-1-mes", "itinerarios/itinerario-japon-10-dias", "destinos/kanazawa", "logistica/reservas-japon-2026"],
   "itinerarios/itinerario-japon-1-mes": ["itinerarios/itinerario-japon-3-semanas", "itinerarios/itinerario-japon-15-dias", "itinerarios/itinerario-japon-10-dias", "logistica/compras-y-tax-free-japon", "destinos/donde-dormir-en-kioto"],
   "blog/subida-jr-pass-octubre-2026": ["blog/yen-minimos-historicos-viajar-japon", "blog/tanabata-2026-festivales", "logistica/jr-pass-2026", "logistica/cuanto-cuesta-viajar-japon"],
