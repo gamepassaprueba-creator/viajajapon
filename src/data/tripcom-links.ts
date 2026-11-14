@@ -35,6 +35,8 @@ export const TRIPCOM_CIUDADES: Record<string, { label: string; url: string }> = 
   nikko: { label: "Nikko", url: `${TC}/nikko-hotels-list-4190/` },
   kawaguchiko: { label: "Kawaguchiko", url: `${TC}/fujikawaguchiko-hotels-list-50160/` },
   kamakura: { label: "Kamakura", url: `${TC}/kamakura-hotels-list-50150/` },
+  // Comprobada el 14-nov-2026 (HTTP 200 y H1 «Hoteles en Yokohama»).
+  yokohama: { label: "Yokohama", url: `${TC}/yokohama-hotels-list-271/` },
 };
 
 /**

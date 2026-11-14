@@ -63,4 +63,6 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 
 ### Yokohama (día 12)
 - El hotel dejó una tarjeta de felicitación por los 70 años de la madre.
+- Ya publicado antes (qué ver en Tokio, Japón en diciembre): paseo por el barrio chino; frío húmedo «de los que se meten en los huesos», más que en ningún otro sitio del viaje; la bahía iluminada. Hotel con vistas a la noria de Minato Mirai (fotos del atardecer y de noche desde la habitación, en un piso alto).
+- NO consta: que subieran a la noria, al Landmark Tower ni a ningún museo; dónde cenaron.
 
