@@ -6,8 +6,13 @@
 //  - El pase regional usado por esta calculadora es Kansai-Hiroshima Area Pass (5 días, ¥17.000),
 //    no Kansai WIDE, porque incluye el tramo Shin-Osaka ↔ Hiroshima.
 // Fuentes primarias: japanrailpass.net y JR-WEST. Última revisión manual: 2026-09-25.
+//  - Tarifas de shinkansen: precio del NOZOMI con asiento reservado, temporada normal (lo que paga quien no
+//    lleva pase). Oficiales según la nota conjunta de JR Central y JR West del 16-oct-2026
+//    (https://jr-central.co.jp/news/release/_pdf/000046069.pdf), revisadas el 2026-11-15. Para billetes
+//    comprados desde el 1-jul-2027 suben: Tokio–Shin-Osaka ¥15.420, Tokio–Hiroshima ¥20.620,
+//    Shin-Osaka–Hiroshima ¥11.210 y Tokio–Kioto ¥700 más.
 
-export const DATA_UPDATED = "2026-09-25";
+export const DATA_UPDATED = "2026-11-15";
 export const DEFAULT_FX = 185; // ¥ por € (referencia BCE; el valor real lo da la página viva del yen)
 
 /** Pase nacional ordinario, precio en yen por tramo de días. */
@@ -17,7 +22,7 @@ export const NATIONAL_PASS = [
   { maxDays: 21, priceYen: 100000, label: "JR Pass 21 días" },
 ] as const;
 
-/** Tramos de tren de larga distancia (tarifa de asiento reservado, ida, en yen). */
+/** Tramos de tren de larga distancia (tarifa de asiento reservado, ida, en yen; shinkansen en Nozomi). */
 export interface Segment {
   id: string;
   label: string;
@@ -28,11 +33,11 @@ export interface Segment {
 
 export const SEGMENTS: Segment[] = [
   { id: "tokio-kioto", label: "Tokio → Kioto", fareYen: 14170 },
-  { id: "tokio-osaka", label: "Tokio → Shin-Osaka", fareYen: 14400 },
+  { id: "tokio-osaka", label: "Tokio → Shin-Osaka", fareYen: 14720 },
   // ¥580: tarifa especial de JR West Osaka–Kioto, sin cambios en la revisión de 1-abr-2025 (verificado 2026-10-14).
   { id: "kioto-osaka", label: "Kioto → Osaka", fareYen: 580, kansaiHiroshima: true },
-  { id: "osaka-hiroshima", label: "Shin-Osaka → Hiroshima", fareYen: 10000, kansaiHiroshima: true },
-  { id: "tokio-hiroshima", label: "Tokio → Hiroshima", fareYen: 19440 },
+  { id: "osaka-hiroshima", label: "Shin-Osaka → Hiroshima", fareYen: 10950, kansaiHiroshima: true },
+  { id: "tokio-hiroshima", label: "Tokio → Hiroshima", fareYen: 19760 },
   { id: "tokio-hakone", label: "Tokio → Odawara (Hakone)", fareYen: 3220 },
   { id: "osaka-kioto-nara", label: "Osaka → Nara", fareYen: 800, kansaiHiroshima: true },
   { id: "kioto-kanazawa", label: "Kioto → Kanazawa", fareYen: 6930 },
