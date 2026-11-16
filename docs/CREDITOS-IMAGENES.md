@@ -240,6 +240,11 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | tokio-estacion-ekiben-tonkatsu.jpg | Cajas de ekiben en una tienda de la estación (recortada para quitar a clientes) | Estación de Tokio |
 | tokio-estacion-ekiben-mostrador.jpg | Mostrador de ekiben con precios (recortada para quitar al personal) | Estación de Tokio |
 | tokio-estacion-shinkansen-n700s.jpg | Shinkansen N700S en el andén (fotograma de un vídeo propio) | Estación de Tokio |
+| osaka-castillo-dia.jpg | Torre principal del castillo de Osaka de día (9-dic-2025) | Osaka |
+| osaka-okonomiyaki-plancha.jpg | Plancha de un local de okonomiyaki de barrio (solo se ve una mano del cocinero) | Osaka |
+| osaka-italiano-pasta.jpg | Plato de pasta de un restaurante italiano (sin personas reconocibles) | Osaka |
+| osaka-takoyaki-barquita.jpg | Barquita de takoyaki en la mano del autor | Osaka |
+| osaka-metro-vagon-mujeres.jpg | Punto de embarque del vagón solo para mujeres, línea Midosuji (andén sin personas) | Metro de Osaka |
 
 ### Clips de vídeo propios (public/videos/propias/)
 
