@@ -113,7 +113,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, ref: referencia(), plazo: plazo(VUELOS.respuestaHoras) });
   }
 
-  const origen = text(form, "origen", 60);
+  const origen = text(form, "origen", 80);
   const destino = text(form, "destino", 20);
   const ida = text(form, "ida", 10);
   const vuelta = text(form, "vuelta", 10);

@@ -177,7 +177,8 @@ export function VuelosForm() {
 
   function validar(p: number): string | null {
     if (p === 0) {
-      if (d.origen === "Otra" && d.otroOrigen.trim().length < 2) return "Escribe desde qué ciudad o aeropuerto sales.";
+      if ((d.origen === "Otra" || d.origen === "Fuera") && d.otroOrigen.trim().length < 2)
+        return d.origen === "Fuera" ? "Escribe la ciudad y el país desde los que sales." : "Escribe desde qué ciudad o aeropuerto sales.";
       if (!d.ida || !d.vuelta) return "Pon la fecha de ida y la de vuelta.";
       if (d.vuelta < d.ida) return "La vuelta no puede ser antes que la ida.";
     }
@@ -211,7 +212,10 @@ export function VuelosForm() {
     if (e) return setError(e);
     setEnviando(true);
     const body = new FormData();
-    body.append("origen", d.origen === "Otra" ? d.otroOrigen : d.origen);
+    body.append(
+      "origen",
+      d.origen === "Fuera" ? `Fuera de España: ${d.otroOrigen}` : d.origen === "Otra" ? d.otroOrigen : d.origen,
+    );
     for (const k of ["destino", "ida", "vuelta", "flexibilidad", "maletas", "clase", "precio", "vistoEn", "prioridad", "nombre", "canal", "contacto"] as const) {
       body.append(k, d[k]);
     }
@@ -327,7 +331,7 @@ export function VuelosForm() {
           <fieldset className="m-0 border-0 p-0">
             <legend className="mb-2.5 text-[15px] font-black">¿Desde dónde sales?</legend>
             <div className="flex flex-wrap items-center gap-2">
-              {[...VUELOS_ORIGENES, "Otra"].map((o) => (
+              {[...VUELOS_ORIGENES, "Otra", "Fuera"].map((o) => (
                 <button
                   key={o}
                   type="button"
@@ -335,16 +339,28 @@ export function VuelosForm() {
                   onClick={() => set("origen", o)}
                   className={`min-h-11 border-2 border-[#0a0a0a] px-3.5 font-bold ${d.origen === o ? "bg-[#0a0a0a] text-white" : "bg-white hover:bg-[#f5f5f5]"}`}
                 >
-                  {o === "Otra" ? "Otra ciudad" : o}
+                  {o === "Otra" ? "Otra ciudad de España" : o === "Fuera" ? "Fuera de España" : o}
                 </button>
               ))}
             </div>
-            {d.origen === "Otra" && (
-              <div className="mt-3">
-                <label htmlFor={`${id}-otro`} className="sr-only">
-                  Otra ciudad o aeropuerto de salida
+            {(d.origen === "Otra" || d.origen === "Fuera") && (
+              <div className="mt-3 flex flex-col gap-1">
+                <label htmlFor={`${id}-otro`} className="text-[13px] font-bold">
+                  {d.origen === "Fuera" ? "Ciudad y país de salida" : "Ciudad o aeropuerto de salida"}
                 </label>
-                <input id={`${id}-otro`} className={`${inputCls} w-full`} placeholder="Otra ciudad o aeropuerto" value={d.otroOrigen} onChange={(e) => set("otroOrigen", e.target.value)} maxLength={60} />
+                <input
+                  id={`${id}-otro`}
+                  className={`${inputCls} w-full`}
+                  placeholder={d.origen === "Fuera" ? "Por ejemplo: Ciudad de México, México" : "Por ejemplo: Valencia"}
+                  value={d.otroOrigen}
+                  onChange={(e) => set("otroOrigen", e.target.value)}
+                  maxLength={60}
+                />
+                {d.origen === "Fuera" && (
+                  <span className="text-xs text-fg-muted">
+                    Iberia vuela a Japón desde Madrid: te diremos si con la escala te compensa frente a un vuelo directo.
+                  </span>
+                )}
               </div>
             )}
           </fieldset>

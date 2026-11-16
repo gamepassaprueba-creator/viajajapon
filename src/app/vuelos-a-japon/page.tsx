@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { Plane } from "lucide-react";
 import { withSocial } from "@/lib/seo";
 import { VUELOS, telegramHref, whatsappHref } from "@/data/vuelos";
 import { VuelosForm } from "./VuelosForm";
@@ -35,24 +37,45 @@ export default function Page() {
     : "pendiente de confirmar";
 
   return (
-    <div className="mx-auto max-w-[1216px] px-4 py-12">
-      <header className="flex max-w-[860px] flex-col gap-3">
-        <p className="kicker text-primary">Servicio · Vuelos a Japón</p>
-        <h1 className="text-balance text-4xl font-black leading-[1.05] sm:text-5xl">Te mejoramos el precio de tu vuelo a Japón</h1>
-        <p className="text-lg leading-relaxed text-fg-muted">
-          Dinos qué vuelo quieres y cuánto te sale. En menos de {VUELOS.respuestaHoras} horas te mandamos un código para
-          comprarlo tú mismo en iberia.com, más barato o con más maletas.
-        </p>
-        <ul className="mt-1 flex list-none flex-wrap gap-2 p-0">
-          {["Compras tú en iberia.com", "Billete y factura a tu nombre", "Ves tu ahorro neto antes de pagar"].map((c) => (
-            <li key={c} className="border-2 border-[#0a0a0a] px-3 py-1.5 text-sm font-bold">
-              {c}
-            </li>
-          ))}
-        </ul>
+    <>
+      <header className="relative overflow-hidden border-b-[3px] border-[#0a0a0a] bg-[#0a0a0a] text-white">
+        <Image
+          src="/images/hero-fuji.jpg"
+          alt="El monte Fuji nevado detrás de la pagoda Chureito, con cerezos en flor"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[70%_40%] md:object-[center_40%]"
+        />
+        {/* Velo para leer el texto: de abajo arriba en móvil, de izquierda a derecha en escritorio. */}
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(10,10,10,0.92)_0%,rgba(10,10,10,0.6)_55%,rgba(10,10,10,0.15)_100%)] md:bg-[linear-gradient(90deg,rgba(10,10,10,0.88)_0%,rgba(10,10,10,0.7)_42%,rgba(10,10,10,0.05)_72%)]" />
+        <RutaVuelo />
+        <div className="relative mx-auto flex min-h-[340px] max-w-[1216px] flex-col justify-end gap-3.5 px-4 pb-6 pt-28 md:min-h-[460px] md:justify-center md:py-12">
+          <div className="flex max-w-[660px] flex-col gap-3.5">
+            <p className="kicker self-start bg-[#e1352e] px-2 py-1 text-white">Servicio · Vuelos a Japón</p>
+            <h1 className="text-balance text-[28px] font-black leading-[1.05] sm:text-5xl md:text-[56px]">
+              Te mejoramos el precio de tu vuelo a Japón
+            </h1>
+            <p className="text-sm leading-relaxed text-[#f0f0f0] sm:text-lg">
+              Dinos qué vuelo quieres y cuánto te sale. En menos de {VUELOS.respuestaHoras} horas te mandamos un código para
+              comprarlo tú mismo en iberia.com, más barato o con más maletas.
+            </p>
+            <ul className="mt-1 hidden list-none flex-wrap gap-2 p-0 sm:flex">
+              {["Compras tú en iberia.com", "Billete y factura a tu nombre", "Ves tu ahorro neto antes de pagar"].map((c) => (
+                <li key={c} className="border-2 border-white bg-white px-3 py-1.5 text-sm font-bold text-[#0a0a0a]">
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <span className="absolute bottom-1 right-1 rounded bg-black/55 px-1.5 py-0.5 text-[10px] leading-none text-white/90">
+          Foto: bruchez, CC BY-SA 2.0
+        </span>
       </header>
 
-      <div className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(0,680px)_1fr]">
+    <div className="mx-auto max-w-[1216px] px-4 py-12">
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,680px)_1fr]">
         <VuelosForm />
 
         <aside className="flex flex-col gap-5">
@@ -119,5 +142,32 @@ export default function Page() {
         .
       </p>
     </div>
+    </>
+  );
+}
+
+/** Ruta discontinua Madrid → Tokio con el avión, sobre la foto del banner. Solo decoración. */
+function RutaVuelo() {
+  return (
+    <>
+      <svg viewBox="0 0 375 300" preserveAspectRatio="xMidYMin slice" aria-hidden="true" className="absolute inset-0 h-full w-full md:hidden">
+        <path className="vuelo-ruta" d="M 30 80 C 120 10, 260 10, 345 60" fill="none" stroke="#fff" strokeWidth="2.5" strokeDasharray="8 8" strokeLinecap="round" />
+        <circle cx="30" cy="80" r="6" fill="#e1352e" stroke="#fff" strokeWidth="2.5" />
+        <circle cx="345" cy="60" r="6" fill="#e1352e" stroke="#fff" strokeWidth="2.5" />
+        <text x="30" y="62" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="12" fontWeight="700">MAD</text>
+        <text x="345" y="44" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="12" fontWeight="700">TYO</text>
+      </svg>
+      <svg viewBox="0 0 1440 460" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" className="absolute inset-0 hidden h-full w-full md:block">
+        <path className="vuelo-ruta" d="M 900 370 C 1000 150, 1180 70, 1340 150" fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="10 10" strokeLinecap="round" />
+        <circle cx="900" cy="370" r="8" fill="#e1352e" stroke="#fff" strokeWidth="3" />
+        <circle cx="1340" cy="150" r="8" fill="#e1352e" stroke="#fff" strokeWidth="3" />
+        <text x="900" y="410" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="18" fontWeight="700">MAD</text>
+        <text x="1340" y="125" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="18" fontWeight="700">TYO</text>
+      </svg>
+      {/* El avión va en HTML (no dentro del SVG) para usar el icono de la web y que no se deforme. */}
+      <span aria-hidden="true" className="absolute right-[24%] top-[6%] flex h-11 w-11 rotate-[20deg] items-center justify-center rounded-full border-[3px] border-white bg-[#e1352e] md:right-[21%] md:top-[24%] md:h-[68px] md:w-[68px]">
+        <Plane className="h-5 w-5 text-white md:h-8 md:w-8" strokeWidth={2.5} />
+      </span>
+    </>
   );
 }

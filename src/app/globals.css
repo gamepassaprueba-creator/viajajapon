@@ -252,3 +252,8 @@ h1, h2, h3 { text-wrap: balance; }
     scroll-behavior: auto !important;
   }
 }
+
+/* Ruta discontinua del banner de /vuelos-a-japon: la línea «avanza» hacia Tokio. */
+@keyframes vuelo-dash { to { stroke-dashoffset: -40; } }
+.vuelo-ruta { animation: vuelo-dash 1.6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .vuelo-ruta { animation: none; } }
