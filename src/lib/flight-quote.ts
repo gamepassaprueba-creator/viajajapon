@@ -75,10 +75,8 @@ export function parseFlightQuote(input: unknown, today = new Date().toISOString(
   if (!oneOf(baggage, ["mano", "facturada", "indiferente"] as const)) return null;
   if (!oneOf(stops, ["directo", "una_escala", "indiferente"] as const)) return null;
   if (budgetPerPerson !== null && (!Number.isInteger(budgetPerPerson) || budgetPerPerson < 100 || budgetPerPerson > 10000)) return null;
-  if (!name || !email || !EMAIL_RE.test(email) || !phone || !notes) {
-    // El teléfono y los comentarios son opcionales.
-    if (!name || !email || !EMAIL_RE.test(email) || phone === null || notes === null) return null;
-  }
+  // El teléfono y las observaciones son opcionales; el nombre y email no.
+  if (!name || !email || !EMAIL_RE.test(email) || phone === null || notes === null) return null;
   if (phone && !/^[+\d\s().-]{6,40}$/.test(phone)) return null;
   if (x.privacyAccepted !== true) return null;
 
