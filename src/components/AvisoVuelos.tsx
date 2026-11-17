@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Plane, X } from "lucide-react";
 import { readAnalyticsConsent, trackEvent } from "@/lib/analytics";
+import { AvionRuta } from "./AvionRuta";
 
 // Aviso discreto del servicio de vuelos en los itinerarios (diseño «Aviso de vuelos en los
 // itinerarios» del lienzo). Reglas para no ser intrusivo (pautas de Google sobre intersticiales):
@@ -100,10 +101,8 @@ export function AvisoVuelos() {
             <path className="vuelo-ruta" d="M 30 70 C 110 10, 230 10, 310 44" fill="none" stroke="#fff" strokeWidth="2.5" strokeDasharray="7 7" strokeLinecap="round" />
             <circle cx="30" cy="70" r="5" fill="#e1352e" stroke="#fff" strokeWidth="2" />
             <circle cx="310" cy="44" r="5" fill="#e1352e" stroke="#fff" strokeWidth="2" />
+            <AvionRuta x={185} y={21} r={15} rumbo={-1} borde={2} />
           </svg>
-          <span aria-hidden="true" className="absolute left-[52%] top-[8px] flex h-8 w-8 rotate-[16deg] items-center justify-center rounded-full border-2 border-white bg-[#e1352e]">
-            <Plane className="h-4 w-4 text-white" strokeWidth={2.5} />
-          </span>
           <button type="button" onClick={cerrar} aria-label="Cerrar el aviso" className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center border-2 border-[#0a0a0a] bg-white">
             <X className="h-4 w-4" strokeWidth={3} />
           </button>

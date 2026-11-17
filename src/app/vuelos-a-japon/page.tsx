@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Plane } from "lucide-react";
+import { AvionRuta } from "@/components/AvionRuta";
 import { withSocial } from "@/lib/seo";
 import { VUELOS, telegramHref, whatsappHref } from "@/data/vuelos";
 import { VuelosForm } from "./VuelosForm";
@@ -156,6 +156,7 @@ function RutaVuelo() {
         <circle cx="345" cy="60" r="6" fill="#e1352e" stroke="#fff" strokeWidth="2.5" />
         <text x="30" y="62" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="12" fontWeight="700">MAD</text>
         <text x="345" y="44" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="12" fontWeight="700">TYO</text>
+        <AvionRuta x={223} y={25} r={20} rumbo={3.5} borde={2.5} />
       </svg>
       <svg viewBox="0 0 1440 460" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" className="absolute inset-0 hidden h-full w-full md:block">
         <path className="vuelo-ruta" d="M 900 370 C 1000 150, 1180 70, 1340 150" fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="10 10" strokeLinecap="round" />
@@ -163,11 +164,8 @@ function RutaVuelo() {
         <circle cx="1340" cy="150" r="8" fill="#e1352e" stroke="#fff" strokeWidth="3" />
         <text x="900" y="410" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="18" fontWeight="700">MAD</text>
         <text x="1340" y="125" textAnchor="middle" fill="#fff" fontFamily="var(--font-mono), monospace" fontSize="18" fontWeight="700">TYO</text>
+        <AvionRuta x={1121} y={137} r={32} rumbo={-20.8} />
       </svg>
-      {/* El avión va en HTML (no dentro del SVG) para usar el icono de la web y que no se deforme. */}
-      <span aria-hidden="true" className="absolute right-[24%] top-[6%] flex h-11 w-11 rotate-[20deg] items-center justify-center rounded-full border-[3px] border-white bg-[#e1352e] md:right-[21%] md:top-[24%] md:h-[68px] md:w-[68px]">
-        <Plane className="h-5 w-5 text-white md:h-8 md:w-8" strokeWidth={2.5} />
-      </span>
     </>
   );
 }
