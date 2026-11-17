@@ -33,7 +33,7 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 
 ### Ruta real, día a día
 - 1-4: Tokio. 5: shinkansen de Tokio a Kioto por la mañana (salida hacia las 9:50). 5-7: Kioto. 8: Nara y llegada a Osaka. 8-11: Osaka. 11: excursión a Himeji. 12: shinkansen hacia Yokohama; noche en Yokohama. 13-14: Tokio. 15: vuelta.
-- Nombres de hoteles: publicado solo el ryokan Kagihei. Los demás, pendientes de que Sergio los confirme.
+- Hoteles (nombres confirmados por Sergio el 17-nov-2026 y publicados): Tokio días 1-4, The Tourist Hotel & Cafe Akihabara (4 noches); Kioto, Kyonoyado Kagihei (3); Osaka, The Rise Osaka Kitashinchi (4); Yokohama, InterContinental Yokohama Grand (1); Tokio final, Henn na Hotel Tokyo Asakusabashi (2, el de los robots). NO consta opinión sobre los desayunos ni las habitaciones de cada uno: no publicar valoraciones.
 
 ### Tokio
 - Día 2: Asakusa (Senso-ji, omikuji), ramen, a pie hasta el Skytree, Kappabashi (los precios les parecieron altos y no compraron), compras en Akihabara y sushi para cenar. Ese día: 15 km a pie y 23.268 pasos; Sergio acabó con ampollas en los dedos pese a llevar sus zapatillas más cómodas.
