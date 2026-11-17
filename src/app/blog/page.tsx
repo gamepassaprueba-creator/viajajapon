@@ -11,7 +11,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 export const metadata: Metadata = withSocial("/blog", {
   title: "Blog: guías y noticias para viajar a Japón",
   description:
-    "El hub de contenido de ViajaJapón: guías de destinos, gastronomía, cultura, itinerarios y consejos prácticos, más las novedades de 2026. Filtra por categoría y empieza a planear.",
+    "Todas las guías de ViajaJapón: destinos, gastronomía, cultura, itinerarios y consejos prácticos para viajar a Japón en 2026. Filtra por categoría.",
   alternates: { canonical: "/blog" },
 });
 
