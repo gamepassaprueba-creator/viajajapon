@@ -70,3 +70,7 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 - Ya publicado antes (qué ver en Tokio, Japón en diciembre): paseo por el barrio chino; frío húmedo «de los que se meten en los huesos», más que en ningún otro sitio del viaje; la bahía iluminada. Hotel con vistas a la noria de Minato Mirai (fotos del atardecer y de noche desde la habitación, en un piso alto).
 - NO consta: que subieran a la noria, al Landmark Tower ni a ningún museo; dónde cenaron.
 
+
+### Precios de segunda mano (fotos de diciembre de 2025, publicado el 17-nov-2026 en tiendas-segunda-mano-japon)
+- Quest 3 512 GB usada ¥54.980 (junto a cartel Tax-free 10 %); Quest 2 64 GB usada ¥16.980; N64 Pikachu ¥23.100 y PSP roja ¥8.800; etiqueta de iPad Pro 12,9" 2021 256 GB libre rango B ¥87.980 (tax out ¥79.981).
+- NO consta en qué tienda ni en qué ciudad se hizo cada foto: no se nombran.

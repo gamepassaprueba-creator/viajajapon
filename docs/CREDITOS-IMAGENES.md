@@ -245,6 +245,10 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | osaka-italiano-pasta.jpg | Plato de pasta de un restaurante italiano (sin personas reconocibles) | Osaka |
 | osaka-takoyaki-barquita.jpg | Barquita de takoyaki en la mano del autor | Osaka |
 | osaka-metro-vagon-mujeres.jpg | Punto de embarque del vagón solo para mujeres, línea Midosuji (andén sin personas) | Metro de Osaka |
+| segunda-mano-quest3-etiqueta.jpg | Meta Quest 3 usadas con etiqueta de precio y cartel de Tax Free (sin personas) | Tienda de segunda mano, Japón |
+| segunda-mano-quest2-caja.jpg | Caja de Quest 2 usadas con etiqueta (se ve la mano de la madre del autor) | Tienda de segunda mano, Japón |
+| segunda-mano-n64-pikachu.jpg | Nintendo 64 de Pikachu y PSP con etiquetas de precio | Tienda de segunda mano, Japón |
+| segunda-mano-ipad-etiqueta.jpg | Etiqueta electrónica de un iPad Pro usado (recorte de la etiqueta) | Tienda de segunda mano, Japón |
 
 ### Clips de vídeo propios (public/videos/propias/)
 
