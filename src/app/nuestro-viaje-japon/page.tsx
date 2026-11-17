@@ -74,6 +74,12 @@ export default function Page() {
             favorito de todo el viaje sigue siendo <strong className="text-fg">Kiyomizu-dera iluminado de noche</strong>.
           </p>
           <p>
+            Estos fueron nuestros alojamientos: en Tokio, cuatro noches en el The Tourist Hotel &amp; Cafe
+            Akihabara; en Kioto, tres en el ryokan Kyonoyado Kagihei; en Osaka, cuatro en el The Rise Osaka
+            Kitashinchi; en Yokohama, una en el InterContinental Yokohama Grand, y de vuelta en Tokio, dos en
+            el Henn na Hotel Tokyo Asakusabashi, el de los robots en la recepción.
+          </p>
+          <p>
             Dormimos en un ryokan de Kioto donde el desayuno incluyó una ceremonia del té. La dueña
             terminó regalándole a mi madre una pequeña figura de cristal para la suerte. En Yokohama,
             el hotel preparó una tarta, una cesta de fruta y le cantaron el cumpleaños feliz sin que
