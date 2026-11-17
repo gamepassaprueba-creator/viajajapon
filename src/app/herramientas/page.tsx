@@ -10,7 +10,7 @@ import { HERRAMIENTAS } from "@/lib/tools";
 export const metadata: Metadata = withSocial("/herramientas", {
   title: "Herramientas para planificar tu viaje a Japón",
   description:
-    "Calculadora de presupuesto y del JR Pass en euros, cambio yen-euro actualizado y checklist de maleta imprimible: herramientas gratuitas y sin registro para organizar tu viaje a Japón.",
+    "Calculadora de presupuesto y del JR Pass en euros, cambio yen-euro al día y checklist de maleta: herramientas gratis y sin registro para viajar a Japón.",
   alternates: { canonical: "/herramientas" },
 });
 
