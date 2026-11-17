@@ -180,21 +180,45 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .join("\n");
 
-  const mensaje = [
+  // Enlace para contestar al lector con un toque desde el móvil.
+  const saludo = `Hola ${nombre}, soy Sergio de ViajaJapón. Sobre tu solicitud ${ref} de vuelo a Japón: `;
+  const digitos = contacto.replace(/\D/g, "");
+  const responder =
+    canal === "Correo"
+      ? `mailto:${contacto}?subject=${encodeURIComponent(`Tu vuelo a Japón (${ref})`)}&body=${encodeURIComponent(saludo)}`
+      : canal === "WhatsApp"
+        ? `https://wa.me/${digitos}?text=${encodeURIComponent(saludo)}`
+        : contacto.startsWith("@") || !/^\+?[\d\s]+$/.test(contacto)
+          ? `https://t.me/${contacto.replace(/^@/, "")}`
+          : `https://t.me/+${digitos}`;
+
+  // Mensaje 1, solo para el titular. Mensaje 2, el que se reenvía tal cual al colaborador.
+  const privado = [
     `✈️ Nueva solicitud ${ref}`,
-    "",
-    "PARA REENVIAR AL COLABORADOR (sin datos personales):",
-    paraColaborador,
-    "",
-    "SOLO PARA TI:",
-    `${nombre} · ${canal}: ${contacto}`,
     `Responder antes del ${respondeAntes}`,
+    "",
+    `Cliente: ${nombre}`,
+    `Prefiere ${canal}: ${contacto}`,
+    `Contestar: ${responder}`,
+    "",
+    "👇 Reenvía a Boletox el mensaje de abajo (no lleva datos personales).",
   ].join("\n");
 
   try {
     const chatId = process.env.TELEGRAM_CHAT_ID as string;
-    const sent = await telegram("sendMessage", JSON.stringify({ chat_id: chatId, text: mensaje }), true);
-    if (!sent) {
+    const sent = await telegram(
+      "sendMessage",
+      JSON.stringify({ chat_id: chatId, text: privado, link_preview_options: { is_disabled: true } }),
+      true,
+    );
+    const reenviable =
+      sent &&
+      (await telegram(
+        "sendMessage",
+        JSON.stringify({ chat_id: chatId, text: paraColaborador, link_preview_options: { is_disabled: true } }),
+        true,
+      ));
+    if (!sent || !reenviable) {
       console.error("[vuelos] Telegram rechazó el mensaje");
       return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
     }
