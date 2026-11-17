@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getArticle, getArticleSlugs, extractItinerarySteps } from "@/lib/content";
 import { Article, articleMetadata } from "@/components/Article";
 import { howToLd } from "@/lib/jsonld";
+import { AvisoVuelos } from "@/components/AvisoVuelos";
 
 const PILLAR = "itinerarios";
 
@@ -31,5 +32,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           : []),
       ]
     : [];
-  return <Article pillar={PILLAR} slug={slug} extraJsonLd={extraJsonLd} />;
+  return (
+    <>
+      <Article pillar={PILLAR} slug={slug} extraJsonLd={extraJsonLd} />
+      <AvisoVuelos />
+    </>
+  );
 }

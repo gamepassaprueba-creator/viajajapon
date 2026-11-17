@@ -44,6 +44,14 @@ export default function Page() {
             nuestro interés legítimo en atender consultas y correcciones.
           </li>
           <li>
+            <strong>Solicitudes de vuelos:</strong> si pides que te mejoremos el precio de un vuelo, tratamos
+            tu nombre, la forma de contacto que elijas (WhatsApp, Telegram o correo), los datos del viaje y, si
+            la adjuntas, la captura del vuelo, para estudiar tu solicitud y contestarte. Base legal: tu{" "}
+            <strong>consentimiento</strong>, que das al enviar el formulario. Al colaborador que vende el código
+            de descuento solo le pasamos los datos del vuelo (ruta, fechas, viajeros, maletas, precio visto y la
+            captura), nunca tu nombre ni tu contacto, salvo que tú decidas comprarle el código.
+          </li>
+          <li>
             <strong>Analítica (Google Analytics 4):</strong> solo si la aceptas, medimos de forma
             estadística qué páginas se visitan, de dónde llega el tráfico y eventos como clics en
             recomendaciones, mediante identificadores en cookies (<code>_ga</code>) y datos técnicos del
@@ -81,6 +89,19 @@ export default function Page() {
               className="underline hover:text-primary"
             >
               Políticas de privacidad de Google
+            </a>
+            .
+          </li>
+          <li>
+            <strong>Telegram (Telegram FZ-LLC)</strong> — recepción de las solicitudes de vuelos: el
+            formulario se entrega como mensaje privado al titular y no se guarda en la web.{" "}
+            <a
+              href="https://telegram.org/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-primary"
+            >
+              Política de privacidad de Telegram
             </a>
             .
           </li>
@@ -128,7 +149,9 @@ export default function Page() {
         <p>
           Tus datos de suscripción se conservarán hasta que solicites la baja. Puedes darte de baja
           en cualquier momento haciendo clic en el enlace que aparece al final de cada correo. Los
-          correos de contacto se conservan el tiempo necesario para atender la consulta. Los datos
+          correos de contacto se conservan el tiempo necesario para atender la consulta. Las solicitudes de
+          vuelos se borran a los 6 meses, salvo que compres el código, en cuyo caso guardamos la referencia y
+          los datos del vuelo el tiempo que exija la normativa fiscal. Los datos
           de Google Analytics se conservan según la retención configurada en la herramienta (como
           máximo 14 meses) y las cookies <code>_ga</code> caducan a los 2 años. Tu elección sobre la
           analítica se guarda en tu navegador durante 12 meses; pasado ese plazo te la volvemos a
