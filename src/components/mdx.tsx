@@ -44,6 +44,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { AffiliateBox } from "./AffiliateBox";
+import { VuelosCTA } from "./VuelosCTA";
 import { DormirEn, ZonasMapa, avisoBooking } from "./Alojamiento";
 import { Tours } from "./Tours";
 import { FloracionCalendario } from "./Floracion";
@@ -737,6 +738,7 @@ export const mdxComponents = {
   th: (p: ComponentProps<"th">) => <th className="border-b border-border px-4 py-2 font-medium" {...p} />,
   td: (p: ComponentProps<"td">) => <td className="border-b border-border px-4 py-2" {...p} />,
   AffiliateBox,
+  VuelosCTA,
   DormirEn,
   ZonasMapa,
   Tours,

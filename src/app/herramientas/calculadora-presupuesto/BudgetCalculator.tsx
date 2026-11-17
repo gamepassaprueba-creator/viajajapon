@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { VuelosLineaCalculadora } from "@/components/VuelosCTA";
 import { PROFILE_LABEL, type Profile } from "@/data/jrpass";
 import {
   computeBudget,
@@ -205,6 +206,9 @@ export function BudgetCalculator() {
               </li>
             ))}
           </ul>
+          {r.lines.some((l) => l.key === "vuelo") && (
+            <VuelosLineaCalculadora vueloEur={eur(r.lines.find((l) => l.key === "vuelo")!.eur)} />
+          )}
           <p className="text-xs text-fg-muted">
             Estimación con precios de 2026 a ¥185/€. El alojamiento es lo que más cambia con la fecha: compruébalo para tus días.
           </p>
