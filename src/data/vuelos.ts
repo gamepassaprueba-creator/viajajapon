@@ -4,8 +4,8 @@
  *
  * El servicio está APAGADO mientras GET /api/vuelos no diga lo contrario: hace falta
  * VUELOS_ACTIVO=1 y el bot de avisos configurado (TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID).
- * Antes de encenderlo, rellena aquí los datos del colaborador y los canales públicos, y quita
- * el `noindex` de la página. Plan completo: marketing/planes/plan-vuelos-boletox-2026-11-16.md
+ * El colaborador recibe la solicitud con el nombre y el contacto del lector y es quien le escribe.
+ * Plan completo: marketing/planes/plan-vuelos-boletox-2026-11-16.md
  * (privado, fuera del repositorio).
  */
 export const VUELOS = {
@@ -13,8 +13,8 @@ export const VUELOS = {
   respuestaHoras: 24,
   /** Horas que la oferta mantiene el precio una vez enviada. */
   validezHoras: 24,
-  /** Quién vende el código. Sin nombre y NIF, la página muestra «pendiente de confirmar». */
-  colaborador: { nombre: "", nif: "" },
+  /** Quién vende el código y atiende al lector. Sin nombre, la página muestra «pendiente de confirmar». */
+  colaborador: { nombre: "BoletoX25 PLC", pais: "Malta", nif: "" },
   /** WhatsApp público en formato internacional sin «+» ni espacios (p. ej. "34600000000"). Vacío = sin botón. */
   whatsapp: "",
   /** Usuario público de Telegram sin «@». Vacío = sin botón. */

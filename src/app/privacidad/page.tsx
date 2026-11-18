@@ -47,9 +47,10 @@ export default function Page() {
             <strong>Solicitudes de vuelos:</strong> si pides que te mejoremos el precio de un vuelo, tratamos
             tu nombre, la forma de contacto que elijas (WhatsApp, Telegram o correo), los datos del viaje y, si
             la adjuntas, la captura del vuelo, para estudiar tu solicitud y contestarte. Base legal: tu{" "}
-            <strong>consentimiento</strong>, que das al enviar el formulario. Al colaborador que vende el código
-            de descuento solo le pasamos los datos del vuelo (ruta, fechas, viajeros, maletas, precio visto y la
-            captura), nunca tu nombre ni tu contacto, salvo que tú decidas comprarle el código.
+            <strong>consentimiento</strong>, que das al enviar el formulario. Pasamos la solicitud completa
+            (también tu nombre y tu contacto) al colaborador que vende el código de descuento, BoletoX25 PLC,
+            empresa de Malta (Unión Europea), para que sea él quien te escriba con el precio y el código. No
+            guardamos la solicitud en ningún servidor nuestro.
           </li>
           <li>
             <strong>Analítica (Google Analytics 4):</strong> solo si la aceptas, medimos de forma
@@ -179,7 +180,7 @@ export default function Page() {
           .
         </p>
 
-        <p className="text-xs text-fg-muted mt-8">Última actualización: 19 de octubre de 2026.</p>
+        <p className="text-xs text-fg-muted mt-8">Última actualización: 18 de noviembre de 2026.</p>
       </div>
     </article>
   );
