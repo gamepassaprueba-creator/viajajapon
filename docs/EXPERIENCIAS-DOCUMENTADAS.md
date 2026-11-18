@@ -39,6 +39,7 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 - Día 2: Asakusa (Senso-ji, omikuji), ramen, a pie hasta el Skytree, Kappabashi (los precios les parecieron altos y no compraron), compras en Akihabara y sushi para cenar. Ese día: 15 km a pie y 23.268 pasos; Sergio acabó con ampollas en los dedos pese a llevar sus zapatillas más cómodas.
 - Día 3: Shibuya (Hachiko) y Harajuku.
 - Día 13: en el último hotel de Tokio, los robots de la recepción iban vestidos de Navidad (capa y gorro de Papá Noel).
+- Publicado el 18-nov-2026 en que-ver-en-tokio (sección «Lo que hicimos nosotros en Tokio»): días 2, 3, 13 y 14, los 15 km, Kappabashi sin comprar, los dos hoteles. NO consta: en qué orden exacto ni a qué hora se hizo cada cosa del día 3, ni qué día fueron a Meiji, Odaiba o teamLab.
 
 ### Shinkansen
 - Compraron los billetes Tokio-Kioto el día antes, en la máquina. Les costó entenderla y, sin querer, sacaron billetes de primera clase (Green Car). No salió muy caro.
