@@ -55,6 +55,7 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 - Día 9: castillo de día; comieron en un italiano por 13 € los dos; takoyaki en Dotonbori; subieron al Umeda Sky Building (piso 39); Dotonbori de noche.
 - Día 9: a una chica se le salió la cadena de la bici al caerse junto a ellos; Sergio se la arregló y en un momento varias personas se pararon a ayudar (le dieron papel para limpiarse las manos, limpiaron la bici).
 - Día 9: Sergio compró unos AirPods Pro 2 nuevos por ¥29.000 con Tax Free.
+- Publicado el 19-nov-2026 en comprar-en-japon-sin-saber-japones: AirPods ¥29.000 con Tax Free, madre hablando en español, Kappabashi sin comprar. NO consta cómo fue el trámite del Tax Free (si firmó, si pasaporte o QR).
 - Día 8, después de cenar: castillo de Osaka de noche (fotos con sello de fecha del 8-dic). Día 10: repitieron takoyaki (vídeo del puesto).
 - En el okonomiyaki se sentaron delante de la plancha (vídeo del 8-dic). Fotos de los puntos de embarque del vagón solo para mujeres en la línea Midosuji (cartel: todo el día en laborables) y de un vagón «Women Only» de la línea Yamatoji de JR.
 - Publicado el 16-nov-2026 en que-ver-en-osaka (sección «Lo que hicimos nosotros en Osaka»): días 8, 9 y 11, el italiano de 13 €, la reverencia, la bici, la hora a pie al castillo. Sin nombre de hotel ni de zona.
