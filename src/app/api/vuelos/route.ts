@@ -168,20 +168,8 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .join(", ");
 
-  const paraColaborador = [
-    `${ref} · ${origen} → ${destino}`,
-    `Ida ${fechaLarga(ida)}, vuelta ${fechaLarga(vuelta)} (${flexibilidad.toLowerCase()})`,
-    `${viajeros} · ${maletas} maleta(s) facturada(s) por persona · ${clase}`,
-    precio ? `Visto a ${precio} € en ${vistoEn || "sin indicar"}` : "Aún no ha mirado precio",
-    `Valora: ${prioridad.toLowerCase()}`,
-    file ? "Captura adjunta" : "Sin captura",
-    nota ? `Nota: ${nota}` : "",
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  // Enlace para contestar al lector con un toque desde el móvil.
-  const saludo = `Hola ${nombre}, soy Sergio de ViajaJapón. Sobre tu solicitud ${ref} de vuelo a Japón: `;
+  // Enlace para que el colaborador conteste al lector con un toque desde el móvil.
+  const saludo = `Hola ${nombre}, te escribo de parte de ViajaJapón por tu solicitud ${ref} de vuelo a Japón: `;
   const digitos = contacto.replace(/\D/g, "");
   const responder =
     canal === "Correo"
@@ -192,16 +180,29 @@ export async function POST(req: Request) {
           ? `https://t.me/${contacto.replace(/^@/, "")}`
           : `https://t.me/+${digitos}`;
 
-  // Mensaje 1, solo para el titular. Mensaje 2, el que se reenvía tal cual al colaborador.
-  const privado = [
-    `✈️ Nueva solicitud ${ref}`,
-    `Responder antes del ${respondeAntes}`,
-    "",
-    `Cliente: ${nombre}`,
-    `Prefiere ${canal}: ${contacto}`,
+  // Mensaje 1, aviso para el titular. Mensaje 2, la solicitud completa que se reenvía al colaborador,
+  // que es quien atiende al lector (así lo dicen el formulario y la política de privacidad).
+  const paraColaborador = [
+    `✈️ Solicitud ${ref} de ViajaJapón · responder antes del ${respondeAntes}`,
+    `Cliente: ${nombre} · prefiere ${canal}: ${contacto}`,
     `Contestar: ${responder}`,
     "",
-    "👇 Reenvía a Boletox el mensaje de abajo (no lleva datos personales).",
+    `${origen} → ${destino}`,
+    `Ida ${fechaLarga(ida)}, vuelta ${fechaLarga(vuelta)} (${flexibilidad.toLowerCase()})`,
+    `${viajeros} · ${maletas} maleta(s) facturada(s) por persona · ${clase}`,
+    precio ? `Visto a ${precio} € en ${vistoEn || "sin indicar"}` : "Aún no ha mirado precio",
+    `Valora: ${prioridad.toLowerCase()}`,
+    file ? "Captura del vuelo: en el mensaje siguiente" : "Sin captura",
+    nota ? `Nota: ${nota}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const privado = [
+    `🔔 Nueva solicitud ${ref} (${nombre}, ${origen} → ${destino})`,
+    `Hay que responder antes del ${respondeAntes}.`,
+    "",
+    "👇 Reenvía a Boletox el mensaje de abajo: lleva todo lo que necesita para escribir al cliente.",
   ].join("\n");
 
   try {

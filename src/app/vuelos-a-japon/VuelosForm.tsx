@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import {
+  VUELOS,
   VUELOS_CANALES,
   VUELOS_CAPTURA_MAX,
   VUELOS_CLASES,
@@ -255,7 +256,7 @@ export function VuelosForm() {
         <h2 className="text-2xl font-black">Solicitud recibida</h2>
         <p className="mt-3 font-mono text-2xl font-bold">{hecho.ref}</p>
         <p className="mt-3 text-[15px] leading-relaxed">
-          Te contestamos por {d.canal} antes del <b>{hecho.plazo}</b>. Guarda tu referencia por si nos escribes.
+          Te escribirá nuestro colaborador, {VUELOS.colaborador.nombre}, por {d.canal} antes del <b>{hecho.plazo}</b>. Guarda tu referencia por si nos escribes.
         </p>
         {(wa || tg) && (
           <>
@@ -457,11 +458,12 @@ export function VuelosForm() {
               <Link href="/privacidad" className="font-bold text-primary underline underline-offset-2">
                 política de privacidad
               </Link>{" "}
-              y acepto que me escribáis por esta solicitud.
+              y acepto que ViajaJapón y su colaborador me escriban por esta solicitud.
             </label>
           </div>
           <p className="m-0 text-xs text-fg-muted">
-            Tu nombre y tu forma de contacto se quedan en ViajaJapón. A nuestro colaborador solo le pasamos los datos del vuelo.
+            Pasamos tu solicitud, con tu nombre y tu contacto, a nuestro colaborador ({VUELOS.colaborador.nombre}), que es
+            quien te escribe con el precio y el código.
           </p>
         </>
       )}

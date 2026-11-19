@@ -7,14 +7,12 @@ import { VUELOS, telegramHref, whatsappHref } from "@/data/vuelos";
 import { VuelosForm } from "./VuelosForm";
 import { DirectoLink } from "./DirectoLink";
 
-// Servicio APAGADO hasta que el titular lo active (ver src/data/vuelos.ts). Mientras tanto la
-// página no se indexa, no está en el sitemap y ninguna guía enlaza aquí.
+// El formulario se apaga solo si el servicio está desactivado (GET /api/vuelos; ver src/data/vuelos.ts).
 export const metadata: Metadata = withSocial("/vuelos-a-japon", {
   title: "Te mejoramos el precio de tu vuelo a Japón",
   description:
     "Dinos qué vuelo a Japón quieres y cuánto te sale. En menos de 24 horas te mandamos un código para comprarlo tú en iberia.com más barato o con más maletas.",
   alternates: { canonical: "/vuelos-a-japon" },
-  robots: { index: false, follow: true },
 });
 
 const PASOS = [
@@ -32,8 +30,9 @@ const PASOS = [
 export default function Page() {
   const wa = whatsappHref();
   const tg = telegramHref();
-  const colaborador = VUELOS.colaborador.nombre
-    ? `${VUELOS.colaborador.nombre} (NIF ${VUELOS.colaborador.nif})`
+  const { nombre, pais, nif } = VUELOS.colaborador;
+  const colaborador = nombre
+    ? `${nombre} (${[pais && `empresa de ${pais}`, nif && `NIF ${nif}`].filter(Boolean).join(", ")})`
     : "pendiente de confirmar";
 
   return (
@@ -132,8 +131,8 @@ export default function Page() {
       )}
 
       <p className="mt-10 border-t-[3px] border-[#0a0a0a] pt-3.5 text-[13px] leading-relaxed text-fg-muted">
-        <b className="text-fg">Transparencia.</b> El código lo vende nuestro colaborador, {colaborador}, y ViajaJapón cobra
-        de él una comisión: a ti no te cuesta más. Antes de pagar sabes lo que cuesta el código y lo que ahorras, y el precio
+        <b className="text-fg">Transparencia.</b> El código lo vende nuestro colaborador, {colaborador}, que es quien
+        te escribe con el precio, y ViajaJapón cobra de él una comisión: a ti no te cuesta más. Antes de pagar sabes lo que cuesta el código y lo que ahorras, y el precio
         del vuelo lo ves en iberia.com. No somos Iberia ni una agencia de viajes: el billete es de Iberia y los cambios y
         cancelaciones se gestionan con ella.{" "}
         <Link href="/afiliados-divulgacion" className="underline underline-offset-2 hover:text-primary">
