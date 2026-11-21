@@ -95,7 +95,7 @@ export default function Page() {
           </li>
           <li>
             <strong>Telegram (Telegram FZ-LLC)</strong> — recepción de las solicitudes de vuelos: el
-            formulario se entrega como mensaje privado al titular y al colaborador y no se guarda en la web.{" "}
+            formulario se entrega como mensaje privado al titular, que se lo reenvía al colaborador, y no se guarda en la web.{" "}
             <a
               href="https://telegram.org/privacy"
               target="_blank"
