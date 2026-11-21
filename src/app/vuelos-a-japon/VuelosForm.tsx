@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { Estimado } from "./Estimado";
 import {
   VUELOS,
   VUELOS_CANALES,
@@ -415,6 +416,7 @@ export function VuelosForm() {
               <span className="text-xs text-fg-muted">Para todos los viajeros. Si aún no has mirado, déjalo vacío.</span>
             </div>
           </div>
+          <Estimado precio={d.precio} personas={d.adultos + d.ninos} />
           <div className="flex flex-col gap-2">
             <label htmlFor={`${id}-captura`} className="text-[15px] font-black">Captura del vuelo (opcional)</label>
             <input

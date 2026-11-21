@@ -10,6 +10,9 @@ import {
   VUELOS_MALETAS,
   VUELOS_PRIORIDAD,
   VUELOS_VISTO_EN,
+  VUELOS_ESTIMADO,
+  calcularEstimado,
+  euros,
 } from "@/data/vuelos";
 
 // Recibe las solicitudes del formulario de /vuelos-a-japon y las manda por Telegram. Con
@@ -170,6 +173,21 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .join(", ");
 
+  // La misma cuenta que vio el lector en el formulario, rehecha aquí con la regla vigente.
+  const est = calcularEstimado(precio, (adultos ?? 1) + (ninos ?? 0));
+  const regla = VUELOS_ESTIMADO
+    ? `${Math.round(VUELOS_ESTIMADO.descuento * 100)} % de descuento − código ${
+        VUELOS_ESTIMADO.codigo.tipo === "porcentaje"
+          ? `${Math.round(VUELOS_ESTIMADO.codigo.valor * 1000) / 10} %`
+          : `${euros(VUELOS_ESTIMADO.codigo.valor)}${VUELOS_ESTIMADO.codigo.porPersona ? " por persona" : ""}`
+      }`
+    : "";
+  const lineaEstimado = est
+    ? est.compensa
+      ? `Le hemos mostrado: ≈ ${euros(est.total)} (${euros(est.porPersona)}/persona, ahorro ≈ ${euros(est.ahorro)}) · regla: ${regla}`
+      : `Le hemos dicho que con ese precio el código no compensa (ahorro ≈ ${euros(est.ahorro)}) · regla: ${regla}`
+    : "";
+
   // Enlace para que el colaborador conteste al lector con un toque desde el móvil.
   const saludo = `Hola ${nombre}, te escribo de parte de ViajaJapón por tu solicitud ${ref} de vuelo a Japón: `;
   const digitos = contacto.replace(/\D/g, "");
@@ -193,6 +211,7 @@ export async function POST(req: Request) {
     `Ida ${fechaLarga(ida)}, vuelta ${fechaLarga(vuelta)} (${flexibilidad.toLowerCase()})`,
     `${viajeros} · ${maletas} maleta(s) facturada(s) por persona · ${clase}`,
     precio ? `Visto a ${precio} €${vistoEn ? ` en ${vistoEn}` : ""}` : "Aún no ha mirado precio",
+    lineaEstimado,
     prioridad ? `Valora: ${prioridad.toLowerCase()}` : "",
     file ? "Captura del vuelo: en el mensaje siguiente" : "Sin captura",
     nota ? `Nota: ${nota}` : "",
