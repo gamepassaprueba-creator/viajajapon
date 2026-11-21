@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import {
   VUELOS,
@@ -12,8 +13,6 @@ import {
   VUELOS_FLEXIBILIDAD,
   VUELOS_MALETAS,
   VUELOS_ORIGENES,
-  VUELOS_PRIORIDAD,
-  VUELOS_VISTO_EN,
   telegramHref,
   whatsappHref,
 } from "@/data/vuelos";
@@ -32,8 +31,6 @@ type Datos = {
   maletas: string;
   clase: string;
   precio: string;
-  vistoEn: string;
-  prioridad: string;
   nombre: string;
   canal: string;
   contacto: string;
@@ -53,15 +50,14 @@ const INICIAL: Datos = {
   maletas: "2",
   clase: "Turista",
   precio: "",
-  vistoEn: "iberia.com",
-  prioridad: "Vuelo directo",
   nombre: "",
   canal: "WhatsApp",
   contacto: "",
   consentimiento: false,
 };
 
-const PASOS = ["Ruta y fechas", "Viajeros", "Tu precio", "Contacto"] as const;
+const PASOS = ["Tu vuelo", "Precio y contacto"] as const;
+const ULTIMO = PASOS.length - 1;
 
 
 function Chips({
@@ -182,10 +178,10 @@ export function VuelosForm() {
         return d.origen === "Fuera" ? "Escribe la ciudad y el país desde los que sales." : "Escribe desde qué ciudad o aeropuerto sales.";
       if (!d.ida || !d.vuelta) return "Pon la fecha de ida y la de vuelta.";
       if (d.vuelta < d.ida) return "La vuelta no puede ser antes que la ida.";
+      if (d.bebes > d.adultos) return "Cada bebé tiene que viajar con un adulto.";
     }
-    if (p === 1 && d.bebes > d.adultos) return "Cada bebé tiene que viajar con un adulto.";
-    if (p === 2 && captura && captura.size > VUELOS_CAPTURA_MAX) return "La captura pesa más de 5 MB.";
-    if (p === 3) {
+    if (p === 1) {
+      if (captura && captura.size > VUELOS_CAPTURA_MAX) return "La captura pesa más de 5 MB.";
       if (d.nombre.trim().length < 2) return "Dinos tu nombre.";
       if (d.contacto.trim().length < 4) return d.canal === "Correo" ? "Escribe tu correo." : `Escribe tu ${d.canal}.`;
       if (!d.consentimiento) return "Necesitamos tu permiso para escribirte por esta solicitud.";
@@ -208,8 +204,8 @@ export function VuelosForm() {
 
   async function enviar(ev: React.FormEvent) {
     ev.preventDefault();
-    if (paso < 3) return siguiente();
-    const e = validar(3);
+    if (paso < ULTIMO) return siguiente();
+    const e = validar(ULTIMO);
     if (e) return setError(e);
     setEnviando(true);
     const body = new FormData();
@@ -217,7 +213,7 @@ export function VuelosForm() {
       "origen",
       d.origen === "Fuera" ? `Fuera de España: ${d.otroOrigen}` : d.origen === "Otra" ? d.otroOrigen : d.origen,
     );
-    for (const k of ["destino", "ida", "vuelta", "flexibilidad", "maletas", "clase", "precio", "vistoEn", "prioridad", "nombre", "canal", "contacto"] as const) {
+    for (const k of ["destino", "ida", "vuelta", "flexibilidad", "maletas", "clase", "precio", "nombre", "canal", "contacto"] as const) {
       body.append(k, d[k]);
     }
     body.append("adultos", String(d.adultos));
@@ -315,7 +311,7 @@ export function VuelosForm() {
       className="flex scroll-mt-24 flex-col gap-6 border-[3px] border-[#0a0a0a] bg-white p-5 shadow-[6px_6px_0_#e1352e] sm:p-6"
     >
       <div ref={topRef} className="scroll-mt-24" />
-      <ol className="m-0 grid list-none grid-cols-2 gap-1.5 p-0 font-mono text-[11px] font-bold uppercase tracking-[0.06em] sm:grid-cols-4">
+      <ol className="m-0 grid list-none grid-cols-2 gap-1.5 p-0 font-mono text-[11px] font-bold uppercase tracking-[0.06em]">
         {PASOS.map((nombre, i) => (
           <li
             key={nombre}
@@ -365,7 +361,6 @@ export function VuelosForm() {
               </div>
             )}
           </fieldset>
-          <Chips legend="¿A qué ciudad de Japón?" options={VUELOS_DESTINOS} value={d.destino} onChange={(v) => set("destino", v)} />
           <fieldset className="m-0 flex flex-col gap-3 border-0 p-0">
             <legend className="mb-2.5 text-[15px] font-black">¿Qué días?</legend>
             <div className="grid grid-cols-2 gap-3">
@@ -387,22 +382,30 @@ export function VuelosForm() {
             </div>
             <p className="m-0 text-xs text-fg-muted">Con margen de días es más fácil mejorar el precio.</p>
           </fieldset>
+          <fieldset className="m-0 flex flex-col gap-2.5 border-0 p-0">
+            <legend className="mb-2.5 text-[15px] font-black">¿Cuántos viajáis?</legend>
+            <Contador label="Adultos" value={d.adultos} min={1} max={9} onChange={(v) => set("adultos", v)} />
+            <Contador label="Niños (2-11 años)" value={d.ninos} min={0} max={9} onChange={(v) => set("ninos", v)} />
+            <Contador label="Bebés (menos de 2)" value={d.bebes} min={0} max={9} onChange={(v) => set("bebes", v)} />
+          </fieldset>
+          <details className="group border-2 border-[#0a0a0a]">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-3.5 py-2 [&::-webkit-details-marker]:hidden">
+              <span className="text-sm">
+                <b>Más opciones:</b> {d.destino === "Me da igual" ? "cualquier ciudad" : d.destino} · {d.maletas} maleta
+                {d.maletas === "1" ? "" : "s"} por persona · {d.clase}
+              </span>
+              <ChevronDown size={18} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-180" />
+            </summary>
+            <div className="flex flex-col gap-5 border-t-2 border-[#0a0a0a] p-3.5">
+              <Chips legend="¿A qué ciudad de Japón?" options={VUELOS_DESTINOS} value={d.destino} onChange={(v) => set("destino", v)} />
+              <Chips legend="Maletas facturadas por persona" options={VUELOS_MALETAS} value={d.maletas} onChange={(v) => set("maletas", v)} />
+              <Chips legend="Clase" options={VUELOS_CLASES} value={d.clase} onChange={(v) => set("clase", v)} />
+            </div>
+          </details>
         </>
       )}
 
       {paso === 1 && (
-        <>
-          <div className="flex flex-col gap-2.5">
-            <Contador label="Adultos" value={d.adultos} min={1} max={9} onChange={(v) => set("adultos", v)} />
-            <Contador label="Niños (2-11 años)" value={d.ninos} min={0} max={9} onChange={(v) => set("ninos", v)} />
-            <Contador label="Bebés (menos de 2)" value={d.bebes} min={0} max={9} onChange={(v) => set("bebes", v)} />
-          </div>
-          <Chips legend="Maletas facturadas por persona" options={VUELOS_MALETAS} value={d.maletas} onChange={(v) => set("maletas", v)} />
-          <Chips legend="Clase" options={VUELOS_CLASES} value={d.clase} onChange={(v) => set("clase", v)} />
-        </>
-      )}
-
-      {paso === 2 && (
         <>
           <div className="flex flex-col gap-1.5">
             <label htmlFor={`${id}-precio`} className="text-[15px] font-black">¿Cuánto te sale en total?</label>
@@ -412,7 +415,6 @@ export function VuelosForm() {
               <span className="text-xs text-fg-muted">Para todos los viajeros. Si aún no has mirado, déjalo vacío.</span>
             </div>
           </div>
-          <Chips legend="¿Dónde lo viste?" options={VUELOS_VISTO_EN} value={d.vistoEn} onChange={(v) => set("vistoEn", v)} />
           <div className="flex flex-col gap-2">
             <label htmlFor={`${id}-captura`} className="text-[15px] font-black">Captura del vuelo (opcional)</label>
             <input
@@ -427,17 +429,11 @@ export function VuelosForm() {
             />
             <span className="text-xs text-fg-muted">Nos ayuda a encontrar exactamente el mismo vuelo. JPG, PNG o WebP, hasta 5 MB.</span>
           </div>
-          <Chips legend="¿Qué valoras más?" options={VUELOS_PRIORIDAD} value={d.prioridad} onChange={(v) => set("prioridad", v)} />
-        </>
-      )}
-
-      {paso === 3 && (
-        <>
           <div className="flex flex-col gap-1">
             <label htmlFor={`${id}-nombre`} className="text-[15px] font-black">Tu nombre</label>
             <input id={`${id}-nombre`} autoComplete="given-name" className={`${inputCls} w-full`} placeholder="Nombre" value={d.nombre} onChange={(e) => set("nombre", e.target.value)} maxLength={60} />
           </div>
-          <Chips legend="¿Por dónde prefieres la respuesta?" options={VUELOS_CANALES} value={d.canal} onChange={(v) => set("canal", v)} />
+          <Chips legend="¿Por dónde te escribimos?" options={VUELOS_CANALES} value={d.canal} onChange={(v) => set("canal", v)} />
           <div className="flex flex-col gap-1">
             <label htmlFor={`${id}-contacto`} className="text-[15px] font-black">{contactoLabel}</label>
             <input
@@ -485,14 +481,14 @@ export function VuelosForm() {
             ← Atrás
           </button>
         ) : (
-          <span className="text-[13px] text-fg-muted">4 pasos · 1 minuto · sin registro</span>
+          <span className="text-[13px] text-fg-muted">2 pasos · 1 minuto · sin registro</span>
         )}
         <button
           type="submit"
           disabled={enviando}
           className="min-h-12 border-[3px] border-[#0a0a0a] bg-[#e1352e] px-5 font-mono text-[13px] font-bold uppercase text-white disabled:opacity-60"
         >
-          {paso < 3 ? `Siguiente: ${PASOS[paso + 1].toLowerCase()} →` : enviando ? "Enviando…" : "Pedir mi precio"}
+          {paso < ULTIMO ? `Siguiente: ${PASOS[paso + 1].toLowerCase()} →` : enviando ? "Enviando…" : "Pedir mi precio"}
         </button>
       </div>
     </form>

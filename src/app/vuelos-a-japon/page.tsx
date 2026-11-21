@@ -6,6 +6,7 @@ import { withSocial } from "@/lib/seo";
 import { VUELOS, telegramHref, whatsappHref } from "@/data/vuelos";
 import { VuelosForm } from "./VuelosForm";
 import { DirectoLink } from "./DirectoLink";
+import { FAQ } from "@/components/mdx";
 
 // El formulario se apaga solo si el servicio está desactivado (GET /api/vuelos; ver src/data/vuelos.ts).
 export const metadata: Metadata = withSocial("/vuelos-a-japon", {
@@ -26,6 +27,39 @@ const PASOS = [
     d: `Tienes ${VUELOS.validezHoras} horas: después el precio puede cambiar o agotarse las plazas.`,
   },
 ];
+
+function preguntas(colaborador: string) {
+  return [
+    {
+      q: "¿Quién me vende el código y a quién le pago?",
+      a: `Nuestro colaborador, ${colaborador}. Te escribe con el precio y el código, y el código se lo pagas a él. El vuelo se lo pagas tú a Iberia en iberia.com. ViajaJapón no te cobra nada: cobramos una comisión del colaborador.`,
+    },
+    {
+      q: "¿Cuánto cuesta el código?",
+      a: "Depende del vuelo. Antes de pagar nada te decimos lo que cuesta el código y lo que ahorras de verdad, ya descontado. Si esta vez no compensa, te lo decimos igual.",
+    },
+    {
+      q: "¿El billete va a mi nombre?",
+      a: "Sí. Lo compras tú en iberia.com con tus datos y tu tarjeta: el billete y la factura son tuyos y lo gestionas en tu cuenta de Iberia como cualquier otro vuelo.",
+    },
+    {
+      q: "¿Qué pasa si Iberia cambia o cancela el vuelo?",
+      a: "Los cambios y las cancelaciones se gestionan con Iberia, según las condiciones de tu tarifa. Cualquier duda sobre el código, con nuestro colaborador.",
+    },
+    {
+      q: "¿Para qué vuelos sirve?",
+      a: "Para vuelos de Iberia comprados en iberia.com. Iberia vuela directo de Madrid a Tokio (Narita). Si sales de otra ciudad o de fuera de España, dínoslo y te decimos si te compensa.",
+    },
+    {
+      q: "¿Pedir precio me compromete a algo?",
+      a: `No. Pedirlo es gratis y sin registro. Solo compras si el precio te convence, y tienes ${VUELOS.validezHoras} horas para hacerlo antes de que pueda cambiar.`,
+    },
+    {
+      q: "¿Qué hacéis con mis datos?",
+      a: "Pasamos tu solicitud a nuestro colaborador para que te conteste. No la guardamos en ningún servidor nuestro. Tienes todos los detalles en la política de privacidad.",
+    },
+  ];
+}
 
 export default function Page() {
   const wa = whatsappHref();
@@ -129,6 +163,11 @@ export default function Page() {
           {tg && <DirectoLink href={tg} canal="telegram" label="Telegram" />}
         </section>
       )}
+
+      <section className="mt-12 max-w-[820px]">
+        <h2 className="text-[28px] font-black leading-tight">Preguntas frecuentes</h2>
+        <FAQ items={preguntas(nombre || "nuestro colaborador")} />
+      </section>
 
       <p className="mt-10 border-t-[3px] border-[#0a0a0a] pt-3.5 text-[13px] leading-relaxed text-fg-muted">
         <b className="text-fg">Transparencia.</b> El código lo vende nuestro colaborador, {colaborador}, que es quien

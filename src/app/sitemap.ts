@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Fechas reales de la última edición de cada página fija (actualizar al tocarlas).
   const calculatorUpdated = new Date("2026-09-25");
   const legalUpdated = new Date("2026-07-15");
-  const privacyUpdated = new Date("2026-11-18");
+  const privacyUpdated = new Date("2026-11-21");
   const allMod = CONTENT_PILLARS.flatMap((p) => getArticles(p).map((a) => a.dateModified)).sort();
   const latest = allMod.length ? new Date(allMod[allMod.length - 1]) : fixed;
   const entries: MetadataRoute.Sitemap = [];
@@ -26,7 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/cambio-yen-euro", cf: "daily", p: 0.8, mod: latest },
     { path: "/blog", cf: "daily", p: 0.7, mod: latest },
     { path: "/logistica", cf: "weekly", p: 0.7, mod: latest },
-    { path: "/vuelos-a-japon", cf: "monthly", p: 0.7, mod: new Date("2026-11-18") },
+    { path: "/vuelos-a-japon", cf: "monthly", p: 0.7, mod: new Date("2026-11-21") },
     { path: "/nuestro-viaje-japon", cf: "yearly", p: 0.6, mod: new Date("2026-09-25") },
     { path: "/sobre-nosotros", cf: "yearly", p: 0.3, mod: new Date("2026-09-25") },
     { path: "/contacto", cf: "yearly", p: 0.3, mod: trustUpdated },

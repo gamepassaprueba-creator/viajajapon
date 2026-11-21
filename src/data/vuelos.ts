@@ -5,6 +5,7 @@
  * El servicio está APAGADO mientras GET /api/vuelos no diga lo contrario: hace falta
  * VUELOS_ACTIVO=1 y el bot de avisos configurado (TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID).
  * El colaborador recibe la solicitud con el nombre y el contacto del lector y es quien le escribe.
+ * Con TELEGRAM_CHAT_ID_COLABORADOR le llega directamente; si no, el titular se la reenvía.
  * Plan completo: marketing/planes/plan-vuelos-boletox-2026-11-16.md
  * (privado, fuera del repositorio).
  */

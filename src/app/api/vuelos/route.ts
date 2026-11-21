@@ -12,8 +12,10 @@ import {
   VUELOS_VISTO_EN,
 } from "@/data/vuelos";
 
-// Recibe las solicitudes del formulario de /vuelos-a-japon y las manda al Telegram del
-// titular. No guarda nada: ni los datos ni la captura se almacenan en ningún servidor nuestro.
+// Recibe las solicitudes del formulario de /vuelos-a-japon y las manda por Telegram. Con
+// TELEGRAM_CHAT_ID_COLABORADOR (el colaborador pulsó «Iniciar» en el bot) la solicitud le llega
+// directamente a él y el titular recibe una copia; sin ella, el titular la reenvía a mano.
+// No guarda nada: ni los datos ni la captura se almacenan en ningún servidor nuestro.
 
 const MAX_BODY_BYTES = VUELOS_CAPTURA_MAX + 64 * 1024;
 const ALLOWED_ORIGINS = new Set([
@@ -142,7 +144,7 @@ export async function POST(req: Request) {
   if (!oneOf(maletas, VUELOS_MALETAS)) errors.push("maletas");
   if (!oneOf(clase, VUELOS_CLASES)) errors.push("clase");
   if (vistoEn && !oneOf(vistoEn, VUELOS_VISTO_EN)) errors.push("vistoEn");
-  if (!oneOf(prioridad, VUELOS_PRIORIDAD)) errors.push("prioridad");
+  if (prioridad && !oneOf(prioridad, VUELOS_PRIORIDAD)) errors.push("prioridad");
   if (nombre.length < 2) errors.push("nombre");
   if (!oneOf(canal, VUELOS_CANALES)) errors.push("canal");
   if (canal === "Correo" ? !EMAIL_RE.test(contacto) : contacto.replace(/\D/g, "").length < 6 && !/^@?\w{4,}$/.test(contacto)) {
@@ -190,47 +192,53 @@ export async function POST(req: Request) {
     `${origen} → ${destino}`,
     `Ida ${fechaLarga(ida)}, vuelta ${fechaLarga(vuelta)} (${flexibilidad.toLowerCase()})`,
     `${viajeros} · ${maletas} maleta(s) facturada(s) por persona · ${clase}`,
-    precio ? `Visto a ${precio} € en ${vistoEn || "sin indicar"}` : "Aún no ha mirado precio",
-    `Valora: ${prioridad.toLowerCase()}`,
+    precio ? `Visto a ${precio} €${vistoEn ? ` en ${vistoEn}` : ""}` : "Aún no ha mirado precio",
+    prioridad ? `Valora: ${prioridad.toLowerCase()}` : "",
     file ? "Captura del vuelo: en el mensaje siguiente" : "Sin captura",
     nota ? `Nota: ${nota}` : "",
   ]
     .filter(Boolean)
     .join("\n");
 
-  const privado = [
-    `🔔 Nueva solicitud ${ref} (${nombre}, ${origen} → ${destino})`,
-    `Hay que responder antes del ${respondeAntes}.`,
-    "",
-    "👇 Reenvía a Boletox el mensaje de abajo: lleva todo lo que necesita para escribir al cliente.",
-  ].join("\n");
+  const enviar = (chat: string, texto: string) =>
+    telegram("sendMessage", JSON.stringify({ chat_id: chat, text: texto, link_preview_options: { is_disabled: true } }), true);
+  const enviarCaptura = async (chat: string) => {
+    if (!file) return;
+    const photo = new FormData();
+    photo.append("chat_id", chat);
+    photo.append("caption", `${ref} · captura del lector`);
+    photo.append("document", file, `${ref}.${file.type.split("/")[1]}`);
+    // Si la captura falla, la solicitud ya ha llegado: no se lo hacemos repetir al lector.
+    if (!(await telegram("sendDocument", photo, false))) console.error("[vuelos] Telegram rechazó la captura");
+  };
 
   try {
-    const chatId = process.env.TELEGRAM_CHAT_ID as string;
-    const sent = await telegram(
-      "sendMessage",
-      JSON.stringify({ chat_id: chatId, text: privado, link_preview_options: { is_disabled: true } }),
-      true,
-    );
-    const reenviable =
-      sent &&
-      (await telegram(
-        "sendMessage",
-        JSON.stringify({ chat_id: chatId, text: paraColaborador, link_preview_options: { is_disabled: true } }),
-        true,
-      ));
-    if (!sent || !reenviable) {
+    const titular = process.env.TELEGRAM_CHAT_ID as string;
+    const colaborador = process.env.TELEGRAM_CHAT_ID_COLABORADOR?.trim() || "";
+
+    // 1. Directo al colaborador, si ya ha abierto el chat con el bot.
+    const alColaborador = colaborador !== "" && colaborador !== titular && (await enviar(colaborador, paraColaborador));
+    if (colaborador && !alColaborador) console.error("[vuelos] no se pudo enviar al colaborador");
+
+    // 2. Aviso y copia al titular. Si el colaborador no la ha recibido, el titular se la reenvía.
+    const privado = [
+      `🔔 Nueva solicitud ${ref} (${nombre}, ${origen} → ${destino})`,
+      `Hay que responder antes del ${respondeAntes}.`,
+      "",
+      alColaborador
+        ? `✅ Ya le ha llegado a ${VUELOS.colaborador.nombre || "nuestro colaborador"}. Abajo tienes la copia.`
+        : colaborador
+          ? "⚠️ No se ha podido mandar al colaborador: reenvíale tú el mensaje de abajo."
+          : "👇 Reenvía al colaborador el mensaje de abajo: lleva todo lo que necesita para escribir al cliente.",
+    ].join("\n");
+    const sent = await enviar(titular, privado);
+    const copia = sent && (await enviar(titular, paraColaborador));
+    if (!alColaborador && (!sent || !copia)) {
       console.error("[vuelos] Telegram rechazó el mensaje");
       return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
     }
-    if (file) {
-      const photo = new FormData();
-      photo.append("chat_id", chatId);
-      photo.append("caption", `${ref} · captura del lector`);
-      photo.append("document", file, `${ref}.${file.type.split("/")[1]}`);
-      // Si la captura falla, la solicitud ya ha llegado: no se lo hacemos repetir al lector.
-      if (!(await telegram("sendDocument", photo, false))) console.error("[vuelos] Telegram rechazó la captura");
-    }
+    if (alColaborador) await enviarCaptura(colaborador);
+    if (copia) await enviarCaptura(titular);
   } catch (err) {
     console.error("[vuelos] fallo de red con Telegram", err instanceof Error ? err.name : "unknown");
     return NextResponse.json({ ok: false, error: "network" }, { status: 502 });
