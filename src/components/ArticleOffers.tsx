@@ -3,6 +3,7 @@ import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, neutralCta, type PartnerKey } from "@/lib/affiliates";
 import { bookingQue } from "@/data/booking-links";
 import { tripcomCiudad, tripcomHotelCta } from "@/data/tripcom-links";
+import { PromoPartner } from "@/components/PromoPartner";
 
 type Offer =
   | { kind: "partner"; partner: PartnerKey; title: string; blurb: string; cta: string }
@@ -74,6 +75,7 @@ export function ArticleOffers({ pillar, destino }: { pillar: string; destino?: s
             <li key={o.key} className="flex flex-col border-[2px] border-[#0a0a0a] bg-white p-4">
               <p className="font-black text-[#0a0a0a]">{o.title}</p>
               <p className="mt-1 flex-1 text-sm leading-relaxed text-fg-muted">{o.blurb}</p>
+              {o.kind === "partner" ? <PromoPartner partner={o.partner} compacta /> : null}
               {o.kind === "partner" && o.partner === "booking" && tripFirst ? (
                 <>
                   <TrackedAffiliateLink

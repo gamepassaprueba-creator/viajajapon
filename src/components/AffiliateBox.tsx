@@ -1,6 +1,7 @@
 import { TrackedAffiliateLink } from "@/components/TrackedAffiliateLink";
 import { affiliateUrl, isMonetized, lodgingPartner, neutralCta, type PartnerKey } from "@/lib/affiliates";
 import { tripcomHotelCta } from "@/data/tripcom-links";
+import { PromoPartner } from "@/components/PromoPartner";
 
 export interface AffiliateBoxProps {
   /** Clave del partner en el registro central (src/lib/affiliates.ts). */
@@ -45,6 +46,7 @@ export function AffiliateBox({
       <p className="kicker text-[#d32f2f]">{monetized ? "Recomendación · enlace de afiliado" : "Recomendación"}</p>
       <h3 className="mt-1 text-lg font-black text-[#0a0a0a]">{title}</h3>
       <div className="mt-1 text-sm leading-relaxed text-[#555]">{children}</div>
+      <PromoPartner partner={partner} />
       <TrackedAffiliateLink
         href={href}
         partner={partner}
