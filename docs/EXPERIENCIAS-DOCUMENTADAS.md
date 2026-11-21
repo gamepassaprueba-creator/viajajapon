@@ -76,3 +76,7 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 ### Precios de segunda mano (fotos de diciembre de 2025, publicado el 17-nov-2026 en tiendas-segunda-mano-japon)
 - Quest 3 512 GB usada ¥54.980 (junto a cartel Tax-free 10 %); Quest 2 64 GB usada ¥16.980; N64 Pikachu ¥23.100 y PSP roja ¥8.800; etiqueta de iPad Pro 12,9" 2021 256 GB libre rango B ¥87.980 (tax out ¥79.981).
 - NO consta en qué tienda ni en qué ciudad se hizo cada foto: no se nombran.
+
+### Publicado el 21-nov-2026
+- logistica/viajar-japon-personas-mayores: madre de 70 (Fushimi entero, Kiyomizu de noche, Apple Watch), 15 km/23.268 pasos y ampollas, una hora a pie al castillo de Osaka, 5 hoteles en 15 días (4-3-4-1-2), Nara de paso y Himeji de excursión, habitaciones twin, Kagihei (té y figurita), billetes del shinkansen el día antes y Green Car por error, váteres, español con japoneses, reverencia del okonomiyaki, frío de Yokohama, tarjeta de los 70 años. Fotos ya aprobadas: fushimi-inari-toriis-madre.jpg y yokohama-hotel-ventana-noria-madre.jpg. NO consta: que usaran el takkyubin, taxis ni descansos planificados.
+- destinos/monte-fuji: foto propia y nota del Fuji desde el shinkansen (12-dic, de Osaka hacia Yokohama, despejado y nevado).
