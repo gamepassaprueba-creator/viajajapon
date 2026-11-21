@@ -62,6 +62,20 @@ export const TRIPCOM_TRENES: Record<string, { label: string; url: string }> = {
   "tren-jr-pass": { label: "JR Pass", url: "https://es.trip.com/trains/japan/jr-pass/" },
 };
 
+/**
+ * Traslados privados desde el aeropuerto (comisión de traslados del 8 %). Páginas de es.trip.com
+ * comprobadas el 21-nov-2026 (HTTP 200 y H1 «Traslados para el Aeropuerto Internacional de …»; la de
+ * Haneda se llama «Aeropuerto Internacional de Tokio»). El enlace de CJ redirige con allianceid.
+ * Se usan con `destino="traslado-nrt"` en <AffiliateBox partner="tripcom">.
+ */
+const TA = "https://es.trip.com/airport-transfers";
+
+export const TRIPCOM_TRASLADOS: Record<string, { label: string; url: string }> = {
+  "traslado-nrt": { label: "Aeropuerto de Narita", url: `${TA}/airport-nrt/` },
+  "traslado-hnd": { label: "Aeropuerto de Haneda", url: `${TA}/airport-hnd/` },
+  "traslado-kix": { label: "Aeropuerto de Kansai", url: `${TA}/airport-kix/` },
+};
+
 /** Ciudad de Trip.com para una clave de Booking ("osaka-namba" → "osaka"), o null. */
 export function tripcomCiudad(destino?: string): string | null {
   if (!destino) return null;
@@ -72,7 +86,7 @@ export function tripcomCiudad(destino?: string): string | null {
 
 /** Enlace que se pinta (plantilla de CJ o URL directa), o null si la ciudad no está. */
 export function tripcomHref(destino?: string): string | null {
-  const tren = destino ? TRIPCOM_TRENES[destino] : undefined;
+  const tren = destino ? (TRIPCOM_TRENES[destino] ?? TRIPCOM_TRASLADOS[destino]) : undefined;
   const ciudad = tripcomCiudad(destino);
   // Sin ciudad (Japón entero, que no tiene página propia): el buscador general de hoteles, también con tracking.
   const url = tren?.url ?? (ciudad ? TRIPCOM_CIUDADES[ciudad].url : `${TC}/`);
