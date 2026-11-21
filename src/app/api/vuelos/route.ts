@@ -15,9 +15,8 @@ import {
   euros,
 } from "@/data/vuelos";
 
-// Recibe las solicitudes del formulario de /vuelos-a-japon y las manda por Telegram. Con
-// TELEGRAM_CHAT_ID_COLABORADOR (el colaborador pulsó «Iniciar» en el bot) la solicitud le llega
-// directamente a él y el titular recibe una copia; sin ella, el titular la reenvía a mano.
+// Recibe las solicitudes del formulario de /vuelos-a-japon y las manda por Telegram SOLO al
+// titular, que se las reenvía al colaborador (decisión del titular, 21-nov-2026).
 // No guarda nada: ni los datos ni la captura se almacenan en ningún servidor nuestro.
 
 const MAX_BODY_BYTES = VUELOS_CAPTURA_MAX + 64 * 1024;
@@ -233,31 +232,21 @@ export async function POST(req: Request) {
 
   try {
     const titular = process.env.TELEGRAM_CHAT_ID as string;
-    const colaborador = process.env.TELEGRAM_CHAT_ID_COLABORADOR?.trim() || "";
 
-    // 1. Directo al colaborador, si ya ha abierto el chat con el bot.
-    const alColaborador = colaborador !== "" && colaborador !== titular && (await enviar(colaborador, paraColaborador));
-    if (colaborador && !alColaborador) console.error("[vuelos] no se pudo enviar al colaborador");
-
-    // 2. Aviso y copia al titular. Si el colaborador no la ha recibido, el titular se la reenvía.
+    // Mensaje 1, aviso para el titular. Mensaje 2, la solicitud completa que él reenvía al colaborador.
     const privado = [
       `🔔 Nueva solicitud ${ref} (${nombre}, ${origen} → ${destino})`,
       `Hay que responder antes del ${respondeAntes}.`,
       "",
-      alColaborador
-        ? `✅ Ya le ha llegado a ${VUELOS.colaborador.nombre || "nuestro colaborador"}. Abajo tienes la copia.`
-        : colaborador
-          ? "⚠️ No se ha podido mandar al colaborador: reenvíale tú el mensaje de abajo."
-          : "👇 Reenvía al colaborador el mensaje de abajo: lleva todo lo que necesita para escribir al cliente.",
+      `👇 Reenvía a ${VUELOS.colaborador.nombre || "nuestro colaborador"} el mensaje de abajo: lleva todo lo que necesita para escribir al cliente.`,
     ].join("\n");
     const sent = await enviar(titular, privado);
-    const copia = sent && (await enviar(titular, paraColaborador));
-    if (!alColaborador && (!sent || !copia)) {
+    const reenviable = sent && (await enviar(titular, paraColaborador));
+    if (!sent || !reenviable) {
       console.error("[vuelos] Telegram rechazó el mensaje");
       return NextResponse.json({ ok: false, error: "upstream" }, { status: 502 });
     }
-    if (alColaborador) await enviarCaptura(colaborador);
-    if (copia) await enviarCaptura(titular);
+    await enviarCaptura(titular);
   } catch (err) {
     console.error("[vuelos] fallo de red con Telegram", err instanceof Error ? err.name : "unknown");
     return NextResponse.json({ ok: false, error: "network" }, { status: 502 });
