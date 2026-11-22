@@ -45,6 +45,7 @@ export function Estimado({ precio, personas }: { precio: string; personas: numbe
   }
 
   const pct = Math.round(VUELOS_ESTIMADO.descuento * 100);
+  const desglose = VUELOS_ESTIMADO.codigo !== null;
   return (
     <section aria-label="Tu precio estimado" role="status" className="flex flex-col border-[3px] border-[#0a0a0a] bg-[#fff7f6]">
       <div className="flex items-center justify-between gap-3 bg-[#0a0a0a] px-3 py-2.5 text-white sm:px-4">
@@ -60,13 +61,15 @@ export function Estimado({ precio, personas }: { precio: string; personas: numbe
             <b className="font-mono">{euros(e.precio)}</b>
           </span>
           <span className="flex justify-between gap-3">
-            <span>Descuento del código ({pct} %)</span>
+            <span>{desglose ? `Descuento del código (${pct} %)` : `Ahorro estimado (al menos un ${pct} %)`}</span>
             <b className="font-mono text-[#1a7f37]">{euros(-e.descuento)}</b>
           </span>
-          <span className="flex justify-between gap-3">
-            <span>Lo que cuesta el código</span>
-            <b className="font-mono">+{euros(e.coste)}</b>
-          </span>
+          {desglose && (
+            <span className="flex justify-between gap-3">
+              <span>Lo que cuesta el código</span>
+              <b className="font-mono">+{euros(e.coste)}</b>
+            </span>
+          )}
           <span className="flex justify-between gap-3 border-t-2 border-dashed border-[#0a0a0a] pt-2.5">
             <b>Pagarías en total</b>
             <b className="font-mono">{euros(e.total)}</b>
@@ -85,8 +88,9 @@ export function Estimado({ precio, personas }: { precio: string; personas: numbe
       <details className="border-t-2 border-[#0a0a0a] sm:hidden">
         <summary className="flex min-h-11 cursor-pointer items-center px-3 text-[13px] font-bold">Ver la cuenta</summary>
         <p className="m-0 px-3 pb-3 text-[13px] leading-relaxed">
-          iberia.com: {euros(e.precio)} · código −{pct} %: {euros(-e.descuento)} · coste del código: +{euros(e.coste)} · total:{" "}
-          {euros(e.total)}
+          {desglose
+            ? `iberia.com: ${euros(e.precio)} · código −${pct} %: ${euros(-e.descuento)} · coste del código: +${euros(e.coste)} · total: ${euros(e.total)}`
+            : `iberia.com: ${euros(e.precio)} · ahorro estimado (al menos un ${pct} %): ${euros(-e.descuento)} · total: ${euros(e.total)}`}
         </p>
       </details>
       <p className="m-0 border-t-2 border-[#0a0a0a] px-3 py-2.5 text-[11px] leading-normal text-[#333] sm:px-4 sm:text-xs">
