@@ -76,6 +76,15 @@ export const TRIPCOM_TRASLADOS: Record<string, { label: string; url: string }> =
   "traslado-kix": { label: "Aeropuerto de Kansai", url: `${TA}/airport-kix/` },
 };
 
+/**
+ * eSIM de Japón que vende Trip.com en «Tours y entradas» (comisión de tours del 5 %). La ficha se
+ * comprobó el 22-nov-2026 (HTTP 200; KDDI/SoftBank; 4,5/5 con ~13.850 valoraciones y ~370.000 reservas;
+ * 10 GB / 30 días a 5,46 €). El enlace de CJ redirige bien. Se usa con `destino="esim-japon"`.
+ */
+export const TRIPCOM_ESIM: Record<string, { label: string; url: string }> = {
+  "esim-japon": { label: "eSIM de Japón", url: "https://es.trip.com/things-to-do/detail/45999298/" },
+};
+
 /** Ciudad de Trip.com para una clave de Booking ("osaka-namba" → "osaka"), o null. */
 export function tripcomCiudad(destino?: string): string | null {
   if (!destino) return null;
@@ -86,7 +95,7 @@ export function tripcomCiudad(destino?: string): string | null {
 
 /** Enlace que se pinta (plantilla de CJ o URL directa), o null si la ciudad no está. */
 export function tripcomHref(destino?: string): string | null {
-  const tren = destino ? (TRIPCOM_TRENES[destino] ?? TRIPCOM_TRASLADOS[destino]) : undefined;
+  const tren = destino ? (TRIPCOM_TRENES[destino] ?? TRIPCOM_TRASLADOS[destino] ?? TRIPCOM_ESIM[destino]) : undefined;
   const ciudad = tripcomCiudad(destino);
   // Sin ciudad (Japón entero, que no tiene página propia): el buscador general de hoteles, también con tracking.
   const url = tren?.url ?? (ciudad ? TRIPCOM_CIUDADES[ciudad].url : `${TC}/`);

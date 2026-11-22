@@ -108,7 +108,7 @@ if (fs.existsSync(bookingPath)) {
   const tripcomPath = path.join(__dirname, "../src/data/tripcom-links.ts");
   if (fs.existsSync(tripcomPath)) {
     const tc = fs.readFileSync(tripcomPath, "utf8");
-    for (const m of tc.matchAll(/^\s+"((?:tren|traslado)-[a-z0-9-]+)": \{ label:/gm)) validos.add(m[1]);
+    for (const m of tc.matchAll(/^\s+"((?:tren|traslado|esim)-[a-z0-9-]+)": \{ label:/gm)) validos.add(m[1]);
   }
   const errores = [];
   for (const meta of allArticlesMeta) {
