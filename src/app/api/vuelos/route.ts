@@ -174,13 +174,17 @@ export async function POST(req: Request) {
 
   // La misma cuenta que vio el lector en el formulario, rehecha aquí con la regla vigente.
   const est = calcularEstimado(precio, (adultos ?? 1) + (ninos ?? 0));
-  const regla = VUELOS_ESTIMADO
-    ? `${Math.round(VUELOS_ESTIMADO.descuento * 100)} % de descuento − código ${
-        VUELOS_ESTIMADO.codigo.tipo === "porcentaje"
-          ? `${Math.round(VUELOS_ESTIMADO.codigo.valor * 1000) / 10} %`
-          : `${euros(VUELOS_ESTIMADO.codigo.valor)}${VUELOS_ESTIMADO.codigo.porPersona ? " por persona" : ""}`
-      }`
-    : "";
+  const codigo = VUELOS_ESTIMADO?.codigo ?? null;
+  const pctEstimado = VUELOS_ESTIMADO ? Math.round(VUELOS_ESTIMADO.descuento * 100) : 0;
+  const regla = !VUELOS_ESTIMADO
+    ? ""
+    : codigo
+      ? `${pctEstimado} % de descuento − código ${
+          codigo.tipo === "porcentaje"
+            ? `${Math.round(codigo.valor * 1000) / 10} %`
+            : `${euros(codigo.valor)}${codigo.porPersona ? " por persona" : ""}`
+        }`
+      : `le enseñamos un ahorro neto del ${pctEstimado} %; tu oferta no debe quedar por debajo`;
   const lineaEstimado = est
     ? est.compensa
       ? `Le hemos mostrado: ≈ ${euros(est.total)} (${euros(est.porPersona)}/persona, ahorro ≈ ${euros(est.ahorro)}) · regla: ${regla}`

@@ -49,21 +49,26 @@ export const VUELOS_CAPTURA_TIPOS = ["image/jpeg", "image/png", "image/webp"] as
 
 /**
  * Precio estimado del formulario (fase 1, diseño «VuelosEstimado» del lienzo): el lector escribe lo
- * que le sale en iberia.com y ve al momento lo que pagaría con el colaborador. La regla la pone el
- * colaborador; con `null` la caja no se muestra. Ejemplos:
- *   { descuento: 0.1, codigo: { tipo: "porcentaje", valor: 0.03 }, ahorroMinimo: 30 }
- *   { descuento: 0.1, codigo: { tipo: "fijo", valor: 40, porPersona: true }, ahorroMinimo: 30 }
+ * que le sale en iberia.com y ve al momento lo que pagaría con el colaborador. Con `null` la caja
+ * no se muestra. Ejemplos:
+ *   Solo ahorro neto: { descuento: 0.05, codigo: null, ahorroMinimo: 30 }
+ *   Con desglose:     { descuento: 0.1, codigo: { tipo: "porcentaje", valor: 0.045 }, ahorroMinimo: 30 }
  */
 export type ReglaEstimado = {
-  /** Descuento del código sobre el total de Iberia (0.1 = 10 %). */
+  /** Con `codigo`, descuento del código sobre el total de Iberia; sin él, ahorro neto que se enseña. */
   descuento: number;
-  /** Lo que paga el lector por el código: % del total de Iberia o importe fijo en euros. */
-  codigo: { tipo: "porcentaje"; valor: number } | { tipo: "fijo"; valor: number; porPersona: boolean };
+  /** Lo que paga el lector por el código (% del total de Iberia o importe fijo). `null` = no se enseña el desglose. */
+  codigo: { tipo: "porcentaje"; valor: number } | { tipo: "fijo"; valor: number; porPersona: boolean } | null;
   /** Por debajo de este ahorro neto (en euros) se dice que el código no compensa. */
   ahorroMinimo: number;
 };
 
-export const VUELOS_ESTIMADO: ReglaEstimado | null = null;
+/**
+ * Regla del titular (22-nov-2026): el código es de hasta un 10 %; al cliente se le mejora un 5-6 % y
+ * el resto se reparte entre el colaborador y ViajaJapón. Se enseña solo el ahorro neto, por lo bajo
+ * (5 %), para que la oferta real nunca sea peor que la estimación. Ni el 10 % ni el reparto salen en la web.
+ */
+export const VUELOS_ESTIMADO: ReglaEstimado | null = { descuento: 0.05, codigo: null, ahorroMinimo: 30 };
 
 export type Estimado = {
   precio: number;
@@ -90,9 +95,8 @@ export function calcularEstimado(precioTexto: string, personas: number, regla: R
   const precio = leerPrecio(precioTexto);
   if (!regla || precio === null || personas < 1) return null;
   const descuento = Math.round(precio * regla.descuento);
-  const coste = Math.round(
-    regla.codigo.tipo === "porcentaje" ? precio * regla.codigo.valor : regla.codigo.valor * (regla.codigo.porPersona ? personas : 1),
-  );
+  const c = regla.codigo;
+  const coste = c ? Math.round(c.tipo === "porcentaje" ? precio * c.valor : c.valor * (c.porPersona ? personas : 1)) : 0;
   const total = Math.round(precio - descuento + coste);
   const ahorro = Math.round(precio - total);
   return {
