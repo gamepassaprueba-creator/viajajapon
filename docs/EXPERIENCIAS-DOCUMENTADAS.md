@@ -80,3 +80,14 @@ Solo hechos comprobados en las fotos, en la fecha de los vídeos o contados por 
 ### Publicado el 21-nov-2026
 - logistica/viajar-japon-personas-mayores: madre de 70 (Fushimi entero, Kiyomizu de noche, Apple Watch), 15 km/23.268 pasos y ampollas, una hora a pie al castillo de Osaka, 5 hoteles en 15 días (4-3-4-1-2), Nara de paso y Himeji de excursión, habitaciones twin, Kagihei (té y figurita), billetes del shinkansen el día antes y Green Car por error, váteres, español con japoneses, reverencia del okonomiyaki, frío de Yokohama, tarjeta de los 70 años. Fotos ya aprobadas: fushimi-inari-toriis-madre.jpg y yokohama-hotel-ventana-noria-madre.jpg. NO consta: que usaran el takkyubin, taxis ni descansos planificados.
 - destinos/monte-fuji: foto propia y nota del Fuji desde el shinkansen (12-dic, de Osaka hacia Yokohama, despejado y nevado).
+
+### Publicado el 23-nov-2026 (segundo lote de fotos y clips, solo lo que se ve en ellos)
+- Día 2: el ramen fue en un Ichiran (fachada, máquina con carta en inglés, chino y coreano, menú completo a ¥1.790, vídeo del cubículo); la madre en el incensario del Senso-ji (vídeo); subieron al Skytree (foto desde el mirador; NO consta a qué planta); el reloj marca 23.268 pasos, 15,08 km y 12 pisos.
+- Día 3: foto de los dos con Hachiko.
+- Día 5: vídeo de la habitación del Kagihei al llegar y de un puesto de brochetas en Nishiki; foto de la madre con yukata.
+- Día 7: ramen de fuego (vídeo: babero de papel, llamarada, los dos aplaudiendo). NO consta el nombre del local.
+- Días 8 y 9: foto de los dos ante el castillo de Osaka de noche (8-dic) y selfi con takoyaki en Dotonbori.
+- Día 12: foto de la madre con la tarjeta del hotel por sus 70 años.
+- Día 13: vídeo de la recepcionista robot vestida de Navidad (Henn na Asakusabashi).
+- Figuras Polygon de FF VII a ¥3.300 (la de Sephiroth es la que regaló la madre); figuras de Conan a ¥2.380 y maletas Pokémon Pixel Art: NO consta en qué tienda.
+- Descartado por caras de desconocidos: vídeos del takoyaki (personal) y del okonomiyaki, cantante callejero, boda de Meiji. Los vídeos redondos (Nara, Dotonbori, bonsáis) son notas de Telegram de 400 px: falta el original.

@@ -249,6 +249,19 @@ fotos de particulares identificables sin su permiso (p. ej. la boda sintoísta d
 | segunda-mano-quest2-caja.jpg | Caja de Quest 2 usadas con etiqueta (se ve la mano de la madre del autor) | Tienda de segunda mano, Japón |
 | segunda-mano-n64-pikachu.jpg | Nintendo 64 de Pikachu y PSP con etiquetas de precio | Tienda de segunda mano, Japón |
 | segunda-mano-ipad-etiqueta.jpg | Etiqueta electrónica de un iPad Pro usado (recorte de la etiqueta) | Tienda de segunda mano, Japón |
+| shibuya-hachiko-madre-autor.jpg | El autor y su madre con la estatua de Hachiko (3-dic-2025) | Shibuya, Tokio |
+| tokio-skytree-desde-abajo.jpg, tokio-vista-desde-skytree.jpg | El Skytree desde su base y Tokio desde el mirador (2-dic-2025) | Sumida, Tokio |
+| tokio-ichiran-maquina-pedidos.jpg | Máquina de pedidos de Ichiran con el menú a ¥1.790 (2-dic-2025) | Tokio |
+| kioto-ryokan-kagihei-yukata-madre.jpg | La madre del autor con yukata en la habitación del Kagihei | Kioto |
+| osaka-castillo-noche-madre-autor.jpg | El autor y su madre ante el castillo iluminado (8-dic-2025) | Osaka |
+| dotonbori-takoyaki-selfie.jpg | Selfi del autor y su madre con takoyaki (9-dic-2025) | Dotonbori, Osaka |
+| apple-watch-23268-pasos.jpg | Reloj con 23.268 pasos y 15,08 km (2-dic-2025) | Tokio |
+| yokohama-tarjeta-70-anos-madre.jpg | La madre del autor con la tarjeta del hotel por sus 70 años (12-dic-2025) | Yokohama |
+| hotel-habitacion-twin.jpg | Habitación de hotel con dos camas | Japón |
+| washlet-inodoro-hotel.jpg, washlet-botones-pared.jpg | Váter con chorro y su panel de pared (1-dic-2025) | Hotel de Akihabara, Tokio |
+| figuras-final-fantasy-vii.jpg | Figuras Polygon de Final Fantasy VII a ¥3.300 | Tokio |
+| figuras-detective-conan.jpg | Figuras de Detective Conan a ¥2.380 en una tienda | Japón |
+| maletas-pokemon-pixel-art.jpg | Maletas Pokémon Pixel Art en una tienda | Japón |
 
 ### Clips de vídeo propios (public/videos/propias/)
 
@@ -260,3 +273,9 @@ tramo de 10-20 s, sin sonido ni metadatos, marca de agua con el logo y menos de 
 | --- | --- | --- |
 | tokio-shinkansen-anden.mp4 | Shinkansen N700S en el andén (5-dic-2025), 9 s | Estación de Tokio |
 | himeji-kokoen-momiji.mp4 | Arroyo y arces rojos del jardín Koko-en (11-dic-2025), 14 s | Himeji |
+| asakusa-sensoji-incienso.mp4 | La madre del autor en el incensario del Senso-ji (2-dic-2025), 12 s | Asakusa, Tokio |
+| tokio-ichiran-cubiculo.mp4 | El ramen llega al cubículo de Ichiran (2-dic-2025), 15 s | Tokio |
+| tokio-hotel-robot-navidad.mp4 | Recepcionista robot vestida de Navidad (13-dic-2025), 12 s | Henn na Hotel Tokyo Asakusabashi |
+| kioto-nishiki-puesto.mp4 | Puesto de brochetas a la brasa (5-dic-2025), 10 s | Mercado Nishiki, Kioto |
+| kioto-ryokan-kagihei-habitacion.mp4 | Habitación del ryokan Kagihei (5-dic-2025), 16 s | Kioto |
+| kioto-ramen-de-fuego.mp4 | Ramen de fuego con el autor y su madre en la barra (7-dic-2025), 10 s; sin caras de desconocidos | Kioto |
