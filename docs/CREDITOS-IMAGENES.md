@@ -161,6 +161,35 @@ en este proyecto).
 | seki-terrace.jpg | Edificio de Seki Terrace | Asturio Cantabrio | CC BY-SA 4.0 | Sekiterrace ac (2).jpg |
 | seki-oze-rio-nagara.jpg | El río Nagara en Oze (Seki) | guretaro | Dominio público | Nagara river in oze seki.JPG |
 | seki-mino-udatsu.jpg | Calle de casas con udatsu en Mino (brillo ajustado) | guretaro | Dominio público | Udatsu in minomachi.JPG |
+| videojuegos-kabukicho-ichibangai-puerta.jpg | Puerta de Kabukicho Ichibangai de noche (Shinjuku) | Asanagi | CC0 | Kabukicho Ichibangai entrance 2021-05-19.jpg |
+| videojuegos-susukino-cartel-nikka.jpg | Cartel de Nikka en Susukino (Sapporo) | 663highland | CC BY 2.5 | Nikka Susukino Sapporo01s.jpg |
+| videojuegos-kichijoji-sun-road.jpg | Entrada de la galería Sun Road de Kichijoji de noche | ITA-ATU | CC BY-SA 4.0 | Gate of the Kichijoji Sunroad at Night.jpg |
+| videojuegos-tsushima-izuhara.jpg | Puerto de Izuhara (Tsushima) | Saigen Jiro | CC0 | Izuhara, Tsushima-1.jpg |
+| videojuegos-shibuya-cruce.jpg | Cruce de Shibuya de noche | Syced | CC0 | Shibuya Scramble crossing.jpg |
+| videojuegos-onomichi-hondori.jpg | Calle comercial Onomichi Hondori | Asturio Cantabrio | CC BY-SA 4.0 | Onomichi Hondori 2021-08 ac.jpg |
+| videojuegos-yokohama-isezakicho.jpg | Cruce de Isezakicho (Yokohama) | 663highland | CC BY 2.5 | Yokohama Isezaki-cho01s3200.jpg |
+
+## Capturas oficiales de videojuegos (public/images/juegos/)
+
+Capturas promocionales que los editores publican en sus fichas oficiales de Steam (store.steampowered.com/app/<id>),
+reducidas a 1280x720 sin marca de agua ni retoques. Se usan solo en `cultura/japon-en-los-videojuegos` para comparar
+cada juego con el lugar real (derecho de cita, art. 32 LPI), siempre con `credito` que nombra el juego y al titular.
+No usarlas como portada ni como decoración en otras guías.
+
+| Archivo | Juego (app de Steam) | Titular |
+| --- | --- | --- |
+| yakuza6-kamurocho-tenkaichi.jpg | Yakuza 6: The Song of Life (1388590) | SEGA |
+| yakuza6-onomichi.jpg | Yakuza 6: The Song of Life (1388590) | SEGA |
+| yakuza-gaiden-sotenbori.jpg | Like a Dragon Gaiden (2375550) | SEGA |
+| yakuza5-tsukimino.jpg | Yakuza 5 Remastered (1105510) | SEGA |
+| like-a-dragon-ijincho.jpg | Yakuza: Like a Dragon (1235140) | SEGA |
+| like-a-dragon-ishin-kioto.jpg | Like a Dragon: Ishin! (1805480) | SEGA |
+| persona5-royal-kichijoji.jpg | Persona 5 Royal (1687950) | ATLUS / SEGA |
+| ghostwire-tokyo-shibuya.jpg | Ghostwire: Tokyo (1475810) | Bethesda Softworks |
+| tokyo-xtreme-racer-torre.jpg | Tokyo Xtreme Racer (2634950) | GENKI |
+| ghost-of-tsushima-costa.jpg | Ghost of Tsushima Director's Cut (2215430) | Sony Interactive Entertainment |
+| rise-of-the-ronin-kiyomizu.jpg | Rise of the Ronin (1340990) | Koei Tecmo Games |
+| assassins-creed-shadows-castillo.jpg | Assassin's Creed Shadows (3159330) | Ubisoft |
 
 ## Fotos propias (public/images/propias/)
 
